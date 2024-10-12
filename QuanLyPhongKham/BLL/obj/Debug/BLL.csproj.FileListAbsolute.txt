@@ -1,0 +1,11 @@
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\bin\Debug\BLL.dll
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\bin\Debug\BLL.pdb
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\bin\Debug\DAL.dll
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\bin\Debug\DTO.dll
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\bin\Debug\DAL.pdb
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\bin\Debug\DTO.pdb
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
+E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb
