@@ -9,3 +9,14 @@ E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.ca
 E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
 E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
 E:\Code\C#\Winform\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\BLL.dll
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\BLL.pdb
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DAL.dll
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DTO.dll
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DAL.pdb
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DTO.pdb
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb

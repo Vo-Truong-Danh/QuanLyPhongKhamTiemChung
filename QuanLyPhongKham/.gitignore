@@ -13,3 +13,5 @@ mono_crash.*
 # Build results
 [Bb]in/
 [Oo]bj/
+# Ignore Visual Studio .vs folder
+.vs/

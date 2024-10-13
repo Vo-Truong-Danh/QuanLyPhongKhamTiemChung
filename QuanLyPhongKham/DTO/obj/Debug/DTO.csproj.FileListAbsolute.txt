@@ -4,3 +4,9 @@ E:\Code\C#\Winform\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.AssemblyReference.ca
 E:\Code\C#\Winform\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 E:\Code\C#\Winform\QuanLyPhongKham\DTO\obj\Debug\DTO.dll
 E:\Code\C#\Winform\QuanLyPhongKham\DTO\obj\Debug\DTO.pdb
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\bin\Debug\DTO.dll
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\bin\Debug\DTO.pdb
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.dll
+C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.pdb
