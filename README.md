@@ -9,7 +9,7 @@
 ## 🖼️ Sơ đồ ERD
 Dưới đây là sơ đồ ERD (Entity Relationship Diagram) mô tả cấu trúc cơ sở dữ liệu của hệ thống:
 
-![Sơ đồ ERD](https://github.com/user-attachments/assets/d305b630-b186-43dd-a842-3d72621bdcc2)
+![Sơ đồ ERD](https://github.com/user-attachments/assets/18eac9bb-ae18-47ed-9f5f-4f06f3e9c28e)
 
 
 ## ⚙️ Tính năng
