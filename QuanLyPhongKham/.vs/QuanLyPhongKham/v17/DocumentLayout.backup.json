@@ -1,30 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\",
+  "WorkspaceRootPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|solutionrelative:bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57AF1FD1-35B1-450A-8C53-8DAD42E5232F}|DAL\\DAL.csproj|C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\dal\\taikhoandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{57AF1FD1-35B1-450A-8C53-8DAD42E5232F}|DAL\\DAL.csproj|solutionrelative:dal\\taikhoandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|c:\\users\\thinh\\source\\repos\\quanlyphongkhamtiemchung\\quanlyphongkham\\gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|c:\\users\\thinh\\source\\repos\\quanlyphongkhamtiemchung\\quanlyphongkham\\gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C91D3124-5F5F-4B22-B038-815C72E0B45D}|DTO\\DTO.csproj|C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\dto\\taikhoandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C91D3124-5F5F-4B22-B038-815C72E0B45D}|DTO\\DTO.csproj|solutionrelative:dto\\taikhoandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|c:\\users\\thinh\\source\\repos\\quanlyphongkhamtiemchung\\quanlyphongkham\\gui\\gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Data App\\Microsoft Visual Studio\\2022\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +21,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,103 +32,40 @@
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "D:\\Data App\\Microsoft Visual Studio\\2022\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "D:\\Data App\\Microsoft Visual Studio\\2022\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAALsUAAAAAAAAAAAAAMkUAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2024-10-13T11:17:21.334Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TaiKhoanBLL.cs",
-              "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
-              "RelativeDocumentMoniker": "BLL\\TaiKhoanBLL.cs",
-              "ToolTip": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
-              "RelativeToolTip": "BLL\\TaiKhoanBLL.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAUwBEAAAA3AAAAAAAAAA==",
+              "Title": "frmMain.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
+              "RelativeDocumentMoniker": "GUI\\frmMain.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
+              "RelativeToolTip": "GUI\\frmMain.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAwCUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:53:02.707Z",
+              "WhenOpened": "2024-10-13T11:04:16.576Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmDangKy.cs",
-              "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
-              "RelativeDocumentMoniker": "GUI\\frmDangKy.cs",
-              "ToolTip": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
-              "RelativeToolTip": "GUI\\frmDangKy.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAUwI4AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T12:21:19.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmDangKy.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
-              "RelativeDocumentMoniker": "GUI\\frmDangKy.cs",
-              "ToolTip": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\frmDangKy.cs [Design]",
-              "RelativeToolTip": "GUI\\frmDangKy.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T12:20:47.871Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GUI.csproj",
-              "DocumentMoniker": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
-              "RelativeDocumentMoniker": "GUI\\GUI.csproj",
-              "ToolTip": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
-              "RelativeToolTip": "GUI\\GUI.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-12T12:20:45.217Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TaiKhoanDAL.cs",
-              "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
-              "RelativeDocumentMoniker": "DAL\\TaiKhoanDAL.cs",
-              "ToolTip": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
-              "RelativeToolTip": "DAL\\TaiKhoanDAL.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAUwD0AAAAdAAAAAAAAAA==",
+              "Title": "frmMain.cs [Design]",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
+              "RelativeDocumentMoniker": "GUI\\frmMain.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs [Design]",
+              "RelativeToolTip": "GUI\\frmMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:52:53.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TaiKhoanDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\TaiKhoanDTO.cs",
-              "ToolTip": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
-              "RelativeToolTip": "DTO\\TaiKhoanDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:52:29.294Z"
+              "WhenOpened": "2024-10-13T10:15:40.286Z",
+              "EditorCaption": " [Design]"
             }
           ]
         },

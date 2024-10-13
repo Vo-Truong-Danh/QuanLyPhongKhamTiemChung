@@ -20,3 +20,14 @@ C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Deb
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\bin\Debug\BLL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\bin\Debug\BLL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\bin\Debug\DAL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\bin\Debug\DTO.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\bin\Debug\DAL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\bin\Debug\DTO.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb

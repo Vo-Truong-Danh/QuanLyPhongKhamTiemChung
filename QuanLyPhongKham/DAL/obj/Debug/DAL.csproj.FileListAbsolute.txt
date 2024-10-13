@@ -16,3 +16,12 @@ C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DAL\obj\Deb
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DAL\obj\Debug\DAL.csproj.Up2Date
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DAL\obj\Debug\DAL.dll
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DAL\obj\Debug\DAL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\bin\Debug\DAL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\bin\Debug\DAL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\bin\Debug\DTO.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\bin\Debug\DTO.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\obj\Debug\DAL.csproj.Up2Date
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\obj\Debug\DAL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DAL\obj\Debug\DAL.pdb

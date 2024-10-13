@@ -61,3 +61,38 @@ C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Deb
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.pdb
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.genruntimeconfig.cache
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\ref\GUI.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.exe
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.deps.json
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.runtimeconfig.json
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\BLL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DAL.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DTO.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\BLL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DTO.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DAL.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.AssemblyReference.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmBenhNhan.resources
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmDangKy.resources
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmDangNhap.resources
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.GenerateResource.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.AssemblyInfoInputs.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.AssemblyInfo.cs
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.CoreCompileInputs.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.sourcelink.json
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.Up2Date
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\refint\GUI.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.genruntimeconfig.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\ref\GUI.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmMain.resources
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.Properties.Resources.resources

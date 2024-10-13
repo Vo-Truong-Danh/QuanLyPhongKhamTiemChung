@@ -29,8 +29,8 @@ namespace GUI
                     MessageBox.Show("Tên người dùng hoặc mật khẩu không tồn tại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                frmBenhNhan frmBenhNhan = new frmBenhNhan();
-                frmBenhNhan.ShowDialog();
+                frmMain frmMain = new frmMain();
+                frmMain.ShowDialog();
                 this.Close();
             }
         }
