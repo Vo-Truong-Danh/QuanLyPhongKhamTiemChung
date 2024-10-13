@@ -48,7 +48,7 @@
             btnDangNhap.FlatStyle = FlatStyle.Popup;
             btnDangNhap.Font = new Font("Verdana", 15F);
             btnDangNhap.Location = new Point(349, 286);
-            btnDangNhap.Margin = new Padding(2, 2, 2, 2);
+            btnDangNhap.Margin = new Padding(2);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(205, 49);
             btnDangNhap.TabIndex = 12;
@@ -60,7 +60,7 @@
             // 
             txtMatKhau.Font = new Font("Verdana", 14F);
             txtMatKhau.Location = new Point(263, 215);
-            txtMatKhau.Margin = new Padding(2, 2, 2, 2);
+            txtMatKhau.Margin = new Padding(2);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '*';
             txtMatKhau.Size = new Size(394, 36);
@@ -70,7 +70,7 @@
             // 
             txtTaiKhoan.Font = new Font("Verdana", 14F);
             txtTaiKhoan.Location = new Point(263, 150);
-            txtTaiKhoan.Margin = new Padding(2, 2, 2, 2);
+            txtTaiKhoan.Margin = new Padding(2);
             txtTaiKhoan.Name = "txtTaiKhoan";
             txtTaiKhoan.Size = new Size(394, 36);
             txtTaiKhoan.TabIndex = 10;
@@ -102,7 +102,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Verdana", 12F);
             button1.Location = new Point(458, 414);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(120, 38);
             button1.TabIndex = 12;
@@ -115,7 +115,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Location = new Point(10, 10);
-            tabControl1.Margin = new Padding(2, 2, 2, 2);
+            tabControl1.Margin = new Padding(2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(845, 513);
@@ -132,9 +132,9 @@
             tabPage1.Controls.Add(label3);
             tabPage1.Controls.Add(txtMatKhau);
             tabPage1.Location = new Point(4, 29);
-            tabPage1.Margin = new Padding(2, 2, 2, 2);
+            tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(2, 2, 2, 2);
+            tabPage1.Padding = new Padding(2);
             tabPage1.Size = new Size(837, 480);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Quản trị";
@@ -165,9 +165,9 @@
             // tabPage2
             // 
             tabPage2.Location = new Point(4, 29);
-            tabPage2.Margin = new Padding(2, 2, 2, 2);
+            tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(2, 2, 2, 2);
+            tabPage2.Padding = new Padding(2);
             tabPage2.Size = new Size(837, 480);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Người dùng";
@@ -179,8 +179,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(864, 532);
             Controls.Add(tabControl1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "frmDangNhap";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmDangNhap";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

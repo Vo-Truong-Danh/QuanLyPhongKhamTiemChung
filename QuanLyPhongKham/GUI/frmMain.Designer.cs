@@ -468,6 +468,7 @@
             btnQLVaccine.TabIndex = 5;
             btnQLVaccine.Text = "QL Vaccine";
             btnQLVaccine.UseVisualStyleBackColor = false;
+            btnQLVaccine.Click += btnQLVaccine_Click;
             // 
             // btnQLBenhNhan
             // 
@@ -515,9 +516,11 @@
             // 
             // pnlShow
             // 
-            pnlShow.Location = new Point(207, -1);
+            pnlShow.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlShow.BackColor = Color.White;
+            pnlShow.Location = new Point(207, 12);
             pnlShow.Name = "pnlShow";
-            pnlShow.Size = new Size(767, 716);
+            pnlShow.Size = new Size(767, 703);
             pnlShow.TabIndex = 1;
             // 
             // panel3
@@ -533,7 +536,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(974, 728);
+            BackColor = Color.Aquamarine;
+            ClientSize = new Size(987, 728);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(pnlShow);

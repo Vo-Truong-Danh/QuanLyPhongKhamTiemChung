@@ -67,5 +67,10 @@ namespace GUI
         {
             OpenChild(new frmBenhNhan());
         }
+
+        private void btnQLVaccine_Click(object sender, EventArgs e)
+        {
+            OpenChild(new frmQLVaccine());
+        }
     }
 }
