@@ -12,15 +12,19 @@ namespace DAL
     {
         DataSet ds;
         SqlDataAdapter adap;
-        SqlConnection conn = new SqlConnection();
+        DataColumn[] key = new DataColumn[1];
+        SqlConnection conn;
         string connectStr = "Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True";
         public TaiKhoanDAL()
         {
-            conn.ConnectionString = connectStr;
+            conn = new SqlConnection(connectStr);
             ds = new DataSet();
             string selectStr = "select * from TAIKHOAN";
             adap = new SqlDataAdapter(selectStr, conn);
             adap.Fill(ds, "TAIKHOAN");
+            // Them khoa chinh
+            key[0] = ds.Tables["TAIKHOAN"].Columns[0];
+            ds.Tables["TAIKHOAN"].PrimaryKey = key;
         }
         public bool IsExistsUserName(string userName)
         {
@@ -47,7 +51,19 @@ namespace DAL
                 adap.Update(ds, "TAIKHOAN");
                 return true;
             }
-            catch {  return false; }
+            catch { return false; }
         }
+        public bool CheckUserNameAndPassword(string userName, string password)
+        {
+            DataRow userRow = ds.Tables["TAIKHOAN"].Rows.Find(userName);
+
+            if (userRow == null)
+            {
+                return false;
+            }
+            string storedPassword = userRow["Pass"].ToString();
+            return storedPassword == password;
+        }
+
     }
 }

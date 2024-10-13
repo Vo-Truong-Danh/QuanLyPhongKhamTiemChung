@@ -120,15 +120,27 @@ namespace GUI
         {
             if (!KTDuLieu())
                 return;
-            TaiKhoanDTO nvDTO = new TaiKhoanDTO(txtHoTen.Text.Trim(),txtTaiKhoan.Text,txtMatKhau.Text.Trim(),0);
-            bool kq= nvBLL.Insert(nvDTO);
+            TaiKhoanDTO nvDTO = new TaiKhoanDTO(txtHoTen.Text.Trim(), txtTaiKhoan.Text, txtMatKhau.Text.Trim(), 0);
+            bool kq = nvBLL.Insert(nvDTO);
             if (kq)
             {
-                MessageBox.Show("Thêm thành công");
+                MessageBox.Show("Đăng ký thành công");
+                txtHoTen.Clear();
+                txtTaiKhoan.Clear();
+                txtMatKhau.Clear();
+                txtNhapLaiMK.Clear();
+                txtHoTen.Focus();
+                errHoTen.Clear();
+                errMK.Clear();
+                errNhapLaiMK.Clear();
+                errTaiKhoan.Clear();
+                frmDangNhap frmDangNhap = new frmDangNhap();
+                this.Hide();
+                frmDangNhap.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Thêm thất bại");
+                MessageBox.Show("Đăng ký thất bại");
             }
         }
     }
