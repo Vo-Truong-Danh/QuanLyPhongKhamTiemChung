@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\frmbenhnhan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmbenhnhan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +38,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "frmBenhNhan.cs [Design]",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmBenhNhan.cs",
+              "RelativeDocumentMoniker": "GUI\\frmBenhNhan.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmBenhNhan.cs [Design]",
+              "RelativeToolTip": "GUI\\frmBenhNhan.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T12:48:27.259Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
               "RelativeDocumentMoniker": "GUI\\frmMain.cs",
@@ -46,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "frmMain.Designer.cs",
               "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.Designer.cs",
               "RelativeDocumentMoniker": "GUI\\frmMain.Designer.cs",
@@ -59,13 +75,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "frmMain.cs",
               "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
               "RelativeDocumentMoniker": "GUI\\frmMain.cs",
               "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
               "RelativeToolTip": "GUI\\frmMain.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAawEoAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAawEMAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T11:04:16.576Z",
               "EditorCaption": ""
