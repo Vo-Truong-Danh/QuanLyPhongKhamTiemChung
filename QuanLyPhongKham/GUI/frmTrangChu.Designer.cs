@@ -138,7 +138,7 @@
             // 
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("SVN-D Sari", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(278, 560);
+            textBox1.Location = new Point(278, 562);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(1238, 207);
