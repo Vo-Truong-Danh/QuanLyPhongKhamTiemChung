@@ -23,8 +23,8 @@ CREATE TABLE NHANVIEN
 CREATE TABLE NHACUNGCAP
 (
 	MaNCC CHAR(5) NOT NULL PRIMARY KEY,
-	TenNCC NVARCHAR(50),
-	DiaChi NVARCHAR(60),
+	TenNCC NVARCHAR(200),
+	DiaChi NVARCHAR(200),
 	SoDienThoai CHAR(10) CHECK (LEN(SoDienThoai) = 10 AND SoDienThoai LIKE '[0-9]%'),
 )
 
@@ -114,7 +114,8 @@ CREATE TABLE GHINHANTIEMCHUNG
 	MaHD CHAR(5) NOT NULL,
 	FOREIGN KEY (MaLT, MaHD) REFERENCES LICHTIEM(MaLT, MaHD),
 	NgayTiem DATE,
-	PRIMARY KEY(MaBN, MaVC, MaLT,MaNV)
+	PRIMARY KEY(MaBN, MaVC, MaLT,MaNV),
+	TinhTrangSucKhoe NVARCHAR(50),
 );
 
 
@@ -241,16 +242,21 @@ GO
 GO
 CREATE TRIGGER TG_CONGSOLUONGTONCUAVACCINE
 ON CHITIETPHIEUNHAP
-FOR INSERT, UPDATE
+FOR INSERT
 AS
 BEGIN
-    UPDATE VACCINE
+    -- Cập nhật số lượng tồn kho của Vaccine dựa trên số lượng nhập và số lượng đã bán
+    UPDATE V
     SET SoLuongTon = (SELECT SUM(CT.SoLuong) 
                       FROM CHITIETPHIEUNHAP CT
-                      JOIN inserted i ON CT.MaVC = i.MaVC
-                      WHERE VACCINE.MaVC = i.MaVC)
-    WHERE MaVC IN (SELECT MaVC FROM inserted);
+                      WHERE CT.MaVC = I.MaVC) 
+                    - (SELECT ISNULL(SUM(SOLUONG), 0) 
+                       FROM CHITIETHOADON 
+                       WHERE MaVC = I.MaVC)
+    FROM VACCINE V
+    JOIN inserted I ON V.MaVC = I.MaVC;
 END
+GO
 
 
 --Sau khi thêm GHINHANTIEMCHUNG, cập nhật TrangThai trong bảng LICHTIEM.
@@ -274,26 +280,37 @@ END
 GO
 CREATE TRIGGER TG_KiemTraSoLuongVaccine
 ON CHITIETHOADON
-FOR INSERT, UPDATE
+FOR INSERT
 AS
 BEGIN
-	IF (SELECT SOLUONG FROM inserted) > (SELECT SoLuongTon FROM VACCINE WHERE MaVC = (SELECT MaVC FROM inserted))
-		BEGIN 
-		PRINT N'Số lượng Vaccine còn lại không đủ'
-		ROLLBACK TRAN
-	END
-    -- Cập nhật số lượng tồn kho cho từng vaccine
-    UPDATE VACCINE
-    SET SoLuongTon = SoLuongTon - (SELECT SUM(SOLUONG) FROM CHITIETHOADON WHERE MaVC = (SELECT MaVC FROM inserted))
+    IF EXISTS (
+        SELECT *
+        FROM inserted I
+        JOIN VACCINE V ON I.MaVC = V.MaVC
+        WHERE I.SOLUONG > V.SoLuongTon
+    )
+    BEGIN 
+        PRINT N'Số lượng Vaccine còn lại không đủ';
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END
+    UPDATE V
+    SET SoLuongTon = (
+        (SELECT ISNULL(SUM(CT.SoLuong), 0) 
+         FROM CHITIETPHIEUNHAP CT 
+         WHERE CT.MaVC = I.MaVC) 
+        - (SELECT ISNULL(SUM(HD.SOLUONG), 0) 
+           FROM CHITIETHOADON HD 
+           WHERE HD.MaVC = I.MaVC)
+    )
     FROM VACCINE V
-    JOIN inserted I ON I.MaVC = V.MaVC;
+    JOIN (
+        SELECT MaVC, SUM(SOLUONG) AS TongSoLuong
+        FROM inserted
+        GROUP BY MaVC
+    ) I ON I.MaVC = V.MaVC;
 END
-
-
---SELECT * FROM CHITIETHOADON
---INSERT INTO CHITIETHOADON ([MaHD], [MaVC], [SOLUONG], [DONGIA]) VALUES
---('HD0002','VC0001',101,'50000')
-
+GO
 
 
 ----------------------------------------------------------------------
@@ -301,24 +318,25 @@ END
 ----------------------------------------------------------------------
 
 --ThemLichTiem(@MaLT, @MaVC,@MaBN @NgayHenTiem)
-GO
-CREATE PROC PR_ThemLichTiem @MaLT CHAR(5), @MaVC CHAR(5),@MaNV CHAR(5),@MaBN CHAR(5), @NgayHenTiem DATE
-AS
-	IF EXISTS (SELECT * FROM LICHTIEM WHERE MaLT= @MaLT)
-		BEGIN
-			PRINT N'Mã lịch tiêm đã tồn tại'
-		END
-	ELSE IF NOT EXISTS ( SELECT * FROM LICHTIEM WHERE MaBN = @MaBN and MaVC =@MaVC )
-		BEGIN
-			PRINT N'Dử liệu không đúng'
-		END
-	ELSE
-		BEGIN 
-			INSERT INTO LICHTIEM([MaLT], [MaBN], [MaVC], [NgayHenTiem], [TrangThai]) VALUES(@MaLT,@MaBN,@MaVC,@NgayHenTiem,'Chưa tiêm')
-		END
+--GO
+--CREATE PROC PR_ThemLichTiem @MaLT CHAR(5), @MaVC CHAR(5),@MaNV CHAR(5),@MaBN CHAR(5), @NgayHenTiem DATE
+--AS
+--	IF EXISTS (SELECT * FROM LICHTIEM WHERE MaLT= @MaLT)
+--		BEGIN
+--			PRINT N'Mã lịch tiêm đã tồn tại'
+--		END
+--	ELSE IF NOT EXISTS ( SELECT * FROM LICHTIEM WHERE MaBN = @MaBN and MaVC =@MaVC )
+--		BEGIN
+--			PRINT N'Dử liệu không đúng'
+--		END
+--	ELSE
+--		BEGIN 
+--			INSERT INTO LICHTIEM([MaLT], [MaBN], [MaVC], [NgayHenTiem], [TrangThai]) VALUES(@MaLT,@MaBN,@MaVC,@NgayHenTiem,'Chưa tiêm')
+--		END
 	
 --exec PR_ThemLichTiem 'LT001','VC0006','NV0001','BN0002','2023-12-02'
 
 --select * from LICHTIEM
 	
+
 
