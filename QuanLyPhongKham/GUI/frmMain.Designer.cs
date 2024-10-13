@@ -60,10 +60,10 @@
             button8 = new Button();
             button7 = new Button();
             button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            btnHoaDon = new Button();
-            btnBenhNhan = new Button();
+            btnQLTiemChung = new Button();
+            btnQLVaccine = new Button();
+            btnQLBenhNhan = new Button();
+            btnTrangChu = new Button();
             Logo = new PictureBox();
             pnlShow = new Panel();
             panel3 = new Panel();
@@ -95,10 +95,10 @@
             panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(btnHoaDon);
-            panel1.Controls.Add(btnBenhNhan);
+            panel1.Controls.Add(btnQLTiemChung);
+            panel1.Controls.Add(btnQLVaccine);
+            panel1.Controls.Add(btnQLBenhNhan);
+            panel1.Controls.Add(btnTrangChu);
             panel1.Location = new Point(-1, 103);
             panel1.Name = "panel1";
             panel1.Size = new Size(202, 612);
@@ -116,7 +116,7 @@
             button21.Name = "button21";
             button21.Size = new Size(202, 51);
             button21.TabIndex = 14;
-            button21.Text = "button21";
+            button21.Text = "Comming soon";
             button21.UseVisualStyleBackColor = false;
             // 
             // panel16
@@ -391,7 +391,7 @@
             button9.Name = "button9";
             button9.Size = new Size(202, 51);
             button9.TabIndex = 10;
-            button9.Text = "button9";
+            button9.Text = "Comming soon";
             button9.UseVisualStyleBackColor = false;
             // 
             // button8
@@ -406,7 +406,7 @@
             button8.Name = "button8";
             button8.Size = new Size(202, 51);
             button8.TabIndex = 9;
-            button8.Text = "button8";
+            button8.Text = "Comming soon";
             button8.UseVisualStyleBackColor = false;
             // 
             // button7
@@ -421,7 +421,7 @@
             button7.Name = "button7";
             button7.Size = new Size(202, 51);
             button7.TabIndex = 8;
-            button7.Text = "button7";
+            button7.Text = "Comming soon";
             button7.UseVisualStyleBackColor = false;
             // 
             // button6
@@ -436,69 +436,69 @@
             button6.Name = "button6";
             button6.Size = new Size(202, 51);
             button6.TabIndex = 7;
-            button6.Text = "button6";
+            button6.Text = "Comming soon";
             button6.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnQLTiemChung
             // 
-            button5.BackColor = Color.Aquamarine;
-            button5.BackgroundImageLayout = ImageLayout.Center;
-            button5.Dock = DockStyle.Top;
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(0, 153);
-            button5.Name = "button5";
-            button5.Size = new Size(202, 51);
-            button5.TabIndex = 6;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = false;
+            btnQLTiemChung.BackColor = Color.Aquamarine;
+            btnQLTiemChung.BackgroundImageLayout = ImageLayout.Center;
+            btnQLTiemChung.Dock = DockStyle.Top;
+            btnQLTiemChung.FlatAppearance.BorderSize = 0;
+            btnQLTiemChung.FlatStyle = FlatStyle.Flat;
+            btnQLTiemChung.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLTiemChung.Location = new Point(0, 153);
+            btnQLTiemChung.Name = "btnQLTiemChung";
+            btnQLTiemChung.Size = new Size(202, 51);
+            btnQLTiemChung.TabIndex = 6;
+            btnQLTiemChung.Text = "QL Tiêm Chủng";
+            btnQLTiemChung.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnQLVaccine
             // 
-            button4.BackColor = Color.Aquamarine;
-            button4.BackgroundImageLayout = ImageLayout.Center;
-            button4.Dock = DockStyle.Top;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(0, 102);
-            button4.Name = "button4";
-            button4.Size = new Size(202, 51);
-            button4.TabIndex = 5;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = false;
+            btnQLVaccine.BackColor = Color.Aquamarine;
+            btnQLVaccine.BackgroundImageLayout = ImageLayout.Center;
+            btnQLVaccine.Dock = DockStyle.Top;
+            btnQLVaccine.FlatAppearance.BorderSize = 0;
+            btnQLVaccine.FlatStyle = FlatStyle.Flat;
+            btnQLVaccine.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLVaccine.Location = new Point(0, 102);
+            btnQLVaccine.Name = "btnQLVaccine";
+            btnQLVaccine.Size = new Size(202, 51);
+            btnQLVaccine.TabIndex = 5;
+            btnQLVaccine.Text = "QL Vaccine";
+            btnQLVaccine.UseVisualStyleBackColor = false;
             // 
-            // btnHoaDon
+            // btnQLBenhNhan
             // 
-            btnHoaDon.BackColor = Color.Aquamarine;
-            btnHoaDon.BackgroundImageLayout = ImageLayout.Center;
-            btnHoaDon.Dock = DockStyle.Top;
-            btnHoaDon.FlatAppearance.BorderSize = 0;
-            btnHoaDon.FlatStyle = FlatStyle.Flat;
-            btnHoaDon.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHoaDon.Location = new Point(0, 51);
-            btnHoaDon.Name = "btnHoaDon";
-            btnHoaDon.Size = new Size(202, 51);
-            btnHoaDon.TabIndex = 4;
-            btnHoaDon.Text = "Hoá đơn";
-            btnHoaDon.UseVisualStyleBackColor = false;
+            btnQLBenhNhan.BackColor = Color.Aquamarine;
+            btnQLBenhNhan.BackgroundImageLayout = ImageLayout.Center;
+            btnQLBenhNhan.Dock = DockStyle.Top;
+            btnQLBenhNhan.FlatAppearance.BorderSize = 0;
+            btnQLBenhNhan.FlatStyle = FlatStyle.Flat;
+            btnQLBenhNhan.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLBenhNhan.Location = new Point(0, 51);
+            btnQLBenhNhan.Name = "btnQLBenhNhan";
+            btnQLBenhNhan.Size = new Size(202, 51);
+            btnQLBenhNhan.TabIndex = 4;
+            btnQLBenhNhan.Text = "QL Bệnh Nhân";
+            btnQLBenhNhan.UseVisualStyleBackColor = false;
+            btnQLBenhNhan.Click += btnQLBenhNhan_Click;
             // 
-            // btnBenhNhan
+            // btnTrangChu
             // 
-            btnBenhNhan.BackColor = Color.Aquamarine;
-            btnBenhNhan.BackgroundImageLayout = ImageLayout.Center;
-            btnBenhNhan.Dock = DockStyle.Top;
-            btnBenhNhan.FlatAppearance.BorderSize = 0;
-            btnBenhNhan.FlatStyle = FlatStyle.Flat;
-            btnBenhNhan.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBenhNhan.Location = new Point(0, 0);
-            btnBenhNhan.Name = "btnBenhNhan";
-            btnBenhNhan.Size = new Size(202, 51);
-            btnBenhNhan.TabIndex = 2;
-            btnBenhNhan.Text = "Bệnh Nhân";
-            btnBenhNhan.UseVisualStyleBackColor = false;
-            btnBenhNhan.Click += btnBenhNhan_Click;
+            btnTrangChu.BackColor = Color.Aquamarine;
+            btnTrangChu.BackgroundImageLayout = ImageLayout.Center;
+            btnTrangChu.Dock = DockStyle.Top;
+            btnTrangChu.FlatAppearance.BorderSize = 0;
+            btnTrangChu.FlatStyle = FlatStyle.Flat;
+            btnTrangChu.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTrangChu.Location = new Point(0, 0);
+            btnTrangChu.Name = "btnTrangChu";
+            btnTrangChu.Size = new Size(202, 51);
+            btnTrangChu.TabIndex = 2;
+            btnTrangChu.Text = "Trang Chủ";
+            btnTrangChu.UseVisualStyleBackColor = false;
             // 
             // Logo
             // 
@@ -515,7 +515,6 @@
             // 
             // pnlShow
             // 
-            pnlShow.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlShow.Location = new Point(207, -1);
             pnlShow.Name = "pnlShow";
             pnlShow.Size = new Size(767, 716);
@@ -573,14 +572,14 @@
         private Panel pnlShow;
         private PictureBox Logo;
         private Panel panel3;
-        private Button btnBenhNhan;
+        private Button btnTrangChu;
         private Button button9;
         private Button button8;
         private Button button7;
         private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button btnHoaDon;
+        private Button btnQLTiemChung;
+        private Button btnQLVaccine;
+        private Button btnQLBenhNhan;
         private Panel panel4;
         private Button button1;
         private Panel panel5;

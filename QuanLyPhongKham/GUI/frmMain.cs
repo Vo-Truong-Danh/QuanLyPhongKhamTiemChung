@@ -46,23 +46,11 @@ namespace GUI
         private bool isExiting = false;
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            // Hiển thị form đăng nhập
             this.Hide();
             frmDangNhap frmDangNhap = new frmDangNhap();
-            frmDangNhap.ShowDialog(); // Sử dụng Show() để không chặn UI
-
-            // Đặt biến để xác định rằng bạn đang thoát
+            frmDangNhap.ShowDialog();
             isExiting = true;
-
-            // Đóng form hiện tại
             this.Close();
-        }
-
-
-
-        private void btnBenhNhan_Click(object sender, EventArgs e)
-        {
-            OpenChild(new frmBenhNhan());
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -73,6 +61,11 @@ namespace GUI
                 if (t == DialogResult.No)
                     e.Cancel = true;
             }
+        }
+
+        private void btnQLBenhNhan_Click(object sender, EventArgs e)
+        {
+            OpenChild(new frmBenhNhan());
         }
     }
 }
