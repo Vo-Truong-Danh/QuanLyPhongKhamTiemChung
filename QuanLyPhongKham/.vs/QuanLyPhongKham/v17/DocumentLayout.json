@@ -1,29 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\",
+  "WorkspaceRootPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57AF1FD1-35B1-450A-8C53-8DAD42E5232F}|DAL\\DAL.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\quanlyphongkham\\dal\\taikhoandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{57AF1FD1-35B1-450A-8C53-8DAD42E5232F}|DAL\\DAL.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\dal\\taikhoandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{57AF1FD1-35B1-450A-8C53-8DAD42E5232F}|DAL\\DAL.csproj|solutionrelative:dal\\taikhoandal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|solutionrelative:bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C91D3124-5F5F-4B22-B038-815C72E0B45D}|DTO\\DTO.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\dto\\taikhoandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C91D3124-5F5F-4B22-B038-815C72E0B45D}|DTO\\DTO.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\dto\\taikhoandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C91D3124-5F5F-4B22-B038-815C72E0B45D}|DTO\\DTO.csproj|solutionrelative:dto\\taikhoandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\quanlyphongkham\\gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmdangky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\quanlyphongkham\\gui\\gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\gui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -48,9 +48,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "TaiKhoanBLL.cs",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
               "RelativeDocumentMoniker": "BLL\\TaiKhoanBLL.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
               "RelativeToolTip": "BLL\\TaiKhoanBLL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -60,9 +60,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "frmDangKy.cs",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
               "RelativeDocumentMoniker": "GUI\\frmDangKy.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
               "RelativeToolTip": "GUI\\frmDangKy.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAASwEQAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -73,9 +73,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "frmDangKy.cs [Design]",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
               "RelativeDocumentMoniker": "GUI\\frmDangKy.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\frmDangKy.cs [Design]",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmDangKy.cs [Design]",
               "RelativeToolTip": "GUI\\frmDangKy.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-12T12:20:47.871Z",
@@ -85,9 +85,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "GUI.csproj",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\GUI.csproj",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\GUI.csproj",
               "RelativeDocumentMoniker": "GUI\\GUI.csproj",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\GUI.csproj",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\GUI.csproj",
               "RelativeToolTip": "GUI\\GUI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -97,22 +97,21 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "TaiKhoanDAL.cs",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
               "RelativeDocumentMoniker": "DAL\\TaiKhoanDAL.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
               "RelativeToolTip": "DAL\\TaiKhoanDAL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:52:53.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-12T11:52:53.679Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "TaiKhoanDTO.cs",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
               "RelativeDocumentMoniker": "DTO\\TaiKhoanDTO.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
               "RelativeToolTip": "DTO\\TaiKhoanDTO.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

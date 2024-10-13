@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UclUllJ4XXM=",
+  "dgSpecHash": "rBLT2s7IAzo=",
   "success": true,
-  "projectFilePath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\GUI.csproj",
+  "projectFilePath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\GUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pls\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Pls\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

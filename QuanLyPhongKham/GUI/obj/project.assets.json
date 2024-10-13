@@ -526,11 +526,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\GUI.csproj",
+      "projectUniqueName": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\GUI.csproj",
       "projectName": "GUI",
-      "projectPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\GUI.csproj",
+      "projectPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\GUI.csproj",
       "packagesPath": "C:\\Users\\Pls\\.nuget\\packages\\",
-      "outputPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\GUI\\obj\\",
+      "outputPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Pls\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -545,11 +545,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\BLL\\BLL.csproj": {
-              "projectPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\BLL\\BLL.csproj"
+            "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\BLL\\BLL.csproj": {
+              "projectPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\BLL\\BLL.csproj"
             },
-            "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\DTO\\DTO.csproj": {
-              "projectPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\QuanLyPhongKham\\DTO\\DTO.csproj"
+            "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\DTO\\DTO.csproj": {
+              "projectPath": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\DTO\\DTO.csproj"
             }
           }
         }
