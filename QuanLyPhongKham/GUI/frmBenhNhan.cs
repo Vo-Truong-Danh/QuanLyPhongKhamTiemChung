@@ -179,10 +179,10 @@ namespace GUI
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if (!KTDuLieu())
-                return;
-            if (lstvDSBN.SelectedItems.Count > 0)
+                if (lstvDSBN.SelectedItems.Count > 0)
             {
+                if (!KTDuLieu())
+                    return;
                 ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
                 string selectedDateString = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
                 BenhNhanDTO bnDTONew = new BenhNhanDTO(txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
@@ -199,6 +199,11 @@ namespace GUI
                 {
                     MessageBox.Show("Cập nhật thất bại");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Không tồn tại bệnh nhân cần cập nhật thông tin","Cảnh báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
             }
         }
 
@@ -220,6 +225,11 @@ namespace GUI
                 LoadListViewDSBN();
                 ClearTextBox();
                 ClearErrorProvider();
+            }
+            else
+            {
+                MessageBox.Show("Không tồn tại bệnh nhân cần xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
         }
 
