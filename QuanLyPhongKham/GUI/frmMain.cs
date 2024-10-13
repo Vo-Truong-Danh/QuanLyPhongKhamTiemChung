@@ -58,19 +58,21 @@ namespace GUI
             this.Close();
         }
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+
+
+        private void btnBenhNhan_Click(object sender, EventArgs e)
+        {
+            OpenChild(new frmBenhNhan());
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isExiting)
             {
                 DialogResult t = MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (t == DialogResult.No)
-                    Application.Exit();
+                    e.Cancel = true;
             }
-        }
-
-        private void btnBenhNhan_Click(object sender, EventArgs e)
-        {
-            OpenChild(new frmBenhNhan());
         }
     }
 }

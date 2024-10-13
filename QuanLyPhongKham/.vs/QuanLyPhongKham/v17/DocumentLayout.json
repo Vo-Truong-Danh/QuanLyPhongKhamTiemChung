@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|e:\\baitapsinhvien\\hequantricosodulieu\\do an\\quanlyphongkham\\gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CBE8ED79-21D2-402A-9308-E77B63FC31C1}|GUI\\GUI.csproj|solutionrelative:gui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -22,21 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmMain.Designer.cs",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.Designer.cs",
-              "RelativeDocumentMoniker": "GUI\\frmMain.Designer.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.Designer.cs",
-              "RelativeToolTip": "GUI\\frmMain.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T11:34:08.571Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -47,19 +34,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmMain.cs",
-              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
-              "RelativeDocumentMoniker": "GUI\\frmMain.cs",
-              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
-              "RelativeToolTip": "GUI\\frmMain.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAtwEgAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T11:04:16.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
@@ -67,8 +41,34 @@
               "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs [Design]",
               "RelativeToolTip": "GUI\\frmMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T10:15:40.286Z",
+              "WhenOpened": "2024-10-13T12:44:37.249Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmMain.Designer.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.Designer.cs",
+              "RelativeDocumentMoniker": "GUI\\frmMain.Designer.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.Designer.cs",
+              "RelativeToolTip": "GUI\\frmMain.Designer.cs",
+              "ViewState": "AgIAABgCAAAAAAAAAAAAwCMCAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T11:34:08.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmMain.cs",
+              "DocumentMoniker": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
+              "RelativeDocumentMoniker": "GUI\\frmMain.cs",
+              "ToolTip": "E:\\BaiTapSinhVien\\HeQuanTriCoSoDuLieu\\Do An\\QuanLyPhongKham\\GUI\\frmMain.cs",
+              "RelativeToolTip": "GUI\\frmMain.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAawEoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T11:04:16.576Z",
+              "EditorCaption": ""
             }
           ]
         },

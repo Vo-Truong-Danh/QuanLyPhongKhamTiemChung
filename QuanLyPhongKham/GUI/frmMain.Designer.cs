@@ -546,7 +546,7 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "Phòng Khám Tiêm Chủng";
             WindowState = FormWindowState.Maximized;
-            FormClosed += frmMain_FormClosed;
+            FormClosing += frmMain_FormClosing;
             Load += frmMain_Load;
             panel1.ResumeLayout(false);
             panel16.ResumeLayout(false);
