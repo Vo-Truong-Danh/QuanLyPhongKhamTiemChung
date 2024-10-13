@@ -105,15 +105,16 @@
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(843, 499);
+            groupBox1.Size = new Size(843, 457);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin bệnh nhân";
             // 
             // btnXoaBN
             // 
+            btnXoaBN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnXoaBN.Font = new Font("Microsoft Sans Serif", 10F);
-            btnXoaBN.Location = new Point(569, 424);
+            btnXoaBN.Location = new Point(531, 389);
             btnXoaBN.Margin = new Padding(2);
             btnXoaBN.Name = "btnXoaBN";
             btnXoaBN.Size = new Size(195, 49);
@@ -124,8 +125,9 @@
             // 
             // btnCapNhat
             // 
+            btnCapNhat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnCapNhat.Font = new Font("Microsoft Sans Serif", 10F);
-            btnCapNhat.Location = new Point(329, 424);
+            btnCapNhat.Location = new Point(291, 389);
             btnCapNhat.Margin = new Padding(2);
             btnCapNhat.Name = "btnCapNhat";
             btnCapNhat.Size = new Size(221, 49);
@@ -136,8 +138,9 @@
             // 
             // btnLuuBN
             // 
+            btnLuuBN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnLuuBN.Font = new Font("Microsoft Sans Serif", 10F);
-            btnLuuBN.Location = new Point(115, 424);
+            btnLuuBN.Location = new Point(77, 389);
             btnLuuBN.Margin = new Padding(2);
             btnLuuBN.Name = "btnLuuBN";
             btnLuuBN.Size = new Size(195, 49);
@@ -148,6 +151,7 @@
             // 
             // dtpNgaySinh
             // 
+            dtpNgaySinh.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtpNgaySinh.Font = new Font("Microsoft Sans Serif", 11F);
             dtpNgaySinh.Location = new Point(222, 128);
             dtpNgaySinh.Margin = new Padding(2);
@@ -157,9 +161,10 @@
             // 
             // rdoNu
             // 
+            rdoNu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             rdoNu.AutoSize = true;
             rdoNu.Font = new Font("Microsoft Sans Serif", 11F);
-            rdoNu.Location = new Point(339, 205);
+            rdoNu.Location = new Point(339, 184);
             rdoNu.Margin = new Padding(2);
             rdoNu.Name = "rdoNu";
             rdoNu.Size = new Size(65, 30);
@@ -170,9 +175,10 @@
             // 
             // rdoNam
             // 
+            rdoNam.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             rdoNam.AutoSize = true;
             rdoNam.Font = new Font("Microsoft Sans Serif", 11F);
-            rdoNam.Location = new Point(222, 205);
+            rdoNam.Location = new Point(222, 184);
             rdoNam.Margin = new Padding(2);
             rdoNam.Name = "rdoNam";
             rdoNam.Size = new Size(84, 30);
@@ -183,8 +189,9 @@
             // 
             // txtSoDienThoai
             // 
+            txtSoDienThoai.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtSoDienThoai.Font = new Font("Microsoft Sans Serif", 11F);
-            txtSoDienThoai.Location = new Point(222, 358);
+            txtSoDienThoai.Location = new Point(222, 315);
             txtSoDienThoai.Margin = new Padding(2);
             txtSoDienThoai.Name = "txtSoDienThoai";
             txtSoDienThoai.Size = new Size(565, 32);
@@ -193,17 +200,19 @@
             // 
             // txtDiaChi
             // 
+            txtDiaChi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtDiaChi.Font = new Font("Microsoft Sans Serif", 11F);
-            txtDiaChi.Location = new Point(222, 254);
+            txtDiaChi.Location = new Point(222, 240);
             txtDiaChi.Margin = new Padding(2);
             txtDiaChi.Multiline = true;
             txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(565, 87);
+            txtDiaChi.Size = new Size(565, 51);
             txtDiaChi.TabIndex = 8;
             txtDiaChi.TextChanged += txtDiaChi_TextChanged;
             // 
             // txtHoTen
             // 
+            txtHoTen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtHoTen.Font = new Font("Microsoft Sans Serif", 11F);
             txtHoTen.Location = new Point(222, 50);
             txtHoTen.Margin = new Padding(2);
@@ -214,8 +223,9 @@
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label6.AutoSize = true;
-            label6.Location = new Point(31, 361);
+            label6.Location = new Point(31, 316);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
             label6.Size = new Size(161, 30);
@@ -224,8 +234,9 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(31, 284);
+            label5.Location = new Point(31, 250);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new Size(92, 30);
@@ -234,8 +245,9 @@
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(31, 208);
+            label4.Location = new Point(31, 184);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(107, 30);
@@ -244,8 +256,9 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(31, 130);
+            label3.Location = new Point(31, 118);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(127, 30);
@@ -254,6 +267,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(31, 52);
             label2.Margin = new Padding(2, 0, 2, 0);
@@ -267,7 +281,7 @@
             groupBox2.Controls.Add(lstvDSBN);
             groupBox2.Dock = DockStyle.Bottom;
             groupBox2.Font = new Font("Microsoft Sans Serif", 11F);
-            groupBox2.Location = new Point(0, 510);
+            groupBox2.Location = new Point(0, 468);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
@@ -352,7 +366,7 @@
             groupBox3.Font = new Font("Microsoft Sans Serif", 13F);
             groupBox3.Location = new Point(978, 6);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(781, 499);
+            groupBox3.Size = new Size(781, 457);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin tiêm chủng";
@@ -476,16 +490,16 @@
             textBox7.Margin = new Padding(2);
             textBox7.Multiline = true;
             textBox7.Name = "textBox7";
-            textBox7.Size = new Size(506, 75);
+            textBox7.Size = new Size(506, 224);
             textBox7.TabIndex = 7;
             textBox7.TextChanged += txtHoTen_TextChanged;
             // 
             // label11
             // 
-            label11.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 13F);
-            label11.Location = new Point(24, 312);
+            label11.Location = new Point(24, 305);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
             label11.Size = new Size(129, 30);
@@ -506,7 +520,7 @@
             // 
             // label10
             // 
-            label10.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 13F);
             label10.Location = new Point(24, 257);
@@ -520,10 +534,10 @@
             // 
             // label13
             // 
-            label13.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label13.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Sans Serif", 13F);
-            label13.Location = new Point(24, 422);
+            label13.Location = new Point(24, 401);
             label13.Margin = new Padding(2, 0, 2, 0);
             label13.Name = "label13";
             label13.Size = new Size(237, 30);
@@ -533,10 +547,10 @@
             // 
             // label12
             // 
-            label12.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label12.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 13F);
-            label12.Location = new Point(24, 367);
+            label12.Location = new Point(24, 353);
             label12.Margin = new Padding(2, 0, 2, 0);
             label12.Name = "label12";
             label12.Size = new Size(178, 30);
@@ -550,7 +564,7 @@
             label9.Font = new Font("Tahoma", 20F);
             label9.Location = new Point(848, 6);
             label9.Name = "label9";
-            label9.Size = new Size(124, 499);
+            label9.Size = new Size(124, 457);
             label9.TabIndex = 1;
             label9.Text = "QUẢN LÝ\r\nTHÔNG TIN BỆNH NHÂN\r\n";
             label9.TextAlign = ContentAlignment.MiddleCenter;
@@ -560,7 +574,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1776, 1170);
+            ClientSize = new Size(1776, 1128);
             Controls.Add(label9);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
