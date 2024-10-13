@@ -19,7 +19,7 @@ namespace GUI
         public frmBenhNhan()
         {
             InitializeComponent();
-            bnBLL= new BenhNhanBLL();
+            bnBLL = new BenhNhanBLL();
         }
 
         private void txtMaBN_TextChanged(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace GUI
             if (!KTDuLieu())
                 return;
             string selectedDateString = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
-            BenhNhanDTO bnDTO = new BenhNhanDTO(bnBLL.TaoMaBNMoi(),txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
+            BenhNhanDTO bnDTO = new BenhNhanDTO(bnBLL.TaoMaBNMoi(), txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
             bool kq = bnBLL.Insert(bnDTO);
             if (kq)
             {
@@ -155,6 +155,7 @@ namespace GUI
         {
             if (lstvDSBN.SelectedItems.Count > 0)
             {
+                btnLuuBN.Enabled = false;
                 ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
                 string hoTen = selectedItem.SubItems[1].Text;
                 string ngaySinh = selectedItem.SubItems[2].Text;
@@ -169,6 +170,10 @@ namespace GUI
                 else rdoNu.Checked = true;
                 txtDiaChi.Text = diaChi;
                 txtSoDienThoai.Text = soDienThoai;
+            }
+            else
+            {
+                btnLuuBN.Enabled = true;
             }
         }
 
@@ -222,6 +227,11 @@ namespace GUI
         private void frmBenhNhan_FormClosing(object sender, FormClosingEventArgs e)
         {
             bnBLL.ClearDataSet();
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
