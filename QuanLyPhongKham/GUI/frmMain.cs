@@ -20,6 +20,7 @@ namespace GUI
         private void frmMain_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            OpenChild(new frmTrangChu());
         }
 
         private Form fromchild;
@@ -71,6 +72,11 @@ namespace GUI
         private void btnQLVaccine_Click(object sender, EventArgs e)
         {
             OpenChild(new frmQLVaccine());
+        }
+
+        private void btnTrangChu_Click(object sender, EventArgs e)
+        {
+            OpenChild(new frmTrangChu());
         }
     }
 }

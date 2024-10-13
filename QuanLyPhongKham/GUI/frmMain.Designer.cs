@@ -500,6 +500,7 @@
             btnTrangChu.TabIndex = 2;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = false;
+            btnTrangChu.Click += btnTrangChu_Click;
             // 
             // Logo
             // 

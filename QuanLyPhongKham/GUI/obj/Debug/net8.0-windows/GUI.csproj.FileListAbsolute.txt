@@ -97,3 +97,4 @@ E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmMain.resources
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.Properties.Resources.resources
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmQLVaccine.resources
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmTrangChu.resources
