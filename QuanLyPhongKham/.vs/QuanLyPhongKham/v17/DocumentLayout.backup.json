@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9F71BDC0-2D70-41D0-B551-2B433250107B}|Solution Items{9F71BDC0-2D70-41D0-B551-2B433250107B}|C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{9F71BDC0-2D70-41D0-B551-2B433250107B}|Solution Items{9F71BDC0-2D70-41D0-B551-2B433250107B}|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E0EABBEA-206E-4009-9E18-D858C9B3EFF8}|BLL\\BLL.csproj|solutionrelative:bll\\taikhoanbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -75,19 +71,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-10-13T08:38:49.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "TaiKhoanBLL.cs",
               "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\TaiKhoanBLL.cs",
               "RelativeDocumentMoniker": "BLL\\TaiKhoanBLL.cs",
@@ -100,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "frmDangKy.cs",
               "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
               "RelativeDocumentMoniker": "GUI\\frmDangKy.cs",
@@ -113,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "frmDangKy.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\frmDangKy.cs",
               "RelativeDocumentMoniker": "GUI\\frmDangKy.cs",
@@ -125,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "GUI.csproj",
               "DocumentMoniker": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
               "RelativeDocumentMoniker": "GUI\\GUI.csproj",
@@ -137,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "TaiKhoanDAL.cs",
               "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\TaiKhoanDAL.cs",
               "RelativeDocumentMoniker": "DAL\\TaiKhoanDAL.cs",
@@ -150,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "TaiKhoanDTO.cs",
               "DocumentMoniker": "C:\\Users\\Thinh\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\TaiKhoanDTO.cs",
               "RelativeDocumentMoniker": "DTO\\TaiKhoanDTO.cs",
