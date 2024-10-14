@@ -29,12 +29,18 @@ namespace GUI
 
         }
 
-        public void LoadLoaiVaccine()
+        public void LoadLoaiVaccineChoCBO()
         {
             LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
             cboLoaiVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
             cboLoaiVaccine.DisplayMember = "TenLoai";
             cboLoaiVaccine.ValueMember = "MaLoai";
+        }
+
+        public void LoadLoaiVaccine()
+        {
+            LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
+            dgvVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
         }
         private void bingdingVC()
         {
@@ -53,13 +59,27 @@ namespace GUI
             txtGia.DataBindings.Clear();
             txtGia.DataBindings.Add("Text", dgvVaccine.DataSource, "Gia");
         }
+        private void bingdungLVC()
+        {
+            txtTenLoaiVC.DataBindings.Clear();
+            txtTenLoaiVC.DataBindings.Add("Text", dgvVaccine.DataSource, "TenLoai");
+        }
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnLoadTTVC_Click(object sender, EventArgs e)
+        {
             LoadVaccine();
-            LoadLoaiVaccine();
+            LoadLoaiVaccineChoCBO();
             bingdingVC();
         }
 
-        
+        private void btnLoadTTLoaiVaccine_Click(object sender, EventArgs e)
+        {
+            LoadLoaiVaccine();
+            bingdungLVC();
+        }
     }
 }
