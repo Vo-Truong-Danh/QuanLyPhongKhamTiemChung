@@ -5,21 +5,31 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace DAL
 {
-    internal class VaccineDAL
+    public class VaccineDAL
     {
-        DataSet ds;
-        DataColumn[] key = new DataColumn[1];
+        DataSet ds = new DataSet();
         SqlDataAdapter adap;
-        SqlConnection conn;
+
         string connectStr = "Data Source=PLS\\MSSQLSERVERVTD;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;User ID=sa;password=123";
-        private int lastMaBN = 0;
+        SqlConnection conn;
+
         public VaccineDAL()
         {
-
+            conn = new SqlConnection(connectStr);
         }
 
+        public DataSet LayTTVC()
+        {
+            conn.Open();
+            string truyvansql = "select * from Vaccine";
+            adap = new SqlDataAdapter(truyvansql, conn);
+            adap.Fill(ds, "Vaccine");
+            conn.Close();
+            return ds;
+        }
     }
 }

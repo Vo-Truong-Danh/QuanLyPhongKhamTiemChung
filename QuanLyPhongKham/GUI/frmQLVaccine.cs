@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using BLL;
 
 namespace GUI
 {
@@ -17,9 +19,47 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void frmQLVaccine_Load(object sender, EventArgs e)
+        public void LoadVaccine()
         {
+            VaccineBLL vaccineBLL = new VaccineBLL();
+            DataSet ds = vaccineBLL.LayTTVC();
+            dgvVaccine.DataSource = ds.Tables[0];
+            dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVaccine.AutoResizeColumns();
 
         }
+
+        public void LoadLoaiVaccine()
+        {
+            LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
+            cboLoaiVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
+            cboLoaiVaccine.DisplayMember = "TenLoai";
+            cboLoaiVaccine.ValueMember = "MaLoai";
+        }
+        private void bingdingVC()
+        {
+            cboLoaiVaccine.DataBindings.Clear();
+            cboLoaiVaccine.DataBindings.Add("SelectedValue", dgvVaccine.DataSource, "MaLoai");
+
+            txtTenVaccine.DataBindings.Clear();
+            txtTenVaccine.DataBindings.Add("Text", dgvVaccine.DataSource, "TenVC");
+
+            dtpNSX.DataBindings.Clear();
+            dtpNSX.DataBindings.Add("Value", dgvVaccine.DataSource, "NgaySX");
+
+            dtpHSD.DataBindings.Clear();
+            dtpHSD.DataBindings.Add("Value", dgvVaccine.DataSource, "HanSuDung");
+
+            txtGia.DataBindings.Clear();
+            txtGia.DataBindings.Add("Text", dgvVaccine.DataSource, "Gia");
+        }
+        private void frmQLVaccine_Load(object sender, EventArgs e)
+        {
+            LoadVaccine();
+            LoadLoaiVaccine();
+            bingdingVC();
+        }
+
+        
     }
 }

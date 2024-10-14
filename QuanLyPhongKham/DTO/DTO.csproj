@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenhNhanDTO.cs" />
+    <Compile Include="LoaiVaccineDTO.cs" />
     <Compile Include="TaiKhoanDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VaccineDTO.cs" />
