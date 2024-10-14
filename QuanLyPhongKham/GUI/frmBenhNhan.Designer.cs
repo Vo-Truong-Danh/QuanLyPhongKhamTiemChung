@@ -538,7 +538,7 @@
             label10.TabIndex = 1;
             label10.Text = "Trạng thái";
             label10.TextAlign = ContentAlignment.MiddleLeft;
-            label10.Click += label10_Click;
+            //label10.Click += label10_Click;
             // 
             // label13
             // 

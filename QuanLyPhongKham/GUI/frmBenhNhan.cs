@@ -179,7 +179,7 @@ namespace GUI
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-                if (lstvDSBN.SelectedItems.Count > 0)
+            if (lstvDSBN.SelectedItems.Count > 0)
             {
                 if (!KTDuLieu())
                     return;
@@ -202,7 +202,7 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Không tồn tại bệnh nhân cần cập nhật thông tin","Cảnh báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Không tồn tại bệnh nhân cần cập nhật thông tin", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -238,10 +238,28 @@ namespace GUI
         {
             bnBLL.ClearDataSet();
         }
-
-        private void label10_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
+            //if (txtTimTheoMa.Text.Length == 0 || txtTimTheoMa.Text.Length == 0)
+            //{
+            //    foreach (DataRow row in bnBLL.GetFullDataRows())
+            //    {
+            //        ListViewItem item1 = new ListViewItem(new[] { row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString() });
+            //        lstvDSBN.Items.Add(item1);
+            //    }
+            //}
+            //else
+            //{
+            //if (txtTimTheoTen.Text.Trim().Length > 0 && txtTimTheoTen.Text!=null)
+            //{
+            //    foreach (DataRow row in bnBLL.GetDataFullRowFromTimKiem(txtTimTheoTen.Text.Trim()))
+            //    {
+            //        ListViewItem item1 = new ListViewItem(new[] { row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString() });
+            //        lstvDSBN.Clear();
+            //        lstvDSBN.Items.Add(item1);
+            //    }
+            //}
+            // }
         }
     }
 }
