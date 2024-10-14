@@ -10,3 +10,9 @@ C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Deb
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.dll
 C:\Users\Thinh\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\DTO\obj\Debug\DTO.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DTO\bin\Debug\DTO.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DTO\bin\Debug\DTO.pdb
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DTO\obj\Debug\DTO.dll
+E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\DTO\obj\Debug\DTO.pdb

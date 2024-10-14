@@ -17,7 +17,7 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void frmQLVaccine_Load(object sender, EventArgs e)
         {
 
         }

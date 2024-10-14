@@ -30,25 +30,25 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
-            dataGridView1 = new DataGridView();
+            dgvVaccine = new DataGridView();
             tctChinh = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             imageList1 = new ImageList(components);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVaccine).BeginInit();
             tctChinh.SuspendLayout();
             tabPage1.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvVaccine
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(3, 268);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1086, 336);
-            dataGridView1.TabIndex = 0;
+            dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVaccine.Dock = DockStyle.Bottom;
+            dgvVaccine.Location = new Point(3, 268);
+            dgvVaccine.Name = "dgvVaccine";
+            dgvVaccine.RowHeadersWidth = 51;
+            dgvVaccine.Size = new Size(1086, 336);
+            dgvVaccine.TabIndex = 0;
             // 
             // tctChinh
             // 
@@ -64,7 +64,7 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(dataGridView1);
+            tabPage1.Controls.Add(dgvVaccine);
             tabPage1.ImageIndex = 1;
             tabPage1.Location = new Point(4, 34);
             tabPage1.Name = "tabPage1";
@@ -84,7 +84,6 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Nhập Vaccine";
             tabPage2.UseVisualStyleBackColor = true;
-            tabPage2.Click += tabPage2_Click;
             // 
             // imageList1
             // 
@@ -106,7 +105,8 @@
             Name = "frmQLVaccine";
             StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "Quản Lý Vaccine";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += frmQLVaccine_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvVaccine).EndInit();
             tctChinh.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             ResumeLayout(false);
@@ -114,7 +114,7 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvVaccine;
         private TabControl tctChinh;
         private TabPage tabPage1;
         private TabPage tabPage2;
