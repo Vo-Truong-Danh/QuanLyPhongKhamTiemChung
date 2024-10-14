@@ -436,7 +436,7 @@
             button6.Name = "button6";
             button6.Size = new Size(202, 51);
             button6.TabIndex = 7;
-            button6.Text = "Comming soon";
+            button6.Text = "QL Nhân Viên";
             button6.UseVisualStyleBackColor = false;
             // 
             // btnQLTiemChung
