@@ -337,9 +337,51 @@ namespace GUI
             bindingPN();
         }
 
+        private void LoadChiTietPhieuNhap()
+        {
+            ChiTietPhieuNhapBLL ncc = new ChiTietPhieuNhapBLL();
+            dgvNhapVaccine.DataSource = ncc.GetData().Tables["ChiTietPhieuNhap"];
+        }
+        public void VaccineNhapChoCBO()
+        {
+            VaccineBLL ncc = new VaccineBLL();
+            cboVaccineNhapCTHD.DataSource = ncc.LayTTVC().Tables["Vaccine"];
+            cboVaccineNhapCTHD.DisplayMember = "TenVC";
+            cboVaccineNhapCTHD.ValueMember = "MaVC";
+        }
+        public void PhieuNhapChoCBO()
+        {
+            PhieuNhapBLL ncc = new PhieuNhapBLL();
+            cboMaHoaDonNHap.DataSource = ncc.GetData().Tables["PhieuNhap"];
+            cboMaHoaDonNHap.DisplayMember = "MaPN";
+            cboMaHoaDonNHap.ValueMember = "MaPN";
+
+        }
+        private void bindingCTPN()
+        {
+            cboMaHoaDonNHap.DataBindings.Clear();
+            cboMaHoaDonNHap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaPN");
+
+            cboVaccineNhapCTHD.DataBindings.Clear();
+            cboVaccineNhapCTHD.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaVC");
+
+            txtSoLuongNhap.DataBindings.Clear();
+            txtSoLuongNhap.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "SoLuong");
+
+            txtDonGiaNhap.DataBindings.Clear();
+            txtDonGiaNhap.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "DonGia");
+
+        }
+
         private void btnChiTietNhap_Click(object sender, EventArgs e)
         {
-
+            PhieuNhapChoCBO();
+            VaccineNhapChoCBO();
+            grbChiTietNhapVC.Enabled = true;
+            grbNhaCC.Enabled = false;
+            grbHDN.Enabled = false;
+            LoadChiTietPhieuNhap();
+            bindingCTPN();
         }
     }
 }

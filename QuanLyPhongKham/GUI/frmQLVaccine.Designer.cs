@@ -77,11 +77,11 @@
             btnTimKiem = new Button();
             txtTimKỉem = new TextBox();
             grbChiTietNhapVC = new GroupBox();
+            cboVaccineNhapCTHD = new ComboBox();
             label15 = new Label();
             btnUpdateHDN = new Button();
             btnXoaHDH = new Button();
             cboMaHoaDonNHap = new ComboBox();
-            txtVaccineNhapCTHD = new TextBox();
             btnThemCTHDN = new Button();
             txtSoLuongNhap = new TextBox();
             label12 = new Label();
@@ -683,11 +683,11 @@
             // 
             // grbChiTietNhapVC
             // 
+            grbChiTietNhapVC.Controls.Add(cboVaccineNhapCTHD);
             grbChiTietNhapVC.Controls.Add(label15);
             grbChiTietNhapVC.Controls.Add(btnUpdateHDN);
             grbChiTietNhapVC.Controls.Add(btnXoaHDH);
             grbChiTietNhapVC.Controls.Add(cboMaHoaDonNHap);
-            grbChiTietNhapVC.Controls.Add(txtVaccineNhapCTHD);
             grbChiTietNhapVC.Controls.Add(btnThemCTHDN);
             grbChiTietNhapVC.Controls.Add(txtSoLuongNhap);
             grbChiTietNhapVC.Controls.Add(label12);
@@ -701,6 +701,14 @@
             grbChiTietNhapVC.TabIndex = 0;
             grbChiTietNhapVC.TabStop = false;
             grbChiTietNhapVC.Text = "Chi tiết nhập hoá đơn";
+            // 
+            // cboVaccineNhapCTHD
+            // 
+            cboVaccineNhapCTHD.FormattingEnabled = true;
+            cboVaccineNhapCTHD.Location = new Point(228, 107);
+            cboVaccineNhapCTHD.Name = "cboVaccineNhapCTHD";
+            cboVaccineNhapCTHD.Size = new Size(283, 33);
+            cboVaccineNhapCTHD.TabIndex = 18;
             // 
             // label15
             // 
@@ -747,13 +755,6 @@
             cboMaHoaDonNHap.Name = "cboMaHoaDonNHap";
             cboMaHoaDonNHap.Size = new Size(283, 33);
             cboMaHoaDonNHap.TabIndex = 12;
-            // 
-            // txtVaccineNhapCTHD
-            // 
-            txtVaccineNhapCTHD.Location = new Point(228, 108);
-            txtVaccineNhapCTHD.Name = "txtVaccineNhapCTHD";
-            txtVaccineNhapCTHD.Size = new Size(283, 31);
-            txtVaccineNhapCTHD.TabIndex = 9;
             // 
             // btnThemCTHDN
             // 
@@ -1163,7 +1164,6 @@
         private Button btnThemHoaDonNhapHangf;
         private Button btnUpdateHDN;
         private Button btnXoaHDH;
-        private TextBox txtVaccineNhapCTHD;
         private Button btnThemCTHDN;
         private TextBox txtSoLuongNhap;
         private Label label12;
@@ -1178,5 +1178,6 @@
         private Button btnChiTietNhap;
         private Button btnHoaDonNhap;
         private Button btnLoadNCC;
+        private ComboBox cboVaccineNhapCTHD;
     }
 }
