@@ -123,6 +123,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hospital_16767235 {
+            get {
+                object obj = ResourceManager.GetObject("hospital_16767235", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap house_medical_9239309 {
             get {
                 object obj = ResourceManager.GetObject("house-medical_9239309", resourceCulture);
@@ -173,6 +183,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refresh_9903652 {
+            get {
+                object obj = ResourceManager.GetObject("refresh_9903652", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sach {
             get {
                 object obj = ResourceManager.GetObject("sach", resourceCulture);
@@ -203,6 +223,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sync_8468966 {
+            get {
+                object obj = ResourceManager.GetObject("sync_8468966", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap thongke {
             get {
                 object obj = ResourceManager.GetObject("thongke", resourceCulture);
@@ -226,6 +256,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap timkiem {
             get {
                 object obj = ResourceManager.GetObject("timkiem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap update_6373820 {
+            get {
+                object obj = ResourceManager.GetObject("update_6373820", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

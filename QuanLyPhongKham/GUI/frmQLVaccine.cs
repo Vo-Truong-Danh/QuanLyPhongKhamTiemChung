@@ -278,5 +278,6 @@ namespace GUI
                 MessageBox.Show("Vui lòng chọn một Loại Vaccine để sửa.");
             }
         }
+
     }
 }

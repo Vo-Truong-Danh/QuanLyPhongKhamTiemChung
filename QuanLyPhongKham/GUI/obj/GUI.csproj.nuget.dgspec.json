@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj": {}
+    "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj": {
+    "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj",
         "UsingMicrosoftNETSdk": false,
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj"
+              "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj"
               },
-              "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
+              "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
+                "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
               }
             }
           }
@@ -27,17 +27,17 @@
         "net472": {}
       }
     },
-    "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj": {
+    "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DAL\\DAL.csproj",
         "UsingMicrosoftNETSdk": false,
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
+              "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
+                "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
               }
             }
           }
@@ -47,11 +47,11 @@
         "net472": {}
       }
     },
-    "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
+    "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj",
+        "projectUniqueName": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj",
         "projectName": "DTO",
-        "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj",
+        "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj",
         "UsingMicrosoftNETSdk": false,
         "frameworks": {
           "net472": {
@@ -63,12 +63,12 @@
         "net472": {}
       }
     },
-    "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj": {
+    "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
+        "projectUniqueName": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
         "projectName": "GUI",
-        "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
+        "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
         "packagesPath": "C:\\Users\\Pls\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\obj\\",
         "projectStyle": "PackageReference",
@@ -85,11 +85,11 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj"
+              "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
+              "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
+                "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
               }
             }
           }
