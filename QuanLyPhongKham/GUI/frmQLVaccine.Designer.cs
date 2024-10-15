@@ -41,13 +41,13 @@
             groupBox2 = new GroupBox();
             button7 = new Button();
             textBox1 = new TextBox();
-            groupBox3 = new GroupBox();
+            grbLoaiVC = new GroupBox();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             label8 = new Label();
             txtTenLoaiVC = new TextBox();
-            groupBox1 = new GroupBox();
+            grbTTVC = new GroupBox();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -71,8 +71,8 @@
             panel3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
-            groupBox1.SuspendLayout();
+            grbLoaiVC.SuspendLayout();
+            grbTTVC.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -104,7 +104,7 @@
             // tabPage1
             // 
             tabPage1.Controls.Add(panel3);
-            tabPage1.Controls.Add(groupBox1);
+            tabPage1.Controls.Add(grbTTVC);
             tabPage1.Controls.Add(dgvVaccine);
             tabPage1.ImageIndex = 1;
             tabPage1.Location = new Point(4, 34);
@@ -119,7 +119,7 @@
             // 
             panel3.Controls.Add(groupBox4);
             panel3.Controls.Add(groupBox2);
-            panel3.Controls.Add(groupBox3);
+            panel3.Controls.Add(grbLoaiVC);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(746, 3);
             panel3.Name = "panel3";
@@ -215,20 +215,20 @@
             textBox1.Size = new Size(347, 34);
             textBox1.TabIndex = 24;
             // 
-            // groupBox3
+            // grbLoaiVC
             // 
-            groupBox3.Controls.Add(button6);
-            groupBox3.Controls.Add(button5);
-            groupBox3.Controls.Add(button4);
-            groupBox3.Controls.Add(label8);
-            groupBox3.Controls.Add(txtTenLoaiVC);
-            groupBox3.Dock = DockStyle.Top;
-            groupBox3.Location = new Point(0, 0);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(504, 192);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Loại Vaccine";
+            grbLoaiVC.Controls.Add(button6);
+            grbLoaiVC.Controls.Add(button5);
+            grbLoaiVC.Controls.Add(button4);
+            grbLoaiVC.Controls.Add(label8);
+            grbLoaiVC.Controls.Add(txtTenLoaiVC);
+            grbLoaiVC.Dock = DockStyle.Top;
+            grbLoaiVC.Location = new Point(0, 0);
+            grbLoaiVC.Name = "grbLoaiVC";
+            grbLoaiVC.Size = new Size(504, 192);
+            grbLoaiVC.TabIndex = 2;
+            grbLoaiVC.TabStop = false;
+            grbLoaiVC.Text = "Loại Vaccine";
             // 
             // button6
             // 
@@ -292,28 +292,28 @@
             txtTenLoaiVC.Size = new Size(246, 34);
             txtTenLoaiVC.TabIndex = 23;
             // 
-            // groupBox1
+            // grbTTVC
             // 
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(panel2);
-            groupBox1.Controls.Add(panel1);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(txtGia);
-            groupBox1.Controls.Add(txtTenVaccine);
-            groupBox1.Controls.Add(cboLoaiVaccine);
-            groupBox1.Dock = DockStyle.Left;
-            groupBox1.Location = new Point(3, 3);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(743, 534);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Thêm Thông Tin Vaccine";
+            grbTTVC.Controls.Add(button3);
+            grbTTVC.Controls.Add(button2);
+            grbTTVC.Controls.Add(button1);
+            grbTTVC.Controls.Add(panel2);
+            grbTTVC.Controls.Add(panel1);
+            grbTTVC.Controls.Add(label7);
+            grbTTVC.Controls.Add(label5);
+            grbTTVC.Controls.Add(label4);
+            grbTTVC.Controls.Add(label3);
+            grbTTVC.Controls.Add(label1);
+            grbTTVC.Controls.Add(txtGia);
+            grbTTVC.Controls.Add(txtTenVaccine);
+            grbTTVC.Controls.Add(cboLoaiVaccine);
+            grbTTVC.Dock = DockStyle.Left;
+            grbTTVC.Location = new Point(3, 3);
+            grbTTVC.Name = "grbTTVC";
+            grbTTVC.Size = new Size(743, 534);
+            grbTTVC.TabIndex = 1;
+            grbTTVC.TabStop = false;
+            grbTTVC.Text = "Thêm Thông Tin Vaccine";
             // 
             // button3
             // 
@@ -513,10 +513,10 @@
             groupBox4.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            grbLoaiVC.ResumeLayout(false);
+            grbLoaiVC.PerformLayout();
+            grbTTVC.ResumeLayout(false);
+            grbTTVC.PerformLayout();
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -529,7 +529,7 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private ImageList imageList1;
-        private GroupBox groupBox1;
+        private GroupBox grbTTVC;
         private ComboBox cboLoaiVaccine;
         private DateTimePicker dtpNSX;
         private TextBox txtTenVaccine;
@@ -547,7 +547,7 @@
         private Button button2;
         private GroupBox groupBox2;
         private Panel panel3;
-        private GroupBox groupBox3;
+        private GroupBox grbLoaiVC;
         private Label label8;
         private TextBox txtTenLoaiVC;
         private Button button6;

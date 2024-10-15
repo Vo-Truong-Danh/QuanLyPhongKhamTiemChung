@@ -74,12 +74,16 @@ namespace GUI
             LoadVaccine();
             LoadLoaiVaccineChoCBO();
             bingdingVC();
+            grbLoaiVC.Enabled = false;
+            grbTTVC.Enabled = true;
         }
 
         private void btnLoadTTLoaiVaccine_Click(object sender, EventArgs e)
         {
             LoadLoaiVaccine();
             bingdungLVC();
+            grbLoaiVC.Enabled = true;
+            grbTTVC.Enabled = false;
         }
     }
 }

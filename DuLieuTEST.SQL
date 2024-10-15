@@ -310,6 +310,8 @@ INSERT INTO TAIKHOAN(UserName, Pass, ChucVu) VALUES
 ('admin', 'admin123', 1),
 ('user1', '123', 2);
 
+
+
 --select * from BENHNHAN
 --select * from NHANVIEN
 --select * from NHACUNGCAP

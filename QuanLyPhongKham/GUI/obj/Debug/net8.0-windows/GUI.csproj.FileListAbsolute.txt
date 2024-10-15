@@ -98,3 +98,40 @@ E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.Properties.Resources.resources
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmQLVaccine.resources
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmTrangChu.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.exe
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.deps.json
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.runtimeconfig.json
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\GUI.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\BLL.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DAL.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DTO.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\BLL.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DTO.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\bin\Debug\net8.0-windows\DAL.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.AssemblyReference.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmBenhNhan.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmDangKy.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmDangNhap.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmMain.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmQLVaccine.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.frmTrangChu.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.Properties.Resources.resources
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.GenerateResource.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.AssemblyInfoInputs.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.AssemblyInfo.cs
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.CoreCompileInputs.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.sourcelink.json
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.csproj.Up2Date
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\refint\GUI.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\GUI.genruntimeconfig.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\GUI\obj\Debug\net8.0-windows\ref\GUI.dll
