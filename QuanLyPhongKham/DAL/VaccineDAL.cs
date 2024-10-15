@@ -49,6 +49,7 @@ namespace DAL
                 newRow["TenVC"] = vcDTO.Tenvc;
                 newRow["NgaySX"] = vcDTO.Ngaysx;
                 newRow["HanSuDung"] = vcDTO.Hansudung;
+                newRow["SoLuongTon"] = 0;
                 newRow["Gia"] = vcDTO.Gia;
 
 
@@ -65,7 +66,65 @@ namespace DAL
                 { return false; }
         }
 
+        public bool Delete(string maVC)
+        {
+            try
+            {
+                if (ds.Tables["Vaccine"] == null)
+                {
+                    LayTTVC(); 
+                }
+                DataRow[] rowsToDelete = ds.Tables["Vaccine"].Select($"MaVC = '{maVC}'");
+                foreach (DataRow row in rowsToDelete)
+                {
+                    row.Delete();
+                }
 
+                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+                adap.Update(ds, "Vaccine");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xóa bản ghi: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool Update(VaccineDTO vcDTO)
+        {
+            try
+            {
+                if (ds.Tables["Vaccine"] == null)
+                {
+                    LayTTVC(); 
+                }
+
+                DataRow[] rowsToUpdate = ds.Tables["Vaccine"].Select("MaVC = '" + vcDTO.Mavc + "'");
+
+                if (rowsToUpdate.Length > 0)
+                {
+                    DataRow row = rowsToUpdate[0];
+                    row["MaLoai"] = vcDTO.Maloai;
+                    row["TenVC"] = vcDTO.Tenvc;
+                    row["NgaySX"] = vcDTO.Ngaysx;
+                    row["HanSuDung"] = vcDTO.Hansudung;
+                    row["Gia"] = vcDTO.Gia;
+
+                    // Cập nhật csdl
+                    SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
+                    adap.Update(ds, "Vaccine");
+
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }      
+        }
 
     }
 }

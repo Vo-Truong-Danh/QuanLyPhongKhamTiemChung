@@ -329,6 +329,7 @@
             btnSuaTTVC.Text = "Sửa";
             btnSuaTTVC.TextAlign = ContentAlignment.MiddleRight;
             btnSuaTTVC.UseVisualStyleBackColor = false;
+            btnSuaTTVC.Click += btnSuaTTVC_Click;
             // 
             // btnXoaTTVC
             // 
@@ -344,6 +345,7 @@
             btnXoaTTVC.Text = "Xoá";
             btnXoaTTVC.TextAlign = ContentAlignment.MiddleRight;
             btnXoaTTVC.UseVisualStyleBackColor = false;
+            btnXoaTTVC.Click += btnXoaTTVC_Click;
             // 
             // btnThemTTVC
             // 
@@ -375,7 +377,7 @@
             dtpHSD.CalendarForeColor = Color.MediumSpringGreen;
             dtpHSD.CalendarMonthBackground = Color.MediumSpringGreen;
             dtpHSD.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            dtpHSD.Location = new Point(3, 2);
+            dtpHSD.Location = new Point(3, 3);
             dtpHSD.Name = "dtpHSD";
             dtpHSD.Size = new Size(398, 34);
             dtpHSD.TabIndex = 3;

@@ -240,25 +240,21 @@ GO
 
 
 --Cộng số lượng tồn trong vaccine
-GO
 CREATE TRIGGER TG_CONGSOLUONGTONCUAVACCINE
 ON CHITIETPHIEUNHAP
 FOR INSERT
 AS
 BEGIN
-    -- Cập nhật số lượng tồn kho của Vaccine dựa trên số lượng nhập và số lượng đã bán
     UPDATE V
-    SET SoLuongTon = 
-        ISNULL((SELECT SUM(CT.SoLuong) 
-                 FROM CHITIETPHIEUNHAP CT
-                 WHERE CT.MaVC = I.MaVC), 0) 
-        - ISNULL((SELECT SUM(SOLUONG) 
-                   FROM CHITIETHOADON 
-                   WHERE MaVC = I.MaVC), 0)
+    SET SoLuongTon = ISNULL((SELECT SUM(CT.SoLuong) 
+                              FROM CHITIETPHIEUNHAP CT
+                              WHERE CT.MaVC = I.MaVC), 0) 
+                          - ISNULL((SELECT SUM(SOLUONG) 
+                                     FROM CHITIETHOADON 
+                                     WHERE MaVC = I.MaVC), 0)
     FROM VACCINE V
     JOIN inserted I ON V.MaVC = I.MaVC;
-END;
-GO
+END
 
 --Sau khi thêm GHINHANTIEMCHUNG, cập nhật TrangThai trong bảng LICHTIEM.
 GO

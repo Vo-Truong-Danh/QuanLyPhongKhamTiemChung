@@ -10,7 +10,6 @@ namespace DTO
     {
         string mavc, maloai, tenvc, ngaysx, hansudung;
         int soluongton, gia;
-
         public string Mavc { get => mavc; set => mavc = value; }
         public string Maloai { get => maloai; set => maloai = value; }
         public string Tenvc { get => tenvc; set => tenvc = value; }
@@ -33,6 +32,15 @@ namespace DTO
         }
         public VaccineDTO( string maloai, string tenvc, string ngaysx, string hansudung, int gia)
         {
+            Maloai = maloai;
+            Tenvc = tenvc;
+            Ngaysx = ngaysx;
+            Hansudung = hansudung;
+            Gia = gia;
+        }
+        public VaccineDTO ( string mavc, string maloai, string tenvc, string ngaysx, string hansudung, int gia)
+        {
+            Mavc = mavc;
             Maloai = maloai;
             Tenvc = tenvc;
             Ngaysx = ngaysx;

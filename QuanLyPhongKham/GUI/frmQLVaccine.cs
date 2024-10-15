@@ -1,6 +1,8 @@
 ﻿using BLL;
+using DAL;
 using DTO;
 using System.Data;
+using System.Windows.Forms;
 
 namespace GUI
 {
@@ -93,6 +95,77 @@ namespace GUI
             else
                 MessageBox.Show("Thêm Vaccine mới thất bại");
             LoadVaccine();
+        }
+
+        private void btnXoaTTVC_Click(object sender, EventArgs e)
+        {
+            if (dgvVaccine.SelectedRows.Count > 0)
+            {
+                string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+                string TenVc = dgvVaccine.SelectedRows[0].Cells["TenVC"].Value.ToString();
+
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + TenVc + " này không?",
+                                                     "Xác nhận xóa",
+                                                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                {
+                    VaccineBLL vaccineBLL = new VaccineBLL();
+                    bool kt = vaccineBLL.Delete(maVC);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Xóa thành công " + TenVc + " .");
+                        LoadVaccine();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi xóa " + TenVc + " do thông tin Vaccine đang được tham chiếu.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Vaccine để xóa.");
+            }
+        }
+
+        private void btnSuaTTVC_Click(object sender, EventArgs e)
+        {
+            if (dgvVaccine.SelectedRows.Count > 0)
+            {
+                string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+                string maLoai = cboLoaiVaccine.SelectedValue.ToString(); 
+                string tenVC = txtTenVaccine.Text;
+                string ngaySX = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
+                string hanSuDung = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
+                int gia = int.Parse(txtGia.Text);
+
+                VaccineDTO vcDTO = new VaccineDTO(maVC, maLoai, tenVC, ngaySX, hanSuDung, gia);
+
+
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa "+tenVC+" này không?",
+                                                     "Xác nhận sửa",
+                                                     MessageBoxButtons.YesNo);
+                if (t == DialogResult.Yes)
+                {
+                    VaccineBLL vaccineBLL = new VaccineBLL();
+                    bool kt = vaccineBLL.Update(vcDTO); 
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Sửa thành công.");
+                        LoadVaccine(); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi sửa "+tenVC+".");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Vaccine để sửa.");
+            }
         }
     }
 }

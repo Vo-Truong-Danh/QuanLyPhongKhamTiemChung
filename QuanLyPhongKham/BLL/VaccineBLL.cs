@@ -12,15 +12,23 @@ namespace BLL
 {
     public class VaccineBLL
     {
+
+        VaccineDAL vcbll = new VaccineDAL();
         public DataSet LayTTVC()
         {
-            VaccineDAL vaccineDAL = new VaccineDAL();
-            return vaccineDAL.LayTTVC();
+            return vcbll.LayTTVC();
         }
         public bool Insert(VaccineDTO vaccineDTO)
         {
-            VaccineDAL vc = new VaccineDAL();
-            return vc.Insert(vaccineDTO);
+            return vcbll.Insert(vaccineDTO);
+        }
+        public bool Delete(string mavc)
+        {
+            return vcbll.Delete(mavc);
+        }
+        public bool Update(VaccineDTO vaccineDTO)
+        {
+            return vcbll.Update(vaccineDTO);
         }
     }
 }
