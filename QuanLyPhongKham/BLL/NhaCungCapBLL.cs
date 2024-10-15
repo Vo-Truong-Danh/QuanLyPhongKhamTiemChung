@@ -21,5 +21,9 @@ namespace BLL
         {
             return NhaCcDAL.Insert(tmp);
         }
+        public bool Delete(string tmp)
+        {
+            return NhaCcDAL.Delete(tmp);
+        }
     }
 }

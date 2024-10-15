@@ -62,5 +62,29 @@ namespace DAL
             catch
             { return false; }
         }
+        public bool Delete(string tmp)
+        {
+            try
+            {
+                if (ds.Tables["NhaCungCap"] == null)
+                {
+                    GetData();
+                }
+                DataRow[] rowsToDelete = ds.Tables["NhaCungCap"].Select($"MaNCC = '{tmp}'");
+                foreach (DataRow row in rowsToDelete)
+                {
+                    row.Delete();
+                }
+
+                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+                adap.Update(ds, "NhaCungCap");
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

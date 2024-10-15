@@ -947,6 +947,7 @@
             btnCapNhatNCC.Text = "Cập Nhật TT NCC";
             btnCapNhatNCC.TextAlign = ContentAlignment.MiddleRight;
             btnCapNhatNCC.UseVisualStyleBackColor = false;
+            btnCapNhatNCC.Click += btnCapNhatNCC_Click;
             // 
             // btnXoaNCC
             // 
@@ -961,6 +962,7 @@
             btnXoaNCC.Text = "Xoá NCC";
             btnXoaNCC.TextAlign = ContentAlignment.MiddleRight;
             btnXoaNCC.UseVisualStyleBackColor = false;
+            btnXoaNCC.Click += btnXoaNCC_Click;
             // 
             // btnThemNCC
             // 

@@ -85,9 +85,8 @@ namespace DAL
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Lỗi khi xóa bản ghi: " + ex.Message);
                 return false;
             }
         }
@@ -145,9 +144,8 @@ namespace DAL
 
                 return ds;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Lỗi tìm kiếm: " + ex.Message);
                 return null;
             }
         }

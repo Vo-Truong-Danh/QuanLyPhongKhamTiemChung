@@ -398,5 +398,42 @@ namespace GUI
                 MessageBox.Show("Thêm nhà cung cấp  mới " + tenncc + " thất bại");
             LoadNhaCungCap();
         }
+
+        private void btnXoaNCC_Click(object sender, EventArgs e)
+        {
+            if (dgvNhapVaccine.SelectedRows.Count > 0)
+            {
+                string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaNCC"].Value.ToString();
+                string ten = dgvNhapVaccine.SelectedRows[0].Cells["TenNCC"].Value.ToString();
+
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ten + " này không?",
+                                                 "Xác nhận xóa",
+                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                {
+                    NhaCungCapBLL tmp = new NhaCungCapBLL();
+                    bool kt = tmp.Delete(ma);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Xóa thành công " + ten + " .");
+                        LoadNhaCungCap();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi xóa " + ten + " do thông tin nhà cung cấp này đang được tham chiếu.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Nhà Cung Cấp để xóa.");
+            }
+        }
+
+        private void btnCapNhatNCC_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
