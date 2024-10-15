@@ -30,5 +30,9 @@ namespace BLL
         {
             return loaiVaccineDAL.Delete(ndxoa);
         }
+        public bool Update(LoaiVaccineDTO loaiVaccineDTO)
+        {
+            return loaiVaccineDAL.Update(loaiVaccineDTO);
+        }
     }
 }

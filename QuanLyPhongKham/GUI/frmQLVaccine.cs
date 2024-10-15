@@ -244,5 +244,40 @@ namespace GUI
                 MessageBox.Show("Vui lòng chọn một Loại Vaccine để xóa.");
             }
         }
+
+        private void btnSuaLVC_Click(object sender, EventArgs e)
+        {
+            if (dgvVaccine.SelectedRows.Count > 0)
+            {
+                string malVC = dgvVaccine.SelectedRows[0].Cells["MaLoai"].Value.ToString();
+                string tenlVC = txtTenLoaiVC.Text;
+
+                LoaiVaccineDTO lvcDTO = new LoaiVaccineDTO(malVC,tenlVC);
+
+
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa Loại " + tenlVC + " này không?",
+                                                     "Xác nhận sửa",
+                                                     MessageBoxButtons.YesNo);
+                if (t == DialogResult.Yes)
+                {
+                    LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
+                    bool kt = lvaccineBLL.Update(lvcDTO);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Sửa thành công.");
+                        LoadLoaiVaccine();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi sửa Loại " + tenlVC + ".");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Loại Vaccine để sửa.");
+            }
+        }
     }
 }

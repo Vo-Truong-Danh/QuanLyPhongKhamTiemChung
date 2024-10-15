@@ -94,6 +94,36 @@ namespace DAL
                 return false;
             }
         }
+        public bool Update(LoaiVaccineDTO loaiVaccineDTO)
+        {
+            try
+            {
+                if (ds.Tables["LoaiVaccine"] == null)
+                {
+                    GetData();
+                }
+
+                DataRow[] tb = ds.Tables["LoaiVaccine"].Select("MaLoai = '" + loaiVaccineDTO.Maloai + "'");
+
+                if (tb.Length > 0)
+                {
+                    DataRow row = tb[0];
+                    row["TenLoai"] = loaiVaccineDTO.Tenloai;
+
+                    // Cập nhật csdl
+                    SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
+                    adap.Update(ds, "LoaiVaccine");
+
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
 

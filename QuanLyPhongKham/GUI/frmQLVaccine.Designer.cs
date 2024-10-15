@@ -246,6 +246,7 @@
             btnSuaLVC.Text = "Sửa";
             btnSuaLVC.TextAlign = ContentAlignment.MiddleRight;
             btnSuaLVC.UseVisualStyleBackColor = false;
+            btnSuaLVC.Click += btnSuaLVC_Click;
             // 
             // btnXoaLoaiVC
             // 
