@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             dgvVaccine = new DataGridView();
             tctChinh = new TabControl();
@@ -70,43 +70,43 @@
             panel4 = new Panel();
             panel6 = new Panel();
             groupBox6 = new GroupBox();
-            button13 = new Button();
-            button12 = new Button();
-            button11 = new Button();
+            btnChiTietNhap = new Button();
+            btnHoaDonNhap = new Button();
+            btnLoadNCC = new Button();
             groupBox5 = new GroupBox();
-            button10 = new Button();
-            textBox7 = new TextBox();
+            btnTimKiem = new Button();
+            txtTimKỉem = new TextBox();
             groupBox3 = new GroupBox();
             label15 = new Label();
-            button7 = new Button();
-            button8 = new Button();
-            comboBox2 = new ComboBox();
-            textBox6 = new TextBox();
-            button9 = new Button();
-            textBox5 = new TextBox();
+            btnUpdateHDN = new Button();
+            btnXoaHDH = new Button();
+            cboMaHoaDonNHap = new ComboBox();
+            txtVaccineNhapCTHD = new TextBox();
+            btnThemCTHDN = new Button();
+            txtSoLuongNhap = new TextBox();
             label12 = new Label();
-            textBox4 = new TextBox();
+            txtDonGiaNhap = new TextBox();
             label13 = new Label();
             label14 = new Label();
             panel5 = new Panel();
             groupBox2 = new GroupBox();
-            button4 = new Button();
+            btnUpdateHDNhap = new Button();
             label11 = new Label();
-            button5 = new Button();
-            button6 = new Button();
+            btnXoaHDNhap = new Button();
+            btnThemHoaDonNhapHangf = new Button();
             label10 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox1 = new ComboBox();
+            txtNgayNhapHang = new DateTimePicker();
+            cboNhaCungCap = new ComboBox();
             groupBox1 = new GroupBox();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnCapNhatNCC = new Button();
+            btnXoaNCC = new Button();
+            btnThemNCC = new Button();
             label9 = new Label();
             label6 = new Label();
             label2 = new Label();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtSoDienThoai = new TextBox();
+            txtDiaChi = new TextBox();
+            txtTenNCCVC = new TextBox();
             dataGridView1 = new DataGridView();
             imageList1 = new ImageList(components);
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).BeginInit();
@@ -136,14 +136,14 @@
             // dgvVaccine
             // 
             dgvVaccine.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = Color.Aquamarine;
-            dataGridViewCellStyle7.SelectionForeColor = Color.RoyalBlue;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Aquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = Color.RoyalBlue;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVaccine.Dock = DockStyle.Bottom;
             dgvVaccine.GridColor = Color.WhiteSmoke;
@@ -595,9 +595,9 @@
             // 
             // groupBox6
             // 
-            groupBox6.Controls.Add(button13);
-            groupBox6.Controls.Add(button12);
-            groupBox6.Controls.Add(button11);
+            groupBox6.Controls.Add(btnChiTietNhap);
+            groupBox6.Controls.Add(btnHoaDonNhap);
+            groupBox6.Controls.Add(btnLoadNCC);
             groupBox6.Dock = DockStyle.Fill;
             groupBox6.Location = new Point(0, 451);
             groupBox6.Name = "groupBox6";
@@ -606,52 +606,52 @@
             groupBox6.TabStop = false;
             groupBox6.Text = "Load";
             // 
-            // button13
+            // btnChiTietNhap
             // 
-            button13.BackColor = Color.Aquamarine;
-            button13.Image = Properties.Resources.load;
-            button13.ImageAlign = ContentAlignment.MiddleLeft;
-            button13.Location = new Point(404, 45);
-            button13.Name = "button13";
-            button13.Padding = new Padding(5, 0, 5, 2);
-            button13.Size = new Size(180, 49);
-            button13.TabIndex = 20;
-            button13.Text = "Chi Tiết Nhập";
-            button13.TextAlign = ContentAlignment.MiddleRight;
-            button13.UseVisualStyleBackColor = false;
+            btnChiTietNhap.BackColor = Color.Aquamarine;
+            btnChiTietNhap.Image = Properties.Resources.load;
+            btnChiTietNhap.ImageAlign = ContentAlignment.MiddleLeft;
+            btnChiTietNhap.Location = new Point(404, 45);
+            btnChiTietNhap.Name = "btnChiTietNhap";
+            btnChiTietNhap.Padding = new Padding(5, 0, 5, 2);
+            btnChiTietNhap.Size = new Size(180, 49);
+            btnChiTietNhap.TabIndex = 20;
+            btnChiTietNhap.Text = "Chi Tiết Nhập";
+            btnChiTietNhap.TextAlign = ContentAlignment.MiddleRight;
+            btnChiTietNhap.UseVisualStyleBackColor = false;
             // 
-            // button12
+            // btnHoaDonNhap
             // 
-            button12.BackColor = Color.Aquamarine;
-            button12.Image = Properties.Resources.load;
-            button12.ImageAlign = ContentAlignment.MiddleLeft;
-            button12.Location = new Point(218, 45);
-            button12.Name = "button12";
-            button12.Padding = new Padding(5, 0, 5, 2);
-            button12.Size = new Size(185, 49);
-            button12.TabIndex = 19;
-            button12.Text = "Hoá Đơn Nhập";
-            button12.TextAlign = ContentAlignment.MiddleRight;
-            button12.UseVisualStyleBackColor = false;
+            btnHoaDonNhap.BackColor = Color.Aquamarine;
+            btnHoaDonNhap.Image = Properties.Resources.load;
+            btnHoaDonNhap.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHoaDonNhap.Location = new Point(218, 45);
+            btnHoaDonNhap.Name = "btnHoaDonNhap";
+            btnHoaDonNhap.Padding = new Padding(5, 0, 5, 2);
+            btnHoaDonNhap.Size = new Size(185, 49);
+            btnHoaDonNhap.TabIndex = 19;
+            btnHoaDonNhap.Text = "Hoá Đơn Nhập";
+            btnHoaDonNhap.TextAlign = ContentAlignment.MiddleRight;
+            btnHoaDonNhap.UseVisualStyleBackColor = false;
             // 
-            // button11
+            // btnLoadNCC
             // 
-            button11.BackColor = Color.Aquamarine;
-            button11.Image = Properties.Resources.load;
-            button11.ImageAlign = ContentAlignment.MiddleLeft;
-            button11.Location = new Point(34, 45);
-            button11.Name = "button11";
-            button11.Padding = new Padding(5, 0, 5, 2);
-            button11.Size = new Size(183, 49);
-            button11.TabIndex = 18;
-            button11.Text = "Nhà Cung Cấp";
-            button11.TextAlign = ContentAlignment.MiddleRight;
-            button11.UseVisualStyleBackColor = false;
+            btnLoadNCC.BackColor = Color.Aquamarine;
+            btnLoadNCC.Image = Properties.Resources.load;
+            btnLoadNCC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLoadNCC.Location = new Point(34, 45);
+            btnLoadNCC.Name = "btnLoadNCC";
+            btnLoadNCC.Padding = new Padding(5, 0, 5, 2);
+            btnLoadNCC.Size = new Size(183, 49);
+            btnLoadNCC.TabIndex = 18;
+            btnLoadNCC.Text = "Nhà Cung Cấp";
+            btnLoadNCC.TextAlign = ContentAlignment.MiddleRight;
+            btnLoadNCC.UseVisualStyleBackColor = false;
             // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(button10);
-            groupBox5.Controls.Add(textBox7);
+            groupBox5.Controls.Add(btnTimKiem);
+            groupBox5.Controls.Add(txtTimKỉem);
             groupBox5.Dock = DockStyle.Top;
             groupBox5.Location = new Point(0, 356);
             groupBox5.Name = "groupBox5";
@@ -660,35 +660,35 @@
             groupBox5.TabStop = false;
             groupBox5.Text = "Tìm Kiếm";
             // 
-            // button10
+            // btnTimKiem
             // 
-            button10.ForeColor = Color.MintCream;
-            button10.Image = Properties.Resources.timkiem;
-            button10.Location = new Point(473, 27);
-            button10.Name = "button10";
-            button10.Size = new Size(55, 55);
-            button10.TabIndex = 19;
-            button10.UseVisualStyleBackColor = true;
+            btnTimKiem.ForeColor = Color.MintCream;
+            btnTimKiem.Image = Properties.Resources.timkiem;
+            btnTimKiem.Location = new Point(473, 27);
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(55, 55);
+            btnTimKiem.TabIndex = 19;
+            btnTimKiem.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // txtTimKỉem
             // 
-            textBox7.BackColor = Color.LemonChiffon;
-            textBox7.Location = new Point(78, 39);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(379, 31);
-            textBox7.TabIndex = 18;
+            txtTimKỉem.BackColor = Color.LemonChiffon;
+            txtTimKỉem.Location = new Point(78, 39);
+            txtTimKỉem.Name = "txtTimKỉem";
+            txtTimKỉem.Size = new Size(379, 31);
+            txtTimKỉem.TabIndex = 18;
             // 
             // groupBox3
             // 
             groupBox3.Controls.Add(label15);
-            groupBox3.Controls.Add(button7);
-            groupBox3.Controls.Add(button8);
-            groupBox3.Controls.Add(comboBox2);
-            groupBox3.Controls.Add(textBox6);
-            groupBox3.Controls.Add(button9);
-            groupBox3.Controls.Add(textBox5);
+            groupBox3.Controls.Add(btnUpdateHDN);
+            groupBox3.Controls.Add(btnXoaHDH);
+            groupBox3.Controls.Add(cboMaHoaDonNHap);
+            groupBox3.Controls.Add(txtVaccineNhapCTHD);
+            groupBox3.Controls.Add(btnThemCTHDN);
+            groupBox3.Controls.Add(txtSoLuongNhap);
             groupBox3.Controls.Add(label12);
-            groupBox3.Controls.Add(textBox4);
+            groupBox3.Controls.Add(txtDonGiaNhap);
             groupBox3.Controls.Add(label13);
             groupBox3.Controls.Add(label14);
             groupBox3.Dock = DockStyle.Top;
@@ -708,70 +708,70 @@
             label15.TabIndex = 13;
             label15.Text = "Mã hoá đơn nhập";
             // 
-            // button7
+            // btnUpdateHDN
             // 
-            button7.BackColor = Color.Blue;
-            button7.ForeColor = Color.LightCyan;
-            button7.Image = Properties.Resources.sync_8468966;
-            button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(343, 275);
-            button7.Name = "button7";
-            button7.Padding = new Padding(5, 0, 5, 0);
-            button7.Size = new Size(210, 49);
-            button7.TabIndex = 17;
-            button7.Text = "Cập Nhật TT NCC";
-            button7.TextAlign = ContentAlignment.MiddleRight;
-            button7.UseVisualStyleBackColor = false;
+            btnUpdateHDN.BackColor = Color.Blue;
+            btnUpdateHDN.ForeColor = Color.LightCyan;
+            btnUpdateHDN.Image = Properties.Resources.sync_8468966;
+            btnUpdateHDN.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdateHDN.Location = new Point(374, 275);
+            btnUpdateHDN.Name = "btnUpdateHDN";
+            btnUpdateHDN.Padding = new Padding(5, 0, 5, 0);
+            btnUpdateHDN.Size = new Size(210, 49);
+            btnUpdateHDN.TabIndex = 17;
+            btnUpdateHDN.Text = "Cập Nhật CTHD";
+            btnUpdateHDN.TextAlign = ContentAlignment.MiddleRight;
+            btnUpdateHDN.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // btnXoaHDH
             // 
-            button8.BackColor = Color.MistyRose;
-            button8.Image = Properties.Resources.xoa;
-            button8.ImageAlign = ContentAlignment.MiddleLeft;
-            button8.Location = new Point(187, 275);
-            button8.Name = "button8";
-            button8.Padding = new Padding(5, 0, 5, 2);
-            button8.Size = new Size(139, 49);
-            button8.TabIndex = 16;
-            button8.Text = "Xoá NCC";
-            button8.TextAlign = ContentAlignment.MiddleRight;
-            button8.UseVisualStyleBackColor = false;
+            btnXoaHDH.BackColor = Color.MistyRose;
+            btnXoaHDH.Image = Properties.Resources.xoa;
+            btnXoaHDH.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaHDH.Location = new Point(231, 275);
+            btnXoaHDH.Name = "btnXoaHDH";
+            btnXoaHDH.Padding = new Padding(5, 0, 5, 2);
+            btnXoaHDH.Size = new Size(139, 49);
+            btnXoaHDH.TabIndex = 16;
+            btnXoaHDH.Text = "Xoá HDN";
+            btnXoaHDH.TextAlign = ContentAlignment.MiddleRight;
+            btnXoaHDH.UseVisualStyleBackColor = false;
             // 
-            // comboBox2
+            // cboMaHoaDonNHap
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(228, 46);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(283, 33);
-            comboBox2.TabIndex = 12;
+            cboMaHoaDonNHap.FormattingEnabled = true;
+            cboMaHoaDonNHap.Location = new Point(228, 46);
+            cboMaHoaDonNHap.Name = "cboMaHoaDonNHap";
+            cboMaHoaDonNHap.Size = new Size(283, 33);
+            cboMaHoaDonNHap.TabIndex = 12;
             // 
-            // textBox6
+            // txtVaccineNhapCTHD
             // 
-            textBox6.Location = new Point(228, 108);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(283, 31);
-            textBox6.TabIndex = 9;
+            txtVaccineNhapCTHD.Location = new Point(228, 108);
+            txtVaccineNhapCTHD.Name = "txtVaccineNhapCTHD";
+            txtVaccineNhapCTHD.Size = new Size(283, 31);
+            txtVaccineNhapCTHD.TabIndex = 9;
             // 
-            // button9
+            // btnThemCTHDN
             // 
-            button9.BackColor = Color.Aquamarine;
-            button9.Image = Properties.Resources.add2;
-            button9.ImageAlign = ContentAlignment.MiddleLeft;
-            button9.Location = new Point(31, 275);
-            button9.Name = "button9";
-            button9.Padding = new Padding(5, 0, 5, 2);
-            button9.Size = new Size(139, 49);
-            button9.TabIndex = 15;
-            button9.Text = "Tạo NCC";
-            button9.TextAlign = ContentAlignment.MiddleRight;
-            button9.UseVisualStyleBackColor = false;
+            btnThemCTHDN.BackColor = Color.Aquamarine;
+            btnThemCTHDN.Image = Properties.Resources.add2;
+            btnThemCTHDN.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThemCTHDN.Location = new Point(31, 275);
+            btnThemCTHDN.Name = "btnThemCTHDN";
+            btnThemCTHDN.Padding = new Padding(5, 0, 5, 2);
+            btnThemCTHDN.Size = new Size(196, 49);
+            btnThemCTHDN.TabIndex = 15;
+            btnThemCTHDN.Text = "Thêm Vào HDN";
+            btnThemCTHDN.TextAlign = ContentAlignment.MiddleRight;
+            btnThemCTHDN.UseVisualStyleBackColor = false;
             // 
-            // textBox5
+            // txtSoLuongNhap
             // 
-            textBox5.Location = new Point(228, 168);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(283, 31);
-            textBox5.TabIndex = 10;
+            txtSoLuongNhap.Location = new Point(228, 168);
+            txtSoLuongNhap.Name = "txtSoLuongNhap";
+            txtSoLuongNhap.Size = new Size(283, 31);
+            txtSoLuongNhap.TabIndex = 10;
             // 
             // label12
             // 
@@ -782,12 +782,12 @@
             label12.TabIndex = 14;
             label12.Text = "Đơn giá";
             // 
-            // textBox4
+            // txtDonGiaNhap
             // 
-            textBox4.Location = new Point(228, 228);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(283, 31);
-            textBox4.TabIndex = 11;
+            txtDonGiaNhap.Location = new Point(228, 228);
+            txtDonGiaNhap.Name = "txtDonGiaNhap";
+            txtDonGiaNhap.Size = new Size(283, 31);
+            txtDonGiaNhap.TabIndex = 11;
             // 
             // label13
             // 
@@ -819,13 +819,13 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(button4);
+            groupBox2.Controls.Add(btnUpdateHDNhap);
             groupBox2.Controls.Add(label11);
-            groupBox2.Controls.Add(button5);
-            groupBox2.Controls.Add(button6);
+            groupBox2.Controls.Add(btnXoaHDNhap);
+            groupBox2.Controls.Add(btnThemHoaDonNhapHangf);
             groupBox2.Controls.Add(label10);
-            groupBox2.Controls.Add(dateTimePicker1);
-            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Controls.Add(txtNgayNhapHang);
+            groupBox2.Controls.Add(cboNhaCungCap);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 261);
             groupBox2.Name = "groupBox2";
@@ -834,20 +834,20 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Nhập Vaccine";
             // 
-            // button4
+            // btnUpdateHDNhap
             // 
-            button4.BackColor = Color.Blue;
-            button4.ForeColor = Color.LightCyan;
-            button4.Image = Properties.Resources.sync_8468966;
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(155, 211);
-            button4.Name = "button4";
-            button4.Padding = new Padding(5, 0, 5, 0);
-            button4.Size = new Size(235, 59);
-            button4.TabIndex = 11;
-            button4.Text = "Cập Nhật Hoá Đơn";
-            button4.TextAlign = ContentAlignment.MiddleRight;
-            button4.UseVisualStyleBackColor = false;
+            btnUpdateHDNhap.BackColor = Color.Blue;
+            btnUpdateHDNhap.ForeColor = Color.LightCyan;
+            btnUpdateHDNhap.Image = Properties.Resources.sync_8468966;
+            btnUpdateHDNhap.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdateHDNhap.Location = new Point(155, 211);
+            btnUpdateHDNhap.Name = "btnUpdateHDNhap";
+            btnUpdateHDNhap.Padding = new Padding(5, 0, 5, 0);
+            btnUpdateHDNhap.Size = new Size(235, 59);
+            btnUpdateHDNhap.TabIndex = 11;
+            btnUpdateHDNhap.Text = "Cập Nhật Hoá Đơn";
+            btnUpdateHDNhap.TextAlign = ContentAlignment.MiddleRight;
+            btnUpdateHDNhap.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -858,33 +858,33 @@
             label11.TabIndex = 3;
             label11.Text = "Ngày Nhập Hàng";
             // 
-            // button5
+            // btnXoaHDNhap
             // 
-            button5.BackColor = Color.MistyRose;
-            button5.Image = Properties.Resources.xoa;
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(280, 141);
-            button5.Name = "button5";
-            button5.Padding = new Padding(5, 0, 5, 2);
-            button5.Size = new Size(180, 59);
-            button5.TabIndex = 10;
-            button5.Text = "Xoá Hoá Đơn";
-            button5.TextAlign = ContentAlignment.MiddleRight;
-            button5.UseVisualStyleBackColor = false;
+            btnXoaHDNhap.BackColor = Color.MistyRose;
+            btnXoaHDNhap.Image = Properties.Resources.xoa;
+            btnXoaHDNhap.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaHDNhap.Location = new Point(280, 141);
+            btnXoaHDNhap.Name = "btnXoaHDNhap";
+            btnXoaHDNhap.Padding = new Padding(5, 0, 5, 2);
+            btnXoaHDNhap.Size = new Size(180, 59);
+            btnXoaHDNhap.TabIndex = 10;
+            btnXoaHDNhap.Text = "Xoá Hoá Đơn";
+            btnXoaHDNhap.TextAlign = ContentAlignment.MiddleRight;
+            btnXoaHDNhap.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // btnThemHoaDonNhapHangf
             // 
-            button6.BackColor = Color.Aquamarine;
-            button6.Image = Properties.Resources.add2;
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(86, 141);
-            button6.Name = "button6";
-            button6.Padding = new Padding(5, 0, 5, 2);
-            button6.Size = new Size(180, 59);
-            button6.TabIndex = 9;
-            button6.Text = "Tạo Hoá Đơn";
-            button6.TextAlign = ContentAlignment.MiddleRight;
-            button6.UseVisualStyleBackColor = false;
+            btnThemHoaDonNhapHangf.BackColor = Color.Aquamarine;
+            btnThemHoaDonNhapHangf.Image = Properties.Resources.add2;
+            btnThemHoaDonNhapHangf.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThemHoaDonNhapHangf.Location = new Point(86, 141);
+            btnThemHoaDonNhapHangf.Name = "btnThemHoaDonNhapHangf";
+            btnThemHoaDonNhapHangf.Padding = new Padding(5, 0, 5, 2);
+            btnThemHoaDonNhapHangf.Size = new Size(180, 59);
+            btnThemHoaDonNhapHangf.TabIndex = 9;
+            btnThemHoaDonNhapHangf.Text = "Tạo Hoá Đơn";
+            btnThemHoaDonNhapHangf.TextAlign = ContentAlignment.MiddleRight;
+            btnThemHoaDonNhapHangf.UseVisualStyleBackColor = false;
             // 
             // label10
             // 
@@ -895,32 +895,32 @@
             label10.TabIndex = 2;
             label10.Text = "Nhà Cung Cấp";
             // 
-            // dateTimePicker1
+            // txtNgayNhapHang
             // 
-            dateTimePicker1.Location = new Point(203, 96);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(327, 31);
-            dateTimePicker1.TabIndex = 1;
+            txtNgayNhapHang.Location = new Point(203, 96);
+            txtNgayNhapHang.Name = "txtNgayNhapHang";
+            txtNgayNhapHang.Size = new Size(327, 31);
+            txtNgayNhapHang.TabIndex = 1;
             // 
-            // comboBox1
+            // cboNhaCungCap
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(203, 41);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(327, 33);
-            comboBox1.TabIndex = 0;
+            cboNhaCungCap.FormattingEnabled = true;
+            cboNhaCungCap.Location = new Point(203, 41);
+            cboNhaCungCap.Name = "cboNhaCungCap";
+            cboNhaCungCap.Size = new Size(327, 33);
+            cboNhaCungCap.TabIndex = 0;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btnCapNhatNCC);
+            groupBox1.Controls.Add(btnXoaNCC);
+            groupBox1.Controls.Add(btnThemNCC);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtSoDienThoai);
+            groupBox1.Controls.Add(txtDiaChi);
+            groupBox1.Controls.Add(txtTenNCCVC);
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
@@ -929,48 +929,48 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Nhà Cung Cấp Vaccine";
             // 
-            // button3
+            // btnCapNhatNCC
             // 
-            button3.BackColor = Color.Blue;
-            button3.ForeColor = Color.LightCyan;
-            button3.Image = Properties.Resources.sync_8468966;
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(335, 193);
-            button3.Name = "button3";
-            button3.Padding = new Padding(5, 0, 5, 0);
-            button3.Size = new Size(210, 49);
-            button3.TabIndex = 8;
-            button3.Text = "Cập Nhật TT NCC";
-            button3.TextAlign = ContentAlignment.MiddleRight;
-            button3.UseVisualStyleBackColor = false;
+            btnCapNhatNCC.BackColor = Color.Blue;
+            btnCapNhatNCC.ForeColor = Color.LightCyan;
+            btnCapNhatNCC.Image = Properties.Resources.sync_8468966;
+            btnCapNhatNCC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCapNhatNCC.Location = new Point(335, 193);
+            btnCapNhatNCC.Name = "btnCapNhatNCC";
+            btnCapNhatNCC.Padding = new Padding(5, 0, 5, 0);
+            btnCapNhatNCC.Size = new Size(210, 49);
+            btnCapNhatNCC.TabIndex = 8;
+            btnCapNhatNCC.Text = "Cập Nhật TT NCC";
+            btnCapNhatNCC.TextAlign = ContentAlignment.MiddleRight;
+            btnCapNhatNCC.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnXoaNCC
             // 
-            button2.BackColor = Color.MistyRose;
-            button2.Image = Properties.Resources.xoa;
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(179, 193);
-            button2.Name = "button2";
-            button2.Padding = new Padding(5, 0, 5, 2);
-            button2.Size = new Size(139, 49);
-            button2.TabIndex = 7;
-            button2.Text = "Xoá NCC";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.UseVisualStyleBackColor = false;
+            btnXoaNCC.BackColor = Color.MistyRose;
+            btnXoaNCC.Image = Properties.Resources.xoa;
+            btnXoaNCC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaNCC.Location = new Point(179, 193);
+            btnXoaNCC.Name = "btnXoaNCC";
+            btnXoaNCC.Padding = new Padding(5, 0, 5, 2);
+            btnXoaNCC.Size = new Size(139, 49);
+            btnXoaNCC.TabIndex = 7;
+            btnXoaNCC.Text = "Xoá NCC";
+            btnXoaNCC.TextAlign = ContentAlignment.MiddleRight;
+            btnXoaNCC.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnThemNCC
             // 
-            button1.BackColor = Color.Aquamarine;
-            button1.Image = Properties.Resources.add2;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(23, 193);
-            button1.Name = "button1";
-            button1.Padding = new Padding(5, 0, 5, 2);
-            button1.Size = new Size(139, 49);
-            button1.TabIndex = 6;
-            button1.Text = "Tạo NCC";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
+            btnThemNCC.BackColor = Color.Aquamarine;
+            btnThemNCC.Image = Properties.Resources.add2;
+            btnThemNCC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThemNCC.Location = new Point(23, 193);
+            btnThemNCC.Name = "btnThemNCC";
+            btnThemNCC.Padding = new Padding(5, 0, 5, 2);
+            btnThemNCC.Size = new Size(139, 49);
+            btnThemNCC.TabIndex = 6;
+            btnThemNCC.Text = "Tạo NCC";
+            btnThemNCC.TextAlign = ContentAlignment.MiddleRight;
+            btnThemNCC.UseVisualStyleBackColor = false;
             // 
             // label9
             // 
@@ -999,38 +999,38 @@
             label2.TabIndex = 3;
             label2.Text = "Tên nhà cung cấp";
             // 
-            // textBox3
+            // txtSoDienThoai
             // 
-            textBox3.Location = new Point(220, 148);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(283, 31);
-            textBox3.TabIndex = 2;
+            txtSoDienThoai.Location = new Point(220, 148);
+            txtSoDienThoai.Name = "txtSoDienThoai";
+            txtSoDienThoai.Size = new Size(283, 31);
+            txtSoDienThoai.TabIndex = 2;
             // 
-            // textBox2
+            // txtDiaChi
             // 
-            textBox2.Location = new Point(220, 96);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(283, 31);
-            textBox2.TabIndex = 1;
+            txtDiaChi.Location = new Point(220, 96);
+            txtDiaChi.Name = "txtDiaChi";
+            txtDiaChi.Size = new Size(283, 31);
+            txtDiaChi.TabIndex = 1;
             // 
-            // textBox1
+            // txtTenNCCVC
             // 
-            textBox1.Location = new Point(220, 44);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(283, 31);
-            textBox1.TabIndex = 0;
+            txtTenNCCVC.Location = new Point(220, 44);
+            txtTenNCCVC.Name = "txtTenNCCVC";
+            txtTenNCCVC.Size = new Size(283, 31);
+            txtTenNCCVC.TabIndex = 0;
             // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Control;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.Aquamarine;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HotTrack;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Aquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HotTrack;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Bottom;
             dataGridView1.GridColor = Color.WhiteSmoke;
@@ -1139,39 +1139,39 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Button button1;
+        private TextBox txtSoDienThoai;
+        private TextBox txtDiaChi;
+        private TextBox txtTenNCCVC;
+        private Button btnThemNCC;
         private Label label9;
         private Label label6;
         private Label label2;
-        private Button button2;
-        private Button button3;
+        private Button btnXoaNCC;
+        private Button btnCapNhatNCC;
         private GroupBox groupBox5;
         private Label label11;
         private Label label10;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox1;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
-        private TextBox textBox6;
-        private Button button9;
-        private TextBox textBox5;
+        private DateTimePicker txtNgayNhapHang;
+        private ComboBox cboNhaCungCap;
+        private Button btnUpdateHDNhap;
+        private Button btnXoaHDNhap;
+        private Button btnThemHoaDonNhapHangf;
+        private Button btnUpdateHDN;
+        private Button btnXoaHDH;
+        private TextBox txtVaccineNhapCTHD;
+        private Button btnThemCTHDN;
+        private TextBox txtSoLuongNhap;
         private Label label12;
-        private TextBox textBox4;
+        private TextBox txtDonGiaNhap;
         private Label label13;
         private Label label14;
         private GroupBox groupBox6;
         private Label label15;
-        private ComboBox comboBox2;
-        private TextBox textBox7;
-        private Button button10;
-        private Button button13;
-        private Button button12;
-        private Button button11;
+        private ComboBox cboMaHoaDonNHap;
+        private TextBox txtTimKỉem;
+        private Button btnTimKiem;
+        private Button btnChiTietNhap;
+        private Button btnHoaDonNhap;
+        private Button btnLoadNCC;
     }
 }
