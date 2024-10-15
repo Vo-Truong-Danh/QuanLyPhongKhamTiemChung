@@ -142,7 +142,7 @@ namespace GUI
         {
             foreach (DataRow row in bnBLL.GetFullDataRows())
             {
-                ListViewItem item1 = new ListViewItem(new[] { row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString() });
+                ListViewItem item1 = new ListViewItem([row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString()]);
                 lstvDSBN.Items.Add(item1);
             }
         }
@@ -238,28 +238,24 @@ namespace GUI
         {
             bnBLL.ClearDataSet();
         }
-        private void btnTimKiem_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
-            //if (txtTimTheoMa.Text.Length == 0 || txtTimTheoMa.Text.Length == 0)
-            //{
-            //    foreach (DataRow row in bnBLL.GetFullDataRows())
-            //    {
-            //        ListViewItem item1 = new ListViewItem(new[] { row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString() });
-            //        lstvDSBN.Items.Add(item1);
-            //    }
-            //}
-            //else
-            //{
-            //if (txtTimTheoTen.Text.Trim().Length > 0 && txtTimTheoTen.Text!=null)
-            //{
-            //    foreach (DataRow row in bnBLL.GetDataFullRowFromTimKiem(txtTimTheoTen.Text.Trim()))
-            //    {
-            //        ListViewItem item1 = new ListViewItem(new[] { row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString() });
-            //        lstvDSBN.Clear();
-            //        lstvDSBN.Items.Add(item1);
-            //    }
-            //}
-            // }
+            lstvDSBN.Items.Clear();
+            foreach (DataRowView rowView in bnBLL.GetDataViewFromTimKiem(txtTimKiem.Text))
+            {
+                DataRow row = rowView.Row;
+                ListViewItem item1 = new ListViewItem(new string[]
+                {
+                    row["MaBN"].ToString(),
+                    row["HoTen"].ToString(),
+                    Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"),
+                    row["GioiTinh"].ToString(),
+                    row["DiaChi"].ToString(),
+                    row["SoDienThoai"].ToString()
+                });
+                lstvDSBN.Items.Add(item1);
+            }
         }
+
     }
 }

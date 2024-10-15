@@ -154,7 +154,13 @@ namespace DAL
                 return false;
             }
         }
-
+        public DataView GetDataViewFromTimKiem(string searchStr)
+        {
+            DataTable dt = ds.Tables["BENHNHAN"];
+            DataView dtView = new DataView(dt);
+            dtView.RowFilter = "HoTen LIKE '%" + searchStr.Replace("'", "''") + "%'";
+            return dtView;
+        }//HoTen LIKE N'%' + 'searchStr' + N'%';
         public void ClearDataSet()
         {
             ds.Tables["BENHNHAN"].Clear();

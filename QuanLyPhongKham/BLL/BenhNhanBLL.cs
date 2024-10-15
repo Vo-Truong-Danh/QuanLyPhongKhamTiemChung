@@ -35,6 +35,11 @@ namespace BLL
         {
             return bnDAL.Delete(maBN);
         }
+        public DataView GetDataViewFromTimKiem(string searchStr)
+        {
+                DataView view = bnDAL.GetDataViewFromTimKiem(searchStr);
+                return view;
+        }
         public void ClearDataSet()
         {
             bnDAL.ClearDataSet();
