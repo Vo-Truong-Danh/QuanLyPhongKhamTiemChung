@@ -629,9 +629,9 @@
             btnTimKiem.ForeColor = Color.MidnightBlue;
             btnTimKiem.Image = Properties.Resources.timkiem;
             btnTimKiem.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTimKiem.Location = new Point(60, 36);
+            btnTimKiem.Location = new Point(52, 36);
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(139, 43);
+            btnTimKiem.Size = new Size(147, 43);
             btnTimKiem.TabIndex = 17;
             btnTimKiem.Text = "Tìm kiếm";
             btnTimKiem.TextAlign = ContentAlignment.MiddleRight;
