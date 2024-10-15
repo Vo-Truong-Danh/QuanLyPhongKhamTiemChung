@@ -521,7 +521,7 @@ namespace GUI
                 string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
                 string mancc = cboNhaCungCap.SelectedValue.ToString();
 
-                PhieuNhapDTO tmp = new PhieuNhapDTO(ma,ngay,mancc);
+                PhieuNhapDTO tmp = new PhieuNhapDTO(ma, ngay, mancc);
 
 
                 var t = MessageBox.Show("Bạn có chắc chắn muốn sửa hoá đơn " + ma + " này không?",
@@ -546,6 +546,96 @@ namespace GUI
             else
             {
                 MessageBox.Show("Vui lòng chọn một Hoá đơn để sửa.");
+            }
+        }
+
+        private void btnThemCTHDN_Click(object sender, EventArgs e)
+        {
+            string mapn = cboMaHoaDonNHap.SelectedValue.ToString();
+
+            string tenvc = cboVaccineNhapCTHD.Text;
+            string mavc = cboVaccineNhapCTHD.SelectedValue.ToString();
+            string soluong = txtSoLuongNhap.Text;
+            string dongia = txtDonGiaNhap.Text;
+            ChiTietPhieuNhapDTO dto = new ChiTietPhieuNhapDTO(mapn, mavc, soluong, dongia);
+            ChiTietPhieuNhapBLL tmp = new ChiTietPhieuNhapBLL();
+            bool kt = tmp.Insert(dto);
+            if (kt)
+                MessageBox.Show("Thêm thành công " + tenvc + " vào hoá đơn nhập " + mapn + " .");
+            else
+                MessageBox.Show("Thêm " + tenvc + " vào hoá đơn nhập " + mapn + " thất bại");
+            LoadChiTietPhieuNhap();
+            LoadVaccine();
+        }
+
+        private void btnXoaHDH_Click(object sender, EventArgs e)
+        {
+            if (dgvNhapVaccine.SelectedRows.Count > 0)
+            {
+                string mapn = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+                string mavc = dgvNhapVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+                string tenvc = cboVaccineNhapCTHD.Text;
+
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + tenvc + " này trong Hoá đơn nhập " + mapn + " không?",
+                                                 "Xác nhận xóa",
+                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                {
+                    ChiTietPhieuNhapBLL tmp = new ChiTietPhieuNhapBLL();
+                    bool kt = tmp.Delete(mapn, mavc);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Xóa thành công " + tenvc + " trong hoá đơn nhập " + mapn + "");
+                        LoadChiTietPhieuNhap();
+                        LoadVaccine();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi xóa " + tenvc + " trong hoá đơn nhập " + mapn + " do mã hoá đơn nhập này đang được tham chiếu.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá Đơn nhập để xóa.");
+            }
+        }
+
+        private void btnUpdateHDN_Click(object sender, EventArgs e)
+        {
+            if (dgvNhapVaccine.SelectedRows.Count > 0)
+            {
+                string mapn = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+                string mavc = dgvNhapVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+                string tenvc = cboVaccineNhapCTHD.Text;
+                string soluong = txtSoLuongNhap.Text;
+                string dongia = txtDonGiaNhap.Text;
+
+                ChiTietPhieuNhapDTO tmp = new ChiTietPhieuNhapDTO(mapn,mavc,soluong,dongia);
+
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa "+tenvc+" trong hoá đơn nhập " + mapn + " này không?",
+                                                     "Xác nhận sửa",
+                                                     MessageBoxButtons.YesNo);
+                if (t == DialogResult.Yes)
+                {
+                    ChiTietPhieuNhapBLL tmpdto = new ChiTietPhieuNhapBLL();
+                    bool kt = tmpdto.Update(tmp);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Sửa thành công  "+tenvc+" trong hoá đơn nhập " + mapn + " .");
+                        LoadPhieuNhap();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi sửa " + tenvc + " trong hoá đơn nhập " + mapn + ".");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá đơn để sửa.");
             }
         }
     }

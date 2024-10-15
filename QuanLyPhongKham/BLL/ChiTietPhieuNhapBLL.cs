@@ -17,5 +17,17 @@ namespace BLL
         {
             return ct.GetData();
         }
+        public bool Insert(ChiTietPhieuNhapDTO tmp)
+        {
+            return ct.Insert(tmp);
+        }
+        public bool Delete(string mapn,string mavc)
+        {
+            return ct.Delete(mapn,mavc);
+        }
+        public bool Update(ChiTietPhieuNhapDTO tmp)
+        {
+            return ct.Update(tmp);
+        }
     }
 }

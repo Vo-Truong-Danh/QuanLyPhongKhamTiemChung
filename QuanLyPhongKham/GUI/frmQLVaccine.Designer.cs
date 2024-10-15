@@ -733,6 +733,7 @@
             btnUpdateHDN.Text = "Cập Nhật CTHD";
             btnUpdateHDN.TextAlign = ContentAlignment.MiddleRight;
             btnUpdateHDN.UseVisualStyleBackColor = false;
+            btnUpdateHDN.Click += btnUpdateHDN_Click;
             // 
             // btnXoaHDH
             // 
@@ -747,6 +748,7 @@
             btnXoaHDH.Text = "Xoá HDN";
             btnXoaHDH.TextAlign = ContentAlignment.MiddleRight;
             btnXoaHDH.UseVisualStyleBackColor = false;
+            btnXoaHDH.Click += btnXoaHDH_Click;
             // 
             // cboMaHoaDonNHap
             // 
@@ -769,6 +771,7 @@
             btnThemCTHDN.Text = "Thêm Vào HDN";
             btnThemCTHDN.TextAlign = ContentAlignment.MiddleRight;
             btnThemCTHDN.UseVisualStyleBackColor = false;
+            btnThemCTHDN.Click += btnThemCTHDN_Click;
             // 
             // txtSoLuongNhap
             // 

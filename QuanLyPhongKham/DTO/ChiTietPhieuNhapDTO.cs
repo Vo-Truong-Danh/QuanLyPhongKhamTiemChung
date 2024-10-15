@@ -24,11 +24,5 @@ namespace DTO
             Soluong = soluong;
             Dongia = dongia;
         }
-        public ChiTietPhieuNhapDTO(string mavc, string soluong, string dongia)
-        {
-            Mavc = mavc;
-            Soluong = soluong;
-            Dongia = dongia;
-        }
     }
 }
