@@ -39,18 +39,18 @@
             btnLoadGopTT = new Button();
             btnLoadTTVC = new Button();
             groupBox2 = new GroupBox();
-            button7 = new Button();
-            textBox1 = new TextBox();
+            btnSearch = new Button();
+            txtSearch = new TextBox();
             grbLoaiVC = new GroupBox();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
+            btnSuaLVC = new Button();
+            btnXoaLoaiVC = new Button();
+            btnThemLVC = new Button();
             label8 = new Label();
             txtTenLoaiVC = new TextBox();
             grbTTVC = new GroupBox();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnSuaTTVC = new Button();
+            btnXoaTTVC = new Button();
+            btnThemTTVC = new Button();
             panel2 = new Panel();
             dtpHSD = new DateTimePicker();
             panel1 = new Panel();
@@ -185,8 +185,8 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(button7);
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(btnSearch);
+            groupBox2.Controls.Add(txtSearch);
             groupBox2.Dock = DockStyle.Top;
             groupBox2.Location = new Point(0, 192);
             groupBox2.Name = "groupBox2";
@@ -195,31 +195,31 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Tìm Kiếm";
             // 
-            // button7
+            // btnSearch
             // 
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.ForeColor = SystemColors.Control;
-            button7.Image = Properties.Resources.timkiem;
-            button7.Location = new Point(419, 33);
-            button7.Name = "button7";
-            button7.Size = new Size(61, 43);
-            button7.TabIndex = 25;
-            button7.UseVisualStyleBackColor = true;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.ForeColor = SystemColors.Control;
+            btnSearch.Image = Properties.Resources.timkiem;
+            btnSearch.Location = new Point(419, 33);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(61, 43);
+            btnSearch.TabIndex = 25;
+            btnSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtSearch
             // 
-            textBox1.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
-            textBox1.Location = new Point(66, 38);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(347, 34);
-            textBox1.TabIndex = 24;
+            txtSearch.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
+            txtSearch.Location = new Point(66, 38);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(347, 34);
+            txtSearch.TabIndex = 24;
             // 
             // grbLoaiVC
             // 
-            grbLoaiVC.Controls.Add(button6);
-            grbLoaiVC.Controls.Add(button5);
-            grbLoaiVC.Controls.Add(button4);
+            grbLoaiVC.Controls.Add(btnSuaLVC);
+            grbLoaiVC.Controls.Add(btnXoaLoaiVC);
+            grbLoaiVC.Controls.Add(btnThemLVC);
             grbLoaiVC.Controls.Add(label8);
             grbLoaiVC.Controls.Add(txtTenLoaiVC);
             grbLoaiVC.Dock = DockStyle.Top;
@@ -230,49 +230,49 @@
             grbLoaiVC.TabStop = false;
             grbLoaiVC.Text = "Loại Vaccine";
             // 
-            // button6
+            // btnSuaLVC
             // 
-            button6.BackColor = Color.PaleTurquoise;
-            button6.ForeColor = Color.Navy;
-            button6.Image = Properties.Resources.cut;
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(333, 105);
-            button6.Name = "button6";
-            button6.Padding = new Padding(15, 5, 25, 5);
-            button6.Size = new Size(147, 59);
-            button6.TabIndex = 21;
-            button6.Text = "Sửa";
-            button6.TextAlign = ContentAlignment.MiddleRight;
-            button6.UseVisualStyleBackColor = false;
+            btnSuaLVC.BackColor = Color.PaleTurquoise;
+            btnSuaLVC.ForeColor = Color.Navy;
+            btnSuaLVC.Image = Properties.Resources.cut;
+            btnSuaLVC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSuaLVC.Location = new Point(333, 105);
+            btnSuaLVC.Name = "btnSuaLVC";
+            btnSuaLVC.Padding = new Padding(15, 5, 25, 5);
+            btnSuaLVC.Size = new Size(147, 59);
+            btnSuaLVC.TabIndex = 21;
+            btnSuaLVC.Text = "Sửa";
+            btnSuaLVC.TextAlign = ContentAlignment.MiddleRight;
+            btnSuaLVC.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnXoaLoaiVC
             // 
-            button5.BackColor = Color.Salmon;
-            button5.ForeColor = Color.White;
-            button5.Image = Properties.Resources.xoa;
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(176, 105);
-            button5.Name = "button5";
-            button5.Padding = new Padding(15, 5, 25, 5);
-            button5.Size = new Size(147, 59);
-            button5.TabIndex = 21;
-            button5.Text = "Xoá";
-            button5.TextAlign = ContentAlignment.MiddleRight;
-            button5.UseVisualStyleBackColor = false;
+            btnXoaLoaiVC.BackColor = Color.Salmon;
+            btnXoaLoaiVC.ForeColor = Color.White;
+            btnXoaLoaiVC.Image = Properties.Resources.xoa;
+            btnXoaLoaiVC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaLoaiVC.Location = new Point(176, 105);
+            btnXoaLoaiVC.Name = "btnXoaLoaiVC";
+            btnXoaLoaiVC.Padding = new Padding(15, 5, 25, 5);
+            btnXoaLoaiVC.Size = new Size(147, 59);
+            btnXoaLoaiVC.TabIndex = 21;
+            btnXoaLoaiVC.Text = "Xoá";
+            btnXoaLoaiVC.TextAlign = ContentAlignment.MiddleRight;
+            btnXoaLoaiVC.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnThemLVC
             // 
-            button4.BackColor = Color.Aquamarine;
-            button4.Image = Properties.Resources.add2;
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(19, 105);
-            button4.Name = "button4";
-            button4.Padding = new Padding(15, 5, 15, 5);
-            button4.Size = new Size(147, 59);
-            button4.TabIndex = 21;
-            button4.Text = "Thêm";
-            button4.TextAlign = ContentAlignment.MiddleRight;
-            button4.UseVisualStyleBackColor = false;
+            btnThemLVC.BackColor = Color.Aquamarine;
+            btnThemLVC.Image = Properties.Resources.add2;
+            btnThemLVC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThemLVC.Location = new Point(19, 105);
+            btnThemLVC.Name = "btnThemLVC";
+            btnThemLVC.Padding = new Padding(15, 5, 15, 5);
+            btnThemLVC.Size = new Size(147, 59);
+            btnThemLVC.TabIndex = 21;
+            btnThemLVC.Text = "Thêm";
+            btnThemLVC.TextAlign = ContentAlignment.MiddleRight;
+            btnThemLVC.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
@@ -294,9 +294,9 @@
             // 
             // grbTTVC
             // 
-            grbTTVC.Controls.Add(button3);
-            grbTTVC.Controls.Add(button2);
-            grbTTVC.Controls.Add(button1);
+            grbTTVC.Controls.Add(btnSuaTTVC);
+            grbTTVC.Controls.Add(btnXoaTTVC);
+            grbTTVC.Controls.Add(btnThemTTVC);
             grbTTVC.Controls.Add(panel2);
             grbTTVC.Controls.Add(panel1);
             grbTTVC.Controls.Add(label7);
@@ -315,49 +315,50 @@
             grbTTVC.TabStop = false;
             grbTTVC.Text = "Thêm Thông Tin Vaccine";
             // 
-            // button3
+            // btnSuaTTVC
             // 
-            button3.BackColor = Color.PaleTurquoise;
-            button3.ForeColor = Color.Navy;
-            button3.Image = Properties.Resources.cut;
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(516, 426);
-            button3.Name = "button3";
-            button3.Padding = new Padding(15, 5, 25, 5);
-            button3.Size = new Size(147, 59);
-            button3.TabIndex = 18;
-            button3.Text = "Sửa";
-            button3.TextAlign = ContentAlignment.MiddleRight;
-            button3.UseVisualStyleBackColor = false;
+            btnSuaTTVC.BackColor = Color.PaleTurquoise;
+            btnSuaTTVC.ForeColor = Color.Navy;
+            btnSuaTTVC.Image = Properties.Resources.cut;
+            btnSuaTTVC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSuaTTVC.Location = new Point(516, 426);
+            btnSuaTTVC.Name = "btnSuaTTVC";
+            btnSuaTTVC.Padding = new Padding(15, 5, 25, 5);
+            btnSuaTTVC.Size = new Size(147, 59);
+            btnSuaTTVC.TabIndex = 18;
+            btnSuaTTVC.Text = "Sửa";
+            btnSuaTTVC.TextAlign = ContentAlignment.MiddleRight;
+            btnSuaTTVC.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnXoaTTVC
             // 
-            button2.BackColor = Color.Salmon;
-            button2.ForeColor = Color.White;
-            button2.Image = Properties.Resources.xoa;
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(297, 426);
-            button2.Name = "button2";
-            button2.Padding = new Padding(15, 5, 25, 5);
-            button2.Size = new Size(147, 59);
-            button2.TabIndex = 17;
-            button2.Text = "Xoá";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.UseVisualStyleBackColor = false;
+            btnXoaTTVC.BackColor = Color.Salmon;
+            btnXoaTTVC.ForeColor = Color.White;
+            btnXoaTTVC.Image = Properties.Resources.xoa;
+            btnXoaTTVC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaTTVC.Location = new Point(297, 426);
+            btnXoaTTVC.Name = "btnXoaTTVC";
+            btnXoaTTVC.Padding = new Padding(15, 5, 25, 5);
+            btnXoaTTVC.Size = new Size(147, 59);
+            btnXoaTTVC.TabIndex = 17;
+            btnXoaTTVC.Text = "Xoá";
+            btnXoaTTVC.TextAlign = ContentAlignment.MiddleRight;
+            btnXoaTTVC.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnThemTTVC
             // 
-            button1.BackColor = Color.Aquamarine;
-            button1.Image = Properties.Resources.add2;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(78, 426);
-            button1.Name = "button1";
-            button1.Padding = new Padding(15, 5, 15, 5);
-            button1.Size = new Size(147, 59);
-            button1.TabIndex = 16;
-            button1.Text = "Thêm";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
+            btnThemTTVC.BackColor = Color.Aquamarine;
+            btnThemTTVC.Image = Properties.Resources.add2;
+            btnThemTTVC.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThemTTVC.Location = new Point(78, 426);
+            btnThemTTVC.Name = "btnThemTTVC";
+            btnThemTTVC.Padding = new Padding(15, 5, 15, 5);
+            btnThemTTVC.Size = new Size(147, 59);
+            btnThemTTVC.TabIndex = 16;
+            btnThemTTVC.Text = "Thêm";
+            btnThemTTVC.TextAlign = ContentAlignment.MiddleRight;
+            btnThemTTVC.UseVisualStyleBackColor = false;
+            btnThemTTVC.Click += btnThemTTVC_Click;
             // 
             // panel2
             // 
@@ -542,19 +543,19 @@
         private Panel panel1;
         private Panel panel2;
         private DateTimePicker dtpHSD;
-        private Button button1;
-        private Button button3;
-        private Button button2;
+        private Button btnThemTTVC;
+        private Button btnSuaTTVC;
+        private Button btnXoaTTVC;
         private GroupBox groupBox2;
         private Panel panel3;
         private GroupBox grbLoaiVC;
         private Label label8;
         private TextBox txtTenLoaiVC;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private TextBox textBox1;
-        private Button button7;
+        private Button btnSuaLVC;
+        private Button btnXoaLoaiVC;
+        private Button btnThemLVC;
+        private TextBox txtSearch;
+        private Button btnSearch;
         private Button btnLoadTTVC;
         private Button btnLoadTTLoaiVaccine;
         private Button btnLoadGopTT;

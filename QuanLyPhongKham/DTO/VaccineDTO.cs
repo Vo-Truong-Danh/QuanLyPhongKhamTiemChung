@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    internal class VaccineDTO
+    public class VaccineDTO
     {
-        string mavc, malaoi, tenvc, ngaysx, hansudung;
+        string mavc, maloai, tenvc, ngaysx, hansudung;
         int soluongton, gia;
 
         public string Mavc { get => mavc; set => mavc = value; }
-        public string Malaoi { get => malaoi; set => malaoi = value; }
+        public string Maloai { get => maloai; set => maloai = value; }
         public string Tenvc { get => tenvc; set => tenvc = value; }
         public string Ngaysx { get => ngaysx; set => ngaysx = value; }
         public string Hansudung { get => hansudung; set => hansudung = value; }
@@ -21,23 +21,22 @@ namespace DTO
 
         public VaccineDTO() { }
 
-        public VaccineDTO(string mavc, string malaoi, string tenvc, string ngaysx, string hansudung, int soluongton, int gia)
+        public VaccineDTO(string mavc, string Maloai, string tenvc, string ngaysx, string hansudung, int soluongton, int gia)
         {
             Mavc = mavc;
-            Malaoi = malaoi;
+            Maloai = Maloai;
             Tenvc = tenvc;
             Ngaysx = ngaysx;
             Hansudung = hansudung;
             Soluongton = soluongton;
             Gia = gia;
         }
-        public VaccineDTO( string malaoi, string tenvc, string ngaysx, string hansudung, int soluongton, int gia)
+        public VaccineDTO( string maloai, string tenvc, string ngaysx, string hansudung, int gia)
         {
-            Malaoi = malaoi;
+            Maloai = maloai;
             Tenvc = tenvc;
             Ngaysx = ngaysx;
             Hansudung = hansudung;
-            Soluongton = soluongton;
             Gia = gia;
         }
     }

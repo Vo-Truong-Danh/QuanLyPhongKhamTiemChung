@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL;
 using DTO;
-using BLL;
+using System.Data;
 
 namespace GUI
 {
@@ -23,7 +15,7 @@ namespace GUI
         {
             VaccineBLL vaccineBLL = new VaccineBLL();
             DataSet ds = vaccineBLL.LayTTVC();
-            dgvVaccine.DataSource = ds.Tables[0];
+            dgvVaccine.DataSource = ds.Tables["Vaccine"];
             dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvVaccine.AutoResizeColumns();
 
@@ -84,6 +76,23 @@ namespace GUI
             bingdungLVC();
             grbLoaiVC.Enabled = true;
             grbTTVC.Enabled = false;
+        }
+
+        private void btnThemTTVC_Click(object sender, EventArgs e)
+        {
+            string maloai = cboLoaiVaccine.SelectedValue.ToString();
+            string tenvc = txtTenVaccine.Text;
+            string ngaysx = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
+            string hsd = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
+            int gia = int.Parse(txtGia.Text);
+            VaccineDTO vc = new VaccineDTO(maloai, tenvc, ngaysx, hsd, gia);
+            VaccineBLL vaccineBLL = new VaccineBLL();
+            bool kt = vaccineBLL.Insert(vc);
+            if (kt)
+                MessageBox.Show("Thêm thành công Vaccine mới");
+            else
+                MessageBox.Show("Thêm Vaccine mới thất bại");
+            LoadVaccine();
         }
     }
 }

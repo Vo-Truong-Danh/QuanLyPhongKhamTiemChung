@@ -17,5 +17,10 @@ namespace BLL
             VaccineDAL vaccineDAL = new VaccineDAL();
             return vaccineDAL.LayTTVC();
         }
+        public bool Insert(VaccineDTO vaccineDTO)
+        {
+            VaccineDAL vc = new VaccineDAL();
+            return vc.Insert(vaccineDTO);
+        }
     }
 }
