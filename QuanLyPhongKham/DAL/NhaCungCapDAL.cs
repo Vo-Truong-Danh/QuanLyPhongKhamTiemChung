@@ -86,5 +86,36 @@ namespace DAL
                 return false;
             }
         }
+        public bool Update(NhaCungCapDTO tmp)
+        {
+            try
+            {
+                if (ds.Tables["NhaCungCap"] == null)
+                {
+                    GetData();
+                }
+
+                DataRow[] rowsToUpdate = ds.Tables["NhaCungCap"].Select("MaNCC = '" + tmp.Mancc + "'");
+
+                if (rowsToUpdate.Length > 0)
+                {
+                    DataRow row = rowsToUpdate[0];
+                    row["TenNCC"] = tmp.Tenncc;
+                    row["DiaChi"] = tmp.Diachi;
+                    row["SoDienThoai"] = tmp.Sodienthoai;
+
+                    // Cập nhật csdl
+                    SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
+                    adap.Update(ds, "NhaCungCap");
+
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

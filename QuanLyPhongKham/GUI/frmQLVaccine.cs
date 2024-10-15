@@ -433,7 +433,39 @@ namespace GUI
 
         private void btnCapNhatNCC_Click(object sender, EventArgs e)
         {
+            if (dgvNhapVaccine.SelectedRows.Count > 0)
+            {
+                string mamcc = dgvNhapVaccine.SelectedRows[0].Cells["MaNCC"].Value.ToString();
+                string tenncC = txtTenNCCVC.Text;
+                string diachi = txtDiaChi.Text;
+                string sodienthoai = txtSoDienThoai.Text;
 
+                NhaCungCapDTO tmp = new NhaCungCapDTO(mamcc, tenncC, diachi, sodienthoai);
+
+
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenncC + " này không?",
+                                                     "Xác nhận sửa",
+                                                     MessageBoxButtons.YesNo);
+                if (t == DialogResult.Yes)
+                {
+                    NhaCungCapBLL vaccineBLL = new NhaCungCapBLL();
+                    bool kt = vaccineBLL.Update(tmp);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Sửa thành công.");
+                        LoadNhaCungCap();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi sửa " + tenncC + ".");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một nhà cung cấp để sửa.");
+            }
         }
     }
 }

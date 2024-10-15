@@ -25,5 +25,9 @@ namespace BLL
         {
             return NhaCcDAL.Delete(tmp);
         }
+        public bool Update(NhaCungCapDTO tmp)
+        {
+            return NhaCcDAL.Update(tmp);
+        }
     }
 }
