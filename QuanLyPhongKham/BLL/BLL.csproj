@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenhNhanBLL.cs" />
+    <Compile Include="ChiTietPhieuNhapBLL.cs" />
     <Compile Include="LoaiVaccineBLL.cs" />
+    <Compile Include="NhaCungCapBLL.cs" />
+    <Compile Include="PhieuNhapBLL.cs" />
     <Compile Include="TaiKhoanBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VaccineBLL.cs" />

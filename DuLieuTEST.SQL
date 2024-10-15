@@ -306,9 +306,11 @@ INSERT INTO GHINHANTIEMCHUNG (MaBN, MaVC, MaNV, MaLT, MaHD, NgayTiem, TinhTrangS
 INSERT INTO GHINHANTIEMCHUNG (MaBN, MaVC, MaNV, MaLT, MaHD, NgayTiem, TinhTrangSucKhoe) VALUES
 ('BN001', 'VC003', 'NV010', 'LT020', 'HD001', NULL, N'Khỏe mạnh');
 
-INSERT INTO TAIKHOAN(UserName, Pass, ChucVu) VALUES
-('admin', 'admin123', 1),
-('user1', '123', 2);
+INSERT INTO TAIKHOAN([UserName], [DisplayName], [Pass], [ChucVu]) VALUES
+('admin',N'TRần Văn Thái', 'admin123', 1),
+('user1',N'Lê Văn Long', '123', 2);
+
+
 
 --select * from BENHNHAN
 --select * from NHANVIEN

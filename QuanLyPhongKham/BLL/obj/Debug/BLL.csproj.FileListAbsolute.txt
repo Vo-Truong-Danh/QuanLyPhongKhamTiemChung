@@ -31,3 +31,14 @@ E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.cs
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
 E:\BaiTapSinhVien\HeQuanTriCoSoDuLieu\Do An\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\BLL.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\BLL.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DAL.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DTO.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DAL.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\bin\Debug\DTO.pdb
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.csproj.Up2Date
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.dll
+C:\Users\Pls\Source\Repos\QuanLyPhongKhamTiemChung\QuanLyPhongKham\BLL\obj\Debug\BLL.pdb

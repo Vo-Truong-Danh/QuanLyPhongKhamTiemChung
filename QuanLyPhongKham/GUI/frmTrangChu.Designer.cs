@@ -39,6 +39,7 @@
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
             textBox1 = new TextBox();
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -49,10 +50,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(927, 73);
+            pictureBox1.Image = Properties.Resources.hospital_16767235;
+            pictureBox1.Location = new Point(1053, 55);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(762, 434);
+            pictureBox1.Size = new Size(440, 434);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -138,12 +139,23 @@
             // 
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("SVN-D Sari", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(278, 562);
+            textBox1.Location = new Point(278, 544);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(1238, 207);
             textBox1.TabIndex = 8;
             textBox1.Text = resources.GetString("textBox1.Text");
+            // 
+            // textBox2
+            // 
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Font = new Font("SVN-D Sari", 11.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(278, 401);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(740, 125);
+            textBox2.TabIndex = 9;
+            textBox2.Text = resources.GetString("textBox2.Text");
             // 
             // frmTrangChu
             // 
@@ -151,6 +163,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1664, 998);
+            Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox5);
@@ -184,5 +197,6 @@
         private PictureBox pictureBox5;
         private PictureBox pictureBox6;
         private TextBox textBox1;
+        private TextBox textBox2;
     }
 }
