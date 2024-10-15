@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,11 @@ namespace BLL
         public DataSet GetData()
         {
             return NhaCcDAL.GetData();
+        }
+
+        public bool Insert(NhaCungCapDTO tmp)
+        {
+            return NhaCcDAL.Insert(tmp);
         }
     }
 }

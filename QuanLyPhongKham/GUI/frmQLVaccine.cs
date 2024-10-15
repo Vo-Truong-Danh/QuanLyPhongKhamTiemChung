@@ -330,9 +330,9 @@ namespace GUI
         private void btnHoaDonNhap_Click(object sender, EventArgs e)
         {
             LoadLoaiNCCChoCBO();
-            grbChiTietNhapVC.Enabled =false;
-            grbNhaCC.Enabled=false;
-            grbHDN.Enabled=true;
+            grbChiTietNhapVC.Enabled = false;
+            grbNhaCC.Enabled = false;
+            grbHDN.Enabled = true;
             LoadPhieuNhap();
             bindingPN();
         }
@@ -382,6 +382,21 @@ namespace GUI
             grbHDN.Enabled = false;
             LoadChiTietPhieuNhap();
             bindingCTPN();
+        }
+
+        private void btnThemNCC_Click(object sender, EventArgs e)
+        {
+            string tenncc = txtTenNCCVC.Text;
+            string diachi = txtDiaChi.Text;
+            string sdt = txtSoDienThoai.Text;
+            NhaCungCapDTO dto = new NhaCungCapDTO(tenncc, diachi, sdt);
+            NhaCungCapBLL tmp = new NhaCungCapBLL();
+            bool kt = tmp.Insert(dto);
+            if (kt)
+                MessageBox.Show("Thêm thành công nhà cung cấp mới " + tenncc + "");
+            else
+                MessageBox.Show("Thêm nhà cung cấp  mới " + tenncc + " thất bại");
+            LoadNhaCungCap();
         }
     }
 }

@@ -975,6 +975,7 @@
             btnThemNCC.Text = "Tạo NCC";
             btnThemNCC.TextAlign = ContentAlignment.MiddleRight;
             btnThemNCC.UseVisualStyleBackColor = false;
+            btnThemNCC.Click += btnThemNCC_Click;
             // 
             // label9
             // 

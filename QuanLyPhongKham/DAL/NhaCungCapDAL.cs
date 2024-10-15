@@ -35,5 +35,32 @@ namespace DAL
             conn.Close();
             return ds;
         }
+        public bool Insert(NhaCungCapDTO tmp)
+        {
+            try
+            {
+                if (ds.Tables["NhaCungCap"] == null)
+                {
+                    GetData();
+                }
+
+                DataRow newRow = ds.Tables["NhaCungCap"].NewRow();
+                newRow["TenNCC"] = tmp.Tenncc;
+                newRow["DiaChi"] = tmp.Diachi;
+                newRow["SoDienThoai"] = tmp.Sodienthoai;
+
+
+                ds.Tables["NhaCungCap"].Rows.Add(newRow);
+
+                // Cập nhật csdl
+                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
+                adap.Update(ds, "NhaCungCap");
+                GetData();
+
+                return true;
+            }
+            catch
+            { return false; }
+        }
     }
 }
