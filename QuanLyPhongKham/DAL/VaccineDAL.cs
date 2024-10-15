@@ -49,7 +49,6 @@ namespace DAL
                 newRow["TenVC"] = vcDTO.Tenvc;
                 newRow["NgaySX"] = vcDTO.Ngaysx;
                 newRow["HanSuDung"] = vcDTO.Hansudung;
-                newRow["SoLuongTon"] = 0;
                 newRow["Gia"] = vcDTO.Gia;
 
 

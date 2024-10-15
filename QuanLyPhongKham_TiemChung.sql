@@ -42,7 +42,7 @@ CREATE TABLE VACCINE
 	TenVC NVARCHAR(50),
 	NgaySX DATE ,
 	HanSuDung DATE,
-	SoLuongTon INT CHECK (SoLuongTon >= 0),
+	SoLuongTon INT CHECK (SoLuongTon >= 0) DEFAULT 0,
 	Gia INT CHECK (Gia >= 0) DEFAULT 0,
 	CHECK (HanSuDung > NgaySX)  
 )
@@ -74,7 +74,7 @@ CREATE TABLE HOADON
 	FOREIGN KEY(MaBN) REFERENCES BENHNHAN(MaBN),
 	MaNV CHAR(5) NOT NULL,
 	FOREIGN KEY(MaNV) REFERENCES NHANVIEN(MaNV),
-	TongTien FLOAT CHECK (TongTien >= 0),
+	TongTien FLOAT CHECK (TongTien >= 0) DEFAULT 0,
 )
 
 CREATE TABLE CHITIETHOADON
@@ -84,8 +84,8 @@ CREATE TABLE CHITIETHOADON
 	PRIMARY KEY(MaHD,MaVC),
 	FOREIGN KEY(MaHD) REFERENCES HOADON(MaHD),
 	FOREIGN KEY(MaVC) REFERENCES VACCINE(MaVC),
-	SOLUONG INT,
-	DONGIA FLOAT,
+	SOLUONG INT DEFAULT 0,
+	DONGIA FLOAT DEFAULT 0,
 )
 CREATE TABLE LICHTIEM 
 (
@@ -124,7 +124,7 @@ CREATE TABLE TAIKHOAN
 (
 	UserName VARCHAR(15) NOT NULL PRIMARY KEY,
 	DisplayName NVARCHAR(30),
-	Pass VARCHAR(30) NOT NULL,
+	Pass VARCHAR(30) NOT NULL DEFAULT 2,
 	ChucVu INT NOT NULL,
 )
 -------------------------------------------------------------------------------
@@ -248,17 +248,17 @@ AS
 BEGIN
     -- Cập nhật số lượng tồn kho của Vaccine dựa trên số lượng nhập và số lượng đã bán
     UPDATE V
-    SET SoLuongTon = (SELECT SUM(CT.SoLuong) 
-                      FROM CHITIETPHIEUNHAP CT
-                      WHERE CT.MaVC = I.MaVC) 
-                    - (SELECT ISNULL(SUM(SOLUONG), 0) 
-                       FROM CHITIETHOADON 
-                       WHERE MaVC = I.MaVC)
+    SET SoLuongTon = 
+        ISNULL((SELECT SUM(CT.SoLuong) 
+                 FROM CHITIETPHIEUNHAP CT
+                 WHERE CT.MaVC = I.MaVC), 0) 
+        - ISNULL((SELECT SUM(SOLUONG) 
+                   FROM CHITIETHOADON 
+                   WHERE MaVC = I.MaVC), 0)
     FROM VACCINE V
     JOIN inserted I ON V.MaVC = I.MaVC;
-END
+END;
 GO
-
 
 --Sau khi thêm GHINHANTIEMCHUNG, cập nhật TrangThai trong bảng LICHTIEM.
 GO
