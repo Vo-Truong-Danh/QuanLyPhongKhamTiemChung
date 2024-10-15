@@ -421,7 +421,7 @@
             button7.Name = "button7";
             button7.Size = new Size(202, 51);
             button7.TabIndex = 8;
-            button7.Text = "Comming soon";
+            button7.Text = "Tra Cứu";
             button7.UseVisualStyleBackColor = false;
             // 
             // button6

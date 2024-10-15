@@ -33,10 +33,11 @@
             dgvVaccine = new DataGridView();
             tctChinh = new TabControl();
             tabPage1 = new TabPage();
+            pictureBox2 = new PictureBox();
             panel3 = new Panel();
             groupBox4 = new GroupBox();
+            pictureBox1 = new PictureBox();
             btnLoadTTLoaiVaccine = new Button();
-            btnLoadGopTT = new Button();
             btnLoadTTVC = new Button();
             grbTimKiem = new GroupBox();
             btnSearch = new Button();
@@ -68,8 +69,10 @@
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).BeginInit();
             tctChinh.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel3.SuspendLayout();
             groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             grbTimKiem.SuspendLayout();
             grbLoaiVC.SuspendLayout();
             grbTTVC.SuspendLayout();
@@ -103,6 +106,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = Color.White;
+            tabPage1.Controls.Add(pictureBox2);
             tabPage1.Controls.Add(panel3);
             tabPage1.Controls.Add(grbTTVC);
             tabPage1.Controls.Add(dgvVaccine);
@@ -113,23 +118,33 @@
             tabPage1.Size = new Size(1763, 1010);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Kho Vaccine";
-            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.tim;
+            pictureBox2.Location = new Point(806, 81);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(382, 362);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 27;
+            pictureBox2.TabStop = false;
             // 
             // panel3
             // 
+            panel3.BackColor = Color.White;
             panel3.Controls.Add(groupBox4);
             panel3.Controls.Add(grbTimKiem);
             panel3.Controls.Add(grbLoaiVC);
-            panel3.Dock = DockStyle.Left;
-            panel3.Location = new Point(746, 3);
+            panel3.Dock = DockStyle.Right;
+            panel3.Location = new Point(1256, 3);
             panel3.Name = "panel3";
             panel3.Size = new Size(504, 534);
             panel3.TabIndex = 3;
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(pictureBox1);
             groupBox4.Controls.Add(btnLoadTTLoaiVaccine);
-            groupBox4.Controls.Add(btnLoadGopTT);
             groupBox4.Controls.Add(btnLoadTTVC);
             groupBox4.Dock = DockStyle.Fill;
             groupBox4.Location = new Point(0, 289);
@@ -139,12 +154,22 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Load";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.sach;
+            pictureBox1.Location = new Point(361, 75);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(106, 89);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 26;
+            pictureBox1.TabStop = false;
+            // 
             // btnLoadTTLoaiVaccine
             // 
             btnLoadTTLoaiVaccine.BackColor = Color.Aquamarine;
             btnLoadTTLoaiVaccine.Image = Properties.Resources.load;
             btnLoadTTLoaiVaccine.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLoadTTLoaiVaccine.Location = new Point(39, 132);
+            btnLoadTTLoaiVaccine.Location = new Point(39, 137);
             btnLoadTTLoaiVaccine.Name = "btnLoadTTLoaiVaccine";
             btnLoadTTLoaiVaccine.Padding = new Padding(15, 5, 15, 5);
             btnLoadTTLoaiVaccine.Size = new Size(293, 59);
@@ -154,19 +179,6 @@
             btnLoadTTLoaiVaccine.UseVisualStyleBackColor = false;
             btnLoadTTLoaiVaccine.Click += btnLoadTTLoaiVaccine_Click;
             // 
-            // btnLoadGopTT
-            // 
-            btnLoadGopTT.BackColor = Color.Aquamarine;
-            btnLoadGopTT.Image = Properties.Resources.load;
-            btnLoadGopTT.Location = new Point(361, 35);
-            btnLoadGopTT.Name = "btnLoadGopTT";
-            btnLoadGopTT.Padding = new Padding(15, 5, 15, 5);
-            btnLoadGopTT.Size = new Size(118, 171);
-            btnLoadGopTT.TabIndex = 26;
-            btnLoadGopTT.Text = "Thông Tin Đầy Đủ Vaccine";
-            btnLoadGopTT.TextImageRelation = TextImageRelation.TextAboveImage;
-            btnLoadGopTT.UseVisualStyleBackColor = false;
-            // 
             // btnLoadTTVC
             // 
             btnLoadTTVC.BackColor = Color.Aquamarine;
@@ -175,7 +187,7 @@
             btnLoadTTVC.Location = new Point(39, 48);
             btnLoadTTVC.Name = "btnLoadTTVC";
             btnLoadTTVC.Padding = new Padding(15, 5, 35, 5);
-            btnLoadTTVC.Size = new Size(293, 59);
+            btnLoadTTVC.Size = new Size(256, 59);
             btnLoadTTVC.TabIndex = 24;
             btnLoadTTVC.Text = "Thông Tin Vaccine";
             btnLoadTTVC.TextAlign = ContentAlignment.MiddleRight;
@@ -299,6 +311,7 @@
             // 
             // grbTTVC
             // 
+            grbTTVC.BackColor = Color.White;
             grbTTVC.Controls.Add(btnSuaTTVC);
             grbTTVC.Controls.Add(btnXoaTTVC);
             grbTTVC.Controls.Add(btnThemTTVC);
@@ -326,12 +339,12 @@
             btnSuaTTVC.ForeColor = Color.Navy;
             btnSuaTTVC.Image = Properties.Resources.cut;
             btnSuaTTVC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSuaTTVC.Location = new Point(516, 426);
+            btnSuaTTVC.Location = new Point(505, 426);
             btnSuaTTVC.Name = "btnSuaTTVC";
             btnSuaTTVC.Padding = new Padding(15, 5, 25, 5);
-            btnSuaTTVC.Size = new Size(147, 59);
+            btnSuaTTVC.Size = new Size(201, 59);
             btnSuaTTVC.TabIndex = 18;
-            btnSuaTTVC.Text = "Sửa";
+            btnSuaTTVC.Text = "Sửa Vacine";
             btnSuaTTVC.TextAlign = ContentAlignment.MiddleRight;
             btnSuaTTVC.UseVisualStyleBackColor = false;
             btnSuaTTVC.Click += btnSuaTTVC_Click;
@@ -342,12 +355,12 @@
             btnXoaTTVC.ForeColor = Color.White;
             btnXoaTTVC.Image = Properties.Resources.xoa;
             btnXoaTTVC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoaTTVC.Location = new Point(297, 426);
+            btnXoaTTVC.Location = new Point(270, 426);
             btnXoaTTVC.Name = "btnXoaTTVC";
             btnXoaTTVC.Padding = new Padding(15, 5, 25, 5);
-            btnXoaTTVC.Size = new Size(147, 59);
+            btnXoaTTVC.Size = new Size(213, 59);
             btnXoaTTVC.TabIndex = 17;
-            btnXoaTTVC.Text = "Xoá";
+            btnXoaTTVC.Text = "Xoá Vaccine";
             btnXoaTTVC.TextAlign = ContentAlignment.MiddleRight;
             btnXoaTTVC.UseVisualStyleBackColor = false;
             btnXoaTTVC.Click += btnXoaTTVC_Click;
@@ -357,12 +370,12 @@
             btnThemTTVC.BackColor = Color.Aquamarine;
             btnThemTTVC.Image = Properties.Resources.add2;
             btnThemTTVC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThemTTVC.Location = new Point(78, 426);
+            btnThemTTVC.Location = new Point(35, 426);
             btnThemTTVC.Name = "btnThemTTVC";
             btnThemTTVC.Padding = new Padding(15, 5, 15, 5);
-            btnThemTTVC.Size = new Size(147, 59);
+            btnThemTTVC.Size = new Size(213, 59);
             btnThemTTVC.TabIndex = 16;
-            btnThemTTVC.Text = "Thêm";
+            btnThemTTVC.Text = "Thêm Vaccine";
             btnThemTTVC.TextAlign = ContentAlignment.MiddleRight;
             btnThemTTVC.UseVisualStyleBackColor = false;
             btnThemTTVC.Click += btnThemTTVC_Click;
@@ -505,6 +518,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1771, 1048);
             Controls.Add(tctChinh);
             Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -517,8 +531,10 @@
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).EndInit();
             tctChinh.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel3.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             grbTimKiem.ResumeLayout(false);
             grbTimKiem.PerformLayout();
             grbLoaiVC.ResumeLayout(false);
@@ -565,7 +581,8 @@
         private Button btnSearch;
         private Button btnLoadTTVC;
         private Button btnLoadTTLoaiVaccine;
-        private Button btnLoadGopTT;
         private GroupBox groupBox4;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
     }
 }

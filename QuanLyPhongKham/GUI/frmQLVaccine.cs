@@ -19,8 +19,6 @@ namespace GUI
             VaccineBLL vaccineBLL = new VaccineBLL();
             DataSet ds = vaccineBLL.LayTTVC();
             dgvVaccine.DataSource = ds.Tables["Vaccine"];
-            dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvVaccine.AutoResizeColumns();
 
         }
 
@@ -61,7 +59,8 @@ namespace GUI
         }
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
-
+            dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVaccine.AutoResizeColumns();
         }
 
         private void btnLoadTTVC_Click(object sender, EventArgs e)
@@ -252,7 +251,7 @@ namespace GUI
                 string malVC = dgvVaccine.SelectedRows[0].Cells["MaLoai"].Value.ToString();
                 string tenlVC = txtTenLoaiVC.Text;
 
-                LoaiVaccineDTO lvcDTO = new LoaiVaccineDTO(malVC,tenlVC);
+                LoaiVaccineDTO lvcDTO = new LoaiVaccineDTO(malVC, tenlVC);
 
 
                 var t = MessageBox.Show("Bạn có chắc chắn muốn sửa Loại " + tenlVC + " này không?",
