@@ -74,8 +74,8 @@ namespace DAL
                 {
                     LayTTVC(); 
                 }
-                DataRow[] rowsToDelete = ds.Tables["Vaccine"].Select($"MaVC = '{maVC}'");
-                foreach (DataRow row in rowsToDelete)
+                DataRow[] rowDeXoa = ds.Tables["Vaccine"].Select($"MaVC = '{maVC}'");
+                foreach (DataRow row in rowDeXoa)
                 {
                     row.Delete();
                 }
@@ -100,11 +100,11 @@ namespace DAL
                     LayTTVC(); 
                 }
 
-                DataRow[] rowsToUpdate = ds.Tables["Vaccine"].Select("MaVC = '" + vcDTO.Mavc + "'");
+                DataRow[] rowDeUPD = ds.Tables["Vaccine"].Select("MaVC = '" + vcDTO.Mavc + "'");
 
-                if (rowsToUpdate.Length > 0)
+                if (rowDeUPD.Length > 0)
                 {
-                    DataRow row = rowsToUpdate[0];
+                    DataRow row = rowDeUPD[0];
                     row["MaLoai"] = vcDTO.Maloai;
                     row["TenVC"] = vcDTO.Tenvc;
                     row["NgaySX"] = vcDTO.Ngaysx;

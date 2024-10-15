@@ -323,8 +323,8 @@ namespace GUI
             cboNhaCungCap.DataBindings.Clear();
             cboNhaCungCap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaNCC");
 
-            txtNgayNhapHang.DataBindings.Clear();
-            txtNgayNhapHang.DataBindings.Add("Value", dgvNhapVaccine.DataSource, "NgayNhap");
+            dtpNgayNhapHang.DataBindings.Clear();
+            dtpNgayNhapHang.DataBindings.Add("Value", dgvNhapVaccine.DataSource, "NgayNhap");
         }
 
         private void btnHoaDonNhap_Click(object sender, EventArgs e)
@@ -465,6 +465,87 @@ namespace GUI
             else
             {
                 MessageBox.Show("Vui lòng chọn một nhà cung cấp để sửa.");
+            }
+        }
+
+        private void btnThemHoaDonNhapHangf_Click(object sender, EventArgs e)
+        {
+            string ma = cboNhaCungCap.SelectedValue.ToString();
+            string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
+            PhieuNhapDTO dto = new PhieuNhapDTO(ma, ngay);
+            PhieuNhapBLL tmp = new PhieuNhapBLL();
+            bool kt = tmp.Insert(dto);
+            if (kt)
+                MessageBox.Show("Thêm thành công hoá đơn nhập mới ");
+            else
+                MessageBox.Show("Thêm nhà cung cấp mới hoá đơn thất bại");
+            LoadPhieuNhap();
+        }
+
+        private void btnXoaHDNhap_Click(object sender, EventArgs e)
+        {
+            if (dgvNhapVaccine.SelectedRows.Count > 0)
+            {
+                string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa mã hoá đơn " + ma + " này không?",
+                                                 "Xác nhận xóa",
+                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                {
+                    PhieuNhapBLL tmp = new PhieuNhapBLL();
+                    bool kt = tmp.Delete(ma);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Xóa thành công hoá đơn có mã " + ma + " .");
+                        LoadPhieuNhap();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi xóa hoá đơn có mã " + ma + " do mã hoá đơn nhập này đang được tham chiếu.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Hoá đơn nhập để xóa.");
+            }
+        }
+
+        private void btnUpdateHDNhap_Click(object sender, EventArgs e)
+        {
+            if (dgvNhapVaccine.SelectedRows.Count > 0)
+            {
+                string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+                string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
+                string mancc = cboNhaCungCap.SelectedValue.ToString();
+
+                PhieuNhapDTO tmp = new PhieuNhapDTO(ma,ngay,mancc);
+
+
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa hoá đơn " + ma + " này không?",
+                                                     "Xác nhận sửa",
+                                                     MessageBoxButtons.YesNo);
+                if (t == DialogResult.Yes)
+                {
+                    PhieuNhapBLL tmpdto = new PhieuNhapBLL();
+                    bool kt = tmpdto.Update(tmp);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Sửa thành công.");
+                        LoadPhieuNhap();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi sửa hoá đơn có mã " + ma + ".");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Hoá đơn để sửa.");
             }
         }
     }

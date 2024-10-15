@@ -17,5 +17,18 @@ namespace BLL
         {
             return pn.GetData();
         }
+        public bool Insert(PhieuNhapDTO tmp)
+        {
+            return pn.Insert(tmp);
+        }
+        public bool Delete(string tmp)
+        {
+            return pn.Delete(tmp);
+        }
+        public bool Update(PhieuNhapDTO tmp)
+        {
+            return pn.Update(tmp);
+        }
+
     }
 }

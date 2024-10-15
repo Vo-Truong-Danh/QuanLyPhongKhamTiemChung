@@ -70,8 +70,8 @@ namespace DAL
                 {
                     GetData();
                 }
-                DataRow[] rowsToDelete = ds.Tables["NhaCungCap"].Select($"MaNCC = '{tmp}'");
-                foreach (DataRow row in rowsToDelete)
+                DataRow[] rowDeXoa = ds.Tables["NhaCungCap"].Select($"MaNCC = '{tmp}'");
+                foreach (DataRow row in rowDeXoa)
                 {
                     row.Delete();
                 }
@@ -95,11 +95,11 @@ namespace DAL
                     GetData();
                 }
 
-                DataRow[] rowsToUpdate = ds.Tables["NhaCungCap"].Select("MaNCC = '" + tmp.Mancc + "'");
+                DataRow[] rowDeUPD = ds.Tables["NhaCungCap"].Select("MaNCC = '" + tmp.Mancc + "'");
 
-                if (rowsToUpdate.Length > 0)
+                if (rowDeUPD.Length > 0)
                 {
-                    DataRow row = rowsToUpdate[0];
+                    DataRow row = rowDeUPD[0];
                     row["TenNCC"] = tmp.Tenncc;
                     row["DiaChi"] = tmp.Diachi;
                     row["SoDienThoai"] = tmp.Sodienthoai;

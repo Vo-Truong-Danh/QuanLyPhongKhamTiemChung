@@ -95,7 +95,7 @@
             btnXoaHDNhap = new Button();
             btnThemHoaDonNhapHangf = new Button();
             label10 = new Label();
-            txtNgayNhapHang = new DateTimePicker();
+            dtpNgayNhapHang = new DateTimePicker();
             cboNhaCungCap = new ComboBox();
             grbNhaCC = new GroupBox();
             btnCapNhatNCC = new Button();
@@ -828,7 +828,7 @@
             grbHDN.Controls.Add(btnXoaHDNhap);
             grbHDN.Controls.Add(btnThemHoaDonNhapHangf);
             grbHDN.Controls.Add(label10);
-            grbHDN.Controls.Add(txtNgayNhapHang);
+            grbHDN.Controls.Add(dtpNgayNhapHang);
             grbHDN.Controls.Add(cboNhaCungCap);
             grbHDN.Dock = DockStyle.Fill;
             grbHDN.Location = new Point(0, 261);
@@ -852,6 +852,7 @@
             btnUpdateHDNhap.Text = "Cập Nhật Hoá Đơn";
             btnUpdateHDNhap.TextAlign = ContentAlignment.MiddleRight;
             btnUpdateHDNhap.UseVisualStyleBackColor = false;
+            btnUpdateHDNhap.Click += btnUpdateHDNhap_Click;
             // 
             // label11
             // 
@@ -875,6 +876,7 @@
             btnXoaHDNhap.Text = "Xoá Hoá Đơn";
             btnXoaHDNhap.TextAlign = ContentAlignment.MiddleRight;
             btnXoaHDNhap.UseVisualStyleBackColor = false;
+            btnXoaHDNhap.Click += btnXoaHDNhap_Click;
             // 
             // btnThemHoaDonNhapHangf
             // 
@@ -889,6 +891,7 @@
             btnThemHoaDonNhapHangf.Text = "Tạo Hoá Đơn";
             btnThemHoaDonNhapHangf.TextAlign = ContentAlignment.MiddleRight;
             btnThemHoaDonNhapHangf.UseVisualStyleBackColor = false;
+            btnThemHoaDonNhapHangf.Click += btnThemHoaDonNhapHangf_Click;
             // 
             // label10
             // 
@@ -899,12 +902,12 @@
             label10.TabIndex = 2;
             label10.Text = "Nhà Cung Cấp";
             // 
-            // txtNgayNhapHang
+            // dtpNgayNhapHang
             // 
-            txtNgayNhapHang.Location = new Point(220, 124);
-            txtNgayNhapHang.Name = "txtNgayNhapHang";
-            txtNgayNhapHang.Size = new Size(327, 31);
-            txtNgayNhapHang.TabIndex = 1;
+            dtpNgayNhapHang.Location = new Point(220, 124);
+            dtpNgayNhapHang.Name = "dtpNgayNhapHang";
+            dtpNgayNhapHang.Size = new Size(327, 31);
+            dtpNgayNhapHang.TabIndex = 1;
             // 
             // cboNhaCungCap
             // 
@@ -1160,7 +1163,7 @@
         private GroupBox groupBox5;
         private Label label11;
         private Label label10;
-        private DateTimePicker txtNgayNhapHang;
+        private DateTimePicker dtpNgayNhapHang;
         private ComboBox cboNhaCungCap;
         private Button btnUpdateHDNhap;
         private Button btnXoaHDNhap;

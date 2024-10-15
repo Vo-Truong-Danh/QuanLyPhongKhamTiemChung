@@ -16,16 +16,16 @@ namespace DTO
 
         public PhieuNhapDTO() { }
 
-        public PhieuNhapDTO(string mapn, string ngaynhap)
+        public PhieuNhapDTO(string mapn , string ngaynhap, string mancc )
         {
             Mapn = mapn;
             Ngaynhap = ngaynhap;
             Mancc = mancc;
         }
-        public PhieuNhapDTO( string ngaynhap)
+        public PhieuNhapDTO(string macc, string ngaynhap)
         {
             Ngaynhap = ngaynhap;
-            Mancc = mancc;
+            Mancc = macc;
         }
     }
 }
