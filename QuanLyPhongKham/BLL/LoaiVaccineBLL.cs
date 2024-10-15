@@ -10,10 +10,14 @@ namespace BLL
 {
     public class LoaiVaccineBLL
     {
+        LoaiVaccineDAL loaiVaccineDAL = new LoaiVaccineDAL();
         public DataSet GetData()
         {
-            LoaiVaccineDAL loaiVaccineDAL = new LoaiVaccineDAL();
             return loaiVaccineDAL.GetData();
+        }
+        public DataTable Search(string ndtimkiem)
+        {
+            return loaiVaccineDAL.Search(ndtimkiem);
         }
     }
 }

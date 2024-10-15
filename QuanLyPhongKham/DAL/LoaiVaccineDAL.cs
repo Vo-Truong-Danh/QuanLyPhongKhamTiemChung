@@ -31,5 +31,22 @@ namespace DAL
             conn.Close();
             return ds;
         }
+        public DataTable Search(string searchTerm)
+        {
+            GetData();
+            DataTable resultTable = ds.Tables["LoaiVaccine"].Clone();
+
+            foreach (DataRow row in ds.Tables["LoaiVaccine"].Rows)
+            {
+                if (row["TenLoai"].ToString().IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    row["MaLoai"].ToString().IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    resultTable.ImportRow(row);
+                }
+            }
+
+            return resultTable;
+        }
     }
 }
+

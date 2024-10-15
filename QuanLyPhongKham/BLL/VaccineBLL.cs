@@ -30,5 +30,9 @@ namespace BLL
         {
             return vcbll.Update(vaccineDTO);
         }
+        public DataSet Search(string ndtimkiem)
+        {
+            return vcbll.Search(ndtimkiem);
+        }
     }
 }

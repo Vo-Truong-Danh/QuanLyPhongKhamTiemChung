@@ -38,7 +38,7 @@
             btnLoadTTLoaiVaccine = new Button();
             btnLoadGopTT = new Button();
             btnLoadTTVC = new Button();
-            groupBox2 = new GroupBox();
+            grbTimKiem = new GroupBox();
             btnSearch = new Button();
             txtSearch = new TextBox();
             grbLoaiVC = new GroupBox();
@@ -70,7 +70,7 @@
             tabPage1.SuspendLayout();
             panel3.SuspendLayout();
             groupBox4.SuspendLayout();
-            groupBox2.SuspendLayout();
+            grbTimKiem.SuspendLayout();
             grbLoaiVC.SuspendLayout();
             grbTTVC.SuspendLayout();
             panel2.SuspendLayout();
@@ -118,7 +118,7 @@
             // panel3
             // 
             panel3.Controls.Add(groupBox4);
-            panel3.Controls.Add(groupBox2);
+            panel3.Controls.Add(grbTimKiem);
             panel3.Controls.Add(grbLoaiVC);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(746, 3);
@@ -182,18 +182,19 @@
             btnLoadTTVC.UseVisualStyleBackColor = false;
             btnLoadTTVC.Click += btnLoadTTVC_Click;
             // 
-            // groupBox2
+            // grbTimKiem
             // 
-            groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(btnSearch);
-            groupBox2.Controls.Add(txtSearch);
-            groupBox2.Dock = DockStyle.Top;
-            groupBox2.Location = new Point(0, 192);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(504, 97);
-            groupBox2.TabIndex = 3;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Tìm Kiếm";
+            grbTimKiem.BackColor = Color.Transparent;
+            grbTimKiem.Controls.Add(btnSearch);
+            grbTimKiem.Controls.Add(txtSearch);
+            grbTimKiem.Dock = DockStyle.Top;
+            grbTimKiem.Enabled = false;
+            grbTimKiem.Location = new Point(0, 192);
+            grbTimKiem.Name = "grbTimKiem";
+            grbTimKiem.Size = new Size(504, 97);
+            grbTimKiem.TabIndex = 3;
+            grbTimKiem.TabStop = false;
+            grbTimKiem.Text = "Tìm Kiếm";
             // 
             // btnSearch
             // 
@@ -206,6 +207,7 @@
             btnSearch.Size = new Size(61, 43);
             btnSearch.TabIndex = 25;
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearch
             // 
@@ -514,8 +516,8 @@
             tabPage1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            grbTimKiem.ResumeLayout(false);
+            grbTimKiem.PerformLayout();
             grbLoaiVC.ResumeLayout(false);
             grbLoaiVC.PerformLayout();
             grbTTVC.ResumeLayout(false);
@@ -548,7 +550,7 @@
         private Button btnThemTTVC;
         private Button btnSuaTTVC;
         private Button btnXoaTTVC;
-        private GroupBox groupBox2;
+        private GroupBox grbTimKiem;
         private Panel panel3;
         private GroupBox grbLoaiVC;
         private Label label8;

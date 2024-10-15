@@ -125,6 +125,34 @@ namespace DAL
                 return false;
             }      
         }
+        public DataSet Search(string ndtimkiem)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string searchQuery = "SELECT * FROM VACCINE WHERE TenVC LIKE @ndtimkiem OR MaVC LIKE @ndtimkiem OR Gia LIKE @ndtimkiem OR SoLuongTon LIKE @ndtimkiem";
+
+                // Mở kết nối
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(searchQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ndtimkiem", "%" + ndtimkiem + "%");
+                    SqlDataAdapter searchAdapter = new SqlDataAdapter(cmd);
+                    searchAdapter.Fill(ds, "Vaccine");
+                }
+                conn.Close();
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi tìm kiếm: " + ex.Message);
+                return null;
+            }
+        }
+
 
     }
 }

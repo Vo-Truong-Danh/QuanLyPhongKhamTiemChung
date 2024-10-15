@@ -2,6 +2,7 @@
 using DAL;
 using DTO;
 using System.Data;
+using System.DirectoryServices;
 using System.Windows.Forms;
 
 namespace GUI
@@ -12,7 +13,7 @@ namespace GUI
         {
             InitializeComponent();
         }
-
+        bool TrangThaiBang_1 = true;
         public void LoadVaccine()
         {
             VaccineBLL vaccineBLL = new VaccineBLL();
@@ -65,19 +66,23 @@ namespace GUI
 
         private void btnLoadTTVC_Click(object sender, EventArgs e)
         {
+            grbTimKiem.Enabled = true;
             LoadVaccine();
             LoadLoaiVaccineChoCBO();
             bingdingVC();
             grbLoaiVC.Enabled = false;
             grbTTVC.Enabled = true;
+            TrangThaiBang_1 = true;
         }
 
         private void btnLoadTTLoaiVaccine_Click(object sender, EventArgs e)
         {
+            grbTimKiem.Enabled = true;
             LoadLoaiVaccine();
             bingdungLVC();
             grbLoaiVC.Enabled = true;
             grbTTVC.Enabled = false;
+            TrangThaiBang_1 = false;
         }
 
         private void btnThemTTVC_Click(object sender, EventArgs e)
@@ -134,7 +139,7 @@ namespace GUI
             if (dgvVaccine.SelectedRows.Count > 0)
             {
                 string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
-                string maLoai = cboLoaiVaccine.SelectedValue.ToString(); 
+                string maLoai = cboLoaiVaccine.SelectedValue.ToString();
                 string tenVC = txtTenVaccine.Text;
                 string ngaySX = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
                 string hanSuDung = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
@@ -143,28 +148,55 @@ namespace GUI
                 VaccineDTO vcDTO = new VaccineDTO(maVC, maLoai, tenVC, ngaySX, hanSuDung, gia);
 
 
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa "+tenVC+" này không?",
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenVC + " này không?",
                                                      "Xác nhận sửa",
                                                      MessageBoxButtons.YesNo);
                 if (t == DialogResult.Yes)
                 {
                     VaccineBLL vaccineBLL = new VaccineBLL();
-                    bool kt = vaccineBLL.Update(vcDTO); 
+                    bool kt = vaccineBLL.Update(vcDTO);
 
                     if (kt)
                     {
                         MessageBox.Show("Sửa thành công.");
-                        LoadVaccine(); 
+                        LoadVaccine();
                     }
                     else
                     {
-                        MessageBox.Show("Lỗi khi sửa "+tenVC+".");
+                        MessageBox.Show("Lỗi khi sửa " + tenVC + ".");
                     }
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn một Vaccine để sửa.");
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string ndtimkiem = txtSearch.Text;
+            if (TrangThaiBang_1)
+            {
+                VaccineBLL vcbll = new VaccineBLL();
+                DataSet ds = vcbll.Search(ndtimkiem);
+                if (ds != null && ds.Tables["Vaccine"].Rows.Count > 0)
+                {
+                    dgvVaccine.DataSource = ds.Tables["Vaccine"];
+                }
+                else
+                    MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
+            }
+            else {
+                LoaiVaccineBLL lvcbll = new LoaiVaccineBLL();
+                DataTable ds = lvcbll.Search(ndtimkiem);
+                if (ds.Rows.Count > 0)
+                {
+                    dgvVaccine.DataSource = ds;
+                }
+                else
+                    MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
+
             }
         }
     }
