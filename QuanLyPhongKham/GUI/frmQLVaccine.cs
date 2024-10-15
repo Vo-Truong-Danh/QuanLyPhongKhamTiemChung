@@ -207,10 +207,42 @@ namespace GUI
             LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
             bool kt = lvaccineBLL.Insert(tenlvc);
             if (kt)
-                MessageBox.Show("Thêm thành công Loại Vaccine mới "+tenlvc+"");
+                MessageBox.Show("Thêm thành công Loại Vaccine mới " + tenlvc + "");
             else
-                MessageBox.Show("Thêm Loại "+tenlvc+" mới thất bại");
+                MessageBox.Show("Thêm Loại " + tenlvc + " mới thất bại");
             LoadLoaiVaccine();
+        }
+
+        private void btnXoaLoaiVC_Click(object sender, EventArgs e)
+        {
+            if (dgvVaccine.SelectedRows.Count > 0)
+            {
+                string maVC = dgvVaccine.SelectedRows[0].Cells["MaLoai"].Value.ToString();
+                string TenVc = dgvVaccine.SelectedRows[0].Cells["TenLoai"].Value.ToString();
+
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa Loại " + TenVc + " này không?",
+                                                     "Xác nhận xóa",
+                                                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                {
+                    LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
+                    bool kt = lvaccineBLL.Delete(maVC);
+
+                    if (kt)
+                    {
+                        MessageBox.Show("Xóa thành công " + TenVc + " .");
+                        LoadLoaiVaccine();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi xóa " + TenVc + " do thông tin Loại Vaccine đang được tham chiếu.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một Loại Vaccine để xóa.");
+            }
         }
     }
 }

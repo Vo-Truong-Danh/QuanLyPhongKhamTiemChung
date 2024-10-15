@@ -25,5 +25,10 @@ namespace BLL
         {
             return loaiVaccineDAL.Insert(tenLoai);
         }
+        
+        public bool Delete(string ndxoa)
+        {
+            return loaiVaccineDAL.Delete(ndxoa);
+        }
     }
 }

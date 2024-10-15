@@ -133,7 +133,6 @@ namespace DAL
 
                 string searchQuery = "SELECT * FROM VACCINE WHERE TenVC LIKE @ndtimkiem OR MaVC LIKE @ndtimkiem OR Gia LIKE @ndtimkiem OR SoLuongTon LIKE @ndtimkiem";
 
-                // Mở kết nối
                 conn.Open();
 
                 using (SqlCommand cmd = new SqlCommand(searchQuery, conn))

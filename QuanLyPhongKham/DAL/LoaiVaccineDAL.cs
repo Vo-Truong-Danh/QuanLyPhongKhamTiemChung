@@ -69,6 +69,31 @@ namespace DAL
             catch
             { return false; }
         }
+        public bool Delete(string maLoai)
+        {
+            try
+            {
+                if (ds.Tables["LoaiVaccine"] == null)
+                {
+                    GetData();
+                }
+                DataRow[] tb = ds.Tables["LoaiVaccine"].Select($"MaLoai = '{maLoai}'");
+                foreach (DataRow row in tb)
+                {
+                    row.Delete();
+                }
+
+                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+                adap.Update(ds, "LoaiVaccine");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xóa bản ghi: " + ex.Message);
+                return false;
+            }
+        }
     }
 }
 

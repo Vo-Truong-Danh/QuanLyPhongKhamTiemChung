@@ -261,6 +261,7 @@
             btnXoaLoaiVC.Text = "Xoá";
             btnXoaLoaiVC.TextAlign = ContentAlignment.MiddleRight;
             btnXoaLoaiVC.UseVisualStyleBackColor = false;
+            btnXoaLoaiVC.Click += btnXoaLoaiVC_Click;
             // 
             // btnThemLVC
             // 
