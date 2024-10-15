@@ -187,7 +187,8 @@ namespace GUI
                 else
                     MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
             }
-            else {
+            else
+            {
                 LoaiVaccineBLL lvcbll = new LoaiVaccineBLL();
                 DataTable ds = lvcbll.Search(ndtimkiem);
                 if (ds.Rows.Count > 0)
@@ -198,6 +199,18 @@ namespace GUI
                     MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
 
             }
+        }
+
+        private void btnThemLVC_Click(object sender, EventArgs e)
+        {
+            string tenlvc = txtTenLoaiVC.Text;
+            LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
+            bool kt = lvaccineBLL.Insert(tenlvc);
+            if (kt)
+                MessageBox.Show("Thêm thành công Loại Vaccine mới "+tenlvc+"");
+            else
+                MessageBox.Show("Thêm Loại "+tenlvc+" mới thất bại");
+            LoadLoaiVaccine();
         }
     }
 }

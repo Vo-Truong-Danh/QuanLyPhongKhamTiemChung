@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +19,11 @@ namespace BLL
         public DataTable Search(string ndtimkiem)
         {
             return loaiVaccineDAL.Search(ndtimkiem);
+        }
+
+        public bool Insert(string tenLoai)
+        {
+            return loaiVaccineDAL.Insert(tenLoai);
         }
     }
 }

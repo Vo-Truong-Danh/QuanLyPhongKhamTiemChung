@@ -275,6 +275,7 @@
             btnThemLVC.Text = "Thêm";
             btnThemLVC.TextAlign = ContentAlignment.MiddleRight;
             btnThemLVC.UseVisualStyleBackColor = false;
+            btnThemLVC.Click += btnThemLVC_Click;
             // 
             // label8
             // 

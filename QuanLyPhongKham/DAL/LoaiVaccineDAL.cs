@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace DAL
 {
@@ -46,6 +47,27 @@ namespace DAL
             }
 
             return resultTable;
+        }
+        public bool Insert(string lvcDTO)
+        {
+            try
+            {
+                if (ds.Tables["LoaiVaccine"] == null)
+                    GetData();
+
+                DataRow newRow = ds.Tables["LoaiVaccine"].NewRow();
+                newRow["TenLoai"] = lvcDTO;
+                ds.Tables["LoaiVaccine"].Rows.Add(newRow);
+
+                // Cập nhật csdl
+                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
+                adap.Update(ds, "LoaiVaccine");
+                GetData();
+
+                return true;
+            }
+            catch
+            { return false; }
         }
     }
 }
