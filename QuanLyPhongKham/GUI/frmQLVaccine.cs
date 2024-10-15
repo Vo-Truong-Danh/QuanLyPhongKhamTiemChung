@@ -59,7 +59,9 @@ namespace GUI
         }
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
+            dgvNhapVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvNhapVaccine.AutoResizeColumns();
             dgvVaccine.AutoResizeColumns();
         }
 
@@ -279,5 +281,65 @@ namespace GUI
             }
         }
 
+        private void LoadNhaCungCap()
+        {
+            NhaCungCapBLL ncc = new NhaCungCapBLL();
+            dgvNhapVaccine.DataSource = ncc.GetData().Tables["NhaCungCap"];
+        }
+        private void bindingNCC()
+        {
+            txtTenNCCVC.DataBindings.Clear();
+            txtTenNCCVC.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "TenNCC");
+            txtDiaChi.DataBindings.Clear();
+            txtDiaChi.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "DiaChi");
+            txtSoDienThoai.DataBindings.Clear();
+            txtSoDienThoai.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "SoDienThoai");
+
+        }
+
+        private void btnLoadNCC_Click(object sender, EventArgs e)
+        {
+            grbChiTietNhapVC.Enabled = false;
+            grbHDN.Enabled = false;
+            LoadNhaCungCap();
+            grbNhaCC.Enabled = true;
+            bindingNCC();
+        }
+
+        private void LoadPhieuNhap()
+        {
+            PhieuNhapBLL ncc = new PhieuNhapBLL();
+            dgvNhapVaccine.DataSource = ncc.GetData().Tables["PhieuNhap"];
+        }
+        public void LoadLoaiNCCChoCBO()
+        {
+            NhaCungCapBLL ncc = new NhaCungCapBLL();
+            cboNhaCungCap.DataSource = ncc.GetData().Tables["NhaCungCap"];
+            cboNhaCungCap.DisplayMember = "TenNCC";
+            cboNhaCungCap.ValueMember = "MaNCC";
+        }
+        private void bindingPN()
+        {
+            cboNhaCungCap.DataBindings.Clear();
+            cboNhaCungCap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaNCC");
+
+            txtNgayNhapHang.DataBindings.Clear();
+            txtNgayNhapHang.DataBindings.Add("Value", dgvNhapVaccine.DataSource, "NgayNhap");
+        }
+
+        private void btnHoaDonNhap_Click(object sender, EventArgs e)
+        {
+            LoadLoaiNCCChoCBO();
+            grbChiTietNhapVC.Enabled =false;
+            grbNhaCC.Enabled=false;
+            grbHDN.Enabled=true;
+            LoadPhieuNhap();
+            bindingPN();
+        }
+
+        private void btnChiTietNhap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

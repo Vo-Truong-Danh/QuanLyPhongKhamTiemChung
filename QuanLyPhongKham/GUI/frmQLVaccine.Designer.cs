@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             dgvVaccine = new DataGridView();
             tctChinh = new TabControl();
@@ -76,7 +76,7 @@
             groupBox5 = new GroupBox();
             btnTimKiem = new Button();
             txtTimKỉem = new TextBox();
-            groupBox3 = new GroupBox();
+            grbChiTietNhapVC = new GroupBox();
             label15 = new Label();
             btnUpdateHDN = new Button();
             btnXoaHDH = new Button();
@@ -89,7 +89,7 @@
             label13 = new Label();
             label14 = new Label();
             panel5 = new Panel();
-            groupBox2 = new GroupBox();
+            grbHDN = new GroupBox();
             btnUpdateHDNhap = new Button();
             label11 = new Label();
             btnXoaHDNhap = new Button();
@@ -97,7 +97,7 @@
             label10 = new Label();
             txtNgayNhapHang = new DateTimePicker();
             cboNhaCungCap = new ComboBox();
-            groupBox1 = new GroupBox();
+            grbNhaCC = new GroupBox();
             btnCapNhatNCC = new Button();
             btnXoaNCC = new Button();
             btnThemNCC = new Button();
@@ -107,7 +107,7 @@
             txtSoDienThoai = new TextBox();
             txtDiaChi = new TextBox();
             txtTenNCCVC = new TextBox();
-            dataGridView1 = new DataGridView();
+            dgvNhapVaccine = new DataGridView();
             imageList1 = new ImageList(components);
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).BeginInit();
             tctChinh.SuspendLayout();
@@ -126,24 +126,24 @@
             panel6.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox5.SuspendLayout();
-            groupBox3.SuspendLayout();
+            grbChiTietNhapVC.SuspendLayout();
             panel5.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            grbHDN.SuspendLayout();
+            grbNhaCC.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNhapVaccine).BeginInit();
             SuspendLayout();
             // 
             // dgvVaccine
             // 
             dgvVaccine.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Aquamarine;
-            dataGridViewCellStyle3.SelectionForeColor = Color.RoyalBlue;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Aquamarine;
+            dataGridViewCellStyle1.SelectionForeColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVaccine.Dock = DockStyle.Bottom;
             dgvVaccine.GridColor = Color.WhiteSmoke;
@@ -562,7 +562,7 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(panel4);
-            tabPage2.Controls.Add(dataGridView1);
+            tabPage2.Controls.Add(dgvNhapVaccine);
             tabPage2.ImageIndex = 0;
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
@@ -586,7 +586,7 @@
             // 
             panel6.Controls.Add(groupBox6);
             panel6.Controls.Add(groupBox5);
-            panel6.Controls.Add(groupBox3);
+            panel6.Controls.Add(grbChiTietNhapVC);
             panel6.Dock = DockStyle.Right;
             panel6.Location = new Point(1161, 0);
             panel6.Name = "panel6";
@@ -599,9 +599,9 @@
             groupBox6.Controls.Add(btnHoaDonNhap);
             groupBox6.Controls.Add(btnLoadNCC);
             groupBox6.Dock = DockStyle.Fill;
-            groupBox6.Location = new Point(0, 451);
+            groupBox6.Location = new Point(0, 439);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(596, 123);
+            groupBox6.Size = new Size(596, 135);
             groupBox6.TabIndex = 2;
             groupBox6.TabStop = false;
             groupBox6.Text = "Load";
@@ -611,7 +611,7 @@
             btnChiTietNhap.BackColor = Color.Aquamarine;
             btnChiTietNhap.Image = Properties.Resources.load;
             btnChiTietNhap.ImageAlign = ContentAlignment.MiddleLeft;
-            btnChiTietNhap.Location = new Point(404, 45);
+            btnChiTietNhap.Location = new Point(404, 27);
             btnChiTietNhap.Name = "btnChiTietNhap";
             btnChiTietNhap.Padding = new Padding(5, 0, 5, 2);
             btnChiTietNhap.Size = new Size(180, 49);
@@ -619,13 +619,14 @@
             btnChiTietNhap.Text = "Chi Tiết Nhập";
             btnChiTietNhap.TextAlign = ContentAlignment.MiddleRight;
             btnChiTietNhap.UseVisualStyleBackColor = false;
+            btnChiTietNhap.Click += btnChiTietNhap_Click;
             // 
             // btnHoaDonNhap
             // 
             btnHoaDonNhap.BackColor = Color.Aquamarine;
             btnHoaDonNhap.Image = Properties.Resources.load;
             btnHoaDonNhap.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHoaDonNhap.Location = new Point(218, 45);
+            btnHoaDonNhap.Location = new Point(218, 27);
             btnHoaDonNhap.Name = "btnHoaDonNhap";
             btnHoaDonNhap.Padding = new Padding(5, 0, 5, 2);
             btnHoaDonNhap.Size = new Size(185, 49);
@@ -633,13 +634,14 @@
             btnHoaDonNhap.Text = "Hoá Đơn Nhập";
             btnHoaDonNhap.TextAlign = ContentAlignment.MiddleRight;
             btnHoaDonNhap.UseVisualStyleBackColor = false;
+            btnHoaDonNhap.Click += btnHoaDonNhap_Click;
             // 
             // btnLoadNCC
             // 
             btnLoadNCC.BackColor = Color.Aquamarine;
             btnLoadNCC.Image = Properties.Resources.load;
             btnLoadNCC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLoadNCC.Location = new Point(34, 45);
+            btnLoadNCC.Location = new Point(34, 27);
             btnLoadNCC.Name = "btnLoadNCC";
             btnLoadNCC.Padding = new Padding(5, 0, 5, 2);
             btnLoadNCC.Size = new Size(183, 49);
@@ -647,6 +649,7 @@
             btnLoadNCC.Text = "Nhà Cung Cấp";
             btnLoadNCC.TextAlign = ContentAlignment.MiddleRight;
             btnLoadNCC.UseVisualStyleBackColor = false;
+            btnLoadNCC.Click += btnLoadNCC_Click;
             // 
             // groupBox5
             // 
@@ -655,7 +658,7 @@
             groupBox5.Dock = DockStyle.Top;
             groupBox5.Location = new Point(0, 356);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(596, 95);
+            groupBox5.Size = new Size(596, 83);
             groupBox5.TabIndex = 1;
             groupBox5.TabStop = false;
             groupBox5.Text = "Tìm Kiếm";
@@ -664,7 +667,7 @@
             // 
             btnTimKiem.ForeColor = Color.MintCream;
             btnTimKiem.Image = Properties.Resources.timkiem;
-            btnTimKiem.Location = new Point(473, 27);
+            btnTimKiem.Location = new Point(472, 21);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(55, 55);
             btnTimKiem.TabIndex = 19;
@@ -673,31 +676,31 @@
             // txtTimKỉem
             // 
             txtTimKỉem.BackColor = Color.LemonChiffon;
-            txtTimKỉem.Location = new Point(78, 39);
+            txtTimKỉem.Location = new Point(77, 33);
             txtTimKỉem.Name = "txtTimKỉem";
             txtTimKỉem.Size = new Size(379, 31);
             txtTimKỉem.TabIndex = 18;
             // 
-            // groupBox3
+            // grbChiTietNhapVC
             // 
-            groupBox3.Controls.Add(label15);
-            groupBox3.Controls.Add(btnUpdateHDN);
-            groupBox3.Controls.Add(btnXoaHDH);
-            groupBox3.Controls.Add(cboMaHoaDonNHap);
-            groupBox3.Controls.Add(txtVaccineNhapCTHD);
-            groupBox3.Controls.Add(btnThemCTHDN);
-            groupBox3.Controls.Add(txtSoLuongNhap);
-            groupBox3.Controls.Add(label12);
-            groupBox3.Controls.Add(txtDonGiaNhap);
-            groupBox3.Controls.Add(label13);
-            groupBox3.Controls.Add(label14);
-            groupBox3.Dock = DockStyle.Top;
-            groupBox3.Location = new Point(0, 0);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(596, 356);
-            groupBox3.TabIndex = 0;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Chi tiết nhập hoá đơn";
+            grbChiTietNhapVC.Controls.Add(label15);
+            grbChiTietNhapVC.Controls.Add(btnUpdateHDN);
+            grbChiTietNhapVC.Controls.Add(btnXoaHDH);
+            grbChiTietNhapVC.Controls.Add(cboMaHoaDonNHap);
+            grbChiTietNhapVC.Controls.Add(txtVaccineNhapCTHD);
+            grbChiTietNhapVC.Controls.Add(btnThemCTHDN);
+            grbChiTietNhapVC.Controls.Add(txtSoLuongNhap);
+            grbChiTietNhapVC.Controls.Add(label12);
+            grbChiTietNhapVC.Controls.Add(txtDonGiaNhap);
+            grbChiTietNhapVC.Controls.Add(label13);
+            grbChiTietNhapVC.Controls.Add(label14);
+            grbChiTietNhapVC.Dock = DockStyle.Top;
+            grbChiTietNhapVC.Location = new Point(0, 0);
+            grbChiTietNhapVC.Name = "grbChiTietNhapVC";
+            grbChiTietNhapVC.Size = new Size(596, 356);
+            grbChiTietNhapVC.TabIndex = 0;
+            grbChiTietNhapVC.TabStop = false;
+            grbChiTietNhapVC.Text = "Chi tiết nhập hoá đơn";
             // 
             // label15
             // 
@@ -809,30 +812,30 @@
             // 
             // panel5
             // 
-            panel5.Controls.Add(groupBox2);
-            panel5.Controls.Add(groupBox1);
+            panel5.Controls.Add(grbHDN);
+            panel5.Controls.Add(grbNhaCC);
             panel5.Dock = DockStyle.Left;
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(570, 574);
+            panel5.Size = new Size(643, 574);
             panel5.TabIndex = 0;
             // 
-            // groupBox2
+            // grbHDN
             // 
-            groupBox2.Controls.Add(btnUpdateHDNhap);
-            groupBox2.Controls.Add(label11);
-            groupBox2.Controls.Add(btnXoaHDNhap);
-            groupBox2.Controls.Add(btnThemHoaDonNhapHangf);
-            groupBox2.Controls.Add(label10);
-            groupBox2.Controls.Add(txtNgayNhapHang);
-            groupBox2.Controls.Add(cboNhaCungCap);
-            groupBox2.Dock = DockStyle.Fill;
-            groupBox2.Location = new Point(0, 261);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(570, 313);
-            groupBox2.TabIndex = 1;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Nhập Vaccine";
+            grbHDN.Controls.Add(btnUpdateHDNhap);
+            grbHDN.Controls.Add(label11);
+            grbHDN.Controls.Add(btnXoaHDNhap);
+            grbHDN.Controls.Add(btnThemHoaDonNhapHangf);
+            grbHDN.Controls.Add(label10);
+            grbHDN.Controls.Add(txtNgayNhapHang);
+            grbHDN.Controls.Add(cboNhaCungCap);
+            grbHDN.Dock = DockStyle.Fill;
+            grbHDN.Location = new Point(0, 261);
+            grbHDN.Name = "grbHDN";
+            grbHDN.Size = new Size(643, 313);
+            grbHDN.TabIndex = 1;
+            grbHDN.TabStop = false;
+            grbHDN.Text = "Nhập Vaccine";
             // 
             // btnUpdateHDNhap
             // 
@@ -840,7 +843,7 @@
             btnUpdateHDNhap.ForeColor = Color.LightCyan;
             btnUpdateHDNhap.Image = Properties.Resources.sync_8468966;
             btnUpdateHDNhap.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUpdateHDNhap.Location = new Point(155, 211);
+            btnUpdateHDNhap.Location = new Point(392, 191);
             btnUpdateHDNhap.Name = "btnUpdateHDNhap";
             btnUpdateHDNhap.Padding = new Padding(5, 0, 5, 0);
             btnUpdateHDNhap.Size = new Size(235, 59);
@@ -852,7 +855,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(38, 98);
+            label11.Location = new Point(55, 126);
             label11.Name = "label11";
             label11.Size = new Size(159, 25);
             label11.TabIndex = 3;
@@ -863,7 +866,7 @@
             btnXoaHDNhap.BackColor = Color.MistyRose;
             btnXoaHDNhap.Image = Properties.Resources.xoa;
             btnXoaHDNhap.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoaHDNhap.Location = new Point(280, 141);
+            btnXoaHDNhap.Location = new Point(200, 191);
             btnXoaHDNhap.Name = "btnXoaHDNhap";
             btnXoaHDNhap.Padding = new Padding(5, 0, 5, 2);
             btnXoaHDNhap.Size = new Size(180, 59);
@@ -877,7 +880,7 @@
             btnThemHoaDonNhapHangf.BackColor = Color.Aquamarine;
             btnThemHoaDonNhapHangf.Image = Properties.Resources.add2;
             btnThemHoaDonNhapHangf.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThemHoaDonNhapHangf.Location = new Point(86, 141);
+            btnThemHoaDonNhapHangf.Location = new Point(8, 191);
             btnThemHoaDonNhapHangf.Name = "btnThemHoaDonNhapHangf";
             btnThemHoaDonNhapHangf.Padding = new Padding(5, 0, 5, 2);
             btnThemHoaDonNhapHangf.Size = new Size(180, 59);
@@ -889,7 +892,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(38, 45);
+            label10.Location = new Point(55, 63);
             label10.Name = "label10";
             label10.Size = new Size(133, 25);
             label10.TabIndex = 2;
@@ -897,7 +900,7 @@
             // 
             // txtNgayNhapHang
             // 
-            txtNgayNhapHang.Location = new Point(203, 96);
+            txtNgayNhapHang.Location = new Point(220, 124);
             txtNgayNhapHang.Name = "txtNgayNhapHang";
             txtNgayNhapHang.Size = new Size(327, 31);
             txtNgayNhapHang.TabIndex = 1;
@@ -905,29 +908,29 @@
             // cboNhaCungCap
             // 
             cboNhaCungCap.FormattingEnabled = true;
-            cboNhaCungCap.Location = new Point(203, 41);
+            cboNhaCungCap.Location = new Point(220, 59);
             cboNhaCungCap.Name = "cboNhaCungCap";
             cboNhaCungCap.Size = new Size(327, 33);
             cboNhaCungCap.TabIndex = 0;
             // 
-            // groupBox1
+            // grbNhaCC
             // 
-            groupBox1.Controls.Add(btnCapNhatNCC);
-            groupBox1.Controls.Add(btnXoaNCC);
-            groupBox1.Controls.Add(btnThemNCC);
-            groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(txtSoDienThoai);
-            groupBox1.Controls.Add(txtDiaChi);
-            groupBox1.Controls.Add(txtTenNCCVC);
-            groupBox1.Dock = DockStyle.Top;
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(570, 261);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Nhà Cung Cấp Vaccine";
+            grbNhaCC.Controls.Add(btnCapNhatNCC);
+            grbNhaCC.Controls.Add(btnXoaNCC);
+            grbNhaCC.Controls.Add(btnThemNCC);
+            grbNhaCC.Controls.Add(label9);
+            grbNhaCC.Controls.Add(label6);
+            grbNhaCC.Controls.Add(label2);
+            grbNhaCC.Controls.Add(txtSoDienThoai);
+            grbNhaCC.Controls.Add(txtDiaChi);
+            grbNhaCC.Controls.Add(txtTenNCCVC);
+            grbNhaCC.Dock = DockStyle.Top;
+            grbNhaCC.Location = new Point(0, 0);
+            grbNhaCC.Name = "grbNhaCC";
+            grbNhaCC.Size = new Size(643, 261);
+            grbNhaCC.TabIndex = 0;
+            grbNhaCC.TabStop = false;
+            grbNhaCC.Text = "Nhà Cung Cấp Vaccine";
             // 
             // btnCapNhatNCC
             // 
@@ -935,7 +938,7 @@
             btnCapNhatNCC.ForeColor = Color.LightCyan;
             btnCapNhatNCC.Image = Properties.Resources.sync_8468966;
             btnCapNhatNCC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCapNhatNCC.Location = new Point(335, 193);
+            btnCapNhatNCC.Location = new Point(377, 193);
             btnCapNhatNCC.Name = "btnCapNhatNCC";
             btnCapNhatNCC.Padding = new Padding(5, 0, 5, 0);
             btnCapNhatNCC.Size = new Size(210, 49);
@@ -949,7 +952,7 @@
             btnXoaNCC.BackColor = Color.MistyRose;
             btnXoaNCC.Image = Properties.Resources.xoa;
             btnXoaNCC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoaNCC.Location = new Point(179, 193);
+            btnXoaNCC.Location = new Point(210, 193);
             btnXoaNCC.Name = "btnXoaNCC";
             btnXoaNCC.Padding = new Padding(5, 0, 5, 2);
             btnXoaNCC.Size = new Size(139, 49);
@@ -963,7 +966,7 @@
             btnThemNCC.BackColor = Color.Aquamarine;
             btnThemNCC.Image = Properties.Resources.add2;
             btnThemNCC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThemNCC.Location = new Point(23, 193);
+            btnThemNCC.Location = new Point(43, 193);
             btnThemNCC.Name = "btnThemNCC";
             btnThemNCC.Padding = new Padding(5, 0, 5, 2);
             btnThemNCC.Size = new Size(139, 49);
@@ -1003,42 +1006,44 @@
             // 
             txtSoDienThoai.Location = new Point(220, 148);
             txtSoDienThoai.Name = "txtSoDienThoai";
-            txtSoDienThoai.Size = new Size(283, 31);
+            txtSoDienThoai.Size = new Size(357, 31);
             txtSoDienThoai.TabIndex = 2;
             // 
             // txtDiaChi
             // 
             txtDiaChi.Location = new Point(220, 96);
             txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(283, 31);
+            txtDiaChi.Size = new Size(357, 31);
             txtDiaChi.TabIndex = 1;
             // 
             // txtTenNCCVC
             // 
             txtTenNCCVC.Location = new Point(220, 44);
             txtTenNCCVC.Name = "txtTenNCCVC";
-            txtTenNCCVC.Size = new Size(283, 31);
+            txtTenNCCVC.Size = new Size(357, 31);
             txtTenNCCVC.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgvNhapVaccine
             // 
-            dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Aquamarine;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HotTrack;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.GridColor = Color.WhiteSmoke;
-            dataGridView1.Location = new Point(3, 577);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1757, 437);
-            dataGridView1.TabIndex = 0;
+            dgvNhapVaccine.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Aquamarine;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HotTrack;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvNhapVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvNhapVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvNhapVaccine.Dock = DockStyle.Bottom;
+            dgvNhapVaccine.GridColor = Color.WhiteSmoke;
+            dgvNhapVaccine.Location = new Point(3, 577);
+            dgvNhapVaccine.MultiSelect = false;
+            dgvNhapVaccine.Name = "dgvNhapVaccine";
+            dgvNhapVaccine.RowHeadersWidth = 51;
+            dgvNhapVaccine.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvNhapVaccine.Size = new Size(1757, 437);
+            dgvNhapVaccine.TabIndex = 0;
             // 
             // imageList1
             // 
@@ -1083,14 +1088,14 @@
             groupBox6.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
+            grbChiTietNhapVC.ResumeLayout(false);
+            grbChiTietNhapVC.PerformLayout();
             panel5.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            grbHDN.ResumeLayout(false);
+            grbHDN.PerformLayout();
+            grbNhaCC.ResumeLayout(false);
+            grbNhaCC.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNhapVaccine).EndInit();
             ResumeLayout(false);
         }
 
@@ -1132,13 +1137,13 @@
         private GroupBox groupBox4;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private DataGridView dataGridView1;
+        private DataGridView dgvNhapVaccine;
         private Panel panel4;
         private Panel panel5;
         private Panel panel6;
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
-        private GroupBox groupBox3;
+        private GroupBox grbNhaCC;
+        private GroupBox grbHDN;
+        private GroupBox grbChiTietNhapVC;
         private TextBox txtSoDienThoai;
         private TextBox txtDiaChi;
         private TextBox txtTenNCCVC;
