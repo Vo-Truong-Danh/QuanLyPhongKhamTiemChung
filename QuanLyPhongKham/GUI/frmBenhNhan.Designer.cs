@@ -121,40 +121,60 @@
             // btnXoaBN
             // 
             btnXoaBN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnXoaBN.BackColor = Color.Salmon;
+            btnXoaBN.FlatStyle = FlatStyle.Flat;
             btnXoaBN.Font = new Font("Microsoft Sans Serif", 10F);
-            btnXoaBN.Location = new Point(531, 539);
+            btnXoaBN.ForeColor = SystemColors.ControlLightLight;
+            btnXoaBN.Image = Properties.Resources.xoa;
+            btnXoaBN.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaBN.Location = new Point(542, 539);
             btnXoaBN.Margin = new Padding(2);
             btnXoaBN.Name = "btnXoaBN";
-            btnXoaBN.Size = new Size(156, 49);
+            btnXoaBN.Size = new Size(183, 49);
             btnXoaBN.TabIndex = 15;
             btnXoaBN.Text = "Xóa bệnh nhân";
-            btnXoaBN.UseVisualStyleBackColor = true;
+            btnXoaBN.TextAlign = ContentAlignment.MiddleRight;
+            btnXoaBN.UseVisualStyleBackColor = false;
             btnXoaBN.Click += btnXoaBN_Click;
             // 
             // btnCapNhat
             // 
             btnCapNhat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnCapNhat.BackColor = Color.PaleTurquoise;
+            btnCapNhat.FlatAppearance.BorderColor = Color.PaleTurquoise;
+            btnCapNhat.FlatStyle = FlatStyle.Flat;
             btnCapNhat.Font = new Font("Microsoft Sans Serif", 10F);
-            btnCapNhat.Location = new Point(309, 539);
+            btnCapNhat.ForeColor = Color.Navy;
+            btnCapNhat.Image = Properties.Resources.cut;
+            btnCapNhat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCapNhat.Location = new Point(303, 539);
             btnCapNhat.Margin = new Padding(2);
             btnCapNhat.Name = "btnCapNhat";
-            btnCapNhat.Size = new Size(182, 49);
+            btnCapNhat.Size = new Size(214, 49);
             btnCapNhat.TabIndex = 14;
             btnCapNhat.Text = "Cập nhật thông tin";
-            btnCapNhat.UseVisualStyleBackColor = true;
+            btnCapNhat.TextAlign = ContentAlignment.MiddleRight;
+            btnCapNhat.UseVisualStyleBackColor = false;
             btnCapNhat.Click += btnCapNhat_Click;
             // 
             // btnLuuBN
             // 
             btnLuuBN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnLuuBN.BackColor = Color.Aquamarine;
+            btnLuuBN.FlatAppearance.BorderColor = Color.Aquamarine;
+            btnLuuBN.FlatStyle = FlatStyle.Flat;
             btnLuuBN.Font = new Font("Microsoft Sans Serif", 10F);
-            btnLuuBN.Location = new Point(78, 539);
+            btnLuuBN.ForeColor = SystemColors.ActiveCaptionText;
+            btnLuuBN.Image = Properties.Resources.add2;
+            btnLuuBN.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuuBN.Location = new Point(56, 539);
             btnLuuBN.Margin = new Padding(2);
             btnLuuBN.Name = "btnLuuBN";
-            btnLuuBN.Size = new Size(191, 49);
+            btnLuuBN.Size = new Size(222, 49);
             btnLuuBN.TabIndex = 13;
             btnLuuBN.Text = "Đăng kí khám bệnh";
-            btnLuuBN.UseVisualStyleBackColor = true;
+            btnLuuBN.TextAlign = ContentAlignment.MiddleRight;
+            btnLuuBN.UseVisualStyleBackColor = false;
             btnLuuBN.Click += btnLuuBN_Click;
             // 
             // dtpNgaySinh
@@ -602,13 +622,20 @@
             // 
             // btnTimKiem
             // 
+            btnTimKiem.BackColor = Color.Gold;
+            btnTimKiem.FlatAppearance.BorderColor = Color.Gold;
+            btnTimKiem.FlatStyle = FlatStyle.Flat;
             btnTimKiem.Font = new Font("Segoe UI", 11F);
-            btnTimKiem.Location = new Point(87, 36);
+            btnTimKiem.ForeColor = Color.MidnightBlue;
+            btnTimKiem.Image = Properties.Resources.timkiem;
+            btnTimKiem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTimKiem.Location = new Point(52, 36);
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(112, 43);
+            btnTimKiem.Size = new Size(147, 43);
             btnTimKiem.TabIndex = 17;
             btnTimKiem.Text = "Tìm kiếm";
-            btnTimKiem.UseVisualStyleBackColor = true;
+            btnTimKiem.TextAlign = ContentAlignment.MiddleRight;
+            btnTimKiem.UseVisualStyleBackColor = false;
             btnTimKiem.Click += btnTimKiem_Click_1;
             // 
             // panel2
