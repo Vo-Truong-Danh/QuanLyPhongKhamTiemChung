@@ -1,8 +1,8 @@
-﻿--CREATE DATABASE QUANLYPHONGKHAM_TIEMCHUNG
+--CREATE DATABASE QUANLYPHONGKHAM_TIEMCHUNG
 
 CREATE TABLE BENHNHAN 
 (
-	MaBN CHAR(5) NOT NULL PRIMARY KEY,
+	MaBN CHAR(5) PRIMARY KEY,
 	HoTen NVARCHAR(50),
 	NgaySinh DATE,
 	GioiTinh NVARCHAR(3) CHECK (GioiTinh IN ('Nam', N'Nữ')),
@@ -11,7 +11,7 @@ CREATE TABLE BENHNHAN
 )
 CREATE TABLE NHANVIEN
 (
-	MaNV CHAR(5) NOT NULL PRIMARY KEY,
+	MaNV CHAR(5) PRIMARY KEY,
 	HoTen NVARCHAR(50),
 	GioiTinh NVARCHAR(3) CHECK (GioiTinh IN ('Nam', N'Nữ')),
 	ChucVu NVARCHAR(30),
@@ -22,7 +22,7 @@ CREATE TABLE NHANVIEN
 
 CREATE TABLE NHACUNGCAP
 (
-	MaNCC CHAR(5) NOT NULL PRIMARY KEY,
+	MaNCC CHAR(5) PRIMARY KEY,
 	TenNCC NVARCHAR(200),
 	DiaChi NVARCHAR(200),
 	SoDienThoai CHAR(10) CHECK (LEN(SoDienThoai) = 10 AND SoDienThoai LIKE '[0-9]%'),
@@ -30,13 +30,13 @@ CREATE TABLE NHACUNGCAP
 
 CREATE TABLE LOAIVACCINE
 (
-	MaLoai CHAR(5) NOT NULL PRIMARY KEY,
+	MaLoai CHAR(5) PRIMARY KEY,
 	TenLoai NVARCHAR(50),
 )
 
 CREATE TABLE VACCINE
 (
-	MaVC CHAR(5) NOT NULL PRIMARY KEY ,
+	MaVC CHAR(5) PRIMARY KEY ,
 	MaLoai CHAR(5),
 	FOREIGN KEY(MaLoai) REFERENCES LOAIVACCINE(MaLoai),
 	TenVC NVARCHAR(50),
@@ -49,7 +49,7 @@ CREATE TABLE VACCINE
 
 CREATE TABLE PHIEUNHAP
 (
-	MaPN CHAR(5) NOT NULL PRIMARY KEY,
+	MaPN CHAR(5) PRIMARY KEY,
 	NgayNhap DATE,
 	MaNCC CHAR(5) NOT NULL ,
 	FOREIGN KEY(MaNCC) REFERENCES NHACUNGCAP(MaNCC),
@@ -68,7 +68,7 @@ CREATE TABLE CHITIETPHIEUNHAP
 
 CREATE TABLE HOADON
 (
-	MaHD CHAR(5) NOT NULL PRIMARY KEY ,
+	MaHD CHAR(5) PRIMARY KEY ,
 	NgayLap DATE,
 	MaBN CHAR(5) NOT NULL,
 	FOREIGN KEY(MaBN) REFERENCES BENHNHAN(MaBN),
@@ -122,7 +122,7 @@ CREATE TABLE GHINHANTIEMCHUNG
 
 CREATE TABLE TAIKHOAN
 (
-	UserName VARCHAR(15) NOT NULL PRIMARY KEY,
+	UserName VARCHAR(15) PRIMARY KEY,
 	DisplayName NVARCHAR(30),
 	Pass VARCHAR(30) NOT NULL DEFAULT 2,
 	ChucVu INT NOT NULL,
@@ -131,53 +131,230 @@ CREATE TABLE TAIKHOAN
 --------------------------------Tạo_Mã_Tự_Động---------------------------------
 -------------------------------------------------------------------------------
 
---Mã bệnh nhân tự động
-CREATE SEQUENCE SEQ_MaBN AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE BENHNHAN
-ADD CONSTRAINT DF_MaBN
-DEFAULT 'BN' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaBN AS VARCHAR(3)), 3) FOR MaBN;
+-- Tạo bảng lưu trữ giá trị mã cuối cùng
+CREATE TABLE MaBN_Counter (MaBN INT);
+CREATE TABLE MaNV_Counter (MaNV INT);
+CREATE TABLE MaNCC_Counter (MaNCC INT);
+CREATE TABLE MaLoaiVC_Counter (MaLoaiVC INT);
+CREATE TABLE MaVC_Counter (MaVC INT);
+CREATE TABLE MaPN_Counter (MaPN INT);
+CREATE TABLE MaHD_Counter (MaHD INT);
+CREATE TABLE MaLT_Counter (MaLT INT);
 
---Mã nhân viên tự động
-CREATE SEQUENCE SEQ_MaNV AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE NHANVIEN
-ADD CONSTRAINT DF_MaNV
-DEFAULT 'NV' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaNV AS VARCHAR(3)), 3) FOR MaNV;
+-- Khởi tạo giá trị ban đầu cho các bảng counter
+INSERT INTO MaBN_Counter (MaBN) VALUES (0);
+INSERT INTO MaNV_Counter (MaNV) VALUES (0);
+INSERT INTO MaNCC_Counter (MaNCC) VALUES (0);
+INSERT INTO MaLoaiVC_Counter (MaLoaiVC) VALUES (0);
+INSERT INTO MaVC_Counter (MaVC) VALUES (0);
+INSERT INTO MaPN_Counter (MaPN) VALUES (0);
+INSERT INTO MaHD_Counter (MaHD) VALUES (0);
+INSERT INTO MaLT_Counter (MaLT) VALUES (0);
 
---Mã nhà cung cấp tự động
-CREATE SEQUENCE SEQ_MaNCC AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE NHACUNGCAP
-ADD CONSTRAINT DF_MaNCC
-DEFAULT 'NCC' + RIGHT('00' + CAST(NEXT VALUE FOR SEQ_MaNCC AS VARCHAR(2)), 2) FOR MaNCC;
 
---Mã LOẠI VACCINE tự động
-CREATE SEQUENCE SEQ_MaLoaiVC AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE LOAIVACCINE
-ADD CONSTRAINT DF_MaLoaiVVC
-DEFAULT 'LV' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaLoaiVC AS VARCHAR(3)), 3) FOR MaLoai;
+-- Tạo trigger cho bảng BENHNHAN
+-- Batch 1: Tạo Trigger cho bảng BENHNHAN
+CREATE TRIGGER TR_MaBN_AutoGen
+ON BENHNHAN
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaBN VARCHAR(10);
+    DECLARE @CurrentCounter INT;
 
---Mã VACCINE tự động
-CREATE SEQUENCE SEQ_MaVC AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE VACCINE
-ADD CONSTRAINT DF_MaVC
-DEFAULT 'VC' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaVC AS VARCHAR(3)), 3) FOR MaVC;
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaBN FROM MaBN_Counter;
 
---Mã PHIẾU NHẬP tự động
-CREATE SEQUENCE SEQ_MaPN AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE PHIEUNHAP
-ADD CONSTRAINT DF_MaPN
-DEFAULT 'PN' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaPN AS VARCHAR(3)), 3) FOR MaPN;
+    -- Kiểm tra nếu counter là null
+    IF @CurrentCounter IS NULL
+    BEGIN
+        PRINT N'Giá trị counter không được khởi tạo';
+        RETURN;
+    END
 
---Mã HOÁ ĐƠN tự động 
-CREATE SEQUENCE SEQ_MaHD AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE HOADON
-ADD CONSTRAINT DF_MaHD
-DEFAULT 'HD' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaHD AS VARCHAR(3)), 3) FOR MaHD;
+    -- Tạo mã mới
+    SET @NewMaBN = 'BN' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
 
---Mã LỊCHTIÊM tự động 
-CREATE SEQUENCE SEQ_MaLT AS INT START WITH 1 INCREMENT BY 1;
-ALTER TABLE LICHTIEM
-ADD CONSTRAINT DF_MaLT
-DEFAULT 'LT' + RIGHT('000' + CAST(NEXT VALUE FOR SEQ_MaLT AS VARCHAR(3)), 3) FOR MaLT;
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaBN_Counter SET MaBN = @CurrentCounter + 1;
+
+    -- Chèn vào bảng BENHNHAN với mã tự động
+    INSERT INTO BENHNHAN (MaBN, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai)
+    SELECT @NewMaBN, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai
+    FROM INSERTED;
+END;
+GO
+CREATE TRIGGER TR_MaNV_AutoGen
+ON NHANVIEN
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaNV VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaNV FROM MaNV_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaNV = 'NV' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaNV_Counter SET MaNV = @CurrentCounter + 1;
+
+    -- Chèn vào bảng NHANVIEN với mã tự động
+    INSERT INTO NHANVIEN (MaNV, HoTen, GioiTinh, ChucVu, DiaChi, SoDienThoai)
+    SELECT @NewMaNV, HoTen, GioiTinh, ChucVu, DiaChi, SoDienThoai
+    FROM INSERTED;
+END;
+GO
+CREATE TRIGGER TR_MaNCC_AutoGen
+ON NHACUNGCAP
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaNCC VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaNCC FROM MaNCC_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaNCC = 'NCC' + RIGHT('00' + CAST(@CurrentCounter + 1 AS VARCHAR(2)), 2);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaNCC_Counter SET MaNCC = @CurrentCounter + 1;
+
+    -- Chèn vào bảng NHACUNGCAP với mã tự động
+    INSERT INTO NHACUNGCAP (MaNCC, TenNCC, DiaChi, SoDienThoai)
+    SELECT @NewMaNCC, TenNCC, DiaChi, SoDienThoai
+    FROM INSERTED;
+END;
+GO
+CREATE TRIGGER TR_MaLoaiVC_AutoGen
+ON LOAIVACCINE
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaLoaiVC VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaLoaiVC FROM MaLoaiVC_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaLoaiVC = 'LV' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaLoaiVC_Counter SET MaLoaiVC = @CurrentCounter + 1;
+
+    -- Chèn vào bảng LOAIVACCINE với mã tự động
+    INSERT INTO LOAIVACCINE (MaLoai, TenLoai)
+    SELECT @NewMaLoaiVC, TenLoai
+    FROM INSERTED;
+END;
+GO
+
+-- Tạo trigger cho bảng VACCINE
+CREATE TRIGGER TR_MaVC_AutoGen
+ON VACCINE
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaVC VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaVC FROM MaVC_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaVC = 'VC' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaVC_Counter SET MaVC = @CurrentCounter + 1;
+
+    -- Chèn vào bảng VACCINE với mã tự động
+    INSERT INTO VACCINE (MaVC, MaLoai, TenVC, NgaySX, HanSuDung, SoLuongTon, Gia)
+    SELECT @NewMaVC, MaLoai, TenVC, NgaySX, HanSuDung, SoLuongTon, Gia
+    FROM INSERTED;
+END;
+GO
+
+
+-- Tạo trigger cho bảng PHIEUNHAP
+CREATE TRIGGER TR_MaPN_AutoGen
+ON PHIEUNHAP
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaPN VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaPN FROM MaPN_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaPN = 'PN' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaPN_Counter SET MaPN = @CurrentCounter + 1;
+
+    -- Chèn vào bảng PHIEUNHAP với mã tự động
+    INSERT INTO PHIEUNHAP (MaPN, NgayNhap, MaNCC)
+    SELECT @NewMaPN, NgayNhap, MaNCC
+    FROM INSERTED;
+END;
+GO
+
+-- Tạo trigger cho bảng HOADON
+CREATE TRIGGER TR_MaHD_AutoGen
+ON HOADON
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaHD VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaHD FROM MaHD_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaHD = 'HD' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaHD_Counter SET MaHD = @CurrentCounter + 1;
+
+    -- Chèn vào bảng HOADON với mã tự động
+    INSERT INTO HOADON (MaHD, NgayLap, MaBN, MaNV, TongTien)
+    SELECT @NewMaHD, NgayLap, MaBN, MaNV, TongTien
+    FROM INSERTED;
+END;
+GO
+
+
+-- Tạo trigger cho bảng LICHTIEM
+CREATE TRIGGER TR_MaLT_AutoGen
+ON LICHTIEM
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @NewMaLT VARCHAR(10);
+    DECLARE @CurrentCounter INT;
+
+    -- Lấy giá trị mã cuối cùng
+    SELECT @CurrentCounter = MaLT FROM MaLT_Counter;
+
+    -- Tạo mã mới
+    SET @NewMaLT = 'LT' + RIGHT('000' + CAST(@CurrentCounter + 1 AS VARCHAR(3)), 3);
+
+    -- Cập nhật giá trị mã cuối cùng
+    UPDATE MaLT_Counter SET MaLT = @CurrentCounter + 1;
+
+    -- Chèn vào bảng LICHTIEM với mã tự động
+    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
+    FROM INSERTED;
+END;
+GO
 
 -----------------------------------------------------------------------
 --------------------------------TRIGER---------------------------------
@@ -308,6 +485,15 @@ BEGIN
     ) I ON I.MaVC = V.MaVC;
 END
 GO
+
+CREATE CLUSTERED INDEX IX_MaBN_Counter ON dbo.MaBN_Counter (MaBN);
+CREATE CLUSTERED INDEX IX_MaNV_Counter ON dbo.MaNV_Counter (MaNV);
+CREATE CLUSTERED INDEX IX_MaNCC_Counter ON dbo.MaNCC_Counter (MaNCC);
+CREATE CLUSTERED INDEX IX_MaLoaiVC_Counter ON dbo.MaLoaiVC_Counter (MaLoaiVC);
+CREATE CLUSTERED INDEX IX_MaVC_Counter ON dbo.MaVC_Counter (MaVC);
+CREATE CLUSTERED INDEX IX_MaPN_Counter ON dbo.MaPN_Counter (MaPN);
+CREATE CLUSTERED INDEX IX_MaHD_Counter ON dbo.MaHD_Counter (MaHD);
+CREATE CLUSTERED INDEX IX_MaLT_Counter ON dbo.MaLT_Counter (MaLT);
 
 
 ----------------------------------------------------------------------
