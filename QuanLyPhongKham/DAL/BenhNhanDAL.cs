@@ -15,7 +15,7 @@ namespace DAL
         DataColumn[] key = new DataColumn[1];
         SqlDataAdapter adap;
         SqlConnection conn;
-        string connectStr = "Data Source=PLS\\MSSQLSERVERVTD;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;User ID=sa;password=123";
+        string connectStr = "Data Source=PLS\\MSSQLSERVERVTD;Initial Catalog=DLSQL;User ID=sa;password=123";
         //string connectStr = "Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True;";
         private int lastMaBN = 0;
         public BenhNhanDAL()
