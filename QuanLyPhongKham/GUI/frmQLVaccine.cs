@@ -625,7 +625,7 @@ namespace GUI
                     if (kt)
                     {
                         MessageBox.Show("Sửa thành công  "+tenvc+" trong hoá đơn nhập " + mapn + " .");
-                        LoadPhieuNhap();
+                        LoadChiTietPhieuNhap();
                     }
                     else
                     {
