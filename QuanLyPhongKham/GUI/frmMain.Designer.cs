@@ -55,9 +55,9 @@
             button1 = new Button();
             panel8 = new Panel();
             button13 = new Button();
-            button8 = new Button();
-            button7 = new Button();
-            button6 = new Button();
+            btnThongKe = new Button();
+            btnTraCuu = new Button();
+            btnQLNhanVien = new Button();
             btnQLTiemChung = new Button();
             btnQLVaccine = new Button();
             btnQLBenhNhan = new Button();
@@ -89,9 +89,9 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BackColor = Color.Aquamarine;
             panel1.Controls.Add(panel16);
-            panel1.Controls.Add(button8);
-            panel1.Controls.Add(button7);
-            panel1.Controls.Add(button6);
+            panel1.Controls.Add(btnThongKe);
+            panel1.Controls.Add(btnTraCuu);
+            panel1.Controls.Add(btnQLNhanVien);
             panel1.Controls.Add(btnQLTiemChung);
             panel1.Controls.Add(btnQLVaccine);
             panel1.Controls.Add(btnQLBenhNhan);
@@ -362,62 +362,62 @@
             button13.TabIndex = 0;
             button13.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // btnThongKe
             // 
-            button8.BackColor = Color.Aquamarine;
-            button8.BackgroundImageLayout = ImageLayout.Center;
-            button8.Dock = DockStyle.Top;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.Image = Properties.Resources.thongke;
-            button8.ImageAlign = ContentAlignment.MiddleLeft;
-            button8.Location = new Point(0, 378);
-            button8.Name = "button8";
-            button8.Padding = new Padding(15, 0, 45, 0);
-            button8.Size = new Size(202, 63);
-            button8.TabIndex = 9;
-            button8.Text = "Thống Kê";
-            button8.TextAlign = ContentAlignment.MiddleRight;
-            button8.UseVisualStyleBackColor = false;
+            btnThongKe.BackColor = Color.Aquamarine;
+            btnThongKe.BackgroundImageLayout = ImageLayout.Center;
+            btnThongKe.Dock = DockStyle.Top;
+            btnThongKe.FlatAppearance.BorderSize = 0;
+            btnThongKe.FlatStyle = FlatStyle.Flat;
+            btnThongKe.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThongKe.Image = Properties.Resources.thongke;
+            btnThongKe.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThongKe.Location = new Point(0, 378);
+            btnThongKe.Name = "btnThongKe";
+            btnThongKe.Padding = new Padding(15, 0, 45, 0);
+            btnThongKe.Size = new Size(202, 63);
+            btnThongKe.TabIndex = 9;
+            btnThongKe.Text = "Thống Kê";
+            btnThongKe.TextAlign = ContentAlignment.MiddleRight;
+            btnThongKe.UseVisualStyleBackColor = false;
             // 
-            // button7
+            // btnTraCuu
             // 
-            button7.BackColor = Color.Aquamarine;
-            button7.BackgroundImageLayout = ImageLayout.Center;
-            button7.Dock = DockStyle.Top;
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.Image = Properties.Resources.search_17548385;
-            button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(0, 315);
-            button7.Name = "button7";
-            button7.Padding = new Padding(15, 0, 60, 0);
-            button7.Size = new Size(202, 63);
-            button7.TabIndex = 8;
-            button7.Text = "Tra Cứu";
-            button7.TextAlign = ContentAlignment.MiddleRight;
-            button7.UseVisualStyleBackColor = false;
+            btnTraCuu.BackColor = Color.Aquamarine;
+            btnTraCuu.BackgroundImageLayout = ImageLayout.Center;
+            btnTraCuu.Dock = DockStyle.Top;
+            btnTraCuu.FlatAppearance.BorderSize = 0;
+            btnTraCuu.FlatStyle = FlatStyle.Flat;
+            btnTraCuu.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTraCuu.Image = Properties.Resources.search_17548385;
+            btnTraCuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTraCuu.Location = new Point(0, 315);
+            btnTraCuu.Name = "btnTraCuu";
+            btnTraCuu.Padding = new Padding(15, 0, 60, 0);
+            btnTraCuu.Size = new Size(202, 63);
+            btnTraCuu.TabIndex = 8;
+            btnTraCuu.Text = "Tra Cứu";
+            btnTraCuu.TextAlign = ContentAlignment.MiddleRight;
+            btnTraCuu.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // btnQLNhanVien
             // 
-            button6.BackColor = Color.Aquamarine;
-            button6.BackgroundImageLayout = ImageLayout.Center;
-            button6.Dock = DockStyle.Top;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Image = Properties.Resources.doctor_5528539;
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(0, 252);
-            button6.Name = "button6";
-            button6.Padding = new Padding(15, 0, 15, 0);
-            button6.Size = new Size(202, 63);
-            button6.TabIndex = 7;
-            button6.Text = "QL Nhân Viên";
-            button6.TextAlign = ContentAlignment.MiddleRight;
-            button6.UseVisualStyleBackColor = false;
+            btnQLNhanVien.BackColor = Color.Aquamarine;
+            btnQLNhanVien.BackgroundImageLayout = ImageLayout.Center;
+            btnQLNhanVien.Dock = DockStyle.Top;
+            btnQLNhanVien.FlatAppearance.BorderSize = 0;
+            btnQLNhanVien.FlatStyle = FlatStyle.Flat;
+            btnQLNhanVien.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLNhanVien.Image = Properties.Resources.doctor_5528539;
+            btnQLNhanVien.ImageAlign = ContentAlignment.MiddleLeft;
+            btnQLNhanVien.Location = new Point(0, 252);
+            btnQLNhanVien.Name = "btnQLNhanVien";
+            btnQLNhanVien.Padding = new Padding(15, 0, 15, 0);
+            btnQLNhanVien.Size = new Size(202, 63);
+            btnQLNhanVien.TabIndex = 7;
+            btnQLNhanVien.Text = "QL Nhân Viên";
+            btnQLNhanVien.TextAlign = ContentAlignment.MiddleRight;
+            btnQLNhanVien.UseVisualStyleBackColor = false;
             // 
             // btnQLTiemChung
             // 
@@ -588,9 +588,9 @@
         private PictureBox Logo;
         private Panel panel3;
         private Button btnTrangChu;
-        private Button button8;
-        private Button button7;
-        private Button button6;
+        private Button btnThongKe;
+        private Button btnTraCuu;
+        private Button btnQLNhanVien;
         private Button btnQLTiemChung;
         private Button btnQLVaccine;
         private Button btnQLBenhNhan;

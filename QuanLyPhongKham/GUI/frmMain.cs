@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,10 +18,12 @@ namespace GUI
             InitializeComponent();
         }
         private string tennguoidangnhap;
+        private int? chucvu;
 
-        public frmMain(string nd) : this()
+        public frmMain(TaiKhoanDTO nd) : this()
         {
-            tennguoidangnhap = nd;
+            tennguoidangnhap = nd.DisplayName;
+            chucvu = nd.ChucVu;
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -28,6 +31,14 @@ namespace GUI
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             OpenChild(new frmTrangChu());
             txtTenHienThi.Text = tennguoidangnhap;
+            if(chucvu == 2)
+            {
+                btnQLVaccine.Enabled = false;
+                btnQLTiemChung.Enabled = false;
+                btnQLNhanVien.Enabled = false;
+                btnThongKe.Enabled = false;
+            }
+
         }
 
         private Form fromchild;
@@ -73,7 +84,7 @@ namespace GUI
 
         private void btnQLBenhNhan_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmBenhNhan());
+            OpenChild(new frmBenhNhan(chucvu));
         }
 
         private void btnQLVaccine_Click(object sender, EventArgs e)

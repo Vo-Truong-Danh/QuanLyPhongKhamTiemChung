@@ -20,7 +20,7 @@ namespace BLL
             nvDAL.Insert(nvDTO);
             return true;
         }
-        public string CheckUserNameAndPassword(string userName, string password)
+        public TaiKhoanDTO CheckUserNameAndPassword(string userName, string password)
         {
             return nvDAL.CheckUserNameAndPassword(userName, password);
         }

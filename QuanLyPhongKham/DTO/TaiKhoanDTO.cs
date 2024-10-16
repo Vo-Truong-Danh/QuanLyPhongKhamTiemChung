@@ -23,5 +23,11 @@ namespace DTO
             this.chucVu = chucVu;
         }
         public TaiKhoanDTO() { }
+
+        public TaiKhoanDTO(string displayName , int? chucVu)
+        {
+            DisplayName = displayName;
+            ChucVu = chucVu;
+        }
     }
 }

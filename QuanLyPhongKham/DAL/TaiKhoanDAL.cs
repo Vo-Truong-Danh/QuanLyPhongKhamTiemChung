@@ -54,7 +54,7 @@ namespace DAL
             }
             catch { return false; }
         }
-        public string CheckUserNameAndPassword(string userName, string password)
+        public TaiKhoanDTO CheckUserNameAndPassword(string userName, string password)
         {
             DataRow userRow = ds.Tables["TAIKHOAN"].Rows.Find(userName);
 
@@ -67,7 +67,10 @@ namespace DAL
 
             if (storedPassword == password)
             {
-                return userRow["DisplayName"].ToString();
+                string DisplayName = userRow["DisplayName"].ToString();
+                string ChucVu = userRow["ChucVu"].ToString();
+                TaiKhoanDTO tk = new TaiKhoanDTO(DisplayName, int.Parse(ChucVu));
+                return tk;
             }
             else
             {

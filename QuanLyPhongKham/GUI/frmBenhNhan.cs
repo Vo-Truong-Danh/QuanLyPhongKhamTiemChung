@@ -21,7 +21,13 @@ namespace GUI
             InitializeComponent();
             bnBLL = new BenhNhanBLL();
         }
-
+        int? chucvu;
+        public frmBenhNhan(int? cv)
+        {
+            InitializeComponent();
+            bnBLL = new BenhNhanBLL();
+            chucvu = cv;
+        }
         private void txtMaBN_TextChanged(object sender, EventArgs e)
         {
             Control control = (Control)sender;
@@ -149,6 +155,11 @@ namespace GUI
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
             LoadListViewDSBN();
+            if (chucvu == 2)
+            {
+                btnXoaBN.Enabled = false;
+                btnCapNhat.Enabled = false;
+            }
         }
 
         private void lstvDSBN_SelectedIndexChanged(object sender, EventArgs e)

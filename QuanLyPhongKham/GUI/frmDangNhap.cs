@@ -24,7 +24,7 @@ namespace GUI
         {
             if (txtTaiKhoan.Text.Trim().Length > 0 && txtMatKhau.Text.Trim().Length > 0)
             {
-                string kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
+                TaiKhoanDTO kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
                 if (kt == null)
                 {
                     MessageBox.Show("Tên người dùng hoặc mật khẩu không tồn tại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
