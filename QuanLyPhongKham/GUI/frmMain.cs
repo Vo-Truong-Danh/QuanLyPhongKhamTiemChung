@@ -16,11 +16,18 @@ namespace GUI
         {
             InitializeComponent();
         }
+        private string tennguoidangnhap;
 
+        public frmMain(string nd) : this()
+        {
+            tennguoidangnhap = nd;
+        }
         private void frmMain_Load(object sender, EventArgs e)
         {
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             OpenChild(new frmTrangChu());
+            txtTenHienThi.Text = tennguoidangnhap;
         }
 
         private Form fromchild;
@@ -77,6 +84,11 @@ namespace GUI
         private void btnTrangChu_Click(object sender, EventArgs e)
         {
             OpenChild(new frmTrangChu());
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -24,12 +24,13 @@ namespace GUI
         {
             if (txtTaiKhoan.Text.Trim().Length > 0 && txtMatKhau.Text.Trim().Length > 0)
             {
-                if (!tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim()))
+                string kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
+                if (kt == null)
                 {
                     MessageBox.Show("Tên người dùng hoặc mật khẩu không tồn tại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                frmMain frmMain = new frmMain();
+                frmMain frmMain = new frmMain(kt);
                 frmMain.ShowDialog();
                 this.Close();
             }

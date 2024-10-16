@@ -65,6 +65,7 @@
             Logo = new PictureBox();
             pnlShow = new Panel();
             panel3 = new Panel();
+            txtTenHienThi = new TextBox();
             panel1.SuspendLayout();
             panel16.SuspendLayout();
             panel7.SuspendLayout();
@@ -95,10 +96,11 @@
             panel1.Controls.Add(btnQLVaccine);
             panel1.Controls.Add(btnQLBenhNhan);
             panel1.Controls.Add(btnTrangChu);
-            panel1.Location = new Point(-1, 103);
+            panel1.Location = new Point(-1, 148);
             panel1.Name = "panel1";
-            panel1.Size = new Size(202, 612);
+            panel1.Size = new Size(202, 567);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // panel16
             // 
@@ -107,7 +109,7 @@
             panel16.Controls.Add(panel5);
             panel16.Controls.Add(panel4);
             panel16.Dock = DockStyle.Bottom;
-            panel16.Location = new Point(0, 557);
+            panel16.Location = new Point(0, 512);
             panel16.Name = "panel16";
             panel16.Size = new Size(202, 55);
             panel16.TabIndex = 13;
@@ -527,12 +529,25 @@
             panel3.Size = new Size(199, 102);
             panel3.TabIndex = 2;
             // 
+            // txtTenHienThi
+            // 
+            txtTenHienThi.BackColor = Color.Aquamarine;
+            txtTenHienThi.BorderStyle = BorderStyle.None;
+            txtTenHienThi.ForeColor = Color.MidnightBlue;
+            txtTenHienThi.Location = new Point(14, 113);
+            txtTenHienThi.Name = "txtTenHienThi";
+            txtTenHienThi.ReadOnly = true;
+            txtTenHienThi.Size = new Size(175, 23);
+            txtTenHienThi.TabIndex = 3;
+            txtTenHienThi.TextAlign = HorizontalAlignment.Center;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Aquamarine;
             ClientSize = new Size(987, 728);
+            Controls.Add(txtTenHienThi);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(pnlShow);
@@ -563,6 +578,7 @@
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             panel3.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -603,5 +619,6 @@
         private Panel panel8;
         private Button button13;
         private Panel panel16;
+        private TextBox txtTenHienThi;
     }
 }

@@ -54,17 +54,27 @@ namespace DAL
             }
             catch { return false; }
         }
-        public bool CheckUserNameAndPassword(string userName, string password)
+        public string CheckUserNameAndPassword(string userName, string password)
         {
             DataRow userRow = ds.Tables["TAIKHOAN"].Rows.Find(userName);
 
             if (userRow == null)
             {
-                return false;
+                return null;
             }
+
             string storedPassword = userRow["Pass"].ToString();
-            return storedPassword == password;
+
+            if (storedPassword == password)
+            {
+                return userRow["DisplayName"].ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
+
 
     }
 }
