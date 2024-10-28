@@ -36,6 +36,7 @@ CREATE TABLE LOAIVACCINE
 (
 	MaLoai CHAR(5) PRIMARY KEY,
 	TenLoai NVARCHAR(50),
+	SoMui INT ,
 )
 
 CREATE TABLE VACCINE
@@ -525,5 +526,4 @@ CREATE CLUSTERED INDEX IX_MaLT_Counter ON dbo.MaLT_Counter (MaLT);
 
 --select * from LICHTIEM
 	
-
 
