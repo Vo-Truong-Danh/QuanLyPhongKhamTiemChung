@@ -15,12 +15,10 @@ namespace DAL
         DataColumn[] key = new DataColumn[1];
         SqlDataAdapter adap;
         SqlConnection conn;
-        string connectStr = "Data Source=PLS\\MSSQLSERVERVTD;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;User ID=sa;password=123";
-        //string connectStr = "Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True;";
         private int lastMaBN = 0;
         public BenhNhanDAL()
         {
-            conn = new SqlConnection(connectStr);
+            conn = new SqlConnection(GeneralDAL.connectStrg);
             ds = new DataSet();
             string selectStr = "select * from BENHNHAN";
             adap = new SqlDataAdapter(selectStr, conn);
@@ -38,7 +36,7 @@ namespace DAL
             string maBN = "BN000"; // Giá trị mặc định 
             if (conn.State != ConnectionState.Open||conn==null)
             {
-              conn  = new SqlConnection(connectStr);
+              conn  = new SqlConnection(GeneralDAL.connectStrg);
             }
             try
             {

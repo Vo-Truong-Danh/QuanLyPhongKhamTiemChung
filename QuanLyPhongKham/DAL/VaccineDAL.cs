@@ -13,15 +13,11 @@ namespace DAL
     {
         DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
-
-
-        string connectStr = "Data Source=PLS\\MSSQLSERVERVTD;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;User ID=sa;password=123";
-        //string connectStr = "Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True;";
         SqlConnection conn;
 
         public VaccineDAL()
         {
-            conn = new SqlConnection(connectStr);
+            conn = new SqlConnection(GeneralDAL.connectStrg);
             adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
         }

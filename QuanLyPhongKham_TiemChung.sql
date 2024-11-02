@@ -18,11 +18,13 @@ CREATE TABLE NHANVIEN
 	MaNV CHAR(5) PRIMARY KEY,
 	HoTen NVARCHAR(50),
 	GioiTinh NVARCHAR(3) CHECK (GioiTinh IN ('Nam', N'Nữ')),
-	ChucVu NVARCHAR(30),
+	ChucVu NVARCHAR(30), -- co nhieu chuc vu nhu y ta
 	DiaChi NVARCHAR(90),
 	SoDienThoai CHAR(10) CHECK (LEN(SoDienThoai) = 10 AND SoDienThoai LIKE '[0-9]%'),
+	UserName VARCHAR(15),
+	Pass VARCHAR(30) NOT NULL DEFAULT 2,
+	Quyen INT NOT NULL, -- 0 va 1 : 1 la admin va 1 la user
 )
-
 
 CREATE TABLE NHACUNGCAP
 (
@@ -125,13 +127,7 @@ CREATE TABLE GHINHANTIEMCHUNG
 
 
 
-CREATE TABLE TAIKHOAN
-(
-	UserName VARCHAR(15) PRIMARY KEY,
-	DisplayName NVARCHAR(30),
-	Pass VARCHAR(30) NOT NULL DEFAULT 2,
-	ChucVu INT NOT NULL,
-)
+
 -------------------------------------------------------------------------------
 --------------------------------Tạo_Mã_Tự_Động---------------------------------
 -------------------------------------------------------------------------------

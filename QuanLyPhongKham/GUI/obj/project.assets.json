@@ -521,35 +521,43 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Pls\\.nuget\\packages\\": {}
+    "C:\\Users\\Thinh\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
+      "projectUniqueName": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
       "projectName": "GUI",
-      "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
-      "packagesPath": "C:\\Users\\Pls\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pls\\source\\repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\obj\\",
+      "projectPath": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\GUI.csproj",
+      "packagesPath": "C:\\Users\\Thinh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\GUI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Pls\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Thinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0-windows"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj"
+            "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
-              "projectPath": "C:\\Users\\Pls\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
+            "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\Users\\Thinh\\Source\\Repos\\QuanLyPhongKhamTiemChung\\QuanLyPhongKham\\DTO\\DTO.csproj"
             }
           }
         }
@@ -562,9 +570,8 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+        "auditMode": "direct"
+      }
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -594,7 +601,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.1.24452.12/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

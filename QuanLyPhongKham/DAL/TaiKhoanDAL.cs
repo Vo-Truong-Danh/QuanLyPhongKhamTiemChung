@@ -14,11 +14,9 @@ namespace DAL
         SqlDataAdapter adap;
         DataColumn[] key = new DataColumn[1];
         SqlConnection conn;
-        string connectStr = "Data Source=PLS\\MSSQLSERVERVTD;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;User ID=sa;password=123";
-        //string connectStr = "Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True;";
         public TaiKhoanDAL()
         {
-            conn = new SqlConnection(connectStr);
+            conn = new SqlConnection(GeneralDAL.connectStrg);
             ds = new DataSet();
             string selectStr = "select * from TAIKHOAN";
             adap = new SqlDataAdapter(selectStr, conn);
