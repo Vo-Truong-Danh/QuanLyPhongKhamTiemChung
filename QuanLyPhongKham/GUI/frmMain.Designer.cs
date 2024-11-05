@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             panel1 = new Panel();
             panel16 = new Panel();
@@ -38,7 +39,7 @@
             button18 = new Button();
             panel11 = new Panel();
             button16 = new Button();
-            btnThoát = new Button();
+            btnThoat = new Button();
             panel12 = new Panel();
             button17 = new Button();
             panel10 = new Panel();
@@ -62,10 +63,12 @@
             btnQLVaccine = new Button();
             btnQLBenhNhan = new Button();
             btnTrangChu = new Button();
-            Logo = new PictureBox();
-            pnlShow = new Panel();
-            panel3 = new Panel();
             txtTenHienThi = new TextBox();
+            pnlShow = new Panel();
+            btnThuMo = new Button();
+            btnMoRong = new PictureBox();
+            Sibar = new System.Windows.Forms.Timer(components);
+            pctLogo = new PictureBox();
             panel1.SuspendLayout();
             panel16.SuspendLayout();
             panel7.SuspendLayout();
@@ -80,14 +83,14 @@
             panel4.SuspendLayout();
             panel9.SuspendLayout();
             panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
-            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnMoRong).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctLogo).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panel1.BackColor = Color.Aquamarine;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(0, 237, 250);
             panel1.Controls.Add(panel16);
             panel1.Controls.Add(btnThongKe);
             panel1.Controls.Add(btnTraCuu);
@@ -96,11 +99,10 @@
             panel1.Controls.Add(btnQLVaccine);
             panel1.Controls.Add(btnQLBenhNhan);
             panel1.Controls.Add(btnTrangChu);
-            panel1.Location = new Point(-1, 148);
+            panel1.Location = new Point(-1, 175);
             panel1.Name = "panel1";
-            panel1.Size = new Size(202, 567);
+            panel1.Size = new Size(239, 896);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
             // panel16
             // 
@@ -109,9 +111,9 @@
             panel16.Controls.Add(panel5);
             panel16.Controls.Add(panel4);
             panel16.Dock = DockStyle.Bottom;
-            panel16.Location = new Point(0, 512);
+            panel16.Location = new Point(0, 841);
             panel16.Name = "panel16";
-            panel16.Size = new Size(202, 55);
+            panel16.Size = new Size(239, 55);
             panel16.TabIndex = 13;
             // 
             // panel7
@@ -124,11 +126,12 @@
             // 
             // btnDangXuat
             // 
-            btnDangXuat.BackColor = Color.Aquamarine;
+            btnDangXuat.BackColor = Color.FromArgb(0, 237, 250);
             btnDangXuat.Dock = DockStyle.Bottom;
             btnDangXuat.FlatAppearance.BorderSize = 0;
             btnDangXuat.FlatStyle = FlatStyle.Flat;
             btnDangXuat.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDangXuat.ForeColor = Color.Black;
             btnDangXuat.Location = new Point(0, 0);
             btnDangXuat.Name = "btnDangXuat";
             btnDangXuat.Size = new Size(133, 49);
@@ -141,7 +144,7 @@
             // 
             panel6.Controls.Add(panel13);
             panel6.Controls.Add(panel11);
-            panel6.Controls.Add(btnThoát);
+            panel6.Controls.Add(btnThoat);
             panel6.Controls.Add(panel12);
             panel6.Controls.Add(panel10);
             panel6.Location = new Point(3, 2);
@@ -185,19 +188,19 @@
             button16.Text = "button10";
             button16.UseVisualStyleBackColor = true;
             // 
-            // btnThoát
+            // btnThoat
             // 
-            btnThoát.BackColor = Color.Aquamarine;
-            btnThoát.Dock = DockStyle.Bottom;
-            btnThoát.FlatAppearance.BorderSize = 0;
-            btnThoát.FlatStyle = FlatStyle.Flat;
-            btnThoát.Image = (Image)resources.GetObject("btnThoát.Image");
-            btnThoát.Location = new Point(0, 2);
-            btnThoát.Name = "btnThoát";
-            btnThoát.Size = new Size(57, 49);
-            btnThoát.TabIndex = 0;
-            btnThoát.UseVisualStyleBackColor = false;
-            btnThoát.Click += btnThoát_Click;
+            btnThoat.BackColor = Color.FromArgb(0, 237, 250);
+            btnThoat.Dock = DockStyle.Bottom;
+            btnThoat.FlatAppearance.BorderSize = 0;
+            btnThoat.FlatStyle = FlatStyle.Flat;
+            btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
+            btnThoat.Location = new Point(0, 2);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(57, 49);
+            btnThoat.TabIndex = 0;
+            btnThoat.UseVisualStyleBackColor = false;
+            btnThoat.Click += btnThoat_Click;
             // 
             // panel12
             // 
@@ -364,18 +367,19 @@
             // 
             // btnThongKe
             // 
-            btnThongKe.BackColor = Color.Aquamarine;
+            btnThongKe.BackColor = Color.FromArgb(0, 237, 250);
             btnThongKe.BackgroundImageLayout = ImageLayout.Center;
             btnThongKe.Dock = DockStyle.Top;
             btnThongKe.FlatAppearance.BorderSize = 0;
             btnThongKe.FlatStyle = FlatStyle.Flat;
             btnThongKe.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThongKe.ForeColor = Color.Black;
             btnThongKe.Image = Properties.Resources.thongke;
             btnThongKe.ImageAlign = ContentAlignment.MiddleLeft;
             btnThongKe.Location = new Point(0, 378);
             btnThongKe.Name = "btnThongKe";
-            btnThongKe.Padding = new Padding(15, 0, 45, 0);
-            btnThongKe.Size = new Size(202, 63);
+            btnThongKe.Padding = new Padding(15, 0, 67, 0);
+            btnThongKe.Size = new Size(239, 63);
             btnThongKe.TabIndex = 9;
             btnThongKe.Text = "Thống Kê";
             btnThongKe.TextAlign = ContentAlignment.MiddleRight;
@@ -383,18 +387,19 @@
             // 
             // btnTraCuu
             // 
-            btnTraCuu.BackColor = Color.Aquamarine;
+            btnTraCuu.BackColor = Color.FromArgb(0, 237, 250);
             btnTraCuu.BackgroundImageLayout = ImageLayout.Center;
             btnTraCuu.Dock = DockStyle.Top;
             btnTraCuu.FlatAppearance.BorderSize = 0;
             btnTraCuu.FlatStyle = FlatStyle.Flat;
             btnTraCuu.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTraCuu.ForeColor = Color.Black;
             btnTraCuu.Image = Properties.Resources.search_17548385;
             btnTraCuu.ImageAlign = ContentAlignment.MiddleLeft;
             btnTraCuu.Location = new Point(0, 315);
             btnTraCuu.Name = "btnTraCuu";
-            btnTraCuu.Padding = new Padding(15, 0, 60, 0);
-            btnTraCuu.Size = new Size(202, 63);
+            btnTraCuu.Padding = new Padding(15, 0, 80, 0);
+            btnTraCuu.Size = new Size(239, 63);
             btnTraCuu.TabIndex = 8;
             btnTraCuu.Text = "Tra Cứu";
             btnTraCuu.TextAlign = ContentAlignment.MiddleRight;
@@ -402,18 +407,19 @@
             // 
             // btnQLNhanVien
             // 
-            btnQLNhanVien.BackColor = Color.Aquamarine;
+            btnQLNhanVien.BackColor = Color.FromArgb(0, 237, 250);
             btnQLNhanVien.BackgroundImageLayout = ImageLayout.Center;
             btnQLNhanVien.Dock = DockStyle.Top;
             btnQLNhanVien.FlatAppearance.BorderSize = 0;
             btnQLNhanVien.FlatStyle = FlatStyle.Flat;
             btnQLNhanVien.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLNhanVien.ForeColor = Color.Black;
             btnQLNhanVien.Image = Properties.Resources.doctor_5528539;
             btnQLNhanVien.ImageAlign = ContentAlignment.MiddleLeft;
             btnQLNhanVien.Location = new Point(0, 252);
             btnQLNhanVien.Name = "btnQLNhanVien";
-            btnQLNhanVien.Padding = new Padding(15, 0, 15, 0);
-            btnQLNhanVien.Size = new Size(202, 63);
+            btnQLNhanVien.Padding = new Padding(15, 0, 37, 0);
+            btnQLNhanVien.Size = new Size(239, 63);
             btnQLNhanVien.TabIndex = 7;
             btnQLNhanVien.Text = "QL Nhân Viên";
             btnQLNhanVien.TextAlign = ContentAlignment.MiddleRight;
@@ -421,18 +427,19 @@
             // 
             // btnQLTiemChung
             // 
-            btnQLTiemChung.BackColor = Color.Aquamarine;
+            btnQLTiemChung.BackColor = Color.FromArgb(0, 237, 250);
             btnQLTiemChung.BackgroundImageLayout = ImageLayout.Center;
             btnQLTiemChung.Dock = DockStyle.Top;
             btnQLTiemChung.FlatAppearance.BorderSize = 0;
             btnQLTiemChung.FlatStyle = FlatStyle.Flat;
             btnQLTiemChung.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLTiemChung.ForeColor = Color.Black;
             btnQLTiemChung.Image = Properties.Resources.calendar_5408851;
             btnQLTiemChung.ImageAlign = ContentAlignment.MiddleLeft;
             btnQLTiemChung.Location = new Point(0, 189);
             btnQLTiemChung.Name = "btnQLTiemChung";
-            btnQLTiemChung.Padding = new Padding(15, 0, 0, 0);
-            btnQLTiemChung.Size = new Size(202, 63);
+            btnQLTiemChung.Padding = new Padding(15, 0, 22, 0);
+            btnQLTiemChung.Size = new Size(239, 63);
             btnQLTiemChung.TabIndex = 6;
             btnQLTiemChung.Text = "QL Tiêm Chủng";
             btnQLTiemChung.TextAlign = ContentAlignment.MiddleRight;
@@ -440,18 +447,19 @@
             // 
             // btnQLVaccine
             // 
-            btnQLVaccine.BackColor = Color.Aquamarine;
+            btnQLVaccine.BackColor = Color.FromArgb(0, 237, 250);
             btnQLVaccine.BackgroundImageLayout = ImageLayout.Center;
             btnQLVaccine.Dock = DockStyle.Top;
             btnQLVaccine.FlatAppearance.BorderSize = 0;
             btnQLVaccine.FlatStyle = FlatStyle.Flat;
             btnQLVaccine.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLVaccine.ForeColor = Color.Black;
             btnQLVaccine.Image = Properties.Resources.vaccine_3021063;
             btnQLVaccine.ImageAlign = ContentAlignment.MiddleLeft;
             btnQLVaccine.Location = new Point(0, 126);
             btnQLVaccine.Name = "btnQLVaccine";
-            btnQLVaccine.Padding = new Padding(15, 0, 38, 0);
-            btnQLVaccine.Size = new Size(202, 63);
+            btnQLVaccine.Padding = new Padding(15, 0, 60, 0);
+            btnQLVaccine.Size = new Size(239, 63);
             btnQLVaccine.TabIndex = 5;
             btnQLVaccine.Text = "QL Vaccine";
             btnQLVaccine.TextAlign = ContentAlignment.MiddleRight;
@@ -460,18 +468,19 @@
             // 
             // btnQLBenhNhan
             // 
-            btnQLBenhNhan.BackColor = Color.Aquamarine;
+            btnQLBenhNhan.BackColor = Color.FromArgb(0, 237, 250);
             btnQLBenhNhan.BackgroundImageLayout = ImageLayout.Center;
             btnQLBenhNhan.Dock = DockStyle.Top;
             btnQLBenhNhan.FlatAppearance.BorderSize = 0;
             btnQLBenhNhan.FlatStyle = FlatStyle.Flat;
             btnQLBenhNhan.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnQLBenhNhan.ForeColor = Color.Black;
             btnQLBenhNhan.Image = Properties.Resources.nguoi;
             btnQLBenhNhan.ImageAlign = ContentAlignment.MiddleLeft;
             btnQLBenhNhan.Location = new Point(0, 63);
             btnQLBenhNhan.Name = "btnQLBenhNhan";
-            btnQLBenhNhan.Padding = new Padding(15, 0, 10, 0);
-            btnQLBenhNhan.Size = new Size(202, 63);
+            btnQLBenhNhan.Padding = new Padding(15, 0, 32, 0);
+            btnQLBenhNhan.Size = new Size(239, 63);
             btnQLBenhNhan.TabIndex = 4;
             btnQLBenhNhan.Text = "QL Bệnh Nhân";
             btnQLBenhNhan.TextAlign = ContentAlignment.MiddleRight;
@@ -480,87 +489,122 @@
             // 
             // btnTrangChu
             // 
-            btnTrangChu.BackColor = Color.Aquamarine;
+            btnTrangChu.BackColor = Color.FromArgb(0, 237, 250);
             btnTrangChu.BackgroundImageLayout = ImageLayout.Center;
             btnTrangChu.Dock = DockStyle.Top;
             btnTrangChu.FlatAppearance.BorderSize = 0;
             btnTrangChu.FlatStyle = FlatStyle.Flat;
             btnTrangChu.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTrangChu.ForeColor = Color.Black;
             btnTrangChu.Image = Properties.Resources.house_medical_9239309;
             btnTrangChu.ImageAlign = ContentAlignment.MiddleLeft;
             btnTrangChu.Location = new Point(0, 0);
             btnTrangChu.Name = "btnTrangChu";
-            btnTrangChu.Padding = new Padding(15, 0, 40, 0);
-            btnTrangChu.Size = new Size(202, 63);
+            btnTrangChu.Padding = new Padding(15, 0, 64, 0);
+            btnTrangChu.Size = new Size(239, 63);
             btnTrangChu.TabIndex = 2;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.TextAlign = ContentAlignment.MiddleRight;
             btnTrangChu.UseVisualStyleBackColor = false;
             btnTrangChu.Click += btnTrangChu_Click;
             // 
-            // Logo
-            // 
-            Logo.BackColor = Color.Aquamarine;
-            Logo.ErrorImage = (Image)resources.GetObject("Logo.ErrorImage");
-            Logo.Image = (Image)resources.GetObject("Logo.Image");
-            Logo.InitialImage = (Image)resources.GetObject("Logo.InitialImage");
-            Logo.Location = new Point(38, -3);
-            Logo.Name = "Logo";
-            Logo.Size = new Size(117, 107);
-            Logo.SizeMode = PictureBoxSizeMode.StretchImage;
-            Logo.TabIndex = 0;
-            Logo.TabStop = false;
-            // 
-            // pnlShow
-            // 
-            pnlShow.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlShow.BackColor = Color.White;
-            pnlShow.Location = new Point(207, 12);
-            pnlShow.Name = "pnlShow";
-            pnlShow.Size = new Size(767, 703);
-            pnlShow.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.Aquamarine;
-            panel3.Controls.Add(Logo);
-            panel3.Location = new Point(2, 2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(199, 102);
-            panel3.TabIndex = 2;
-            // 
             // txtTenHienThi
             // 
-            txtTenHienThi.BackColor = Color.Aquamarine;
+            txtTenHienThi.BackColor = Color.FromArgb(0, 237, 250);
             txtTenHienThi.BorderStyle = BorderStyle.None;
-            txtTenHienThi.ForeColor = Color.MidnightBlue;
-            txtTenHienThi.Location = new Point(14, 113);
+            txtTenHienThi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTenHienThi.ForeColor = Color.Black;
+            txtTenHienThi.Location = new Point(23, 146);
             txtTenHienThi.Name = "txtTenHienThi";
             txtTenHienThi.ReadOnly = true;
             txtTenHienThi.Size = new Size(175, 23);
             txtTenHienThi.TabIndex = 3;
             txtTenHienThi.TextAlign = HorizontalAlignment.Center;
             // 
+            // pnlShow
+            // 
+            pnlShow.BackColor = Color.White;
+            pnlShow.Dock = DockStyle.Right;
+            pnlShow.Location = new Point(234, 0);
+            pnlShow.Name = "pnlShow";
+            pnlShow.Size = new Size(1690, 1084);
+            pnlShow.TabIndex = 1;
+            // 
+            // btnThuMo
+            // 
+            btnThuMo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnThuMo.BackColor = Color.FromArgb(0, 237, 250);
+            btnThuMo.BackgroundImageLayout = ImageLayout.Center;
+            btnThuMo.FlatAppearance.BorderSize = 0;
+            btnThuMo.FlatStyle = FlatStyle.Flat;
+            btnThuMo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThuMo.ForeColor = Color.Black;
+            btnThuMo.Image = Properties.Resources.thongke;
+            btnThuMo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThuMo.Location = new Point(2, 6);
+            btnThuMo.Name = "btnThuMo";
+            btnThuMo.Padding = new Padding(15, 0, 98, 0);
+            btnThuMo.Size = new Size(236, 48);
+            btnThuMo.TabIndex = 14;
+            btnThuMo.Text = "Menu";
+            btnThuMo.TextAlign = ContentAlignment.MiddleRight;
+            btnThuMo.UseVisualStyleBackColor = false;
+            btnThuMo.Click += btnThuMo_Click;
+            // 
+            // btnMoRong
+            // 
+            btnMoRong.BackColor = Color.FromArgb(0, 237, 250);
+            btnMoRong.Enabled = false;
+            btnMoRong.Image = (Image)resources.GetObject("btnMoRong.Image");
+            btnMoRong.Location = new Point(17, 14);
+            btnMoRong.Margin = new Padding(4);
+            btnMoRong.Name = "btnMoRong";
+            btnMoRong.Size = new Size(35, 32);
+            btnMoRong.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnMoRong.TabIndex = 22;
+            btnMoRong.TabStop = false;
+            // 
+            // Sibar
+            // 
+            Sibar.Interval = 10;
+            Sibar.Tick += Sibar_Tick;
+            // 
+            // pctLogo
+            // 
+            pctLogo.Image = (Image)resources.GetObject("pctLogo.Image");
+            pctLogo.Location = new Point(45, 37);
+            pctLogo.Margin = new Padding(4);
+            pctLogo.Name = "pctLogo";
+            pctLogo.Size = new Size(133, 120);
+            pctLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctLogo.TabIndex = 23;
+            pctLogo.TabStop = false;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Aquamarine;
-            ClientSize = new Size(987, 728);
-            Controls.Add(txtTenHienThi);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
+            BackColor = Color.FromArgb(0, 237, 250);
+            ClientSize = new Size(1924, 1084);
+            ControlBox = false;
             Controls.Add(pnlShow);
+            Controls.Add(txtTenHienThi);
+            Controls.Add(btnMoRong);
+            Controls.Add(btnThuMo);
+            Controls.Add(panel1);
+            Controls.Add(pctLogo);
             Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.MidnightBlue;
             FormBorderStyle = FormBorderStyle.None;
+            KeyPreview = true;
+            MinimizeBox = false;
             Name = "frmMain";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Phòng Khám Tiêm Chủng";
             WindowState = FormWindowState.Maximized;
             FormClosing += frmMain_FormClosing;
             Load += frmMain_Load;
+            KeyDown += frmMain_KeyDown;
             panel1.ResumeLayout(false);
             panel16.ResumeLayout(false);
             panel7.ResumeLayout(false);
@@ -575,8 +619,8 @@
             panel4.ResumeLayout(false);
             panel9.ResumeLayout(false);
             panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
-            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnMoRong).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -585,8 +629,6 @@
 
         private Panel panel1;
         private Panel pnlShow;
-        private PictureBox Logo;
-        private Panel panel3;
         private Button btnTrangChu;
         private Button btnThongKe;
         private Button btnTraCuu;
@@ -605,7 +647,7 @@
         private Button button18;
         private Panel panel11;
         private Button button16;
-        private Button btnThoát;
+        private Button btnThoat;
         private Panel panel12;
         private Button button17;
         private Panel panel10;
@@ -620,5 +662,9 @@
         private Button button13;
         private Panel panel16;
         private TextBox txtTenHienThi;
+        private Button btnThuMo;
+        private PictureBox btnMoRong;
+        private System.Windows.Forms.Timer Sibar;
+        private PictureBox pctLogo;
     }
 }

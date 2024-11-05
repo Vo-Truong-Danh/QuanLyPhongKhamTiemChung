@@ -25,19 +25,25 @@ namespace GUI
             tennguoidangnhap = nd.DisplayName;
             chucvu = nd.ChucVu;
         }
+        static bool checksibarMoRong = true; 
+        private int targetWidth = 1842;
+        private int collapsedWidth = 1690;
         private void frmMain_Load(object sender, EventArgs e)
         {
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             OpenChild(new frmTrangChu());
-            txtTenHienThi.Text = tennguoidangnhap;
-            if(chucvu == 2)
+            txtTenHienThi.Text = ""+ tennguoidangnhap + "";
+            if (chucvu == 2)
             {
                 btnQLVaccine.Enabled = false;
                 btnQLTiemChung.Enabled = false;
                 btnQLNhanVien.Enabled = false;
                 btnThongKe.Enabled = false;
             }
+            pctLogo.Hide();
+            txtTenHienThi.Hide();
+            pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
 
         }
 
@@ -58,10 +64,6 @@ namespace GUI
             childfr.Show();
         }
 
-        private void btnThoát_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private bool isExiting = false;
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
@@ -97,9 +99,57 @@ namespace GUI
             OpenChild(new frmTrangChu());
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
         {
 
+            this.Close();
+        }
+        private void btnThuMo_Click(object sender, EventArgs e)
+        {
+            if (checksibarMoRong)
+            {
+                targetWidth = collapsedWidth;
+            }
+            else
+            {
+                targetWidth = 1842;
+
+                txtTenHienThi.Hide();
+                pctLogo.Hide();
+            }
+            checksibarMoRong = !checksibarMoRong;
+            Sibar.Start();
+        }
+
+
+        private void Sibar_Tick(object sender, EventArgs e)
+        {
+            if (pnlShow.Width < targetWidth)
+            {
+                pnlShow.Width += 10;
+                if (pnlShow.Width >= targetWidth)
+                {
+                    Sibar.Stop();
+                }
+            }
+            else if (pnlShow.Width > targetWidth)
+            {
+                pnlShow.Width -= 10;
+                if (pnlShow.Width <= targetWidth)
+                {
+                    Sibar.Stop();
+                    txtTenHienThi.Show();
+                    pctLogo.Show();
+                }
+            }
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

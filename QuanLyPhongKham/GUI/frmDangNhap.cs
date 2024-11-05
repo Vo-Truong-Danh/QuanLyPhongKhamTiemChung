@@ -13,6 +13,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Globalization;
+using System.IO;
 
 namespace GUI
 {
@@ -59,24 +60,30 @@ namespace GUI
             pnlTaiKhoan.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTaiKhoan.Width, pnlTaiKhoan.Height, 50, 50));
             pnlMatkhau.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlMatkhau.Width, pnlMatkhau.Height, 50, 50));
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 50, 50));
-
+            pctHU.Hide();
             timer.Interval = 4000;
         }
-
+        TaiKhoanDTO kt;
         private void btnDangNhap_Click_1(object sender, EventArgs e)
         {
             if (txtTaiKhoan.Text.Trim().Length > 0 && txtMatKhau.Text.Trim().Length > 0)
             {
-                TaiKhoanDTO kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
+                kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
                 if (kt == null)
                 {
                     lblsai.Text = "Tài khoản hoặc mật khẩu không khớp";
                     timerSaiTK.Start();
                     return;
                 }
-                frmMain frmMain = new frmMain(kt);
-                frmMain.ShowDialog();
-                this.Close();
+                pctmain.Hide();
+                txtTaiKhoan.Hide();
+                pictureBox3.Hide();
+                pnlTaiKhoan.Hide();
+                pnlMatkhau.Hide();
+                btnDangNhap.Hide();
+                label1.Hide();
+                HU.Start();
+                pctHU.Show();
             }
             if (txtTaiKhoan.Text.Trim().Length == 0)
             {
@@ -114,6 +121,28 @@ namespace GUI
         private void timerSaiTK_Tick(object sender, EventArgs e)
         {
             lblsai.Text = string.Empty;
+        }
+
+        private void frmDangNhap_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtTaiKhoan.Focused)
+                {
+                    txtMatKhau.Focus();
+                }
+                else if (txtMatKhau.Focused)
+                {
+                    btnDangNhap.PerformClick();
+                }
+            }
+        }
+
+        private void HU_Tick(object sender, EventArgs e)
+        {
+            frmMain frmMain = new frmMain(kt);
+            frmMain.ShowDialog();
+            this.Close();
         }
     }
 }
