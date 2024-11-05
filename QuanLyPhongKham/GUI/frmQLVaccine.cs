@@ -3,6 +3,7 @@ using DAL;
 using DTO;
 using System.Data;
 using System.DirectoryServices;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GUI
@@ -13,94 +14,126 @@ namespace GUI
         {
             InitializeComponent();
         }
+        private void ApplyHoverEffectToAllControls(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // Áp dụng hiệu ứng hover cho từng đối tượng
+                control.MouseEnter += (s, e) => { control.BackColor = Color.LightGray; }; // Màu xám nhạt khi hover
+                control.MouseLeave += (s, e) => { control.BackColor = Color.White; }; // Màu nền mặc định
+
+                // Nếu control là container (như Panel hoặc GroupBox), lặp lại cho các control con bên trong
+                if (control.HasChildren)
+                {
+                    ApplyHoverEffectToAllControls(control);
+                }
+            }
+        }
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+           (
+           int nLeft,
+           int nTop,
+           int nRight,
+           int rBottom,
+           int nWidthEllipse,
+           int nHeightEllipse
+           );
         bool TrangThaiBang_1 = true;
         public void LoadVaccine()
         {
-            VaccineBLL vaccineBLL = new VaccineBLL();
-            DataSet ds = vaccineBLL.LayTTVC();
-            dgvVaccine.DataSource = ds.Tables["Vaccine"];
+            //VaccineBLL vaccineBLL = new VaccineBLL();
+            //DataSet ds = vaccineBLL.LayTTVC();
+            //dgvVaccine.DataSource = ds.Tables["Vaccine"];
 
         }
 
         public void LoadLoaiVaccineChoCBO()
         {
-            LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
-            cboLoaiVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
-            cboLoaiVaccine.DisplayMember = "TenLoai";
-            cboLoaiVaccine.ValueMember = "MaLoai";
+            //LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
+            //cboLoaiVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
+            //cboLoaiVaccine.DisplayMember = "TenLoai";
+            //cboLoaiVaccine.ValueMember = "MaLoai";
         }
 
         public void LoadLoaiVaccine()
         {
-            LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
-            dgvVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
+            //LoaiVaccineBLL loaiVaccineBLL = new LoaiVaccineBLL();
+            //dgvVaccine.DataSource = loaiVaccineBLL.GetData().Tables["LoaiVaccine"];
         }
         private void bingdingVC()
         {
-            cboLoaiVaccine.DataBindings.Clear();
-            cboLoaiVaccine.DataBindings.Add("SelectedValue", dgvVaccine.DataSource, "MaLoai");
+            //cboLoaiVaccine.DataBindings.Clear();
+            //cboLoaiVaccine.DataBindings.Add("SelectedValue", dgvVaccine.DataSource, "MaLoai");
 
-            txtTenVaccine.DataBindings.Clear();
-            txtTenVaccine.DataBindings.Add("Text", dgvVaccine.DataSource, "TenVC");
+            //txtTenVaccine.DataBindings.Clear();
+            //txtTenVaccine.DataBindings.Add("Text", dgvVaccine.DataSource, "TenVC");
 
-            dtpNSX.DataBindings.Clear();
-            dtpNSX.DataBindings.Add("Value", dgvVaccine.DataSource, "NgaySX");
+            //dtpNSX.DataBindings.Clear();
+            //dtpNSX.DataBindings.Add("Value", dgvVaccine.DataSource, "NgaySX");
 
-            dtpHSD.DataBindings.Clear();
-            dtpHSD.DataBindings.Add("Value", dgvVaccine.DataSource, "HanSuDung");
+            //dtpHSD.DataBindings.Clear();
+            //dtpHSD.DataBindings.Add("Value", dgvVaccine.DataSource, "HanSuDung");
 
-            txtGia.DataBindings.Clear();
-            txtGia.DataBindings.Add("Text", dgvVaccine.DataSource, "Gia");
+            //txtGia.DataBindings.Clear();
+            //txtGia.DataBindings.Add("Text", dgvVaccine.DataSource, "Gia");
         }
         private void bingdungLVC()
         {
-            txtTenLoaiVC.DataBindings.Clear();
-            txtTenLoaiVC.DataBindings.Add("Text", dgvVaccine.DataSource, "TenLoai");
+            //txtTenLoaiVC.DataBindings.Clear();
+            //txtTenLoaiVC.DataBindings.Add("Text", dgvVaccine.DataSource, "TenLoai");
         }
+
+        LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
             dgvNhapVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvNhapVaccine.AutoResizeColumns();
             dgvVaccine.AutoResizeColumns();
+            cboLoaiVC.DataSource = loaivcbll.GetData();
+            cboLoaiVC.DisplayMember = "TenLoai";
+            cboLoaiVC.ValueMember = "MaLoai";
+            pnlTimKiem.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTimKiem.Width, pnlTimKiem.Height, 50, 50));
+            pnlLoc.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLoc.Width, pnlLoc.Height, 50, 50));
         }
 
         private void btnLoadTTVC_Click(object sender, EventArgs e)
         {
-            grbTimKiem.Enabled = true;
-            LoadVaccine();
-            LoadLoaiVaccineChoCBO();
-            bingdingVC();
-            grbLoaiVC.Enabled = false;
-            grbTTVC.Enabled = true;
-            TrangThaiBang_1 = true;
+            //grbTimKiem.Enabled = true;
+            //LoadVaccine();
+            //LoadLoaiVaccineChoCBO();
+            //bingdingVC();
+            //grbLoaiVC.Enabled = false;
+            //grbTTVC.Enabled = true;
+            //TrangThaiBang_1 = true;
         }
 
         private void btnLoadTTLoaiVaccine_Click(object sender, EventArgs e)
         {
-            grbTimKiem.Enabled = true;
-            LoadLoaiVaccine();
-            bingdungLVC();
-            grbLoaiVC.Enabled = true;
-            grbTTVC.Enabled = false;
-            TrangThaiBang_1 = false;
+            //grbTimKiem.Enabled = true;
+            //LoadLoaiVaccine();
+            //bingdungLVC();
+            //grbLoaiVC.Enabled = true;
+            //grbTTVC.Enabled = false;
+            //TrangThaiBang_1 = false;
         }
 
         private void btnThemTTVC_Click(object sender, EventArgs e)
         {
-            string maloai = cboLoaiVaccine.SelectedValue.ToString();
-            string tenvc = txtTenVaccine.Text;
-            string ngaysx = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
-            string hsd = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
-            int gia = int.Parse(txtGia.Text);
-            VaccineDTO vc = new VaccineDTO(maloai, tenvc, ngaysx, hsd, gia);
-            VaccineBLL vaccineBLL = new VaccineBLL();
-            bool kt = vaccineBLL.Insert(vc);
-            if (kt)
-                MessageBox.Show("Thêm thành công Vaccine mới");
-            else
-                MessageBox.Show("Thêm Vaccine mới thất bại");
-            LoadVaccine();
+            //string maloai = cboLoaiVaccine.SelectedValue.ToString();
+            //string tenvc = txtTenVaccine.Text;
+            //string ngaysx = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
+            //string hsd = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
+            //int gia = int.Parse(txtGia.Text);
+            //VaccineDTO vc = new VaccineDTO(maloai, tenvc, ngaysx, hsd, gia);
+            //VaccineBLL vaccineBLL = new VaccineBLL();
+            //bool kt = vaccineBLL.Insert(vc);
+            //if (kt)
+            //    MessageBox.Show("Thêm thành công Vaccine mới");
+            //else
+            //    MessageBox.Show("Thêm Vaccine mới thất bại");
+            //LoadVaccine();
         }
 
         private void btnXoaTTVC_Click(object sender, EventArgs e)
@@ -137,41 +170,41 @@ namespace GUI
 
         private void btnSuaTTVC_Click(object sender, EventArgs e)
         {
-            if (dgvVaccine.SelectedRows.Count > 0)
-            {
-                string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
-                string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-                string tenVC = txtTenVaccine.Text;
-                string ngaySX = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
-                string hanSuDung = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
-                int gia = int.Parse(txtGia.Text);
+        //    if (dgvVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+        //        string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+        //        string tenVC = txtTenVaccine.Text;
+        //        string ngaySX = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
+        //        string hanSuDung = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
+        //        int gia = int.Parse(txtGia.Text);
 
-                VaccineDTO vcDTO = new VaccineDTO(maVC, maLoai, tenVC, ngaySX, hanSuDung, gia);
+        //        VaccineDTO vcDTO = new VaccineDTO(maVC, maLoai, tenVC, ngaySX, hanSuDung, gia);
 
 
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenVC + " này không?",
-                                                     "Xác nhận sửa",
-                                                     MessageBoxButtons.YesNo);
-                if (t == DialogResult.Yes)
-                {
-                    VaccineBLL vaccineBLL = new VaccineBLL();
-                    bool kt = vaccineBLL.Update(vcDTO);
+        //        var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenVC + " này không?",
+        //                                             "Xác nhận sửa",
+        //                                             MessageBoxButtons.YesNo);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            VaccineBLL vaccineBLL = new VaccineBLL();
+        //            bool kt = vaccineBLL.Update(vcDTO);
 
-                    if (kt)
-                    {
-                        MessageBox.Show("Sửa thành công.");
-                        LoadVaccine();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi sửa " + tenVC + ".");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Vaccine để sửa.");
-            }
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Sửa thành công.");
+        //                LoadVaccine();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi sửa " + tenVC + ".");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một Vaccine để sửa.");
+        //    }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -204,14 +237,14 @@ namespace GUI
 
         private void btnThemLVC_Click(object sender, EventArgs e)
         {
-            string tenlvc = txtTenLoaiVC.Text;
-            LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
-            bool kt = lvaccineBLL.Insert(tenlvc);
-            if (kt)
-                MessageBox.Show("Thêm thành công Loại Vaccine mới " + tenlvc + "");
-            else
-                MessageBox.Show("Thêm Loại " + tenlvc + " mới thất bại");
-            LoadLoaiVaccine();
+            //string tenlvc = txtTenLoaiVC.Text;
+            //LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
+            //bool kt = lvaccineBLL.Insert(tenlvc);
+            //if (kt)
+            //    MessageBox.Show("Thêm thành công Loại Vaccine mới " + tenlvc + "");
+            //else
+            //    MessageBox.Show("Thêm Loại " + tenlvc + " mới thất bại");
+            //LoadLoaiVaccine();
         }
 
         private void btnXoaLoaiVC_Click(object sender, EventArgs e)
@@ -248,37 +281,37 @@ namespace GUI
 
         private void btnSuaLVC_Click(object sender, EventArgs e)
         {
-            if (dgvVaccine.SelectedRows.Count > 0)
-            {
-                string malVC = dgvVaccine.SelectedRows[0].Cells["MaLoai"].Value.ToString();
-                string tenlVC = txtTenLoaiVC.Text;
+            //if (dgvVaccine.SelectedRows.Count > 0)
+            //{
+            //    string malVC = dgvVaccine.SelectedRows[0].Cells["MaLoai"].Value.ToString();
+            //    string tenlVC = txtTenLoaiVC.Text;
 
-                LoaiVaccineDTO lvcDTO = new LoaiVaccineDTO(malVC, tenlVC);
+            //    LoaiVaccineDTO lvcDTO = new LoaiVaccineDTO(malVC, tenlVC);
 
 
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa Loại " + tenlVC + " này không?",
-                                                     "Xác nhận sửa",
-                                                     MessageBoxButtons.YesNo);
-                if (t == DialogResult.Yes)
-                {
-                    LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
-                    bool kt = lvaccineBLL.Update(lvcDTO);
+            //    var t = MessageBox.Show("Bạn có chắc chắn muốn sửa Loại " + tenlVC + " này không?",
+            //                                         "Xác nhận sửa",
+            //                                         MessageBoxButtons.YesNo);
+            //    if (t == DialogResult.Yes)
+            //    {
+            //        LoaiVaccineBLL lvaccineBLL = new LoaiVaccineBLL();
+            //        bool kt = lvaccineBLL.Update(lvcDTO);
 
-                    if (kt)
-                    {
-                        MessageBox.Show("Sửa thành công.");
-                        LoadLoaiVaccine();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi sửa Loại " + tenlVC + ".");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Loại Vaccine để sửa.");
-            }
+            //        if (kt)
+            //        {
+            //            MessageBox.Show("Sửa thành công.");
+            //            LoadLoaiVaccine();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Lỗi khi sửa Loại " + tenlVC + ".");
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Vui lòng chọn một Loại Vaccine để sửa.");
+            //}
         }
 
         private void LoadNhaCungCap()

@@ -12,7 +12,7 @@ namespace BLL
     public class LoaiVaccineBLL
     {
         LoaiVaccineDAL loaiVaccineDAL = new LoaiVaccineDAL();
-        public DataSet GetData()
+        public DataTable GetData()
         {
             return loaiVaccineDAL.GetData();
         }
