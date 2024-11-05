@@ -11,6 +11,8 @@ using BLL;
 using DTO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
+using System.Globalization;
 
 namespace GUI
 {
@@ -28,18 +30,6 @@ namespace GUI
             frmDangKy.ShowDialog();
         }
 
-        private void chbShowpass_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chbShowpass.Checked)
-            {
-                txtMatKhau.PasswordChar = '\0';
-            }
-            else
-            {
-                txtMatKhau.PasswordChar = '*';
-            }
-        }
-
         private void btnThoat_Click(object sender, EventArgs e)
         {
             DialogResult t = MessageBox.Show("Bạn có chắc muốn thoát", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -48,19 +38,29 @@ namespace GUI
                 this.Close();
             }
         }
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+           (
+           int nLeft,
+           int nTop,
+           int nRight,
+           int rBottom,
+           int nWidthEllipse,
+           int nHeightEllipse
+           );
 
+        private void TimerAcctive()
+        {
+            timer.Start();
+        }
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
-            int cornerRadius = 20; // Bán kính bo góc
-            var path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(new Rectangle(0, 0, cornerRadius, cornerRadius), 180, 90);
-            path.AddArc(new Rectangle(this.Width - cornerRadius, 0, cornerRadius, cornerRadius), 270, 90);
-            path.AddArc(new Rectangle(this.Width - cornerRadius, this.Height - cornerRadius, cornerRadius, cornerRadius), 0, 90);
-            path.AddArc(new Rectangle(0, this.Height - cornerRadius, cornerRadius, cornerRadius), 90, 90);
-            path.CloseFigure();
+            btnDangNhap.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnDangNhap.Width, btnDangNhap.Height, 50, 50));
+            pnlTaiKhoan.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTaiKhoan.Width, pnlTaiKhoan.Height, 50, 50));
+            pnlMatkhau.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlMatkhau.Width, pnlMatkhau.Height, 50, 50));
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 50, 50));
 
-            this.Region = new Region(path);
+            timer.Interval = 4000;
         }
 
         private void btnDangNhap_Click_1(object sender, EventArgs e)
@@ -70,21 +70,50 @@ namespace GUI
                 TaiKhoanDTO kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
                 if (kt == null)
                 {
-                    lblLoiMatKhau.Text = "Tài khoản hoặc mật khẩu không khớp";
+                    lblsai.Text = "Tài khoản hoặc mật khẩu không khớp";
+                    timerSaiTK.Start();
                     return;
                 }
                 frmMain frmMain = new frmMain(kt);
                 frmMain.ShowDialog();
                 this.Close();
             }
-                if (txtTaiKhoan.Text.Trim().Length == 0)
-                {
-                    labLoiTaiKhoan.Text = "Tài khoản không được để trống";
+            if (txtTaiKhoan.Text.Trim().Length == 0)
+            {
+                labLoiTaiKhoan.Text = "Tài khoản không được để trống";
+                TimerAcctive();
             }
             if (txtMatKhau.Text.Trim().Length == 0)
             {
                 lblLoiMatKhau.Text = "Mật khẩu không được để trống";
+
             }
+        }
+
+        private void btnAnpass_Click(object sender, EventArgs e)
+        {
+            btnAnpass.Hide();
+            btnHienpass.Show();
+            txtMatKhau.PasswordChar = '\0';
+        }
+
+        private void btnHienpass_Click(object sender, EventArgs e)
+        {
+            btnHienpass.Hide();
+            btnAnpass.Show();
+            txtMatKhau.PasswordChar = '*';
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            labLoiTaiKhoan.Text = string.Empty;
+
+            lblLoiMatKhau.Text = string.Empty;
+        }
+
+        private void timerSaiTK_Tick(object sender, EventArgs e)
+        {
+            lblsai.Text = string.Empty;
         }
     }
 }
