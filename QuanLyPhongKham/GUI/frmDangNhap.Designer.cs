@@ -254,7 +254,7 @@
             // 
             // HU
             // 
-            HU.Interval = 3000;
+            HU.Interval = 3200;
             HU.Tick += HU_Tick;
             // 
             // frmDangNhap

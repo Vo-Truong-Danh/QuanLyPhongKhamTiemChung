@@ -67,6 +67,8 @@ INSERT INTO BENHNHAN(MaBN, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai) VALUE
 ('BN023', N'Đinh Văn Long', '1981-07-14', N'Nam', N'12/34/56/78 Nguyễn Văn Lượng, Quận Gò Vấp, TP.HCM', '0901234572'),
 ('BN024', N'Mai Thị Mỹ', '1980-04-01', N'Nữ', N'567/89/101/123 Lê Đức Thọ, Quận Gò Vấp, TP.HCM', '0987654310');
 
+INSERT INTO NHANVIEN(MaNV, HoTen,Pass, Quyen) VALUES 
+('admin',N'Lê Bá Chiến','1',0);
 INSERT INTO NHANVIEN(MaNV, HoTen, GioiTinh, ChucVu, DiaChi, SoDienThoai, Pass, Quyen) VALUES 
 ('NV001', N'Trần Thị Thu', N'Nữ', N'Bác sĩ', N'15/20 Lê Lai, Quận 1, TP.HCM', '0987654322', 'pass001', 1),
 ('NV002', N'Nguyễn Văn Nam', N'Nam', N'Y tá', N'456/78 Nguyễn Thị Minh Khai, Quận 3, TP.HCM', '0912345684', 'pass002', 0),

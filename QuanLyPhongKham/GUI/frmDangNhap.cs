@@ -81,6 +81,7 @@ namespace GUI
                 pnlTaiKhoan.Hide();
                 pnlMatkhau.Hide();
                 btnDangNhap.Hide();
+                btnThoat.Hide();
                 label1.Hide();
                 HU.Start();
                 pctHU.Show();
@@ -140,6 +141,7 @@ namespace GUI
 
         private void HU_Tick(object sender, EventArgs e)
         {
+            HU.Stop();
             frmMain frmMain = new frmMain(kt);
             frmMain.ShowDialog();
             this.Close();
