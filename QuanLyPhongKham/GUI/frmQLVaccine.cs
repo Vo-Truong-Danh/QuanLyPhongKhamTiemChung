@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using DTO;
+using Microsoft.VisualBasic;
 using System.Data;
 using System.DirectoryServices;
 using System.Runtime.InteropServices;
@@ -13,21 +14,6 @@ namespace GUI
         public frmQLVaccine()
         {
             InitializeComponent();
-        }
-        private void ApplyHoverEffectToAllControls(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                // Áp dụng hiệu ứng hover cho từng đối tượng
-                control.MouseEnter += (s, e) => { control.BackColor = Color.LightGray; }; // Màu xám nhạt khi hover
-                control.MouseLeave += (s, e) => { control.BackColor = Color.White; }; // Màu nền mặc định
-
-                // Nếu control là container (như Panel hoặc GroupBox), lặp lại cho các control con bên trong
-                if (control.HasChildren)
-                {
-                    ApplyHoverEffectToAllControls(control);
-                }
-            }
         }
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -83,19 +69,128 @@ namespace GUI
             //txtTenLoaiVC.DataBindings.Clear();
             //txtTenLoaiVC.DataBindings.Add("Text", dgvVaccine.DataSource, "TenLoai");
         }
-
+        VaccineBLL vaccineBLL = new VaccineBLL();
         LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
+        private void CreateDTGV()
+        {
+            DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
+            {
+                Name = "STT",
+                HeaderText = "STT"
+            };
+            DataGridViewTextBoxColumn mavc = new DataGridViewTextBoxColumn
+            {
+                Name = "MaVC",
+                HeaderText = "Mã Vaccine"
+            };
+            DataGridViewTextBoxColumn tenvc = new DataGridViewTextBoxColumn
+            {
+                Name = "TenVC",
+                HeaderText = "Tên Vaccine"
+            };
+            DataGridViewTextBoxColumn nsx = new DataGridViewTextBoxColumn
+            {
+                Name = "NgaySX",
+                HeaderText = "Ngày Sản Xuất"
+            };
+            DataGridViewTextBoxColumn hsd = new DataGridViewTextBoxColumn
+            {
+                Name = "HanSuDung",
+                HeaderText = "Hạn Sử Dụng"
+            };
+            DataGridViewTextBoxColumn soluongton = new DataGridViewTextBoxColumn
+            {
+                Name = "SoLuongTon",
+                HeaderText = "Số Lượng Tồn"
+            };
+            DataGridViewTextBoxColumn gia = new DataGridViewTextBoxColumn
+            {
+                Name = "Gia",
+                HeaderText = "Giá"
+            };
+            DataGridViewTextBoxColumn xuatxu = new DataGridViewTextBoxColumn
+            {
+                Name = "XuatXu",
+                HeaderText = "Xuất Xứ"
+            };
+            DataGridViewTextBoxColumn loai = new DataGridViewTextBoxColumn
+            {
+                Name = "Loai",
+                HeaderText = "Loại Vaccine"
+            };
+
+            //Thêm vào dtg
+            dgvVaccine.Columns.Add(stt);
+            dgvVaccine.Columns.Add(mavc);
+            dgvVaccine.Columns.Add(tenvc);
+            dgvVaccine.Columns.Add(nsx);
+            dgvVaccine.Columns.Add(hsd);
+            dgvVaccine.Columns.Add(soluongton);
+            dgvVaccine.Columns.Add(gia);
+            dgvVaccine.Columns.Add(xuatxu);
+            dgvVaccine.Columns.Add(loai);
+            int tmp = 1;
+            foreach (DataRow row in vaccineBLL.LayTTVC().Rows)
+            {
+                DataRow[] dr = loaivcbll.GetData().Select("MaLoai = '" + row["MaLoai"] + "'");
+                // Lấy giá trị từ DataRow
+                string tenLoai = dr[0]["TenLoai"].ToString();
+                string maLoai = row["MaLoai"].ToString();
+                string ngaysx = Convert.ToDateTime(row["NgaySX"]).ToString("dd/MM/yyyy");
+
+                dgvVaccine.Rows.Add(tmp++, row["MaVC"], row["TenVC"], ngaysx, Convert.ToDateTime(row["HanSuDung"]).ToString("dd/MM/yyyy"), row["SoLuongTon"], row["Gia"], row["XuatXu"], tenLoai);
+            }
+            CustomSizeCol();
+        }
+        private void CustomSizeCol()
+        {
+
+            dgvVaccine.Columns[0].Width = 60;
+            dgvVaccine.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvVaccine.Columns[1].Width = 150;
+            dgvVaccine.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvVaccine.Columns[2].Width = 220;
+
+            dgvVaccine.Columns[3].Width = 170;
+            dgvVaccine.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvVaccine.Columns[4].Width = 170;
+            dgvVaccine.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvVaccine.Columns[5].Width = 180;
+            dgvVaccine.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvVaccine.Columns[6].Width = 160;
+            dgvVaccine.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+            dgvVaccine.Columns[7].Width = 150;
+
+            dgvVaccine.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
+            dgvVaccine.ColumnHeadersHeight = 60;
             dgvNhapVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvVaccine.RowTemplate.Height = 60;
             dgvNhapVaccine.AutoResizeColumns();
-            dgvVaccine.AutoResizeColumns();
+            //dgvVaccine.AutoResizeColumns();
             cboLoaiVC.DataSource = loaivcbll.GetData();
             cboLoaiVC.DisplayMember = "TenLoai";
             cboLoaiVC.ValueMember = "MaLoai";
             pnlTimKiem.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTimKiem.Width, pnlTimKiem.Height, 50, 50));
             pnlLoc.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLoc.Width, pnlLoc.Height, 50, 50));
+            CreateDTGV();
         }
 
         private void btnLoadTTVC_Click(object sender, EventArgs e)
@@ -107,16 +202,6 @@ namespace GUI
             //grbLoaiVC.Enabled = false;
             //grbTTVC.Enabled = true;
             //TrangThaiBang_1 = true;
-        }
-
-        private void btnLoadTTLoaiVaccine_Click(object sender, EventArgs e)
-        {
-            //grbTimKiem.Enabled = true;
-            //LoadLoaiVaccine();
-            //bingdungLVC();
-            //grbLoaiVC.Enabled = true;
-            //grbTTVC.Enabled = false;
-            //TrangThaiBang_1 = false;
         }
 
         private void btnThemTTVC_Click(object sender, EventArgs e)
@@ -170,41 +255,41 @@ namespace GUI
 
         private void btnSuaTTVC_Click(object sender, EventArgs e)
         {
-        //    if (dgvVaccine.SelectedRows.Count > 0)
-        //    {
-        //        string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
-        //        string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-        //        string tenVC = txtTenVaccine.Text;
-        //        string ngaySX = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
-        //        string hanSuDung = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
-        //        int gia = int.Parse(txtGia.Text);
+            //    if (dgvVaccine.SelectedRows.Count > 0)
+            //    {
+            //        string maVC = dgvVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+            //        string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+            //        string tenVC = txtTenVaccine.Text;
+            //        string ngaySX = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
+            //        string hanSuDung = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
+            //        int gia = int.Parse(txtGia.Text);
 
-        //        VaccineDTO vcDTO = new VaccineDTO(maVC, maLoai, tenVC, ngaySX, hanSuDung, gia);
+            //        VaccineDTO vcDTO = new VaccineDTO(maVC, maLoai, tenVC, ngaySX, hanSuDung, gia);
 
 
-        //        var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenVC + " này không?",
-        //                                             "Xác nhận sửa",
-        //                                             MessageBoxButtons.YesNo);
-        //        if (t == DialogResult.Yes)
-        //        {
-        //            VaccineBLL vaccineBLL = new VaccineBLL();
-        //            bool kt = vaccineBLL.Update(vcDTO);
+            //        var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenVC + " này không?",
+            //                                             "Xác nhận sửa",
+            //                                             MessageBoxButtons.YesNo);
+            //        if (t == DialogResult.Yes)
+            //        {
+            //            VaccineBLL vaccineBLL = new VaccineBLL();
+            //            bool kt = vaccineBLL.Update(vcDTO);
 
-        //            if (kt)
-        //            {
-        //                MessageBox.Show("Sửa thành công.");
-        //                LoadVaccine();
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Lỗi khi sửa " + tenVC + ".");
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Vui lòng chọn một Vaccine để sửa.");
-        //    }
+            //            if (kt)
+            //            {
+            //                MessageBox.Show("Sửa thành công.");
+            //                LoadVaccine();
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("Lỗi khi sửa " + tenVC + ".");
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Vui lòng chọn một Vaccine để sửa.");
+            //    }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -316,27 +401,27 @@ namespace GUI
 
         private void LoadNhaCungCap()
         {
-            NhaCungCapBLL ncc = new NhaCungCapBLL();
-            dgvNhapVaccine.DataSource = ncc.GetData().Tables["NhaCungCap"];
+            //    NhaCungCapBLL ncc = new NhaCungCapBLL();
+            //    dgvNhapVaccine.DataSource = ncc.GetData().Tables["NhaCungCap"];
         }
         private void bindingNCC()
         {
-            txtTenNCCVC.DataBindings.Clear();
-            txtTenNCCVC.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "TenNCC");
-            txtDiaChi.DataBindings.Clear();
-            txtDiaChi.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "DiaChi");
-            txtSoDienThoai.DataBindings.Clear();
-            txtSoDienThoai.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "SoDienThoai");
+            //txtTenNCCVC.DataBindings.Clear();
+            //txtTenNCCVC.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "TenNCC");
+            //txtDiaChi.DataBindings.Clear();
+            //txtDiaChi.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "DiaChi");
+            //txtSoDienThoai.DataBindings.Clear();
+            //txtSoDienThoai.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "SoDienThoai");
 
         }
 
         private void btnLoadNCC_Click(object sender, EventArgs e)
         {
-            grbChiTietNhapVC.Enabled = false;
-            grbHDN.Enabled = false;
-            LoadNhaCungCap();
-            grbNhaCC.Enabled = true;
-            bindingNCC();
+            //grbChiTietNhapVC.Enabled = false;
+            //grbHDN.Enabled = false;
+            //LoadNhaCungCap();
+            //grbNhaCC.Enabled = true;
+            //bindingNCC();
         }
 
         private void LoadPhieuNhap()
@@ -377,10 +462,10 @@ namespace GUI
         }
         public void VaccineNhapChoCBO()
         {
-            VaccineBLL ncc = new VaccineBLL();
-            cboVaccineNhapCTHD.DataSource = ncc.LayTTVC().Tables["Vaccine"];
-            cboVaccineNhapCTHD.DisplayMember = "TenVC";
-            cboVaccineNhapCTHD.ValueMember = "MaVC";
+            //VaccineBLL ncc = new VaccineBLL();
+            //cboVaccineNhapCTHD.DataSource = ncc.LayTTVC().Tables["Vaccine"];
+            //cboVaccineNhapCTHD.DisplayMember = "TenVC";
+            //cboVaccineNhapCTHD.ValueMember = "MaVC";
         }
         public void PhieuNhapChoCBO()
         {
@@ -645,9 +730,9 @@ namespace GUI
                 string soluong = txtSoLuongNhap.Text;
                 string dongia = txtDonGiaNhap.Text;
 
-                ChiTietPhieuNhapDTO tmp = new ChiTietPhieuNhapDTO(mapn,mavc,soluong,dongia);
+                ChiTietPhieuNhapDTO tmp = new ChiTietPhieuNhapDTO(mapn, mavc, soluong, dongia);
 
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa "+tenvc+" trong hoá đơn nhập " + mapn + " này không?",
+                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenvc + " trong hoá đơn nhập " + mapn + " này không?",
                                                      "Xác nhận sửa",
                                                      MessageBoxButtons.YesNo);
                 if (t == DialogResult.Yes)
@@ -657,7 +742,7 @@ namespace GUI
 
                     if (kt)
                     {
-                        MessageBox.Show("Sửa thành công  "+tenvc+" trong hoá đơn nhập " + mapn + " .");
+                        MessageBox.Show("Sửa thành công  " + tenvc + " trong hoá đơn nhập " + mapn + " .");
                         LoadChiTietPhieuNhap();
                     }
                     else
@@ -670,6 +755,13 @@ namespace GUI
             {
                 MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá đơn để sửa.");
             }
+        }
+
+        private void btnThemVC_Click(object sender, EventArgs e)
+        {
+            frm_overlay frm = new frm_overlay(0);
+            
+            frm.ShowDialog();
         }
     }
 }

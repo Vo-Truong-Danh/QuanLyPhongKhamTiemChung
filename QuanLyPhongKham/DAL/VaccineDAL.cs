@@ -14,22 +14,22 @@ namespace DAL
         DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
-
+        DataTable dt;
         public VaccineDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
             adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-        }
-
-        public DataSet LayTTVC()
-        {
             conn.Open();
             string truyvansql = "select * from Vaccine";
             adap = new SqlDataAdapter(truyvansql, conn);
             adap.Fill(ds, "Vaccine");
+            adap.Fill(dt = new DataTable());
             conn.Close();
-            return ds;
+        }
+
+        public DataTable LayTTVC()
+        {
+            return dt;
         }
         public bool Insert(VaccineDTO vcDTO)
         {

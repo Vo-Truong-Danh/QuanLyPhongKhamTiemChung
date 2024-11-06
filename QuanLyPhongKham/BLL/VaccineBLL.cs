@@ -14,7 +14,7 @@ namespace BLL
     {
 
         VaccineDAL vcbll = new VaccineDAL();
-        public DataSet LayTTVC()
+        public DataTable LayTTVC()
         {
             return vcbll.LayTTVC();
         }
