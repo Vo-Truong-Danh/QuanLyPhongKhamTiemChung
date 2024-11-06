@@ -93,48 +93,184 @@ INSERT INTO NHACUNGCAP(MaNCC, TenNCC, DiaChi, SoDienThoai) VALUES
 ('NCC008', N'Công ty Cổ phần Pymepharco', N'Đường 19/5, Q. Bình Thạnh, TP. HCM', '0283840111'),
 ('NCC009', N'Công ty Cổ phần Dược phẩm Domesco', N'Cộng Hòa, Q. Tân Bình, TP. HCM', '0283842101'),
 ('NCC010', N'Công ty Cổ phần SPM', N'Lê Hồng Phong, Q. 5, TP. HCM', '0283925111');
-
+-- Chèn dữ liệu vào bảng LOAIVACCINE
 INSERT INTO LOAIVACCINE(MaLoai, TenLoai, SoMui) VALUES
 ('LV001', N'Vacxin Viêm gan B', 3), 
-('LV002', N'Vacxin Bạch hầu', 5),    
-('LV003', N'Vacxin Uốn ván', 5),   
-('LV004', N'Vacxin Ho gà', 4),       
-('LV005', N'Vacxin Viêm não Nhật Bản', 3), 
-('LV006', N'Vacxin Rotavirus', 3),   
-('LV007', N'Vacxin Thủy đậu', 2),    
-('LV008', N'Vacxin Sởi - Quai bị - Rubella', 2),
-('LV009', N'Vacxin Viêm phổi', 3), 
-('LV010', N'Vacxin Cúm', 1);    
+('LV002', N'Vacxin Bạch hầu-Ho gà-Uốn ván', 5),    
+('LV003', N'Vacxin Sởi-Quai bị-Rubella', 2),   
+('LV004', N'Vacxin Viêm não Nhật Bản', 3),       
+('LV005', N'Vacxin Rotavirus', 2), 
+('LV006', N'Vacxin Thủy đậu', 2),   
+('LV007', N'Vacxin Viêm phổi', 4),    
+('LV008', N'Vacxin Cúm', 1),
+('LV009', N'Vacxin HPV', 3), 
+('LV010', N'Vacxin Phòng dại', 5);    
 
--- Chèn dữ liệu vào bảng VACCINE với tên vaccine đã được cập nhật
+-- Chèn dữ liệu vào bảng VACCINE
 INSERT INTO VACCINE(MaVC, MaLoai, TenVC, NgaySX, HanSuDung, Gia, XuatXu) VALUES
-('VC001', 'LV001', N'Vacxin Sởi - M-M-R II', '2022-02-01', '2025-02-01', 180000, N'Mỹ'),
-('VC002', 'LV002', N'Vacxin Viêm gan B - Engerix-B', '2022-03-15', '2024-03-15', 120000, N'Bỉ'),
-('VC003', 'LV003', N'Vacxin Bạch hầu - Vaxine', '2022-04-01', '2025-04-01', 150000, N'Mỹ'),
-('VC004', 'LV004', N'Vacxin Uốn ván - Tetanus', '2022-05-10', '2024-05-10', 80000, N'Pháp'),
-('VC005', 'LV005', N'Vacxin Ho gà - Infanrix', '2022-06-22', '2025-06-22', 200000, N'Anh'),
-('VC006', 'LV001', N'Vacxin Sởi - Priorix', '2022-07-15', '2024-07-15', 160000, N'Bỉ'),
-('VC007', 'LV002', N'Vacxin Viêm gan B - Hepavax-Gene', '2022-08-01', '2025-08-01', 130000, N'Hàn Quốc'),
-('VC008', 'LV003', N'Vacxin Bạch hầu - DTPa', '2022-09-10', '2024-09-10', 100000, N'Mỹ'),
-('VC009', 'LV004', N'Vacxin Uốn ván - Adacel', '2022-10-22', '2025-10-22', 90000, N'Australia'),
-('VC010', 'LV005', N'Vacxin Ho gà - Boostrix', '2022-11-15', '2024-11-15', 180000, N'Anh'),
-('VC011', 'LV006', N'Vacxin Viêm não Nhật Bản - JE-VAX', '2022-12-01', '2025-12-01', 220000, N'Mỹ'),
-('VC012', 'LV007', N'Vacxin Rotavirus - Rotarix', '2023-01-10', '2024-01-10', 170000, N'Bỉ'),
-('VC013', 'LV008', N'Vacxin Thủy đậu - Varilrix', '2023-02-22', '2025-02-22', 190000, N'Nhật Bản'),
-('VC014', 'LV009', N'Vacxin Sởi - Quai bị - Rubella - MMR', '2023-03-15', '2024-03-15', 250000, N'Mỹ'),
-('VC015', 'LV010', N'Vacxin Viêm phổi - Prevenar 13', '2023-04-01', '2025-04-01', 280000, N'Hà Lan'),
-('VC016', 'LV006', N'Vacxin Viêm não Nhật Bản - Ixiaro', '2023-05-10', '2024-05-10', 230000, N'Mỹ'),
-('VC017', 'LV007', N'Vacxin Rotavirus - Rotateq', '2023-06-22', '2025-06-22', 160000, N'Mỹ'),
-('VC018', 'LV008', N'Vacxin Thủy đậu - Varivax', '2023-07-15', '2024-07-15', 180000, N'Nhật Bản'),
-('VC019', 'LV009', N'Vacxin Sởi - Quai bị - Rubella - Priorix-Tetra', '2023-08-01', '2025-08-01', 260000, N'Bỉ'),
-('VC020', 'LV010', N'Vacxin Viêm phổi - Synflorix', '2023-09-10', '2024-09-10', 270000, N'Anh'),
-('VC021', 'LV006', N'Vacxin Viêm não Nhật Bản - Encepur', '2023-10-22', '2025-10-22', 240000, N'Đức'),
-('VC022', 'LV007', N'Vacxin Rotavirus - RotaTeq', '2023-11-15', '2024-11-15', 170000, N'Mỹ'),
-('VC023', 'LV008', N'Vacxin Thủy đậu - Varilrix', '2023-12-01', '2025-12-01', 190000, N'Nhật Bản'),
-('VC024', 'LV009', N'Vacxin Sởi - Quai bị - Rubella - ProQuad', '2024-01-10', '2025-01-10', 270000, N'Mỹ'),
-('VC025', 'LV010', N'Vacxin Viêm phổi - Vaxneumo', '2024-02-22', '2025-02-22', 290000, N'Nhật Bản');
+('VC001', 'LV001', N'Engerix-B', '2022-02-01', '2025-02-01', 180000, N'Bỉ'),
+('VC002', 'LV001', N'Hepavax-Gene', '2022-03-15', '2024-03-15', 120000, N'Hàn Quốc'),
+('VC003', 'LV002', N'Infanrix-IPV', '2022-04-01', '2025-04-01', 150000, N'Mỹ'),
+('VC004', 'LV002', N'Pentaxim', '2022-05-10', '2024-05-10', 80000, N'Pháp'),
+('VC005', 'LV002', N'Adacel', '2022-06-22', '2025-06-22', 200000, N'Mỹ'),
+('VC006', 'LV003', N'M-M-R II', '2022-07-15', '2024-07-15', 160000, N'Mỹ'),
+('VC007', 'LV003', N'Priorix', '2022-08-01', '2025-08-01', 130000, N'Bỉ'),
+('VC008', 'LV004', N'JE-VAX', '2022-09-10', '2024-09-10', 100000, N'Nhật Bản'),
+('VC009', 'LV004', N'Ixiaro', '2022-10-22', '2025-10-22', 90000, N'Áo'),
+('VC010', 'LV004', N'Encepur', '2022-11-15', '2024-11-15', 180000, N'Đức'),
+('VC011', 'LV005', N'Rotarix', '2022-12-01', '2025-12-01', 220000, N'Bỉ'),
+('VC012', 'LV005', N'RotaTeq', '2023-01-10', '2024-01-10', 170000, N'Mỹ'),
+('VC013', 'LV006', N'Varilrix', '2023-02-22', '2025-02-22', 190000, N'Bỉ'),
+('VC014', 'LV006', N'Varivax', '2023-03-15', '2024-03-15', 250000, N'Mỹ'),
+('VC015', 'LV007', N'Prevenar 13', '2023-04-01', '2025-04-01', 280000, N'Mỹ'),
+('VC016', 'LV007', N'Synflorix', '2023-05-10', '2024-05-10', 230000, N'Bỉ'),
+('VC017', 'LV008', N'Influvac', '2023-06-22', '2025-06-22', 160000, N'Hà Lan'),
+('VC018', 'LV008', N'Vaxigrip', '2023-07-15', '2024-07-15', 180000, N'Pháp'),
+('VC019', 'LV009', N'Gardasil', '2023-08-01', '2025-08-01', 260000, N'Mỹ'),
+('VC020', 'LV009', N'Cervarix', '2023-09-10', '2024-09-10', 270000, N'Bỉ'),
+('VC021', 'LV010', N'Verorab', '2023-10-22', '2025-10-22', 240000, N'Pháp'),
+('VC022', 'LV010', N'Rabipur', '2023-11-15', '2024-11-15', 170000, N'Đức'),
+('VC023', 'LV001', N'Euvax-B', '2023-12-01', '2025-12-01', 190000, N'Hàn Quốc'),
+('VC024', 'LV002', N'Boostrix', '2024-01-10', '2025-01-10', 270000, N'Bỉ'),
+('VC025', 'LV007', N'Pneumovax 23', '2024-02-22', '2025-02-22', 290000, N'Mỹ');
 
+-- Thêm dữ liệu mới vào bảng LOAIVACCINE
+INSERT INTO LOAIVACCINE(MaLoai, TenLoai, SoMui) VALUES
+('LV011', N'Vacxin Viêm gan A', 2),
+('LV012', N'Vacxin Phế cầu', 4),
+('LV013', N'Vacxin Thương hàn', 1),
+('LV014', N'Vacxin Viêm màng não', 2),
+('LV015', N'Vacxin Covid-19', 2);
 
+-- Thêm dữ liệu mới vào bảng VACCINE
+INSERT INTO VACCINE(MaVC, MaLoai, TenVC, NgaySX, HanSuDung, Gia, XuatXu) VALUES
+-- Thêm vaccine Viêm gan B mới
+('VC026', 'LV001', N'Heberbiovac-HB', '2024-01-15', '2026-01-15', 165000, N'Cuba'),
+('VC027', 'LV001', N'Shanvac-B', '2024-02-01', '2026-02-01', 155000, N'Ấn Độ'),
+('VC028', 'LV001', N'Bio-Hep-B', '2024-02-15', '2026-02-15', 175000, N'Hàn Quốc'),
+
+-- Thêm vaccine DPT (Bạch hầu-Ho gà-Uốn ván) mới
+('VC029', 'LV002', N'Tripacel', '2024-01-20', '2026-01-20', 320000, N'Canada'),
+('VC030', 'LV002', N'Daptacel', '2024-02-10', '2026-02-10', 310000, N'Mỹ'),
+('VC031', 'LV002', N'Infanrix Hexa', '2024-02-25', '2026-02-25', 450000, N'Bỉ'),
+
+-- Thêm vaccine MMR (Sởi-Quai bị-Rubella) mới
+('VC032', 'LV003', N'Trimovax', '2024-01-25', '2026-01-25', 280000, N'Pháp'),
+('VC033', 'LV003', N'MeaslesRub', '2024-02-05', '2026-02-05', 260000, N'Ấn Độ'),
+('VC034', 'LV003', N'MMR-II Japan', '2024-02-20', '2026-02-20', 290000, N'Nhật Bản'),
+
+-- Thêm vaccine Viêm não Nhật Bản mới
+('VC035', 'LV004', N'Biken JE', '2024-01-10', '2026-01-10', 420000, N'Nhật Bản'),
+('VC036', 'LV004', N'IMOJEV', '2024-02-08', '2026-02-08', 400000, N'Thái Lan'),
+('VC037', 'LV004', N'CD.JEVAX', '2024-02-28', '2026-02-28', 380000, N'Trung Quốc'),
+
+-- Thêm vaccine Rotavirus mới
+('VC038', 'LV005', N'Rotasiil', '2024-01-12', '2026-01-12', 350000, N'Ấn Độ'),
+('VC039', 'LV005', N'Rotavac', '2024-02-15', '2026-02-15', 340000, N'Ấn Độ'),
+
+-- Thêm vaccine Thủy đậu mới
+('VC040', 'LV006', N'Okavax', '2024-01-18', '2026-01-18', 420000, N'Nhật Bản'),
+('VC041', 'LV006', N'Vari-L', '2024-02-22', '2026-02-22', 400000, N'Hàn Quốc'),
+
+-- Thêm vaccine Viêm phổi mới
+('VC042', 'LV007', N'Pneumococcal PS', '2024-01-14', '2026-01-14', 520000, N'Hàn Quốc'),
+('VC043', 'LV007', N'PCV13', '2024-02-18', '2026-02-18', 550000, N'Mỹ'),
+
+-- Thêm vaccine Cúm mới
+('VC044', 'LV008', N'FluQuadri', '2024-01-16', '2025-01-16', 320000, N'Pháp'),
+('VC045', 'LV008', N'Fluarix Tetra', '2024-02-20', '2025-02-20', 340000, N'Bỉ'),
+('VC046', 'LV008', N'Inflexal V', '2024-03-01', '2025-03-01', 330000, N'Thụy Sĩ'),
+
+-- Thêm vaccine HPV mới
+('VC047', 'LV009', N'Gardasil 9', '2024-01-22', '2026-01-22', 850000, N'Mỹ'),
+('VC048', 'LV009', N'Cecolin', '2024-02-25', '2026-02-25', 750000, N'Trung Quốc'),
+
+-- Thêm vaccine Phòng dại mới
+('VC049', 'LV010', N'Abhayrab', '2024-01-24', '2026-01-24', 280000, N'Ấn Độ'),
+('VC050', 'LV010', N'Speeda', '2024-02-28', '2026-02-28', 300000, N'Thái Lan'),
+
+-- Thêm vaccine Viêm gan A mới
+('VC051', 'LV011', N'Havrix', '2024-01-05', '2026-01-05', 450000, N'Bỉ'),
+('VC052', 'LV011', N'Avaxim', '2024-02-08', '2026-02-08', 420000, N'Pháp'),
+('VC053', 'LV011', N'Epaxal', '2024-02-28', '2026-02-28', 440000, N'Thụy Sĩ'),
+
+-- Thêm vaccine Phế cầu mới
+('VC054', 'LV012', N'Pneumoforce', '2024-01-10', '2026-01-10', 380000, N'Ấn Độ'),
+('VC055', 'LV012', N'Prevnar20', '2024-02-12', '2026-02-12', 620000, N'Mỹ'),
+('VC056', 'LV012', N'Pneumosil', '2024-02-25', '2026-02-25', 400000, N'Ấn Độ'),
+
+-- Thêm vaccine Thương hàn mới
+('VC057', 'LV013', N'Typhim Vi', '2024-01-15', '2026-01-15', 320000, N'Pháp'),
+('VC058', 'LV013', N'Typbar', '2024-02-18', '2026-02-18', 300000, N'Ấn Độ'),
+('VC059', 'LV013', N'Typherix', '2024-02-28', '2026-02-28', 310000, N'Bỉ'),
+
+-- Thêm vaccine Viêm màng não mới
+('VC060', 'LV014', N'Menactra', '2024-01-20', '2026-01-20', 850000, N'Mỹ'),
+('VC061', 'LV014', N'Nimenrix', '2024-02-22', '2026-02-22', 820000, N'Bỉ'),
+('VC062', 'LV014', N'MenQuadfi', '2024-03-01', '2026-03-01', 840000, N'Pháp'),
+
+-- Thêm vaccine Covid-19
+('VC063', 'LV015', N'Pfizer-BioNTech', '2024-01-25', '2025-01-25', 520000, N'Mỹ/Đức'),
+('VC064', 'LV015', N'Moderna', '2024-02-25', '2025-02-25', 540000, N'Mỹ'),
+('VC065', 'LV015', N'AstraZeneca', '2024-03-05', '2025-03-05', 480000, N'Anh/Thụy Điển');
+
+INSERT INTO VACCINE(MaVC, MaLoai, TenVC, NgaySX, HanSuDung, Gia, XuatXu) VALUES
+-- Thêm vaccine Viêm gan B (LV001)
+('VC066', 'LV001', N'GenHevac B', '2024-01-05', '2026-01-05', 185000, N'Pháp'),
+('VC067', 'LV001', N'Regevac B', '2024-01-15', '2026-01-15', 175000, N'Cuba'),
+('VC068', 'LV001', N'Hepavax-Gene Pro', '2024-02-01', '2026-02-01', 195000, N'Hàn Quốc'),
+('VC069', 'LV001', N'Euvax B Pediatric', '2024-02-15', '2026-02-15', 180000, N'Hàn Quốc'),
+('VC070', 'LV001', N'Bio-Hep-B Plus', '2024-03-01', '2026-03-01', 190000, N'Ấn Độ'),
+('VC071', 'LV002', N'Pentacel', '2024-01-10', '2026-01-10', 460000, N'Canada'),
+('VC072', 'LV002', N'Quadracel', '2024-01-20', '2026-01-20', 440000, N'Mỹ'),
+('VC073', 'LV002', N'Hexaxim', '2024-02-05', '2026-02-05', 480000, N'Pháp'),
+('VC074', 'LV002', N'Hexyon', '2024-02-20', '2026-02-20', 470000, N'Pháp'),
+('VC075', 'LV002', N'Vaxelis', '2024-03-05', '2026-03-05', 490000, N'Mỹ'),
+('VC076', 'LV003', N'MMR-RIT', '2024-01-08', '2026-01-08', 270000, N'Bỉ'),
+('VC077', 'LV003', N'Priorix Tetra', '2024-01-18', '2026-01-18', 290000, N'Bỉ'),
+('VC078', 'LV003', N'ProQuad', '2024-02-03', '2026-02-03', 285000, N'Mỹ'),
+('VC079', 'LV003', N'Trimovax Merieux', '2024-02-18', '2026-02-18', 275000, N'Pháp'),
+('VC080', 'LV003', N'MeaslesMumps', '2024-03-03', '2026-03-03', 265000, N'Ấn Độ'),
+('VC081', 'LV004', N'JEBIK V', '2024-01-12', '2026-01-12', 410000, N'Nhật Bản'),
+('VC082', 'LV004', N'Japanese E', '2024-01-22', '2026-01-22', 390000, N'Hàn Quốc'),
+('VC083', 'LV004', N'JE-ADVAX', '2024-02-07', '2026-02-07', 430000, N'Australia'),
+('VC084', 'LV004', N'JEVAC', '2024-02-22', '2026-02-22', 400000, N'Việt Nam'),
+('VC085', 'LV004', N'JEEV', '2024-03-07', '2026-03-07', 420000, N'Ấn Độ'),
+('VC086', 'LV005', N'Rotavac 5D', '2024-01-14', '2026-01-14', 360000, N'Ấn Độ'),
+('VC087', 'LV005', N'Rotavin-M1', '2024-01-24', '2026-01-24', 340000, N'Việt Nam'),
+('VC088', 'LV005', N'RotaShield', '2024-02-09', '2026-02-09', 370000, N'Mỹ'),
+('VC089', 'LV005', N'Rotarix Oral', '2024-02-24', '2026-02-24', 350000, N'Bỉ'),
+('VC090', 'LV005', N'RotaTeq Oral', '2024-03-09', '2026-03-09', 365000, N'Mỹ'),
+('VC091', 'LV006', N'Varicella-K', '2024-01-16', '2026-01-16', 410000, N'Hàn Quốc'),
+('VC092', 'LV006', N'V-ZOS', '2024-01-26', '2026-01-26', 430000, N'Nhật Bản'),
+('VC093', 'LV006', N'VarZos', '2024-02-11', '2026-02-11', 420000, N'Ấn Độ'),
+('VC094', 'LV006', N'Variped', '2024-02-26', '2026-02-26', 440000, N'Pháp'),
+('VC095', 'LV006', N'Varcivax', '2024-03-11', '2026-03-11', 425000, N'Bỉ'),
+('VC096', 'LV007', N'Pneumo 23', '2024-01-18', '2026-01-18', 540000, N'Pháp'),
+('VC097', 'LV007', N'PneumoMax', '2024-01-28', '2026-01-28', 530000, N'Ấn Độ'),
+('VC098', 'LV007', N'Prevenar 15', '2024-02-13', '2026-02-13', 560000, N'Mỹ'),
+('VC099', 'LV007', N'Pneumovax Plus', '2024-02-28', '2026-02-28', 550000, N'Mỹ'),
+('VC100', 'LV007', N'PneumoSafe', '2024-03-13', '2026-03-13', 545000, N'Hàn Quốc'),
+('VC101', 'LV008', N'FluMist', '2024-01-20', '2025-01-20', 350000, N'Mỹ'),
+('VC102', 'LV008', N'Flucelvax', '2024-02-01', '2025-02-01', 345000, N'Thụy Sĩ'),
+('VC103', 'LV008', N'Afluria', '2024-02-15', '2025-02-15', 335000, N'Australia'),
+('VC104', 'LV008', N'FluLaval', '2024-03-01', '2025-03-01', 340000, N'Canada'),
+('VC105', 'LV008', N'Fluzone HD', '2024-03-15', '2025-03-15', 360000, N'Mỹ'),
+('VC106', 'LV009', N'HPV-16', '2024-01-22', '2026-01-22', 800000, N'Trung Quốc'),
+('VC107', 'LV009', N'Gardasil Plus', '2024-02-05', '2026-02-05', 880000, N'Mỹ'),
+('VC108', 'LV009', N'Cervarix Pro', '2024-02-20', '2026-02-20', 820000, N'Bỉ'),
+('VC109', 'LV009', N'HPV-Prevent', '2024-03-05', '2026-03-05', 840000, N'Ấn Độ'),
+('VC110', 'LV009', N'VacciHPV', '2024-03-20', '2026-03-20', 860000, N'Hàn Quốc'),
+('VC111', 'LV010', N'RabAvert', '2024-01-24', '2026-01-24', 290000, N'Đức'),
+('VC112', 'LV010', N'RabiShield', '2024-02-07', '2026-02-07', 285000, N'Ấn Độ'),
+('VC113', 'LV010', N'RabiGen', '2024-02-22', '2026-02-22', 295000, N'Thụy Sĩ'),
+('VC114', 'LV010', N'RabiVax', '2024-03-07', '2026-03-07', 280000, N'Việt Nam'),
+('VC115', 'LV010', N'RabiPur Plus', '2024-03-22', '2026-03-22', 310000, N'Đức'),
+('VC116', 'LV011', N'Healive', '2024-01-26', '2026-01-26', 430000, N'Trung Quốc'),
+('VC117', 'LV011', N'Avaxim Pediatric', '2024-02-09', '2026-02-09', 445000, N'Pháp'),
+('VC118', 'LV011', N'Havrix Junior', '2024-02-24', '2026-02-24', 460000, N'Bỉ'),
+('VC119', 'LV011', N'Vaqta', '2024-03-09', '2026-03-09', 450000, N'Mỹ'),
+('VC120', 'LV011', N'HepA-Vax', '2024-03-24', '2026-03-24', 440000, N'Hàn Quốc');
 
 -- Lưu ý cập nhật MaNCC tương ứng với bảng NHACUNGCAP
 INSERT INTO PHIEUNHAP(MaPN, NgayNhap, MaNCC) VALUES
