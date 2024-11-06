@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenhNhanDAL.cs" />
+    <Compile Include="ChiTietHoaDonDAL.cs" />
     <Compile Include="ChiTietPhieuNhapDAL.cs" />
     <Compile Include="GeneralDAL.cs" />
     <Compile Include="LoaiVaccineDAL.cs" />
     <Compile Include="NhaCungCapDAL.cs" />
+    <Compile Include="NhanVienDAL.cs" />
     <Compile Include="PhieuNhapDAL.cs" />
     <Compile Include="TaiKhoanDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

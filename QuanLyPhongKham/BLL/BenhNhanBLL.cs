@@ -44,6 +44,10 @@ namespace BLL
         {
             bnDAL.ClearDataSet();
         }
+        public int SoLuong()
+        {
+            return bnDAL.SoLuong();
+        }
     }
 }
 

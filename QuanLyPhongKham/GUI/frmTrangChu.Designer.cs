@@ -34,15 +34,17 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
+            lblSLvaccine = new Label();
+            lblNhanVien = new Label();
+            lblBenhNhan = new Label();
+            lblMuiTiem = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -91,22 +93,11 @@
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
             // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = SystemColors.Control;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(466, 856);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(70, 70);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 4;
-            pictureBox3.TabStop = false;
-            // 
             // pictureBox4
             // 
             pictureBox4.BackColor = SystemColors.Control;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(785, 856);
+            pictureBox4.Location = new Point(572, 856);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(70, 70);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -117,7 +108,7 @@
             // 
             pictureBox5.BackColor = SystemColors.Control;
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(1104, 856);
+            pictureBox5.Location = new Point(997, 856);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(70, 70);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -128,7 +119,7 @@
             // 
             pictureBox6.BackColor = SystemColors.Control;
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(1423, 856);
+            pictureBox6.Location = new Point(1422, 856);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(70, 70);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -157,27 +148,70 @@
             textBox2.TabIndex = 9;
             textBox2.Text = resources.GetString("textBox2.Text");
             // 
+            // lblSLvaccine
+            // 
+            lblSLvaccine.AutoSize = true;
+            lblSLvaccine.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSLvaccine.Location = new Point(1073, 892);
+            lblSLvaccine.Name = "lblSLvaccine";
+            lblSLvaccine.Size = new Size(141, 25);
+            lblSLvaccine.TabIndex = 10;
+            lblSLvaccine.Text = "0 Loại Vaccine";
+            // 
+            // lblNhanVien
+            // 
+            lblNhanVien.AutoSize = true;
+            lblNhanVien.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNhanVien.Location = new Point(1494, 892);
+            lblNhanVien.Name = "lblNhanVien";
+            lblNhanVien.Size = new Size(116, 25);
+            lblNhanVien.TabIndex = 11;
+            lblNhanVien.Text = "0 Nhân viên";
+            // 
+            // lblBenhNhan
+            // 
+            lblBenhNhan.AutoSize = true;
+            lblBenhNhan.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBenhNhan.Location = new Point(218, 892);
+            lblBenhNhan.Name = "lblBenhNhan";
+            lblBenhNhan.Size = new Size(134, 25);
+            lblBenhNhan.TabIndex = 12;
+            lblBenhNhan.Text = "0 Khách hàng";
+            // 
+            // lblMuiTiem
+            // 
+            lblMuiTiem.AutoSize = true;
+            lblMuiTiem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMuiTiem.Location = new Point(645, 892);
+            lblMuiTiem.Name = "lblMuiTiem";
+            lblMuiTiem.Size = new Size(128, 25);
+            lblMuiTiem.TabIndex = 13;
+            lblMuiTiem.Text = "0 Mũi đã tiêm";
+            // 
             // frmTrangChu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1664, 998);
+            Controls.Add(lblMuiTiem);
+            Controls.Add(lblBenhNhan);
+            Controls.Add(lblNhanVien);
+            Controls.Add(lblSLvaccine);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);
-            Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Name = "frmTrangChu";
             Text = "frmTrangChu";
+            Load += frmTrangChu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -192,11 +226,14 @@
         private Label label1;
         private Label label2;
         private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
         private PictureBox pictureBox6;
         private TextBox textBox1;
         private TextBox textBox2;
+        private Label lblSLvaccine;
+        private Label lblNhanVien;
+        private Label lblBenhNhan;
+        private Label lblMuiTiem;
     }
 }

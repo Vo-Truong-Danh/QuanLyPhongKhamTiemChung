@@ -15,6 +15,7 @@ namespace DAL
         DataColumn[] key = new DataColumn[1];
         SqlDataAdapter adap;
         SqlConnection conn;
+        DataTable dt;
         private int lastMaBN = 0;
         public BenhNhanDAL()
         {
@@ -27,6 +28,11 @@ namespace DAL
             key[0] = ds.Tables["BENHNHAN"].Columns[0];
             ds.Tables["BENHNHAN"].PrimaryKey = key;
             lastMaBN = LayMaBNCuoiCung();
+            adap.Fill(dt = new DataTable());
+        }
+        public int SoLuong()
+        {
+            return dt.Rows.Count;
         }
         
         private int LayMaBNCuoiCung()
