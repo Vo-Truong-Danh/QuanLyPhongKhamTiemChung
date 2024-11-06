@@ -38,6 +38,9 @@
             panel1 = new Panel();
             dgvVaccine = new DataGridView();
             panel2 = new Panel();
+            pnlLocXuatXu = new Panel();
+            lblXuatXu = new Label();
+            cboXuatXu = new ComboBox();
             pnlLoc = new Panel();
             lblMaloaivctmp = new Label();
             cboLoaiVC = new ComboBox();
@@ -94,6 +97,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).BeginInit();
             panel2.SuspendLayout();
+            pnlLocXuatXu.SuspendLayout();
             pnlLoc.SuspendLayout();
             pnlTimKiem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -186,6 +190,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(pnlLocXuatXu);
             panel2.Controls.Add(pnlLoc);
             panel2.Controls.Add(pnlTimKiem);
             panel2.Controls.Add(btnThemVC);
@@ -194,6 +199,41 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1382, 63);
             panel2.TabIndex = 5;
+            // 
+            // pnlLocXuatXu
+            // 
+            pnlLocXuatXu.BackColor = Color.White;
+            pnlLocXuatXu.Controls.Add(lblXuatXu);
+            pnlLocXuatXu.Controls.Add(cboXuatXu);
+            pnlLocXuatXu.Location = new Point(291, 8);
+            pnlLocXuatXu.Name = "pnlLocXuatXu";
+            pnlLocXuatXu.Size = new Size(227, 44);
+            pnlLocXuatXu.TabIndex = 28;
+            // 
+            // lblXuatXu
+            // 
+            lblXuatXu.AutoSize = true;
+            lblXuatXu.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblXuatXu.Location = new Point(30, 11);
+            lblXuatXu.Name = "lblXuatXu";
+            lblXuatXu.Size = new Size(140, 22);
+            lblXuatXu.TabIndex = 1;
+            lblXuatXu.Text = "Xuất xứ Vaccine";
+            // 
+            // cboXuatXu
+            // 
+            cboXuatXu.BackColor = Color.White;
+            cboXuatXu.FlatStyle = FlatStyle.Popup;
+            cboXuatXu.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboXuatXu.FormattingEnabled = true;
+            cboXuatXu.Items.AddRange(new object[] { "Nhóm Vaccine" });
+            cboXuatXu.Location = new Point(26, 6);
+            cboXuatXu.Name = "cboXuatXu";
+            cboXuatXu.Size = new Size(183, 30);
+            cboXuatXu.TabIndex = 0;
+            cboXuatXu.Text = "Nhóm Vaccine";
+            cboXuatXu.SelectionChangeCommitted += cboXuatXu_SelectionChangeCommitted;
+            cboXuatXu.Click += cboXuatXu_Click;
             // 
             // pnlLoc
             // 
@@ -227,6 +267,7 @@
             cboLoaiVC.Size = new Size(218, 30);
             cboLoaiVC.TabIndex = 0;
             cboLoaiVC.Text = "Nhóm Vaccine";
+            cboLoaiVC.SelectionChangeCommitted += cboLoaiVC_SelectionChangeCommitted;
             cboLoaiVC.Click += cboLoaiVC_Click;
             // 
             // pnlTimKiem
@@ -235,7 +276,7 @@
             pnlTimKiem.Controls.Add(txtSearch);
             pnlTimKiem.Controls.Add(pictureBox2);
             pnlTimKiem.Controls.Add(btnSearch);
-            pnlTimKiem.Location = new Point(308, 8);
+            pnlTimKiem.Location = new Point(524, 8);
             pnlTimKiem.Name = "pnlTimKiem";
             pnlTimKiem.Size = new Size(344, 44);
             pnlTimKiem.TabIndex = 4;
@@ -243,7 +284,7 @@
             // txtSearch
             // 
             txtSearch.BorderStyle = BorderStyle.None;
-            txtSearch.Location = new Point(28, 9);
+            txtSearch.Location = new Point(27, 11);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(254, 21);
             txtSearch.TabIndex = 26;
@@ -277,7 +318,7 @@
             btnThemVC.BackColor = Color.FromArgb(212, 246, 255);
             btnThemVC.Image = (Image)resources.GetObject("btnThemVC.Image");
             btnThemVC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThemVC.Location = new Point(672, 8);
+            btnThemVC.Location = new Point(888, 8);
             btnThemVC.Name = "btnThemVC";
             btnThemVC.Padding = new Padding(14, 5, 14, 5);
             btnThemVC.Size = new Size(237, 44);
@@ -807,6 +848,8 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).EndInit();
             panel2.ResumeLayout(false);
+            pnlLocXuatXu.ResumeLayout(false);
+            pnlLocXuatXu.PerformLayout();
             pnlLoc.ResumeLayout(false);
             pnlLoc.PerformLayout();
             pnlTimKiem.ResumeLayout(false);
@@ -886,5 +929,8 @@
         private Panel panel1;
         private DataGridView dgvVaccine;
         private Label lblMaloaivctmp;
+        private Label lblXuatXu;
+        private Panel pnlLocXuatXu;
+        private ComboBox cboXuatXu;
     }
 }

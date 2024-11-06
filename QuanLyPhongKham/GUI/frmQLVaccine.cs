@@ -71,7 +71,7 @@ namespace GUI
         }
         VaccineBLL vaccineBLL = new VaccineBLL();
         LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
-        private void CreateDTGV()
+        private void CreateDTGV(DataTable dttb)
         {
             DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
             {
@@ -130,7 +130,7 @@ namespace GUI
             dgvVaccine.Columns.Add(xuatxu);
             dgvVaccine.Columns.Add(loai);
             int tmp = 1;
-            foreach (DataRow row in vaccineBLL.LayTTVC().Rows)
+            foreach (DataRow row in dttb.Rows)
             {
                 DataRow[] dr = loaivcbll.GetData().Select("MaLoai = '" + row["MaLoai"] + "'");
                 // Lấy giá trị từ DataRow
@@ -189,9 +189,12 @@ namespace GUI
             cboLoaiVC.DisplayMember = "TenLoai";
             cboLoaiVC.ValueMember = "MaLoai";
 
+            cboXuatXu.DataSource = vaccineBLL.LoadDSXuatXu();
+
             pnlTimKiem.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTimKiem.Width, pnlTimKiem.Height, 50, 50));
             pnlLoc.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLoc.Width, pnlLoc.Height, 50, 50));
-            CreateDTGV();
+            pnlLocXuatXu.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLocXuatXu.Width, pnlLocXuatXu.Height, 20, 20));
+            CreateDTGV(vaccineBLL.LayTTVC());
         }
 
         private void btnLoadTTVC_Click(object sender, EventArgs e)
@@ -295,30 +298,30 @@ namespace GUI
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string ndtimkiem = txtSearch.Text;
-            if (TrangThaiBang_1)
-            {
-                VaccineBLL vcbll = new VaccineBLL();
-                DataSet ds = vcbll.Search(ndtimkiem);
-                if (ds != null && ds.Tables["Vaccine"].Rows.Count > 0)
-                {
-                    dgvVaccine.DataSource = ds.Tables["Vaccine"];
-                }
-                else
-                    MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
-            }
-            else
-            {
-                LoaiVaccineBLL lvcbll = new LoaiVaccineBLL();
-                DataTable ds = lvcbll.Search(ndtimkiem);
-                if (ds.Rows.Count > 0)
-                {
-                    dgvVaccine.DataSource = ds;
-                }
-                else
-                    MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
+            //string ndtimkiem = txtSearch.Text;
+            //if (TrangThaiBang_1)
+            //{
+            //    VaccineBLL vcbll = new VaccineBLL();
+            //    DataSet ds = vcbll.Search(ndtimkiem);
+            //    if (ds != null && ds.Tables["Vaccine"].Rows.Count > 0)
+            //    {
+            //        dgvVaccine.DataSource = ds.Tables["Vaccine"];
+            //    }
+            //    else
+            //        MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
+            //}
+            //else
+            //{
+            //    LoaiVaccineBLL lvcbll = new LoaiVaccineBLL();
+            //    DataTable ds = lvcbll.Search(ndtimkiem);
+            //    if (ds.Rows.Count > 0)
+            //    {
+            //        dgvVaccine.DataSource = ds;
+            //    }
+            //    else
+            //        MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
 
-            }
+            //}
         }
 
         private void btnThemLVC_Click(object sender, EventArgs e)
@@ -768,6 +771,28 @@ namespace GUI
         private void cboLoaiVC_Click(object sender, EventArgs e)
         {
             lblMaloaivctmp.Hide();
+        }
+
+        private void cboLoaiVC_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string maloai = cboLoaiVC.SelectedValue.ToString();
+            dgvVaccine.Columns.Clear();  // Xóa tất cả các cột
+            dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
+            CreateDTGV(vaccineBLL.Search(maloai));
+
+        }
+
+        private void cboXuatXu_Click(object sender, EventArgs e)
+        {
+            lblXuatXu.Hide();
+        }
+
+        private void cboXuatXu_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string maloai = cboXuatXu.SelectedValue.ToString();
+            dgvVaccine.Columns.Clear();  // Xóa tất cả các cột
+            dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
+            CreateDTGV(vaccineBLL.Search(maloai));
         }
     }
 }

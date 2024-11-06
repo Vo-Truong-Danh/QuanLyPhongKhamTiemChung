@@ -120,30 +120,26 @@ namespace DAL
                 return false;
             }      
         }
-        public DataSet Search(string ndtimkiem)
+        public DataTable Search(string ndtimkiem)
         {
-            try
+            DataRow[] dr = dt.Select("MaLoai = '"+ndtimkiem+"' OR XuatXu =  '"+ndtimkiem+"' ");
+            DataTable tmp = dt.Clone();
+            foreach (DataRow item in dr)
             {
-                DataSet ds = new DataSet();
-
-                string searchQuery = "SELECT * FROM VACCINE WHERE TenVC LIKE @ndtimkiem OR MaVC LIKE @ndtimkiem OR Gia LIKE @ndtimkiem OR SoLuongTon LIKE @ndtimkiem";
-
-                conn.Open();
-
-                using (SqlCommand cmd = new SqlCommand(searchQuery, conn))
-                {
-                    cmd.Parameters.AddWithValue("@ndtimkiem", "%" + ndtimkiem + "%");
-                    SqlDataAdapter searchAdapter = new SqlDataAdapter(cmd);
-                    searchAdapter.Fill(ds, "Vaccine");
-                }
-                conn.Close();
-
-                return ds;
+                tmp.ImportRow(item);
             }
-            catch
-            {
-                return null;
-            }
+            return tmp;
+        }
+
+        public List<string> LoadDSXuatXu()
+        {
+            DataRow[] dr = dt.Select("");
+            List<string> xuatXuList = dr
+                .Select(row => row["XuatXu"].ToString())
+                .Distinct()
+                .ToList();
+
+            return xuatXuList;
         }
 
 

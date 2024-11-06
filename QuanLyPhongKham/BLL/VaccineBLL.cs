@@ -30,9 +30,13 @@ namespace BLL
         {
             return vcbll.Update(vaccineDTO);
         }
-        public DataSet Search(string ndtimkiem)
+        public DataTable Search(string ndtimkiem)
         {
             return vcbll.Search(ndtimkiem);
+        }
+        public List<string> LoadDSXuatXu()
+        {
+            return vcbll.LoadDSXuatXu();
         }
     }
 }
