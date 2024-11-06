@@ -31,8 +31,8 @@
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             tctChinh = new TabControl();
             tabPage1 = new TabPage();
             panel1 = new Panel();
@@ -92,6 +92,7 @@
             txtTenNCCVC = new TextBox();
             dgvNhapVaccine = new DataGridView();
             imageList1 = new ImageList(components);
+            btnLuu = new Button();
             tctChinh.SuspendLayout();
             tabPage1.SuspendLayout();
             panel1.SuspendLayout();
@@ -190,6 +191,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(btnLuu);
             panel2.Controls.Add(pnlLocXuatXu);
             panel2.Controls.Add(pnlLoc);
             panel2.Controls.Add(pnlTimKiem);
@@ -828,6 +830,21 @@
             imageList1.Images.SetKeyName(0, "purchase_3310182.png");
             imageList1.Images.SetKeyName(1, "warehouse_7345857.png");
             // 
+            // btnLuu
+            // 
+            btnLuu.BackColor = Color.FromArgb(212, 246, 255);
+            btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuu.Location = new Point(1250, 8);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Padding = new Padding(14, 5, 14, 5);
+            btnLuu.Size = new Size(118, 44);
+            btnLuu.TabIndex = 29;
+            btnLuu.Text = "Lưu";
+            btnLuu.TextAlign = ContentAlignment.MiddleRight;
+            btnLuu.UseVisualStyleBackColor = false;
+            btnLuu.Click += btnLuu_Click;
+            // 
             // frmQLVaccine
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
@@ -932,5 +949,6 @@
         private Label lblXuatXu;
         private Panel pnlLocXuatXu;
         private ComboBox cboXuatXu;
+        private Button btnLuu;
     }
 }

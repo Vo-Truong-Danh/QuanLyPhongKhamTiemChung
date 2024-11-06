@@ -118,6 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnLuu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAlBJREFUSEvtljlrVVEURpdDTBHi0JpAYrTVwv+goIWKvyAI6YKVCFoKKdI4NTYq
+        JD/ARhDB1hAbqyCEpBBBQgKOqIgSjCzZ53k93pf3PO/yKj/YzbnDuns493zwWzuAfcAocKiHGAdGgOHK
+        u9tqEDgJzAGrwAfgY2G8A5aBe/HOnTksyUy9YQn4BDwEbgLXC+M28AT4BrwEzubAJMs7H9CLwBiwP9ZL
+        4kC84xqwCSwCe3OosqeW10x9IMlKHAGmgCvA1X+MGeAr8B6YBIYq7/4lB8KeWl4zTboAvI2vLo2tiO/A
+        I+BwJNQCOxT2x1J5QagPrgEPgFvAjcK4AzyP7BeiwrVgy2umQk8Bu1s1KNdB4H7AbcEuF3OwPTVbM20C
+        muTOeRW7Z8CFHOwgCba8TepY7O/1dmAnUrD96aQJ4ClwOb9Qo6MB3gD2uNAL+FzsCPdqJzUKPh/PPssv
+        1Og/uGuwg2RPhaWYBb4AK9m6cSI7mYrBTm9+XAr9EfdX1w3/0e7dpGKwW8bptawpzNR7P2frxuMwBEnF
+        4Dr1pcd16gmsR9Ku6Bw8xPsGtg8uaFc0An0D6wbvhkfSrnhsdQt2yzi9DlIn/QVWjr3GTKBnpq6hG7D7
+        VHh1etupFuwLzsR2MQPBOocmdTy23+t0LFalG9SY6ZG0KzqHJiRoGngTprLWYOgGNWaWXLtiGzzELVVJ
+        mKnQF1HN01XDl0s36C9SuHbF3pSG5TVTf7eX6mxuVX6RbtAJ1yNpVxyKkrCnltdMt4VWpRu0P4aTWBI+
+        a0//KO9PhGEiplazlS8AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -576,7 +592,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAEZTeXN0ZW0uV2luZG93cy5Gb3JtcywgQ3VsdHVyZT1uZXV0cmFs
         LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAmU3lzdGVtLldpbmRvd3MuRm9ybXMu
         SW1hZ2VMaXN0U3RyZWFtZXIBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAA8AsAAAJNU0Z0AUkBTAIBAQIB
-        AAGQAQkBkAEJARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAARADAAEBAQABIAYAARBS
+        AAGgAQkBoAEJARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAARADAAEBAQABIAYAARBS
         AANSAaMDbwH3A28B9wNvAfcDbwH3A28B9wNvAfcDbwH3A28B9wNvAfcDbwH3A28B9wNvAfcDbwH3A28B
         9wNSAaOMAAMTARkDEwEZBAADHQEoAxMBGgMqAUADKgFAAyoBQAMqAUADKgFAAyoBQAMqAUADFQEcAzQB
         UwFhAWABYQHRAZoBbAFYAf8BcwFaAVsB/wJlAXkB/wFZAYUBtQH/AVwBfAGkAf8BYgFpAYUB/wFcAX4B

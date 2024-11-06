@@ -130,9 +130,10 @@ namespace GUI
             dgvVaccine.Columns.Add(xuatxu);
             dgvVaccine.Columns.Add(loai);
             int tmp = 1;
+            DataTable gan = loaivcbll.GetData();
             foreach (DataRow row in dttb.Rows)
             {
-                DataRow[] dr = loaivcbll.GetData().Select("MaLoai = '" + row["MaLoai"] + "'");
+                DataRow[] dr = gan.Select("MaLoai = '" + row["MaLoai"] + "'");
                 // Lấy giá trị từ DataRow
                 string tenLoai = dr[0]["TenLoai"].ToString();
                 string maLoai = row["MaLoai"].ToString();
@@ -764,8 +765,11 @@ namespace GUI
         private void btnThemVC_Click(object sender, EventArgs e)
         {
             frm_overlay frm = new frm_overlay(0);
-
             frm.ShowDialog();
+            dgvVaccine.Columns.Clear();  // Xóa tất cả các cột
+            dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
+            DataTable tmp = vaccineBLL.LayTTVC();
+            CreateDTGV(tmp);
         }
 
         private void cboLoaiVC_Click(object sender, EventArgs e)
@@ -795,6 +799,11 @@ namespace GUI
             dgvVaccine.Columns.Clear();  // Xóa tất cả các cột
             dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
             CreateDTGV(vaccineBLL.Search(maloai));
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            vaccineBLL.Luu();
         }
     }
 }

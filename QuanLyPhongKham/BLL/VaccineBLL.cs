@@ -10,7 +10,7 @@ using DAL;
 
 namespace BLL
 {
-    public class VaccineBLL
+    public class VaccineBLL 
     {
 
         VaccineDAL vcbll = new VaccineDAL();
@@ -18,9 +18,9 @@ namespace BLL
         {
             return vcbll.LayTTVC();
         }
-        public bool Insert(VaccineDTO vaccineDTO)
+        public void Insert(VaccineDTO vaccineDTO)
         {
-            return vcbll.Insert(vaccineDTO);
+            vcbll.Insert(vaccineDTO);
         }
         public bool Delete(string mavc)
         {
@@ -38,5 +38,7 @@ namespace BLL
         {
             return vcbll.LoadDSXuatXu();
         }
+        public void Luu()
+            { vcbll.Luu(); }
     }
 }

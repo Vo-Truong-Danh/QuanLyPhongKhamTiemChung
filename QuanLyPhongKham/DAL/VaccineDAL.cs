@@ -14,7 +14,7 @@ namespace DAL
         DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
-        DataTable dt;
+        private static DataTable dt = new DataTable();
         public VaccineDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
@@ -23,43 +23,27 @@ namespace DAL
             string truyvansql = "select * from Vaccine";
             adap = new SqlDataAdapter(truyvansql, conn);
             adap.Fill(ds, "Vaccine");
-            adap.Fill(dt = new DataTable());
-            conn.Close();
+            if(dt.Rows.Count == 0)
+                adap.Fill(dt);
         }
 
         public DataTable LayTTVC()
         {
             return dt;
         }
-        public bool Insert(VaccineDTO vcDTO)
+        public void Insert(VaccineDTO vcDTO)
         {
-            try
-            {
-                if (ds.Tables["Vaccine"] == null)
-                {
-                    LayTTVC();
-                }
+            DataRow newrow = dt.NewRow();
+            newrow["MaVC"] = vcDTO.Mavc;
+            newrow["MaLoai"] = vcDTO.Maloai;
+            newrow["TenVC"] = vcDTO.Tenvc;
+            newrow["NgaySX"] = vcDTO.Ngaysx;
+            newrow["HanSuDung"] = vcDTO.Hansudung;
+            newrow["SoLuongTon"] = 0;
+            newrow["Gia"] = vcDTO.Gia;
+            newrow["XuatXu"] = vcDTO.Xuatxu;
 
-                DataRow newRow = ds.Tables["Vaccine"].NewRow();
-                newRow["MaLoai"] = vcDTO.Maloai;
-                newRow["TenVC"] = vcDTO.Tenvc;
-                newRow["NgaySX"] = vcDTO.Ngaysx;
-                newRow["HanSuDung"] = vcDTO.Hansudung;
-                newRow["SoLuongTon"] = 0;
-                newRow["Gia"] = vcDTO.Gia;
-
-
-                ds.Tables["Vaccine"].Rows.Add(newRow);
-
-                // Cập nhật csdl
-                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                adap.Update(ds, "Vaccine");
-                LayTTVC(); 
-
-                return true;
-            }
-            catch 
-                { return false; }
+            dt.Rows.Add(newrow);
         }
 
         public bool Delete(string maVC)
@@ -119,6 +103,11 @@ namespace DAL
             {
                 return false;
             }      
+        }
+        public void Luu()
+        {
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adap);
+            adap.Update(dt);
         }
         public DataTable Search(string ndtimkiem)
         {
