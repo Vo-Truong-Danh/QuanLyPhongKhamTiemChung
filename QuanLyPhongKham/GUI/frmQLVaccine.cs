@@ -188,6 +188,7 @@ namespace GUI
             cboLoaiVC.DataSource = loaivcbll.GetData();
             cboLoaiVC.DisplayMember = "TenLoai";
             cboLoaiVC.ValueMember = "MaLoai";
+
             pnlTimKiem.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTimKiem.Width, pnlTimKiem.Height, 50, 50));
             pnlLoc.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLoc.Width, pnlLoc.Height, 50, 50));
             CreateDTGV();
@@ -760,8 +761,13 @@ namespace GUI
         private void btnThemVC_Click(object sender, EventArgs e)
         {
             frm_overlay frm = new frm_overlay(0);
-            
+
             frm.ShowDialog();
+        }
+
+        private void cboLoaiVC_Click(object sender, EventArgs e)
+        {
+            lblMaloaivctmp.Hide();
         }
     }
 }

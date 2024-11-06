@@ -39,6 +39,7 @@
             dgvVaccine = new DataGridView();
             panel2 = new Panel();
             pnlLoc = new Panel();
+            lblMaloaivctmp = new Label();
             cboLoaiVC = new ComboBox();
             pnlTimKiem = new Panel();
             txtSearch = new TextBox();
@@ -197,11 +198,22 @@
             // pnlLoc
             // 
             pnlLoc.BackColor = Color.White;
+            pnlLoc.Controls.Add(lblMaloaivctmp);
             pnlLoc.Controls.Add(cboLoaiVC);
             pnlLoc.Location = new Point(16, 8);
             pnlLoc.Name = "pnlLoc";
             pnlLoc.Size = new Size(269, 44);
             pnlLoc.TabIndex = 27;
+            // 
+            // lblMaloaivctmp
+            // 
+            lblMaloaivctmp.AutoSize = true;
+            lblMaloaivctmp.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMaloaivctmp.Location = new Point(28, 10);
+            lblMaloaivctmp.Name = "lblMaloaivctmp";
+            lblMaloaivctmp.Size = new Size(177, 22);
+            lblMaloaivctmp.TabIndex = 1;
+            lblMaloaivctmp.Text = "Mã Loại Vaccine       ";
             // 
             // cboLoaiVC
             // 
@@ -209,11 +221,13 @@
             cboLoaiVC.FlatStyle = FlatStyle.Popup;
             cboLoaiVC.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboLoaiVC.FormattingEnabled = true;
-            cboLoaiVC.Location = new Point(26, 8);
+            cboLoaiVC.Items.AddRange(new object[] { "Nhóm Vaccine" });
+            cboLoaiVC.Location = new Point(26, 6);
             cboLoaiVC.Name = "cboLoaiVC";
             cboLoaiVC.Size = new Size(218, 30);
             cboLoaiVC.TabIndex = 0;
             cboLoaiVC.Text = "Nhóm Vaccine";
+            cboLoaiVC.Click += cboLoaiVC_Click;
             // 
             // pnlTimKiem
             // 
@@ -794,6 +808,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).EndInit();
             panel2.ResumeLayout(false);
             pnlLoc.ResumeLayout(false);
+            pnlLoc.PerformLayout();
             pnlTimKiem.ResumeLayout(false);
             pnlTimKiem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -870,5 +885,6 @@
         private Panel pnlLoc;
         private Panel panel1;
         private DataGridView dgvVaccine;
+        private Label lblMaloaivctmp;
     }
 }
