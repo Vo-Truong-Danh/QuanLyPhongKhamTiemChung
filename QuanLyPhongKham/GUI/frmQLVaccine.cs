@@ -771,6 +771,7 @@ namespace GUI
         private void cboLoaiVC_Click(object sender, EventArgs e)
         {
             lblMaloaivctmp.Hide();
+            lblXuatXu.Show();
         }
 
         private void cboLoaiVC_SelectionChangeCommitted(object sender, EventArgs e)
@@ -784,6 +785,7 @@ namespace GUI
 
         private void cboXuatXu_Click(object sender, EventArgs e)
         {
+            lblMaloaivctmp.Show();
             lblXuatXu.Hide();
         }
 
