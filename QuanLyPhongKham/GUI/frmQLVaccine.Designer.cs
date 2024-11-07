@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             tctChinh = new TabControl();
             tabPage1 = new TabPage();
             panel1 = new Panel();
@@ -101,6 +101,7 @@
             dgvNhapVaccine = new DataGridView();
             imageList1 = new ImageList(components);
             timerTB = new System.Windows.Forms.Timer(components);
+            timerHieuUng = new System.Windows.Forms.Timer(components);
             tctChinh.SuspendLayout();
             tabPage1.SuspendLayout();
             panel1.SuspendLayout();
@@ -215,25 +216,25 @@
             dgvVaccine.BorderStyle = BorderStyle.None;
             dgvVaccine.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvVaccine.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.MediumTurquoise;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumTurquoise;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvVaccine.ColumnHeadersHeight = 29;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvVaccine.ContextMenuStrip = cntXoaSua;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle2;
             dgvVaccine.Dock = DockStyle.Fill;
             dgvVaccine.Location = new Point(0, 0);
             dgvVaccine.Margin = new Padding(9, 3, 3, 3);
@@ -896,14 +897,14 @@
             // dgvNhapVaccine
             // 
             dgvNhapVaccine.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Aquamarine;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HotTrack;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvNhapVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Aquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HotTrack;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvNhapVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvNhapVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvNhapVaccine.Dock = DockStyle.Bottom;
             dgvNhapVaccine.GridColor = Color.WhiteSmoke;
@@ -927,6 +928,11 @@
             // 
             timerTB.Interval = 4000;
             timerTB.Tick += timerTB_Tick;
+            // 
+            // timerHieuUng
+            // 
+            timerHieuUng.Interval = 20;
+            timerHieuUng.Tick += timerHieuUng_Tick;
             // 
             // frmQLVaccine
             // 
@@ -1046,5 +1052,6 @@
         private PictureBox pictureBox1;
         private Label lblndtb;
         private System.Windows.Forms.Timer timerTB;
+        private System.Windows.Forms.Timer timerHieuUng;
     }
 }

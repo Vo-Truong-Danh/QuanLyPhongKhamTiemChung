@@ -134,7 +134,7 @@ namespace GUI
             DataTable gan = loaivcbll.GetData();
             foreach (DataRow row in dttb.Rows)
             {
-                if(row.RowState !=  DataRowState.Deleted)
+                if (row.RowState != DataRowState.Deleted)
                 {
                     DataRow[] dr = gan.Select("MaLoai = '" + row["MaLoai"] + "'");
                     // Lấy giá trị từ DataRow
@@ -182,7 +182,7 @@ namespace GUI
 
             dgvVaccine.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-        private void BoGoc(Control tmp,int goc)
+        private void BoGoc(Control tmp, int goc)
         {
             tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, goc, goc));
         }
@@ -774,8 +774,7 @@ namespace GUI
         {
             frm_overlay frm = new frm_overlay(0);
             frm.ShowDialog();
-            DataTable tmp = vaccineBLL.LayTTVC();
-            CreateDTGV(tmp);
+            ReLoadFRM();
             ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
         }
 
@@ -829,7 +828,7 @@ namespace GUI
         {
 
         }
-        private void ThongBao(string nd , int colortext)
+        private void ThongBao(string nd, int colortext)
         {
             // 0 là đen _ 1 là xanh _ 2 là đỏ
             if (colortext == 0)
@@ -838,11 +837,33 @@ namespace GUI
                 lblndtb.ForeColor = Color.Green;
             if (colortext == 2)
                 lblndtb.ForeColor = Color.Red;
-            BoGoc(pnlTb,20);
-            BoGoc(pnlThongBao,20);
+
             lblndtb.Text = nd;
             pnlThongBao.Visible = true;
+            BoGoc(pnlTb, 20);
+            BoGoc(pnlThongBao, 20);
             timerTB.Start();
+
+            startY = 860;pnlThongBao.Location = new Point(1640, 902);
+            targetY = startY;
+            timerHieuUng.Interval = 20;
+            timerHieuUng.Tick += SlidePanel;
+            timerHieuUng.Start();
+        }
+        private int startY;
+        private int targetY; 
+        private const int ANIMATION_SPEED = 1; 
+        private void SlidePanel(object sender, EventArgs e)
+        {
+            if (pnlThongBao.Location.Y > targetY)
+            {
+                int newY = Math.Max(pnlThongBao.Location.Y - ANIMATION_SPEED, targetY);
+                pnlThongBao.Location = new Point(pnlThongBao.Location.X, newY);
+            }
+            else
+            {
+                timerHieuUng.Stop();
+            }
         }
         private void XoaVaccineToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -870,7 +891,7 @@ namespace GUI
         private void CapNhatToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
-            frm_overlay frm = new frm_overlay(1,ma);
+            frm_overlay frm = new frm_overlay(1, ma);
             frm.ShowDialog();
             ReLoadFRM();
             ThongBao("Cập nhật thành công Vaccine vào danh sách ", 1);
@@ -878,8 +899,16 @@ namespace GUI
 
         private void timerTB_Tick(object sender, EventArgs e)
         {
-            pnlThongBao.Visible=false;
+            pnlThongBao.Visible = false;
+            pnlThongBao.Location = new Point((this.ClientSize.Width - pnlThongBao.Width) / 2, this.ClientSize.Height);
             timerTB.Stop();
+
         }
+
+        private void timerHieuUng_Tick(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
