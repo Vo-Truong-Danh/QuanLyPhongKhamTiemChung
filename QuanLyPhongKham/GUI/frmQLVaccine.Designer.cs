@@ -45,6 +45,7 @@
             XoaVaccineToolStripMenuItem = new ToolStripMenuItem();
             CapNhatToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
+            btnThemLoai = new Button();
             btnLuu = new Button();
             pnlLocXuatXu = new Panel();
             lblXuatXu = new Label();
@@ -137,7 +138,7 @@
             tctChinh.Location = new Point(0, 0);
             tctChinh.Name = "tctChinh";
             tctChinh.SelectedIndex = 0;
-            tctChinh.Size = new Size(1396, 929);
+            tctChinh.Size = new Size(1582, 929);
             tctChinh.TabIndex = 1;
             // 
             // tabPage1
@@ -149,7 +150,7 @@
             tabPage1.Location = new Point(4, 31);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1388, 894);
+            tabPage1.Size = new Size(1574, 894);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Kho Vaccine";
             // 
@@ -160,7 +161,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 66);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1382, 825);
+            panel1.Size = new Size(1568, 825);
             panel1.TabIndex = 6;
             // 
             // pnlThongBao
@@ -168,9 +169,9 @@
             pnlThongBao.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             pnlThongBao.BackColor = Color.DimGray;
             pnlThongBao.Controls.Add(pnlTb);
-            pnlThongBao.Location = new Point(906, 739);
+            pnlThongBao.Location = new Point(999, 739);
             pnlThongBao.Name = "pnlThongBao";
-            pnlThongBao.Size = new Size(462, 72);
+            pnlThongBao.Size = new Size(555, 72);
             pnlThongBao.TabIndex = 2;
             pnlThongBao.Visible = false;
             // 
@@ -182,7 +183,7 @@
             pnlTb.Location = new Point(2, 2);
             pnlTb.Margin = new Padding(4, 3, 4, 3);
             pnlTb.Name = "pnlTb";
-            pnlTb.Size = new Size(458, 68);
+            pnlTb.Size = new Size(550, 68);
             pnlTb.TabIndex = 30;
             // 
             // pictureBox1
@@ -243,7 +244,7 @@
             dgvVaccine.RowHeadersVisible = false;
             dgvVaccine.RowHeadersWidth = 51;
             dgvVaccine.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvVaccine.Size = new Size(1382, 825);
+            dgvVaccine.Size = new Size(1568, 825);
             dgvVaccine.TabIndex = 0;
             // 
             // cntXoaSua
@@ -270,6 +271,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(btnThemLoai);
             panel2.Controls.Add(btnLuu);
             panel2.Controls.Add(pnlLocXuatXu);
             panel2.Controls.Add(pnlLoc);
@@ -278,15 +280,30 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1382, 63);
+            panel2.Size = new Size(1568, 63);
             panel2.TabIndex = 5;
+            // 
+            // btnThemLoai
+            // 
+            btnThemLoai.BackColor = Color.FromArgb(93, 245, 199);
+            btnThemLoai.Image = Properties.Resources.load;
+            btnThemLoai.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThemLoai.Location = new Point(1077, 8);
+            btnThemLoai.Name = "btnThemLoai";
+            btnThemLoai.Padding = new Padding(14, 5, 14, 5);
+            btnThemLoai.Size = new Size(215, 44);
+            btnThemLoai.TabIndex = 30;
+            btnThemLoai.Text = "Loại Vaccine mới";
+            btnThemLoai.TextAlign = ContentAlignment.MiddleRight;
+            btnThemLoai.UseVisualStyleBackColor = false;
+            btnThemLoai.Click += btnThemLoai_Click;
             // 
             // btnLuu
             // 
-            btnLuu.BackColor = Color.FromArgb(212, 246, 255);
-            btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
+            btnLuu.BackColor = Color.FromArgb(255, 215, 102);
+            btnLuu.Image = Properties.Resources.save;
             btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLuu.Location = new Point(1250, 8);
+            btnLuu.Location = new Point(1298, 8);
             btnLuu.Name = "btnLuu";
             btnLuu.Padding = new Padding(14, 5, 14, 5);
             btnLuu.Size = new Size(118, 44);
@@ -412,14 +429,14 @@
             // btnThemVC
             // 
             btnThemVC.BackColor = Color.FromArgb(212, 246, 255);
-            btnThemVC.Image = (Image)resources.GetObject("btnThemVC.Image");
+            btnThemVC.Image = Properties.Resources.vaccine_3021063;
             btnThemVC.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemVC.Location = new Point(888, 8);
             btnThemVC.Name = "btnThemVC";
             btnThemVC.Padding = new Padding(14, 5, 14, 5);
-            btnThemVC.Size = new Size(237, 44);
+            btnThemVC.Size = new Size(183, 44);
             btnThemVC.TabIndex = 25;
-            btnThemVC.Text = "Thêm Vaccine mới";
+            btnThemVC.Text = "Vaccine mới";
             btnThemVC.TextAlign = ContentAlignment.MiddleRight;
             btnThemVC.UseVisualStyleBackColor = false;
             btnThemVC.Click += btnThemVC_Click;
@@ -432,7 +449,7 @@
             tabPage2.Location = new Point(4, 31);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1388, 894);
+            tabPage2.Size = new Size(1574, 894);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Nhập Vaccine";
             tabPage2.UseVisualStyleBackColor = true;
@@ -444,7 +461,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(3, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1382, 503);
+            panel4.Size = new Size(1568, 503);
             panel4.TabIndex = 1;
             // 
             // panel6
@@ -453,7 +470,7 @@
             panel6.Controls.Add(groupBox5);
             panel6.Controls.Add(grbChiTietNhapVC);
             panel6.Dock = DockStyle.Right;
-            panel6.Location = new Point(840, 0);
+            panel6.Location = new Point(1026, 0);
             panel6.Name = "panel6";
             panel6.Size = new Size(542, 503);
             panel6.TabIndex = 1;
@@ -913,7 +930,7 @@
             dgvNhapVaccine.Name = "dgvNhapVaccine";
             dgvNhapVaccine.RowHeadersWidth = 51;
             dgvNhapVaccine.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvNhapVaccine.Size = new Size(1382, 385);
+            dgvNhapVaccine.Size = new Size(1568, 385);
             dgvNhapVaccine.TabIndex = 0;
             // 
             // imageList1
@@ -939,7 +956,7 @@
             AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1396, 929);
+            ClientSize = new Size(1582, 929);
             Controls.Add(tctChinh);
             Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
@@ -1053,5 +1070,6 @@
         private Label lblndtb;
         private System.Windows.Forms.Timer timerTB;
         private System.Windows.Forms.Timer timerHieuUng;
+        private Button btnThemLoai;
     }
 }

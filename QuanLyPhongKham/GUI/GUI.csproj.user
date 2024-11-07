@@ -16,6 +16,9 @@
     <Compile Update="frmQLVaccine.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmThemLoaiVaccine.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmTrangChu.cs">
       <SubType>Form</SubType>
     </Compile>

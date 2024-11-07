@@ -8,6 +8,7 @@ namespace DTO
 {
     public class VaccineDTO
     {
+        public static bool CheckTB = false;
         string mavc, maloai, tenvc, ngaysx, hansudung,xuatxu;
         int soluongton, gia;
         public string Mavc { get => Mavc1; set => Mavc1 = value; }

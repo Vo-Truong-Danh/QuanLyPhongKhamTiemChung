@@ -775,7 +775,8 @@ namespace GUI
             frm_overlay frm = new frm_overlay(0);
             frm.ShowDialog();
             ReLoadFRM();
-            ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
+            if (VaccineDTO.CheckTB)
+                ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
         }
 
         private void cboLoaiVC_Click(object sender, EventArgs e)
@@ -844,15 +845,15 @@ namespace GUI
             BoGoc(pnlThongBao, 20);
             timerTB.Start();
 
-            startY = 860;pnlThongBao.Location = new Point(1640, 902);
+            startY = 860; pnlThongBao.Location = new Point(1640, 902);
             targetY = startY;
             timerHieuUng.Interval = 20;
             timerHieuUng.Tick += SlidePanel;
             timerHieuUng.Start();
         }
         private int startY;
-        private int targetY; 
-        private const int ANIMATION_SPEED = 1; 
+        private int targetY;
+        private const int ANIMATION_SPEED = 1;
         private void SlidePanel(object sender, EventArgs e)
         {
             if (pnlThongBao.Location.Y > targetY)
@@ -910,5 +911,13 @@ namespace GUI
 
         }
 
+        private void btnThemLoai_Click(object sender, EventArgs e)
+        {
+            frm_overlay frm = new frm_overlay(2);
+            frm.ShowDialog();
+            ReLoadFRM();
+            if (VaccineDTO.CheckTB)
+                ThongBao("Thêm thành công Loại Vaccine vào danh sách ", 1);
+        }
     }
 }

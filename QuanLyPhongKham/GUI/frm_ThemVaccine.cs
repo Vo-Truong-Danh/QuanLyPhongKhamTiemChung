@@ -43,6 +43,8 @@ namespace GUI
             if (t == DialogResult.Yes)
             {
                 this.Close();
+
+                VaccineDTO.CheckTB = false;
             }
         }
         private void BoGoc(Control tmp)
@@ -80,6 +82,7 @@ namespace GUI
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
+            VaccineDTO.CheckTB = true;
             DialogResult t = MessageBox.Show("Bạn có chắc muốn lưu thông tin này không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (t == DialogResult.Yes)
             {
