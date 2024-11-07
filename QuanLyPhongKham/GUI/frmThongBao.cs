@@ -17,6 +17,14 @@ namespace GUI
         {
             InitializeComponent();
         }
+        string ndtb = "";
+        int tgtb = 2000;
+        public frmThongBao(string nd , int tg)
+        {
+            InitializeComponent();
+            ndtb = nd;
+            tgtb = tg;
+        }
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
            (
@@ -31,6 +39,13 @@ namespace GUI
         {
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             panel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel1.Width, panel1.Height, 20, 20));
+            if (tgtb > 0)
+            {
+                lblnd.Text = ndtb;
+                timer.Interval = tgtb;
+                timer.Tick += (s, e) => { this.Close(); };
+                timer.Start();
+            }
 
         }
     }

@@ -28,48 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            lblnd = new Label();
+            timer = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(label1);
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(lblnd);
             panel1.Location = new Point(2, 2);
+            panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(366, 62);
+            panel1.Size = new Size(458, 68);
             panel1.TabIndex = 0;
             // 
-            // label1
+            // pictureBox1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(82, 22);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            pictureBox1.Image = Properties.Resources.notification_16903647;
+            pictureBox1.Location = new Point(25, 8);
+            pictureBox1.Margin = new Padding(4, 3, 4, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(66, 54);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // lblnd
+            // 
+            lblnd.AutoSize = true;
+            lblnd.Location = new Point(102, 24);
+            lblnd.Margin = new Padding(4, 0, 4, 0);
+            lblnd.Name = "lblnd";
+            lblnd.Size = new Size(58, 22);
+            lblnd.TabIndex = 0;
+            lblnd.Text = "label1";
             // 
             // frmThongBao
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
-            ClientSize = new Size(370, 66);
+            ClientSize = new Size(462, 72);
             Controls.Add(panel1);
+            Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 3, 4, 3);
             Name = "frmThongBao";
             Text = "frmThongBao";
             Load += frmThongBao_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Label label1;
+        private Label lblnd;
+        private PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer;
     }
 }

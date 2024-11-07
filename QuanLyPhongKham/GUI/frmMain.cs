@@ -45,8 +45,8 @@ namespace GUI
             txtTenHienThi.Hide();
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
 
-            //frmThongBaoTam tb = new frmThongBaoTam("Xin chào : "+tennguoidangnhap+"",4000);
-            //tb.ShowDialog();
+            frmThongBao tb = new frmThongBao("Xin chào : "+tennguoidangnhap+"",4000);
+            tb.ShowDialog();
 
         }
 
