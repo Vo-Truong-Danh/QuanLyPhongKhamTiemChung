@@ -21,9 +21,13 @@ namespace BLL
             return loaiVaccineDAL.Search(ndtimkiem);
         }
 
-        public bool Insert(string tenLoai)
+        public bool Insert(LoaiVaccineDTO tmp)
         {
-            return loaiVaccineDAL.Insert(tenLoai);
+            return loaiVaccineDAL.Insert(tmp);
+        }
+        public void Luu()
+        {
+            loaiVaccineDAL.Luu();
         }
         
         public bool Delete(string ndxoa)

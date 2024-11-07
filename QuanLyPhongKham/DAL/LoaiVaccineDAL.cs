@@ -13,14 +13,15 @@ namespace DAL
     {
         SqlDataAdapter adap;
         SqlConnection conn;
-        DataTable dt = new DataTable();
+        private static DataTable dt = new DataTable();
 
         public LoaiVaccineDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
             string truyvansql = "select * from LoaiVaccine";
             adap = new SqlDataAdapter(truyvansql, conn);
-            adap.Fill(dt);
+            if (dt.Rows.Count == 0)
+                adap.Fill(dt);
         }
 
         public DataTable GetData()
@@ -44,27 +45,28 @@ namespace DAL
             //return resultTable;
             return null;
         }
-        public bool Insert(string lvcDTO)
+        public bool Insert(LoaiVaccineDTO lvcDTO)
         {
-            //try
-            //{
-            //    if (ds.Tables["LoaiVaccine"] == null)
-            //        GetData();
+            try
+            {
+                DataRow newrow = dt.NewRow();
+                newrow["MaLoai"] = lvcDTO.Maloai;
+                newrow["TenLoai"] = lvcDTO.Tenloai;
+                newrow["SoMui"] = lvcDTO.Somui;
 
-            //    DataRow newRow = ds.Tables["LoaiVaccine"].NewRow();
-            //    newRow["TenLoai"] = lvcDTO;
-            //    ds.Tables["LoaiVaccine"].Rows.Add(newRow);
+                dt.Rows.Add(newrow);
 
-            //    // Cập nhật csdl
-            //    SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-            //    adap.Update(ds, "LoaiVaccine");
-            //    GetData();
-
-            //    return true;
-            //}
-            //catch
-            //{ return false; }
-            return false;
+                return true;
+            }
+            catch
+            { 
+                return false; 
+            }
+        }
+        public void Luu()
+        {
+            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+            adap.Update(dt);
         }
         public bool Delete(string maLoai)
         {

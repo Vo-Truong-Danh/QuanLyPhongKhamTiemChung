@@ -91,7 +91,7 @@ namespace GUI
                     int sl = vcbll.LayTTVC().Rows.Count + 1;
                     VaccineDTO vcdto = new VaccineDTO()
                     {
-                        Mavc = "VC" + sl.ToString() + "",
+                        Mavc = "VC" + sl.ToString("D3") +"",
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
                         Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),

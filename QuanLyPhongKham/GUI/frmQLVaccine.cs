@@ -822,6 +822,7 @@ namespace GUI
             if (t == DialogResult.Yes)
             {
                 vaccineBLL.Luu();
+                loaivcbll.Luu();
             }
         }
 
@@ -915,9 +916,13 @@ namespace GUI
         {
             frm_overlay frm = new frm_overlay(2);
             frm.ShowDialog();
-            ReLoadFRM();
             if (VaccineDTO.CheckTB)
-                ThongBao("Thêm thành công Loại Vaccine vào danh sách ", 1);
+            {
+                ThongBao("Thêm thành công Loại Vaccine vào danh sách ", 1); 
+                cboLoaiVC.DataSource = loaivcbll.GetData();
+                cboLoaiVC.DisplayMember = "TenLoai";
+                cboLoaiVC.ValueMember = "MaLoai";
+            }
         }
     }
 }
