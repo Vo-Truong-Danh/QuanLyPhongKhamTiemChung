@@ -14,22 +14,23 @@ namespace DAL
         DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
+        DataTable dt;
 
         public PhieuNhapDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
-            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-        }
-
-        public DataSet GetData()
-        {
-            conn.Open();
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey; conn.Open();
             string truyvansql = "select * from PhieuNhap";
             adap = new SqlDataAdapter(truyvansql, conn);
             adap.Fill(ds, "PhieuNhap");
+            adap.Fill(dt = new DataTable());
             conn.Close();
-            return ds;
+
+        }
+
+        public DataTable GetData()
+        {
+            return dt;
         }
         public bool Insert(PhieuNhapDTO tmp)
         {

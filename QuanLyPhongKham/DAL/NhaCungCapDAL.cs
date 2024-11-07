@@ -14,22 +14,22 @@ namespace DAL
         DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
+        DataTable dt;
 
         public NhaCungCapDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
-            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-        }
-
-        public DataSet GetData()
-        {
-            conn.Open();
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey; conn.Open();
             string truyvansql = "select * from NhaCungCap";
             adap = new SqlDataAdapter(truyvansql, conn);
             adap.Fill(ds, "NhaCungCap");
-            conn.Close();
-            return ds;
+            adap.Fill(dt = new DataTable());
+
+        }
+
+        public DataTable GetData()
+        {
+            return dt;
         }
         public bool Insert(NhaCungCapDTO tmp)
         {

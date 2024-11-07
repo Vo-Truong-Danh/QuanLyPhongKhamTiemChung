@@ -161,11 +161,11 @@ namespace GUI
 
             dgvVaccine.Columns[2].Width = 220;
 
-            dgvVaccine.Columns[3].Width = 170;
+            dgvVaccine.Columns[3].Width = 175;
             dgvVaccine.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvVaccine.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvVaccine.Columns[4].Width = 170;
+            dgvVaccine.Columns[4].Width = 175;
             dgvVaccine.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvVaccine.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -186,6 +186,11 @@ namespace GUI
         {
             tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, goc, goc));
         }
+
+
+        NhaCungCapBLL nccbll = new NhaCungCapBLL();
+
+        //LOAD
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
             dgvVaccine.ColumnHeadersHeight = 60;
@@ -204,8 +209,24 @@ namespace GUI
             BoGoc(pnlLoc, 50);
             BoGoc(pnlLocXuatXu, 50);
             CreateDTGV(vaccineBLL.LayTTVC());
+
+            pnl_2_TaoPhieuNhap.Enabled = false;
+            BoGoc(pnl2dongia, 20);
+            BoGoc(pnl2_maphieu, 20);
+            BoGoc(pnl2_ncc, 20);
+            BoGoc(pnl2_ngaynhap, 20);
+            BoGoc(pnl2tenvaccine, 20);
+            BoGoc(pnl2soluong, 20);
+
+            LoadNCC();
         }
 
+        private void LoadNCC()
+        {
+            cboNCC.DataSource = nccbll.GetData();
+            cboNCC.DisplayMember = "TenNCC";
+            cboNCC.ValueMember = "MaNCC";
+        }
         private void btnLoadTTVC_Click(object sender, EventArgs e)
         {
             //grbTimKiem.Enabled = true;
@@ -440,12 +461,12 @@ namespace GUI
         private void LoadPhieuNhap()
         {
             PhieuNhapBLL ncc = new PhieuNhapBLL();
-            dgvNhapVaccine.DataSource = ncc.GetData().Tables["PhieuNhap"];
+            dgvNhapVaccine.DataSource = ncc.GetData();
         }
         public void LoadLoaiNCCChoCBO()
         {
             NhaCungCapBLL ncc = new NhaCungCapBLL();
-            cboNhaCungCap.DataSource = ncc.GetData().Tables["NhaCungCap"];
+            cboNhaCungCap.DataSource = ncc.GetData();
             cboNhaCungCap.DisplayMember = "TenNCC";
             cboNhaCungCap.ValueMember = "MaNCC";
         }
@@ -483,7 +504,7 @@ namespace GUI
         public void PhieuNhapChoCBO()
         {
             PhieuNhapBLL ncc = new PhieuNhapBLL();
-            cboMaHoaDonNHap.DataSource = ncc.GetData().Tables["PhieuNhap"];
+            cboMaHoaDonNHap.DataSource = ncc.GetData();
             cboMaHoaDonNHap.DisplayMember = "MaPN";
             cboMaHoaDonNHap.ValueMember = "MaPN";
 
@@ -918,11 +939,16 @@ namespace GUI
             frm.ShowDialog();
             if (VaccineDTO.CheckTB)
             {
-                ThongBao("Thêm thành công Loại Vaccine vào danh sách ", 1); 
+                ThongBao("Thêm thành công Loại Vaccine vào danh sách ", 1);
                 cboLoaiVC.DataSource = loaivcbll.GetData();
                 cboLoaiVC.DisplayMember = "TenLoai";
                 cboLoaiVC.ValueMember = "MaLoai";
             }
+        }
+
+        private void btnTaoPhieuNhap_Click(object sender, EventArgs e)
+        {
+            pnl_2_TaoPhieuNhap.Enabled = true;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace BLL
     public class NhaCungCapBLL
     {
         NhaCungCapDAL NhaCcDAL = new NhaCungCapDAL();
-        public DataSet GetData()
+        public DataTable GetData()
         {
             return NhaCcDAL.GetData();
         }

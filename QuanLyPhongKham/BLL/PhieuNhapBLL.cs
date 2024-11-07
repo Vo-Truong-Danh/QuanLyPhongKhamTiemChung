@@ -13,7 +13,7 @@ namespace BLL
     {
         PhieuNhapDAL pn = new PhieuNhapDAL();
 
-        public DataSet GetData()
+        public DataTable GetData()
         {
             return pn.GetData();
         }
