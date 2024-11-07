@@ -213,6 +213,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap notification_16903647 {
+            get {
+                object obj = ResourceManager.GetObject("notification_16903647", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap refresh_9903652 {
             get {
                 object obj = ResourceManager.GetObject("refresh_9903652", resourceCulture);

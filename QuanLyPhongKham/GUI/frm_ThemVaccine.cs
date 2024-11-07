@@ -53,7 +53,7 @@ namespace GUI
             BoGoc(pnlNSX);
             BoGoc(pnlHSD);
             BoGoc(pnlTenVc);
-            BoGoc(this);
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 10, 10));
             BoGoc(btnLuu);
 
             BoGoc(pnlLoai);
