@@ -49,6 +49,7 @@
             timerSaiTK = new System.Windows.Forms.Timer(components);
             btnThoat = new PictureBox();
             HU = new System.Windows.Forms.Timer(components);
+            pnlHuGoc = new Panel();
             ((System.ComponentModel.ISupportInitialize)pctmain).BeginInit();
             pnlMatkhau.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAnpass).BeginInit();
@@ -57,12 +58,13 @@
             ((System.ComponentModel.ISupportInitialize)pctHU).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnThoat).BeginInit();
+            pnlHuGoc.SuspendLayout();
             SuspendLayout();
             // 
             // pctmain
             // 
             pctmain.Image = Properties.Resources.dangnhap;
-            pctmain.Location = new Point(57, 75);
+            pctmain.Location = new Point(38, 82);
             pctmain.Margin = new Padding(4);
             pctmain.Name = "pctmain";
             pctmain.Size = new Size(294, 294);
@@ -74,7 +76,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("SVN-Gotham Rounded", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(477, 33);
+            label1.Location = new Point(458, 40);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(216, 37);
@@ -88,7 +90,7 @@
             btnDangNhap.FlatStyle = FlatStyle.Flat;
             btnDangNhap.Font = new Font("SVN-Oscine", 14.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDangNhap.ForeColor = Color.Black;
-            btnDangNhap.Location = new Point(410, 300);
+            btnDangNhap.Location = new Point(391, 307);
             btnDangNhap.Margin = new Padding(0);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(351, 54);
@@ -100,7 +102,7 @@
             // pnlTaiKhoan
             // 
             pnlTaiKhoan.BackColor = Color.FromArgb(224, 224, 224);
-            pnlTaiKhoan.Location = new Point(410, 117);
+            pnlTaiKhoan.Location = new Point(391, 124);
             pnlTaiKhoan.Name = "pnlTaiKhoan";
             pnlTaiKhoan.Size = new Size(351, 54);
             pnlTaiKhoan.TabIndex = 24;
@@ -112,7 +114,7 @@
             pnlMatkhau.Controls.Add(pictureBox4);
             pnlMatkhau.Controls.Add(btnHienpass);
             pnlMatkhau.Controls.Add(txtMatKhau);
-            pnlMatkhau.Location = new Point(410, 210);
+            pnlMatkhau.Location = new Point(391, 217);
             pnlMatkhau.Name = "pnlMatkhau";
             pnlMatkhau.Size = new Size(351, 54);
             pnlMatkhau.TabIndex = 27;
@@ -173,7 +175,7 @@
             // pctHU
             // 
             pctHU.Image = (Image)resources.GetObject("pctHU.Image");
-            pctHU.Location = new Point(255, 60);
+            pctHU.Location = new Point(236, 67);
             pctHU.Margin = new Padding(4);
             pctHU.Name = "pctHU";
             pctHU.Size = new Size(294, 294);
@@ -185,7 +187,7 @@
             // 
             labLoiTaiKhoan.AutoSize = true;
             labLoiTaiKhoan.ForeColor = Color.Red;
-            labLoiTaiKhoan.Location = new Point(410, 88);
+            labLoiTaiKhoan.Location = new Point(391, 95);
             labLoiTaiKhoan.Name = "labLoiTaiKhoan";
             labLoiTaiKhoan.Size = new Size(0, 25);
             labLoiTaiKhoan.TabIndex = 28;
@@ -194,7 +196,7 @@
             // 
             lblLoiMatKhau.AutoSize = true;
             lblLoiMatKhau.ForeColor = Color.Red;
-            lblLoiMatKhau.Location = new Point(410, 175);
+            lblLoiMatKhau.Location = new Point(391, 182);
             lblLoiMatKhau.Name = "lblLoiMatKhau";
             lblLoiMatKhau.Size = new Size(0, 25);
             lblLoiMatKhau.TabIndex = 29;
@@ -204,7 +206,7 @@
             txtTaiKhoan.BackColor = Color.FromArgb(224, 224, 224);
             txtTaiKhoan.BorderStyle = BorderStyle.None;
             txtTaiKhoan.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTaiKhoan.Location = new Point(478, 129);
+            txtTaiKhoan.Location = new Point(459, 136);
             txtTaiKhoan.Name = "txtTaiKhoan";
             txtTaiKhoan.PlaceholderText = "Tài khoản";
             txtTaiKhoan.Size = new Size(250, 31);
@@ -214,7 +216,7 @@
             // 
             pictureBox3.BackColor = Color.FromArgb(224, 224, 224);
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(430, 126);
+            pictureBox3.Location = new Point(411, 133);
             pictureBox3.Margin = new Padding(4);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(30, 34);
@@ -226,7 +228,7 @@
             // 
             lblsai.AutoSize = true;
             lblsai.ForeColor = Color.Red;
-            lblsai.Location = new Point(410, 269);
+            lblsai.Location = new Point(391, 276);
             lblsai.Name = "lblsai";
             lblsai.Size = new Size(0, 25);
             lblsai.TabIndex = 30;
@@ -243,7 +245,7 @@
             // btnThoat
             // 
             btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
-            btnThoat.Location = new Point(779, 24);
+            btnThoat.Location = new Point(760, 31);
             btnThoat.Margin = new Padding(4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(27, 28);
@@ -257,25 +259,34 @@
             HU.Interval = 3200;
             HU.Tick += HU_Tick;
             // 
+            // pnlHuGoc
+            // 
+            pnlHuGoc.BackColor = Color.White;
+            pnlHuGoc.Controls.Add(pctHU);
+            pnlHuGoc.Controls.Add(pnlMatkhau);
+            pnlHuGoc.Controls.Add(btnDangNhap);
+            pnlHuGoc.Controls.Add(label1);
+            pnlHuGoc.Controls.Add(lblsai);
+            pnlHuGoc.Controls.Add(pctmain);
+            pnlHuGoc.Controls.Add(pictureBox3);
+            pnlHuGoc.Controls.Add(btnThoat);
+            pnlHuGoc.Controls.Add(txtTaiKhoan);
+            pnlHuGoc.Controls.Add(pnlTaiKhoan);
+            pnlHuGoc.Controls.Add(lblLoiMatKhau);
+            pnlHuGoc.Controls.Add(labLoiTaiKhoan);
+            pnlHuGoc.Location = new Point(3, 3);
+            pnlHuGoc.Name = "pnlHuGoc";
+            pnlHuGoc.Size = new Size(822, 410);
+            pnlHuGoc.TabIndex = 32;
+            // 
             // frmDangNhap
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.Black;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(832, 415);
-            Controls.Add(pctHU);
-            Controls.Add(pnlMatkhau);
-            Controls.Add(lblsai);
-            Controls.Add(pictureBox3);
-            Controls.Add(txtTaiKhoan);
-            Controls.Add(lblLoiMatKhau);
-            Controls.Add(labLoiTaiKhoan);
-            Controls.Add(pnlTaiKhoan);
-            Controls.Add(btnThoat);
-            Controls.Add(pctmain);
-            Controls.Add(label1);
-            Controls.Add(btnDangNhap);
+            ClientSize = new Size(827, 415);
+            Controls.Add(pnlHuGoc);
             Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             KeyPreview = true;
@@ -295,8 +306,9 @@
             ((System.ComponentModel.ISupportInitialize)pctHU).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnThoat).EndInit();
+            pnlHuGoc.ResumeLayout(false);
+            pnlHuGoc.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -320,5 +332,6 @@
         private PictureBox btnThoat;
         private PictureBox pctHU;
         private System.Windows.Forms.Timer HU;
+        private Panel pnlHuGoc;
     }
 }

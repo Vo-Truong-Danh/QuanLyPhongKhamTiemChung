@@ -201,8 +201,8 @@ namespace GUI
             cboXuatXu.DataSource = vaccineBLL.LoadDSXuatXu();
 
             pnlTimKiem.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTimKiem.Width, pnlTimKiem.Height, 50, 50));
-            pnlLoc.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLoc.Width, pnlLoc.Height, 50, 50));
-            pnlLocXuatXu.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlLocXuatXu.Width, pnlLocXuatXu.Height, 20, 20));
+            BoGoc(pnlLoc, 50);
+            BoGoc(pnlLocXuatXu, 50);
             CreateDTGV(vaccineBLL.LayTTVC());
         }
 

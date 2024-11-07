@@ -60,6 +60,7 @@ namespace GUI
             pnlTaiKhoan.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTaiKhoan.Width, pnlTaiKhoan.Height, 50, 50));
             pnlMatkhau.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlMatkhau.Width, pnlMatkhau.Height, 50, 50));
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 50, 50));
+            pnlHuGoc.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlHuGoc.Width, pnlHuGoc.Height, 45, 45));
             pctHU.Hide();
             timer.Interval = 4000;
         }
