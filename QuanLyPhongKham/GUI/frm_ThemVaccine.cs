@@ -19,7 +19,12 @@ namespace GUI
         {
             InitializeComponent();
         }
-
+        string mavcdto;
+        public frm_ThemVaccine(string mavc)
+        {
+            InitializeComponent();
+            mavcdto = mavc;
+        }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -55,11 +60,22 @@ namespace GUI
             BoGoc(pnlTenVc);
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 10, 10));
             BoGoc(btnLuu);
-
             BoGoc(pnlLoai);
             cboLoaiVC.DataSource = loaivcbLL.GetData();
             cboLoaiVC.DisplayMember = "TenLoai";
             cboLoaiVC.ValueMember = "MaLoai";
+            if (mavcdto != null)
+            {
+                btnThoat.Hide();
+                VaccineDTO vcdto = vcbll.SearchChiTiet(mavcdto);
+                txtTenVC.Text = vcdto.Tenvc;
+                dteNSX.Value = DateTime.Parse(vcdto.Ngaysx);
+                dteHSD.Value = DateTime.Parse(vcdto.Hansudung);
+                txtGia.Text = vcdto.Gia.ToString();
+                txtXuatXu.Text =vcdto.Xuatxu;
+                cboLoaiVC.SelectedValue=vcdto.Maloai;
+            }
+            
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -67,22 +83,37 @@ namespace GUI
             DialogResult t = MessageBox.Show("Bạn có chắc muốn lưu thông tin này không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (t == DialogResult.Yes)
             {
-
-                int sl = vcbll.LayTTVC().Rows.Count + 1;
-                VaccineDTO vcdto = new VaccineDTO()
+                if (mavcdto == null)
                 {
-                    Mavc = "VC"+sl.ToString()+"",
-                    Maloai = cboLoaiVC.SelectedValue.ToString(),
-                    Tenvc = txtTenVC.Text,
-                    Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
-                    Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
-                    Gia = int.Parse(txtGia.Text),
-                    Xuatxu = txtXuatXu.Text,
-                };
-                vcbll.Insert(vcdto);
-                //vcbll.Luu();
-                this.Close();
+                    int sl = vcbll.LayTTVC().Rows.Count + 1;
+                    VaccineDTO vcdto = new VaccineDTO()
+                    {
+                        Mavc = "VC" + sl.ToString() + "",
+                        Maloai = cboLoaiVC.SelectedValue.ToString(),
+                        Tenvc = txtTenVC.Text,
+                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Gia = int.Parse(txtGia.Text),
+                        Xuatxu = txtXuatXu.Text,
+                    };
+                    vcbll.Insert(vcdto);
+                }
+                else
+                {
+                    VaccineDTO vcdto = new VaccineDTO()
+                    {
+                        Mavc = mavcdto,
+                        Maloai = cboLoaiVC.SelectedValue.ToString(),
+                        Tenvc = txtTenVC.Text,
+                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Gia = int.Parse(txtGia.Text),
+                        Xuatxu = txtXuatXu.Text,
+                    };
+                    vcbll.Update(vcdto);
+                }
             }
+            this.Close();
         }
     }
 }

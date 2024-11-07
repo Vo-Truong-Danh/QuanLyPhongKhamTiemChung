@@ -774,8 +774,6 @@ namespace GUI
         {
             frm_overlay frm = new frm_overlay(0);
             frm.ShowDialog();
-            dgvVaccine.Columns.Clear();  // Xóa tất cả các cột
-            dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
             DataTable tmp = vaccineBLL.LayTTVC();
             CreateDTGV(tmp);
             ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
@@ -872,7 +870,10 @@ namespace GUI
         private void CapNhatToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
-
+            frm_overlay frm = new frm_overlay(1,ma);
+            frm.ShowDialog();
+            ReLoadFRM();
+            ThongBao("Cập nhật thành công Vaccine vào danh sách ", 1);
         }
 
         private void timerTB_Tick(object sender, EventArgs e)

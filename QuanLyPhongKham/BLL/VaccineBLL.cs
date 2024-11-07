@@ -26,10 +26,10 @@ namespace BLL
         {
             return vcbll.Delete(mavc);
         }
-        //public bool Update(VaccineDTO vaccineDTO)
-        //{
-        //    return vcbll.Update(vaccineDTO);
-        //}
+        public bool Update(VaccineDTO vaccineDTO)
+        {
+            return vcbll.Update(vaccineDTO);
+        }
         public DataTable Search(string ndtimkiem)
         {
             return vcbll.Search(ndtimkiem);
@@ -41,6 +41,11 @@ namespace BLL
         public void Luu()
         {
             vcbll.Luu(); 
+        }
+
+        public VaccineDTO SearchChiTiet(string mavc)
+        {
+            return  vcbll.SearchChiTiet(mavc);
         }
     }
 }

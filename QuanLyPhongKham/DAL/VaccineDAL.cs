@@ -66,39 +66,33 @@ namespace DAL
             }
         }
 
-        //public bool Update(VaccineDTO vcDTO)
-        //{
-        //    try
-        //    {
-        //        if (ds.Tables["Vaccine"] == null)
-        //        {
-        //            LayTTVC(); 
-        //        }
+        public bool Update(VaccineDTO vcDTO)
+        {
+            try
+            {
+                DataRow[] rowDeUPD = dt.Select("MaVC = '" + vcDTO.Mavc + "'");
 
-        //        DataRow[] rowDeUPD = ds.Tables["Vaccine"].Select("MaVC = '" + vcDTO.Mavc + "'");
+                if (rowDeUPD.Length > 0)
+                {
+                    DataRow row = rowDeUPD[0];
+                    row["MaLoai"] = vcDTO.Maloai;
+                    row["TenVC"] = vcDTO.Tenvc;
+                    row["NgaySX"] = vcDTO.Ngaysx;
+                    row["HanSuDung"] = vcDTO.Hansudung;
+                    row["Gia"] = vcDTO.Gia;
+                    row["XuatXu"] = vcDTO.Xuatxu;
 
-        //        if (rowDeUPD.Length > 0)
-        //        {
-        //            DataRow row = rowDeUPD[0];
-        //            row["MaLoai"] = vcDTO.Maloai;
-        //            row["TenVC"] = vcDTO.Tenvc;
-        //            row["NgaySX"] = vcDTO.Ngaysx;
-        //            row["HanSuDung"] = vcDTO.Hansudung;
-        //            row["Gia"] = vcDTO.Gia;
+                    dt.Rows.Add (row);
 
-        //            // Cập nhật csdl
-        //            SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-        //            adap.Update(ds, "Vaccine");
-
-        //            return true;
-        //        }
-        //        else return false;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }      
-        //}
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public void Luu()
         {
             // Cập nhật xuống database
@@ -116,6 +110,22 @@ namespace DAL
                 tmp.ImportRow(item);
             }
             return tmp;
+        }
+        public VaccineDTO SearchChiTiet(string ndtimkiem)
+        {
+            DataRow[] dr = dt.Select("MaVC = '"+ndtimkiem+"' ");
+            VaccineDTO vcdto = new VaccineDTO()
+            {
+                Mavc = dr[0][0].ToString(),
+                Maloai = dr[0][1].ToString(),
+                Tenvc = dr[0][2].ToString(),
+                Ngaysx = dr[0][3].ToString(),
+                Hansudung = dr[0][4].ToString(),
+                Gia = int.Parse(dr[0][6].ToString()),
+                Xuatxu = dr[0][7].ToString(),
+
+            };
+            return vcdto;
         }
 
         public List<string> LoadDSXuatXu()

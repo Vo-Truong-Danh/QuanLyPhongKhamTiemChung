@@ -68,10 +68,10 @@
             // btnThoat
             // 
             btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
-            btnThoat.Location = new Point(472, 13);
+            btnThoat.Location = new Point(479, 24);
             btnThoat.Margin = new Padding(5, 4, 5, 4);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(34, 31);
+            btnThoat.Size = new Size(19, 18);
             btnThoat.SizeMode = PictureBoxSizeMode.StretchImage;
             btnThoat.TabIndex = 25;
             btnThoat.TabStop = false;
