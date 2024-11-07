@@ -18,12 +18,14 @@ namespace GUI
             InitializeComponent();
         }
         string ndtb = "";
-        int tgtb = 2000;
-        public frmThongBao(string nd , int tg)
+        int tgtb = 3000;
+        int clor = 0; //0 là tb _ 1 xanh _ 2 là đỏ
+        public frmThongBao(string nd , int tg,int cl)
         {
             InitializeComponent();
             ndtb = nd;
             tgtb = tg;
+            clor = cl;
         }
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -46,7 +48,29 @@ namespace GUI
                 timer.Tick += (s, e) => { this.Close(); };
                 timer.Start();
             }
-
+            if (clor == 0)
+            {
+                this.StartPosition = FormStartPosition.Manual;
+                int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+                this.Location = new Point(screenWidth - this.Width - 10, 10);
+                lblnd.ForeColor = Color.Black;
+            }
+            if (clor == 1)
+            {
+                this.StartPosition = FormStartPosition.Manual;
+                int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+                int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+                this.Location = new Point(screenWidth - this.Width - 10, screenHeight - this.Height - 10);
+                lblnd.ForeColor= Color.Green;
+            }
+            if(clor == 2)
+            {
+                this.StartPosition = FormStartPosition.Manual;
+                int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+                int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+                this.Location = new Point(screenWidth - this.Width - 10, screenHeight - this.Height - 10);
+                lblnd.ForeColor = Color.Red;
+            }
         }
     }
 }
