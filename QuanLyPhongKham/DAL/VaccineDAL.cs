@@ -11,7 +11,7 @@ namespace DAL
 {
     public class VaccineDAL
     {
-        DataSet ds = new DataSet();
+        //DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
         private static DataTable dt = new DataTable();
@@ -22,8 +22,9 @@ namespace DAL
             conn.Open();
             string truyvansql = "select * from Vaccine";
             adap = new SqlDataAdapter(truyvansql, conn);
-            adap.Fill(ds, "Vaccine");
-            if(dt.Rows.Count == 0)
+            SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(adap);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            if (dt.Rows.Count == 0)
                 adap.Fill(dt);
         }
 
@@ -50,64 +51,61 @@ namespace DAL
         {
             try
             {
-                if (ds.Tables["Vaccine"] == null)
+                DataRow[] rowDeXoa = dt.Select("MaVC = '"+maVC+"'");
+                if (rowDeXoa.Length > 0)
                 {
-                    LayTTVC(); 
-                }
-                DataRow[] rowDeXoa = ds.Tables["Vaccine"].Select($"MaVC = '{maVC}'");
-                foreach (DataRow row in rowDeXoa)
-                {
-                    row.Delete();
-                }
-
-                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
-                adap.Update(ds, "Vaccine");
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Update(VaccineDTO vcDTO)
-        {
-            try
-            {
-                if (ds.Tables["Vaccine"] == null)
-                {
-                    LayTTVC(); 
-                }
-
-                DataRow[] rowDeUPD = ds.Tables["Vaccine"].Select("MaVC = '" + vcDTO.Mavc + "'");
-
-                if (rowDeUPD.Length > 0)
-                {
-                    DataRow row = rowDeUPD[0];
-                    row["MaLoai"] = vcDTO.Maloai;
-                    row["TenVC"] = vcDTO.Tenvc;
-                    row["NgaySX"] = vcDTO.Ngaysx;
-                    row["HanSuDung"] = vcDTO.Hansudung;
-                    row["Gia"] = vcDTO.Gia;
-
-                    // Cập nhật csdl
-                    SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                    adap.Update(ds, "Vaccine");
-
+                    //dt.Rows.Remove(rowDeXoa[0]);
+                    rowDeXoa[0].Delete();
                     return true;
                 }
-                else return false;
+                return false;
             }
             catch
             {
                 return false;
-            }      
+            }
         }
+
+        //public bool Update(VaccineDTO vcDTO)
+        //{
+        //    try
+        //    {
+        //        if (ds.Tables["Vaccine"] == null)
+        //        {
+        //            LayTTVC(); 
+        //        }
+
+        //        DataRow[] rowDeUPD = ds.Tables["Vaccine"].Select("MaVC = '" + vcDTO.Mavc + "'");
+
+        //        if (rowDeUPD.Length > 0)
+        //        {
+        //            DataRow row = rowDeUPD[0];
+        //            row["MaLoai"] = vcDTO.Maloai;
+        //            row["TenVC"] = vcDTO.Tenvc;
+        //            row["NgaySX"] = vcDTO.Ngaysx;
+        //            row["HanSuDung"] = vcDTO.Hansudung;
+        //            row["Gia"] = vcDTO.Gia;
+
+        //            // Cập nhật csdl
+        //            SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
+        //            adap.Update(ds, "Vaccine");
+
+        //            return true;
+        //        }
+        //        else return false;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }      
+        //}
         public void Luu()
         {
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adap);
+            // Cập nhật xuống database
             adap.Update(dt);
+
+            // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
+            dt.AcceptChanges();
         }
         public DataTable Search(string ndtimkiem)
         {

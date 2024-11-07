@@ -17,7 +17,7 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private string tennguoidangnhap;
+        private string tennguoidangnhap = "Nguyễn Ming Cảnh";
         private int? chucvu;
 
         public frmMain(TaiKhoanDTO nd) : this()
@@ -45,8 +45,7 @@ namespace GUI
             txtTenHienThi.Hide();
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
 
-            frmThongBao tb = new frmThongBao("Xin chào : "+tennguoidangnhap+"",4000,0);
-            tb.ShowDialog();
+            
 
         }
 

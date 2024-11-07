@@ -42,7 +42,7 @@ namespace GUI
         }
         private void BoGoc(Control tmp)
         {
-            tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, 50, 50));
+            tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, 15, 15));
         }
         VaccineBLL vcbll = new VaccineBLL();
         LoaiVaccineBLL loaivcbLL = new LoaiVaccineBLL();

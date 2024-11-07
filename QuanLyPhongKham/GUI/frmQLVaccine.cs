@@ -4,6 +4,7 @@ using DTO;
 using Microsoft.VisualBasic;
 using System.Data;
 using System.DirectoryServices;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -133,13 +134,17 @@ namespace GUI
             DataTable gan = loaivcbll.GetData();
             foreach (DataRow row in dttb.Rows)
             {
-                DataRow[] dr = gan.Select("MaLoai = '" + row["MaLoai"] + "'");
-                // Lấy giá trị từ DataRow
-                string tenLoai = dr[0]["TenLoai"].ToString();
-                string maLoai = row["MaLoai"].ToString();
-                string ngaysx = Convert.ToDateTime(row["NgaySX"]).ToString("dd/MM/yyyy");
+                if(row.RowState !=  DataRowState.Deleted)
+                {
+                    DataRow[] dr = gan.Select("MaLoai = '" + row["MaLoai"] + "'");
+                    // Lấy giá trị từ DataRow
+                    string tenLoai = dr[0]["TenLoai"].ToString();
+                    string maLoai = row["MaLoai"].ToString();
+                    string ngaysx = Convert.ToDateTime(row["NgaySX"]).ToString("dd/MM/yyyy");
 
-                dgvVaccine.Rows.Add(tmp++, row["MaVC"], row["TenVC"], ngaysx, Convert.ToDateTime(row["HanSuDung"]).ToString("dd/MM/yyyy"), row["SoLuongTon"], row["Gia"], row["XuatXu"], tenLoai);
+                    dgvVaccine.Rows.Add(tmp++, row["MaVC"], row["TenVC"], ngaysx, Convert.ToDateTime(row["HanSuDung"]).ToString("dd/MM/yyyy"), row["SoLuongTon"], row["Gia"], row["XuatXu"], tenLoai);
+
+                }
             }
             CustomSizeCol();
         }
@@ -177,7 +182,10 @@ namespace GUI
 
             dgvVaccine.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-
+        private void BoGoc(Control tmp,int goc)
+        {
+            tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, goc, goc));
+        }
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
             dgvVaccine.ColumnHeadersHeight = 60;
@@ -770,6 +778,7 @@ namespace GUI
             dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
             DataTable tmp = vaccineBLL.LayTTVC();
             CreateDTGV(tmp);
+            ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
         }
 
         private void cboLoaiVC_Click(object sender, EventArgs e)
@@ -792,6 +801,12 @@ namespace GUI
             lblMaloaivctmp.Show();
             lblXuatXu.Hide();
         }
+        private void ReLoadFRM()
+        {
+            dgvVaccine.Columns.Clear();
+            dgvVaccine.Rows.Clear();
+            CreateDTGV(vaccineBLL.LayTTVC());
+        }
 
         private void cboXuatXu_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -803,7 +818,67 @@ namespace GUI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            vaccineBLL.Luu();
+            DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn lưu những thay đổi sẽ được lưu vào Cơ Sở Dử Liệu",
+                                 "Xác nhận",
+                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (t == DialogResult.Yes)
+            {
+                vaccineBLL.Luu();
+            }
+        }
+
+        private void CapNhatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ThongBao(string nd , int colortext)
+        {
+            // 0 là đen _ 1 là xanh _ 2 là đỏ
+            if (colortext == 0)
+                lblndtb.ForeColor = Color.Black;
+            if (colortext == 1)
+                lblndtb.ForeColor = Color.Green;
+            if (colortext == 2)
+                lblndtb.ForeColor = Color.Red;
+            BoGoc(pnlTb,20);
+            BoGoc(pnlThongBao,20);
+            lblndtb.Text = nd;
+            pnlThongBao.Visible = true;
+            timerTB.Start();
+        }
+        private void XoaVaccineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
+            string ten = dgvVaccine.SelectedRows[0].Cells[2].Value.ToString();
+            DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa Vaccine '" + ten + "' này không?",
+                                 "Xác nhận",
+                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (t == DialogResult.Yes)
+            {
+                bool ck = vaccineBLL.Delete(ma);
+                if (ck)
+                {
+                    ThongBao("Xoá thành công Vaccine " + ten + "", 1);
+                    ReLoadFRM();
+                }
+                else
+                {
+                    ThongBao("Xoá thất lại Vaccine " + ten + "", 2);
+                    ReLoadFRM();
+                }
+            }
+        }
+
+        private void CapNhatToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
+
+        }
+
+        private void timerTB_Tick(object sender, EventArgs e)
+        {
+            pnlThongBao.Visible=false;
+            timerTB.Stop();
         }
     }
 }

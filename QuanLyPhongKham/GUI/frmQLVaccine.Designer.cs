@@ -29,15 +29,23 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             tctChinh = new TabControl();
             tabPage1 = new TabPage();
             panel1 = new Panel();
+            pnlThongBao = new Panel();
+            pnlTb = new Panel();
+            pictureBox1 = new PictureBox();
+            lblndtb = new Label();
             dgvVaccine = new DataGridView();
+            cntXoaSua = new ContextMenuStrip(components);
+            XoaVaccineToolStripMenuItem = new ToolStripMenuItem();
+            CapNhatToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
+            btnLuu = new Button();
             pnlLocXuatXu = new Panel();
             lblXuatXu = new Label();
             cboXuatXu = new ComboBox();
@@ -92,11 +100,15 @@
             txtTenNCCVC = new TextBox();
             dgvNhapVaccine = new DataGridView();
             imageList1 = new ImageList(components);
-            btnLuu = new Button();
+            timerTB = new System.Windows.Forms.Timer(components);
             tctChinh.SuspendLayout();
             tabPage1.SuspendLayout();
             panel1.SuspendLayout();
+            pnlThongBao.SuspendLayout();
+            pnlTb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).BeginInit();
+            cntXoaSua.SuspendLayout();
             panel2.SuspendLayout();
             pnlLocXuatXu.SuspendLayout();
             pnlLoc.SuspendLayout();
@@ -142,12 +154,56 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(pnlThongBao);
             panel1.Controls.Add(dgvVaccine);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 66);
             panel1.Name = "panel1";
             panel1.Size = new Size(1382, 825);
             panel1.TabIndex = 6;
+            // 
+            // pnlThongBao
+            // 
+            pnlThongBao.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pnlThongBao.BackColor = Color.DimGray;
+            pnlThongBao.Controls.Add(pnlTb);
+            pnlThongBao.Location = new Point(906, 739);
+            pnlThongBao.Name = "pnlThongBao";
+            pnlThongBao.Size = new Size(462, 72);
+            pnlThongBao.TabIndex = 2;
+            pnlThongBao.Visible = false;
+            // 
+            // pnlTb
+            // 
+            pnlTb.BackColor = Color.White;
+            pnlTb.Controls.Add(pictureBox1);
+            pnlTb.Controls.Add(lblndtb);
+            pnlTb.Location = new Point(2, 2);
+            pnlTb.Margin = new Padding(4, 3, 4, 3);
+            pnlTb.Name = "pnlTb";
+            pnlTb.Size = new Size(458, 68);
+            pnlTb.TabIndex = 30;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.notification_16903647;
+            pictureBox1.Location = new Point(14, 6);
+            pictureBox1.Margin = new Padding(4, 3, 4, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(66, 54);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // lblndtb
+            // 
+            lblndtb.AutoSize = true;
+            lblndtb.Location = new Point(91, 22);
+            lblndtb.Margin = new Padding(4, 0, 4, 0);
+            lblndtb.Name = "lblndtb";
+            lblndtb.Size = new Size(97, 22);
+            lblndtb.TabIndex = 0;
+            lblndtb.Text = "Thông báo";
             // 
             // dgvVaccine
             // 
@@ -159,24 +215,25 @@
             dgvVaccine.BorderStyle = BorderStyle.None;
             dgvVaccine.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvVaccine.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumTurquoise;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MediumTurquoise;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvVaccine.ColumnHeadersHeight = 29;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvVaccine.ContextMenuStrip = cntXoaSua;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle5;
             dgvVaccine.Dock = DockStyle.Fill;
             dgvVaccine.Location = new Point(0, 0);
             dgvVaccine.Margin = new Padding(9, 3, 3, 3);
@@ -187,6 +244,27 @@
             dgvVaccine.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvVaccine.Size = new Size(1382, 825);
             dgvVaccine.TabIndex = 0;
+            // 
+            // cntXoaSua
+            // 
+            cntXoaSua.ImageScalingSize = new Size(20, 20);
+            cntXoaSua.Items.AddRange(new ToolStripItem[] { XoaVaccineToolStripMenuItem, CapNhatToolStripMenuItem });
+            cntXoaSua.Name = "contextMenuStrip1";
+            cntXoaSua.Size = new Size(159, 52);
+            // 
+            // XoaVaccineToolStripMenuItem
+            // 
+            XoaVaccineToolStripMenuItem.Name = "XoaVaccineToolStripMenuItem";
+            XoaVaccineToolStripMenuItem.Size = new Size(158, 24);
+            XoaVaccineToolStripMenuItem.Text = "Xoá Vaccine";
+            XoaVaccineToolStripMenuItem.Click += XoaVaccineToolStripMenuItem_Click;
+            // 
+            // CapNhatToolStripMenuItem
+            // 
+            CapNhatToolStripMenuItem.Name = "CapNhatToolStripMenuItem";
+            CapNhatToolStripMenuItem.Size = new Size(158, 24);
+            CapNhatToolStripMenuItem.Text = "Cập nhật";
+            CapNhatToolStripMenuItem.Click += CapNhatToolStripMenuItem_Click_1;
             // 
             // panel2
             // 
@@ -201,6 +279,21 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1382, 63);
             panel2.TabIndex = 5;
+            // 
+            // btnLuu
+            // 
+            btnLuu.BackColor = Color.FromArgb(212, 246, 255);
+            btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuu.Location = new Point(1250, 8);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Padding = new Padding(14, 5, 14, 5);
+            btnLuu.Size = new Size(118, 44);
+            btnLuu.TabIndex = 29;
+            btnLuu.Text = "Lưu";
+            btnLuu.TextAlign = ContentAlignment.MiddleRight;
+            btnLuu.UseVisualStyleBackColor = false;
+            btnLuu.Click += btnLuu_Click;
             // 
             // pnlLocXuatXu
             // 
@@ -803,14 +896,14 @@
             // dgvNhapVaccine
             // 
             dgvNhapVaccine.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Aquamarine;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HotTrack;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvNhapVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Aquamarine;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HotTrack;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvNhapVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvNhapVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvNhapVaccine.Dock = DockStyle.Bottom;
             dgvNhapVaccine.GridColor = Color.WhiteSmoke;
@@ -830,20 +923,10 @@
             imageList1.Images.SetKeyName(0, "purchase_3310182.png");
             imageList1.Images.SetKeyName(1, "warehouse_7345857.png");
             // 
-            // btnLuu
+            // timerTB
             // 
-            btnLuu.BackColor = Color.FromArgb(212, 246, 255);
-            btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
-            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLuu.Location = new Point(1250, 8);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Padding = new Padding(14, 5, 14, 5);
-            btnLuu.Size = new Size(118, 44);
-            btnLuu.TabIndex = 29;
-            btnLuu.Text = "Lưu";
-            btnLuu.TextAlign = ContentAlignment.MiddleRight;
-            btnLuu.UseVisualStyleBackColor = false;
-            btnLuu.Click += btnLuu_Click;
+            timerTB.Interval = 4000;
+            timerTB.Tick += timerTB_Tick;
             // 
             // frmQLVaccine
             // 
@@ -863,7 +946,12 @@
             tctChinh.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             panel1.ResumeLayout(false);
+            pnlThongBao.ResumeLayout(false);
+            pnlTb.ResumeLayout(false);
+            pnlTb.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).EndInit();
+            cntXoaSua.ResumeLayout(false);
             panel2.ResumeLayout(false);
             pnlLocXuatXu.ResumeLayout(false);
             pnlLocXuatXu.PerformLayout();
@@ -950,5 +1038,13 @@
         private Panel pnlLocXuatXu;
         private ComboBox cboXuatXu;
         private Button btnLuu;
+        private ContextMenuStrip cntXoaSua;
+        private ToolStripMenuItem CapNhatToolStripMenuItem;
+        private ToolStripMenuItem XoaVaccineToolStripMenuItem;
+        private Panel pnlThongBao;
+        private Panel pnlTb;
+        private PictureBox pictureBox1;
+        private Label lblndtb;
+        private System.Windows.Forms.Timer timerTB;
     }
 }
