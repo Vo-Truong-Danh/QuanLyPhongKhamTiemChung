@@ -61,6 +61,10 @@
             pnl2_VungThemNVC = new Panel();
             pnl_2_TaoPhieuNhap = new Panel();
             pnl2_PN = new GroupBox();
+            pnlTongTien = new Panel();
+            label3 = new Label();
+            txtTongTien = new TextBox();
+            label2 = new Label();
             pnl2_ngaynhap = new Panel();
             dteNgayNhap = new DateTimePicker();
             label5 = new Label();
@@ -116,6 +120,7 @@
             pnl2_VungThemNVC.SuspendLayout();
             pnl_2_TaoPhieuNhap.SuspendLayout();
             pnl2_PN.SuspendLayout();
+            pnlTongTien.SuspendLayout();
             pnl2_ngaynhap.SuspendLayout();
             pnl2_ncc.SuspendLayout();
             pnl2_maphieu.SuspendLayout();
@@ -486,6 +491,7 @@
             // 
             // pnl2_PN
             // 
+            pnl2_PN.Controls.Add(pnlTongTien);
             pnl2_PN.Controls.Add(pnl2_ngaynhap);
             pnl2_PN.Controls.Add(pnl2_ncc);
             pnl2_PN.Controls.Add(pnl2_maphieu);
@@ -497,12 +503,54 @@
             pnl2_PN.TabStop = false;
             pnl2_PN.Text = "Phiếu Nhập";
             // 
+            // pnlTongTien
+            // 
+            pnlTongTien.BackColor = Color.White;
+            pnlTongTien.Controls.Add(label3);
+            pnlTongTien.Controls.Add(txtTongTien);
+            pnlTongTien.Controls.Add(label2);
+            pnlTongTien.Location = new Point(28, 278);
+            pnlTongTien.Name = "pnlTongTien";
+            pnlTongTien.Size = new Size(530, 62);
+            pnlTongTien.TabIndex = 2;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(448, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(54, 25);
+            label3.TabIndex = 2;
+            label3.Text = "VNĐ";
+            // 
+            // txtTongTien
+            // 
+            txtTongTien.BackColor = Color.White;
+            txtTongTien.BorderStyle = BorderStyle.None;
+            txtTongTien.Location = new Point(154, 20);
+            txtTongTien.Multiline = true;
+            txtTongTien.Name = "txtTongTien";
+            txtTongTien.ReadOnly = true;
+            txtTongTien.Size = new Size(295, 39);
+            txtTongTien.TabIndex = 1;
+            txtTongTien.Text = "0";
+            txtTongTien.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(14, 18);
+            label2.Name = "label2";
+            label2.Size = new Size(94, 25);
+            label2.TabIndex = 0;
+            label2.Text = "Tổng tiền";
+            // 
             // pnl2_ngaynhap
             // 
             pnl2_ngaynhap.BackColor = Color.White;
             pnl2_ngaynhap.Controls.Add(dteNgayNhap);
             pnl2_ngaynhap.Controls.Add(label5);
-            pnl2_ngaynhap.Location = new Point(28, 262);
+            pnl2_ngaynhap.Location = new Point(28, 202);
             pnl2_ngaynhap.Name = "pnl2_ngaynhap";
             pnl2_ngaynhap.Size = new Size(530, 62);
             pnl2_ngaynhap.TabIndex = 3;
@@ -530,7 +578,7 @@
             pnl2_ncc.BackColor = Color.White;
             pnl2_ncc.Controls.Add(cboNCC);
             pnl2_ncc.Controls.Add(label4);
-            pnl2_ncc.Location = new Point(28, 156);
+            pnl2_ncc.Location = new Point(28, 126);
             pnl2_ncc.Name = "pnl2_ncc";
             pnl2_ncc.Size = new Size(530, 62);
             pnl2_ncc.TabIndex = 2;
@@ -569,7 +617,7 @@
             // 
             txtMaPhieuN.BackColor = Color.White;
             txtMaPhieuN.BorderStyle = BorderStyle.None;
-            txtMaPhieuN.Location = new Point(144, 11);
+            txtMaPhieuN.Location = new Point(144, 20);
             txtMaPhieuN.Multiline = true;
             txtMaPhieuN.Name = "txtMaPhieuN";
             txtMaPhieuN.ReadOnly = true;
@@ -704,7 +752,7 @@
             btnCapNhatCTPN.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCapNhatCTPN.Image = (Image)resources.GetObject("btnCapNhatCTPN.Image");
             btnCapNhatCTPN.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCapNhatCTPN.Location = new Point(453, 376);
+            btnCapNhatCTPN.Location = new Point(435, 375);
             btnCapNhatCTPN.Margin = new Padding(0);
             btnCapNhatCTPN.Name = "btnCapNhatCTPN";
             btnCapNhatCTPN.Size = new Size(62, 55);
@@ -718,7 +766,7 @@
             btnXoaCTPN.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnXoaCTPN.Image = (Image)resources.GetObject("btnXoaCTPN.Image");
             btnXoaCTPN.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoaCTPN.Location = new Point(301, 376);
+            btnXoaCTPN.Location = new Point(274, 375);
             btnXoaCTPN.Margin = new Padding(0);
             btnXoaCTPN.Name = "btnXoaCTPN";
             btnXoaCTPN.Size = new Size(62, 55);
@@ -732,7 +780,7 @@
             btnThemCTPN.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnThemCTPN.Image = (Image)resources.GetObject("btnThemCTPN.Image");
             btnThemCTPN.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThemCTPN.Location = new Point(149, 376);
+            btnThemCTPN.Location = new Point(136, 375);
             btnThemCTPN.Margin = new Padding(0);
             btnThemCTPN.Name = "btnThemCTPN";
             btnThemCTPN.Size = new Size(62, 55);
@@ -740,6 +788,7 @@
             btnThemCTPN.TextImageRelation = TextImageRelation.ImageBeforeText;
             toolTip.SetToolTip(btnThemCTPN, "Thêm vào danh sách đơn hàng");
             btnThemCTPN.UseVisualStyleBackColor = true;
+            btnThemCTPN.Click += btnThemCTPN_Click;
             // 
             // pnl2dongia
             // 
@@ -826,6 +875,7 @@
             dtgDanhSachVCduocChon.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgDanhSachVCduocChon.Size = new Size(1295, 508);
             dtgDanhSachVCduocChon.TabIndex = 0;
+            dtgDanhSachVCduocChon.CellValueChanged += dtgDanhSachVCduocChon_CellValueChanged;
             // 
             // grbDSVC
             // 
@@ -923,6 +973,8 @@
             pnl2_VungThemNVC.ResumeLayout(false);
             pnl_2_TaoPhieuNhap.ResumeLayout(false);
             pnl2_PN.ResumeLayout(false);
+            pnlTongTien.ResumeLayout(false);
+            pnlTongTien.PerformLayout();
             pnl2_ngaynhap.ResumeLayout(false);
             pnl2_ngaynhap.PerformLayout();
             pnl2_ncc.ResumeLayout(false);
@@ -1014,5 +1066,9 @@
         private Panel pnlSoLuong;
         private TextBox txtSolUong;
         private Label txtSoLuongCTPN;
+        private Panel pnlTongTien;
+        private TextBox txtTongTien;
+        private Label label2;
+        private Label label3;
     }
 }

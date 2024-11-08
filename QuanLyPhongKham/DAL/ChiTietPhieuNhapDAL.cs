@@ -15,48 +15,63 @@ namespace DAL
         SqlDataAdapter adap;
 
         SqlConnection conn;
+        DataTable dt;
 
         public ChiTietPhieuNhapDAL()
         {
-            conn = new SqlConnection(GeneralDAL.connectStrg);
-        }
-
-        public DataSet GetData()
-        {
-            conn.Open();
+            conn = new SqlConnection(GeneralDAL.connectStrg); conn.Open();
             string truyvansql = "select * from CHITIETPHIEUNHAP";
             adap = new SqlDataAdapter(truyvansql, conn);
-            adap.Fill(ds, "ChiTietPhieuNhap");
+            adap.Fill(dt = new DataTable());
             conn.Close();
-            return ds;
         }
+
+        public DataTable GetData()
+        {
+            return dt;
+        }
+
+        public DataTable SearchMaPN(string ma)
+        {
+            DataRow[] dr = dt.Select("MaPN = '"+ma+"'");
+            //DataTable tmp = dt.Clone();
+            //if(dr.Length>0)
+            //{
+            //    foreach (DataRow dr2 in dr)
+            //    {
+            //        tmp.Rows.Add(dr2);
+            //    }
+            //}
+            return dr.CopyToDataTable();
+        }
+
         public bool Insert(ChiTietPhieuNhapDTO tmp)
         {
             try
             {
-                if (ds.Tables["ChiTietPhieuNhap"] == null)
-                {
-                    GetData();
-                }
-
-                DataRow newRow = ds.Tables["ChiTietPhieuNhap"].NewRow();
+                DataRow newRow = dt.NewRow();
                 newRow["MaPN"] = tmp.Mapn;
                 newRow["MaVC"] = tmp.Mavc;
                 newRow["SoLuong"] = tmp.Soluong;
                 newRow["DonGia"] = tmp.Dongia;
 
 
-                ds.Tables["ChiTietPhieuNhap"].Rows.Add(newRow);
-
-                // Cập nhật csdl
-                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                adap.Update(ds, "ChiTietPhieuNhap");
-                GetData();
-
+                dt.Rows.Add(newRow);
                 return true;
             }
             catch
             { return false; }
+        }
+
+        public bool Luu()
+        {
+            try
+            {
+                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+                adap.Update(ds, "ChiTietPhieuNhap");
+                return true;
+            }
+            catch { return false; }
         }
         public bool Delete(string mapn , string mavc)
         {

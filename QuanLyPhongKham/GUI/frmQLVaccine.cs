@@ -7,6 +7,7 @@ using System.DirectoryServices;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace GUI
 {
@@ -16,6 +17,13 @@ namespace GUI
         {
             InitializeComponent();
         }
+        VaccineBLL vaccineBLL = new VaccineBLL();
+        LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
+        PhieuNhapBLL pnbll = new PhieuNhapBLL();
+        ChiTietPhieuNhapBLL ctpnbll = new ChiTietPhieuNhapBLL();
+        static DataTable dt = new DataTable();
+        static DataTable luuctpntmp;
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
            (
@@ -70,8 +78,6 @@ namespace GUI
             //txtTenLoaiVC.DataBindings.Clear();
             //txtTenLoaiVC.DataBindings.Add("Text", dgvVaccine.DataSource, "TenLoai");
         }
-        VaccineBLL vaccineBLL = new VaccineBLL();
-        LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
         private void CreateDTGV(DataTable dttb)
         {
             DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
@@ -193,10 +199,15 @@ namespace GUI
         //LOAD
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
+            dt = ctpnbll.GetData();
+            luuctpntmp = dt.Clone();
+
             dgvVaccine.ColumnHeadersHeight = 60;
             dgvVaccine.RowTemplate.Height = 60;
             dtgCTPN.ColumnHeadersHeight = 60;
             dtgCTPN.RowTemplate.Height = 60;
+            dtgDanhSachVCduocChon.ColumnHeadersHeight = 60;
+            dtgDanhSachVCduocChon.RowTemplate.Height = 60;
 
 
             cboLoaiVC.DataSource = loaivcbll.GetData();
@@ -216,12 +227,15 @@ namespace GUI
             BoGoc(pnl2_ngaynhap, 20);
             BoGoc(pnl2tenvaccine, 20);
             BoGoc(pnlSoLuong, 20);
+            BoGoc(pnlTongTien, 20);
+            BoGoc(pnlThanhTien, 20);
+
             //Tab 2
             LoadNCC();
             pnl2_PN.Enabled = false;
             btnCapNhatCTPN.Enabled = false;
             btnXoaCTPN.Enabled = false;
-            btnXoaCTPN.Enabled = false ;
+            btnXoaCTPN.Enabled = false;
             CreateDTGV();
         }
 
@@ -230,33 +244,6 @@ namespace GUI
             cboNCC.DataSource = nccbll.GetData();
             cboNCC.DisplayMember = "TenNCC";
             cboNCC.ValueMember = "MaNCC";
-        }
-        private void btnLoadTTVC_Click(object sender, EventArgs e)
-        {
-            //grbTimKiem.Enabled = true;
-            //LoadVaccine();
-            //LoadLoaiVaccineChoCBO();
-            //bingdingVC();
-            //grbLoaiVC.Enabled = false;
-            //grbTTVC.Enabled = true;
-            //TrangThaiBang_1 = true;
-        }
-
-        private void btnThemTTVC_Click(object sender, EventArgs e)
-        {
-            //string maloai = cboLoaiVaccine.SelectedValue.ToString();
-            //string tenvc = txtTenVaccine.Text;
-            //string ngaysx = dtpNSX.Value.Date.ToString("yyyy/MM/dd");
-            //string hsd = dtpHSD.Value.Date.ToString("yyyy/MM/dd");
-            //int gia = int.Parse(txtGia.Text);
-            //VaccineDTO vc = new VaccineDTO(maloai, tenvc, ngaysx, hsd, gia);
-            //VaccineBLL vaccineBLL = new VaccineBLL();
-            //bool kt = vaccineBLL.Insert(vc);
-            //if (kt)
-            //    MessageBox.Show("Thêm thành công Vaccine mới");
-            //else
-            //    MessageBox.Show("Thêm Vaccine mới thất bại");
-            //LoadVaccine();
         }
 
         private void btnXoaTTVC_Click(object sender, EventArgs e)
@@ -952,6 +939,8 @@ namespace GUI
 
         private void btnTaoPhieuNhap_Click(object sender, EventArgs e)
         {
+            int sl = pnbll.GetData().Rows.Count + 1;
+            txtMaPhieuN.Text = "PN" + sl.ToString("D3") + "";
             pnl2_PN.Enabled = true;
             grb2_ChiTietPhieuNhap.Enabled = true;
             btnLuuPhieuNhap.Visible = true;
@@ -1051,10 +1040,134 @@ namespace GUI
             VaccineDTO vctmp = vaccineBLL.SearchChiTiet(ma);
             if (vctmp != null)
             {
+                txtTenVCCTPN.Tag = vctmp.Mavc1;
                 txtTenVCCTPN.Text = vctmp.Tenvc;
                 txtSolUong.Text = "0";
                 txtDonGiaCTPN.Text = vctmp.Gia.ToString();
             }
+        }
+
+        private void btnThemCTPN_Click(object sender, EventArgs e)
+        {
+            ChiTietPhieuNhapDTO ct = new ChiTietPhieuNhapDTO()
+            {
+                Mapn = txtMaPhieuN.Text,
+                Mavc = txtTenVCCTPN.Tag.ToString(),
+                Soluong = txtSolUong.Text,
+                Dongia = txtDonGiaCTPN.Text,
+            };
+
+            ctpnbll.Insert(ct);
+
+            dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
+            dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
+            CreateDTGV_ThemVC(ctpnbll.SearchMaPN(ct.Mapn));
+        }
+
+
+        private void CreateDTGV_ThemVC(DataTable data)
+        {
+
+            DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
+            {
+                Name = "STT",
+                HeaderText = "STT"
+            };
+            DataGridViewTextBoxColumn mavc = new DataGridViewTextBoxColumn
+            {
+                Name = "MaVC",
+                HeaderText = "Mã Vaccine"
+            };
+            DataGridViewTextBoxColumn tenvc = new DataGridViewTextBoxColumn
+            {
+                Name = "TenVC",
+                HeaderText = "Tên Vaccine"
+            };
+
+            DataGridViewTextBoxColumn SoLuong = new DataGridViewTextBoxColumn
+            {
+                Name = "SoLuong",
+                HeaderText = "Số Lượng "
+            };
+            DataGridViewTextBoxColumn dongia = new DataGridViewTextBoxColumn
+            {
+                Name = "DonGia",
+                HeaderText = "Đơn Giá "
+            };
+            DataGridViewTextBoxColumn thanhtien = new DataGridViewTextBoxColumn
+            {
+                Name = "ThanhTien",
+                HeaderText = "Thành Tiền "
+            };
+
+            //Thêm vào dtg
+            dtgDanhSachVCduocChon.Columns.Add(stt);
+            dtgDanhSachVCduocChon.Columns.Add(mavc);
+            dtgDanhSachVCduocChon.Columns.Add(tenvc);
+            dtgDanhSachVCduocChon.Columns.Add(SoLuong);
+            dtgDanhSachVCduocChon.Columns.Add(dongia);
+            dtgDanhSachVCduocChon.Columns.Add(thanhtien);
+            int tmp = 1;
+
+            foreach (DataRow row in data.Rows)
+            {
+                if (row.RowState != DataRowState.Deleted)
+                {
+                    DataRow[] dr = vaccineBLL.LayTTVC().Select("MaVC = '" + row["MaVC"] + "' ");
+                    if (dr.Length > 0)
+                    {
+                        string tenvctmp = dr[0]["TenVC"].ToString();
+                        double thanht = double.Parse(row["SoLuong"].ToString()) * double.Parse(row["DonGia"].ToString());
+                        dtgDanhSachVCduocChon.Rows.Add(tmp++, row["MaVC"], tenvctmp, row["SoLuong"], row["DonGia"], thanht);
+                    }
+                }
+            }
+            CustomSizeColThemVC();
+        }
+        private void CustomSizeColThemVC()
+        {
+
+            dtgDanhSachVCduocChon.Columns[0].Width = 60;
+            dtgDanhSachVCduocChon.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgDanhSachVCduocChon.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dtgDanhSachVCduocChon.Columns[1].Width = 170;
+            dtgDanhSachVCduocChon.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgDanhSachVCduocChon.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dtgDanhSachVCduocChon.Columns[2].Width = 220;
+
+
+            dtgDanhSachVCduocChon.Columns[3].Width = 130;
+            dtgDanhSachVCduocChon.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgDanhSachVCduocChon.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+            dtgDanhSachVCduocChon.Columns[4].Width = 130;
+            dtgDanhSachVCduocChon.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgDanhSachVCduocChon.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dtgDanhSachVCduocChon.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void dtgDanhSachVCduocChon_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            double sum = 0;
+            foreach (DataGridViewRow row in dtgDanhSachVCduocChon.Rows)
+            {
+                // Kiểm tra nếu hàng này không phải là hàng mới (new row)
+                if (!row.IsNewRow)
+                {
+                    // Giả sử cột bạn cần tính tổng có tên là "Gia"
+                    double value;
+                    if (double.TryParse(row.Cells["Gia"].Value?.ToString(), out value))
+                    {
+                        sum += value;
+                    }
+                }
+            }
+
+            txtTongTien.Text = sum.ToString();
         }
     }
 }

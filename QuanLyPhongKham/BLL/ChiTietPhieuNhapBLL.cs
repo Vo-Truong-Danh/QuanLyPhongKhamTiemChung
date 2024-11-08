@@ -13,10 +13,16 @@ namespace BLL
     {
         ChiTietPhieuNhapDAL ct = new ChiTietPhieuNhapDAL();
 
-        public DataSet GetData()
+        public DataTable GetData()
         {
             return ct.GetData();
         }
+
+        public DataTable SearchMaPN(string ma)
+        {
+            return ct.SearchMaPN(ma);
+        }
+
         public bool Insert(ChiTietPhieuNhapDTO tmp)
         {
             return ct.Insert(tmp);
@@ -28,6 +34,11 @@ namespace BLL
         public bool Update(ChiTietPhieuNhapDTO tmp)
         {
             return ct.Update(tmp);
+        }
+
+        public bool Luu()
+        {
+            return ct.Luu();
         }
     }
 }
