@@ -194,11 +194,11 @@ namespace GUI
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
             dgvVaccine.ColumnHeadersHeight = 60;
-            dgvNhapVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //dgvVaccine.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvVaccine.RowTemplate.Height = 60;
-            dgvNhapVaccine.AutoResizeColumns();
-            //dgvVaccine.AutoResizeColumns();
+            dtgCTPN.ColumnHeadersHeight = 60;
+            dtgCTPN.RowTemplate.Height = 60;
+
+
             cboLoaiVC.DataSource = loaivcbll.GetData();
             cboLoaiVC.DisplayMember = "TenLoai";
             cboLoaiVC.ValueMember = "MaLoai";
@@ -210,15 +210,19 @@ namespace GUI
             BoGoc(pnlLocXuatXu, 50);
             CreateDTGV(vaccineBLL.LayTTVC());
 
-            pnl_2_TaoPhieuNhap.Enabled = false;
             BoGoc(pnl2dongia, 20);
             BoGoc(pnl2_maphieu, 20);
             BoGoc(pnl2_ncc, 20);
             BoGoc(pnl2_ngaynhap, 20);
             BoGoc(pnl2tenvaccine, 20);
-            BoGoc(pnl2soluong, 20);
-
+            BoGoc(pnlSoLuong, 20);
+            //Tab 2
             LoadNCC();
+            pnl2_PN.Enabled = false;
+            btnCapNhatCTPN.Enabled = false;
+            btnXoaCTPN.Enabled = false;
+            btnXoaCTPN.Enabled = false ;
+            CreateDTGV();
         }
 
         private void LoadNCC()
@@ -458,338 +462,338 @@ namespace GUI
             //bindingNCC();
         }
 
-        private void LoadPhieuNhap()
-        {
-            PhieuNhapBLL ncc = new PhieuNhapBLL();
-            dgvNhapVaccine.DataSource = ncc.GetData();
-        }
-        public void LoadLoaiNCCChoCBO()
-        {
-            NhaCungCapBLL ncc = new NhaCungCapBLL();
-            cboNhaCungCap.DataSource = ncc.GetData();
-            cboNhaCungCap.DisplayMember = "TenNCC";
-            cboNhaCungCap.ValueMember = "MaNCC";
-        }
-        private void bindingPN()
-        {
-            cboNhaCungCap.DataBindings.Clear();
-            cboNhaCungCap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaNCC");
+        //private void LoadPhieuNhap()
+        //{
+        //    PhieuNhapBLL ncc = new PhieuNhapBLL();
+        //    dgvNhapVaccine.DataSource = ncc.GetData();
+        //}
+        //public void LoadLoaiNCCChoCBO()
+        //{
+        //    NhaCungCapBLL ncc = new NhaCungCapBLL();
+        //    cboNhaCungCap.DataSource = ncc.GetData();
+        //    cboNhaCungCap.DisplayMember = "TenNCC";
+        //    cboNhaCungCap.ValueMember = "MaNCC";
+        //}
+        //private void bindingPN()
+        //{
+        //    cboNhaCungCap.DataBindings.Clear();
+        //    cboNhaCungCap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaNCC");
 
-            dtpNgayNhapHang.DataBindings.Clear();
-            dtpNgayNhapHang.DataBindings.Add("Value", dgvNhapVaccine.DataSource, "NgayNhap");
-        }
+        //    dtpNgayNhapHang.DataBindings.Clear();
+        //    dtpNgayNhapHang.DataBindings.Add("Value", dgvNhapVaccine.DataSource, "NgayNhap");
+        //}
 
-        private void btnHoaDonNhap_Click(object sender, EventArgs e)
-        {
-            LoadLoaiNCCChoCBO();
-            grbChiTietNhapVC.Enabled = false;
-            grbNhaCC.Enabled = false;
-            grbHDN.Enabled = true;
-            LoadPhieuNhap();
-            bindingPN();
-        }
+        //private void btnHoaDonNhap_Click(object sender, EventArgs e)
+        //{
+        //    LoadLoaiNCCChoCBO();
+        //    grbChiTietNhapVC.Enabled = false;
+        //    grbNhaCC.Enabled = false;
+        //    grbHDN.Enabled = true;
+        //    LoadPhieuNhap();
+        //    bindingPN();
+        //}
 
-        private void LoadChiTietPhieuNhap()
-        {
-            ChiTietPhieuNhapBLL ncc = new ChiTietPhieuNhapBLL();
-            dgvNhapVaccine.DataSource = ncc.GetData().Tables["ChiTietPhieuNhap"];
-        }
-        public void VaccineNhapChoCBO()
-        {
-            //VaccineBLL ncc = new VaccineBLL();
-            //cboVaccineNhapCTHD.DataSource = ncc.LayTTVC().Tables["Vaccine"];
-            //cboVaccineNhapCTHD.DisplayMember = "TenVC";
-            //cboVaccineNhapCTHD.ValueMember = "MaVC";
-        }
-        public void PhieuNhapChoCBO()
-        {
-            PhieuNhapBLL ncc = new PhieuNhapBLL();
-            cboMaHoaDonNHap.DataSource = ncc.GetData();
-            cboMaHoaDonNHap.DisplayMember = "MaPN";
-            cboMaHoaDonNHap.ValueMember = "MaPN";
+        //private void LoadChiTietPhieuNhap()
+        //{
+        //    ChiTietPhieuNhapBLL ncc = new ChiTietPhieuNhapBLL();
+        //    dgvNhapVaccine.DataSource = ncc.GetData().Tables["ChiTietPhieuNhap"];
+        //}
+        //public void VaccineNhapChoCBO()
+        //{
+        //    //VaccineBLL ncc = new VaccineBLL();
+        //    //cboVaccineNhapCTHD.DataSource = ncc.LayTTVC().Tables["Vaccine"];
+        //    //cboVaccineNhapCTHD.DisplayMember = "TenVC";
+        //    //cboVaccineNhapCTHD.ValueMember = "MaVC";
+        //}
+        //public void PhieuNhapChoCBO()
+        //{
+        //    PhieuNhapBLL ncc = new PhieuNhapBLL();
+        //    cboMaHoaDonNHap.DataSource = ncc.GetData();
+        //    cboMaHoaDonNHap.DisplayMember = "MaPN";
+        //    cboMaHoaDonNHap.ValueMember = "MaPN";
 
-        }
-        private void bindingCTPN()
-        {
-            cboMaHoaDonNHap.DataBindings.Clear();
-            cboMaHoaDonNHap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaPN");
+        //}
+        //private void bindingCTPN()
+        //{
+        //    cboMaHoaDonNHap.DataBindings.Clear();
+        //    cboMaHoaDonNHap.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaPN");
 
-            cboVaccineNhapCTHD.DataBindings.Clear();
-            cboVaccineNhapCTHD.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaVC");
+        //    cboVaccineNhapCTHD.DataBindings.Clear();
+        //    cboVaccineNhapCTHD.DataBindings.Add("SelectedValue", dgvNhapVaccine.DataSource, "MaVC");
 
-            txtSoLuongNhap.DataBindings.Clear();
-            txtSoLuongNhap.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "SoLuong");
+        //    txtSoLuongNhap.DataBindings.Clear();
+        //    txtSoLuongNhap.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "SoLuong");
 
-            txtDonGiaNhap.DataBindings.Clear();
-            txtDonGiaNhap.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "DonGia");
+        //    txtDonGiaNhap.DataBindings.Clear();
+        //    txtDonGiaNhap.DataBindings.Add("Text", dgvNhapVaccine.DataSource, "DonGia");
 
-        }
+        //}
 
-        private void btnChiTietNhap_Click(object sender, EventArgs e)
-        {
-            PhieuNhapChoCBO();
-            VaccineNhapChoCBO();
-            grbChiTietNhapVC.Enabled = true;
-            grbNhaCC.Enabled = false;
-            grbHDN.Enabled = false;
-            LoadChiTietPhieuNhap();
-            bindingCTPN();
-        }
+        //private void btnChiTietNhap_Click(object sender, EventArgs e)
+        //{
+        //    PhieuNhapChoCBO();
+        //    VaccineNhapChoCBO();
+        //    grbChiTietNhapVC.Enabled = true;
+        //    grbNhaCC.Enabled = false;
+        //    grbHDN.Enabled = false;
+        //    LoadChiTietPhieuNhap();
+        //    bindingCTPN();
+        //}
 
-        private void btnThemNCC_Click(object sender, EventArgs e)
-        {
-            string tenncc = txtTenNCCVC.Text;
-            string diachi = txtDiaChi.Text;
-            string sdt = txtSoDienThoai.Text;
-            NhaCungCapDTO dto = new NhaCungCapDTO(tenncc, diachi, sdt);
-            NhaCungCapBLL tmp = new NhaCungCapBLL();
-            bool kt = tmp.Insert(dto);
-            if (kt)
-                MessageBox.Show("Thêm thành công nhà cung cấp mới " + tenncc + "");
-            else
-                MessageBox.Show("Thêm nhà cung cấp  mới " + tenncc + " thất bại");
-            LoadNhaCungCap();
-        }
+        //private void btnThemNCC_Click(object sender, EventArgs e)
+        //{
+        //    string tenncc = txtTenNCCVC.Text;
+        //    string diachi = txtDiaChi.Text;
+        //    string sdt = txtSoDienThoai.Text;
+        //    NhaCungCapDTO dto = new NhaCungCapDTO(tenncc, diachi, sdt);
+        //    NhaCungCapBLL tmp = new NhaCungCapBLL();
+        //    bool kt = tmp.Insert(dto);
+        //    if (kt)
+        //        MessageBox.Show("Thêm thành công nhà cung cấp mới " + tenncc + "");
+        //    else
+        //        MessageBox.Show("Thêm nhà cung cấp  mới " + tenncc + " thất bại");
+        //    LoadNhaCungCap();
+        //}
 
-        private void btnXoaNCC_Click(object sender, EventArgs e)
-        {
-            if (dgvNhapVaccine.SelectedRows.Count > 0)
-            {
-                string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaNCC"].Value.ToString();
-                string ten = dgvNhapVaccine.SelectedRows[0].Cells["TenNCC"].Value.ToString();
+        //private void btnXoaNCC_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvNhapVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaNCC"].Value.ToString();
+        //        string ten = dgvNhapVaccine.SelectedRows[0].Cells["TenNCC"].Value.ToString();
 
-                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ten + " này không?",
-                                                 "Xác nhận xóa",
-                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (t == DialogResult.Yes)
-                {
-                    NhaCungCapBLL tmp = new NhaCungCapBLL();
-                    bool kt = tmp.Delete(ma);
+        //        DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ten + " này không?",
+        //                                         "Xác nhận xóa",
+        //                                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            NhaCungCapBLL tmp = new NhaCungCapBLL();
+        //            bool kt = tmp.Delete(ma);
 
-                    if (kt)
-                    {
-                        MessageBox.Show("Xóa thành công " + ten + " .");
-                        LoadNhaCungCap();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi xóa " + ten + " do thông tin nhà cung cấp này đang được tham chiếu.");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Nhà Cung Cấp để xóa.");
-            }
-        }
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Xóa thành công " + ten + " .");
+        //                LoadNhaCungCap();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi xóa " + ten + " do thông tin nhà cung cấp này đang được tham chiếu.");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một Nhà Cung Cấp để xóa.");
+        //    }
+        //}
 
-        private void btnCapNhatNCC_Click(object sender, EventArgs e)
-        {
-            if (dgvNhapVaccine.SelectedRows.Count > 0)
-            {
-                string mamcc = dgvNhapVaccine.SelectedRows[0].Cells["MaNCC"].Value.ToString();
-                string tenncC = txtTenNCCVC.Text;
-                string diachi = txtDiaChi.Text;
-                string sodienthoai = txtSoDienThoai.Text;
+        //private void btnCapNhatNCC_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvNhapVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string mamcc = dgvNhapVaccine.SelectedRows[0].Cells["MaNCC"].Value.ToString();
+        //        string tenncC = txtTenNCCVC.Text;
+        //        string diachi = txtDiaChi.Text;
+        //        string sodienthoai = txtSoDienThoai.Text;
 
-                NhaCungCapDTO tmp = new NhaCungCapDTO(mamcc, tenncC, diachi, sodienthoai);
-
-
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenncC + " này không?",
-                                                     "Xác nhận sửa",
-                                                     MessageBoxButtons.YesNo);
-                if (t == DialogResult.Yes)
-                {
-                    NhaCungCapBLL vaccineBLL = new NhaCungCapBLL();
-                    bool kt = vaccineBLL.Update(tmp);
-
-                    if (kt)
-                    {
-                        MessageBox.Show("Sửa thành công.");
-                        LoadNhaCungCap();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi sửa " + tenncC + ".");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một nhà cung cấp để sửa.");
-            }
-        }
-
-        private void btnThemHoaDonNhapHangf_Click(object sender, EventArgs e)
-        {
-            string ma = cboNhaCungCap.SelectedValue.ToString();
-            string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
-            PhieuNhapDTO dto = new PhieuNhapDTO(ma, ngay);
-            PhieuNhapBLL tmp = new PhieuNhapBLL();
-            bool kt = tmp.Insert(dto);
-            if (kt)
-                MessageBox.Show("Thêm thành công hoá đơn nhập mới ");
-            else
-                MessageBox.Show("Thêm nhà cung cấp mới hoá đơn thất bại");
-            LoadPhieuNhap();
-        }
-
-        private void btnXoaHDNhap_Click(object sender, EventArgs e)
-        {
-            if (dgvNhapVaccine.SelectedRows.Count > 0)
-            {
-                string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
-
-                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa mã hoá đơn " + ma + " này không?",
-                                                 "Xác nhận xóa",
-                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (t == DialogResult.Yes)
-                {
-                    PhieuNhapBLL tmp = new PhieuNhapBLL();
-                    bool kt = tmp.Delete(ma);
-
-                    if (kt)
-                    {
-                        MessageBox.Show("Xóa thành công hoá đơn có mã " + ma + " .");
-                        LoadPhieuNhap();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi xóa hoá đơn có mã " + ma + " do mã hoá đơn nhập này đang được tham chiếu.");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Hoá đơn nhập để xóa.");
-            }
-        }
-
-        private void btnUpdateHDNhap_Click(object sender, EventArgs e)
-        {
-            if (dgvNhapVaccine.SelectedRows.Count > 0)
-            {
-                string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
-                string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
-                string mancc = cboNhaCungCap.SelectedValue.ToString();
-
-                PhieuNhapDTO tmp = new PhieuNhapDTO(ma, ngay, mancc);
+        //        NhaCungCapDTO tmp = new NhaCungCapDTO(mamcc, tenncC, diachi, sodienthoai);
 
 
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa hoá đơn " + ma + " này không?",
-                                                     "Xác nhận sửa",
-                                                     MessageBoxButtons.YesNo);
-                if (t == DialogResult.Yes)
-                {
-                    PhieuNhapBLL tmpdto = new PhieuNhapBLL();
-                    bool kt = tmpdto.Update(tmp);
+        //        var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenncC + " này không?",
+        //                                             "Xác nhận sửa",
+        //                                             MessageBoxButtons.YesNo);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            NhaCungCapBLL vaccineBLL = new NhaCungCapBLL();
+        //            bool kt = vaccineBLL.Update(tmp);
 
-                    if (kt)
-                    {
-                        MessageBox.Show("Sửa thành công.");
-                        LoadPhieuNhap();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi sửa hoá đơn có mã " + ma + ".");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Hoá đơn để sửa.");
-            }
-        }
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Sửa thành công.");
+        //                LoadNhaCungCap();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi sửa " + tenncC + ".");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một nhà cung cấp để sửa.");
+        //    }
+        //}
 
-        private void btnThemCTHDN_Click(object sender, EventArgs e)
-        {
-            string mapn = cboMaHoaDonNHap.SelectedValue.ToString();
+        //private void btnThemHoaDonNhapHangf_Click(object sender, EventArgs e)
+        //{
+        //    string ma = cboNhaCungCap.SelectedValue.ToString();
+        //    string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
+        //    PhieuNhapDTO dto = new PhieuNhapDTO(ma, ngay);
+        //    PhieuNhapBLL tmp = new PhieuNhapBLL();
+        //    bool kt = tmp.Insert(dto);
+        //    if (kt)
+        //        MessageBox.Show("Thêm thành công hoá đơn nhập mới ");
+        //    else
+        //        MessageBox.Show("Thêm nhà cung cấp mới hoá đơn thất bại");
+        //    LoadPhieuNhap();
+        //}
 
-            string tenvc = cboVaccineNhapCTHD.Text;
-            string mavc = cboVaccineNhapCTHD.SelectedValue.ToString();
-            string soluong = txtSoLuongNhap.Text;
-            string dongia = txtDonGiaNhap.Text;
-            ChiTietPhieuNhapDTO dto = new ChiTietPhieuNhapDTO(mapn, mavc, soluong, dongia);
-            ChiTietPhieuNhapBLL tmp = new ChiTietPhieuNhapBLL();
-            bool kt = tmp.Insert(dto);
-            if (kt)
-                MessageBox.Show("Thêm thành công " + tenvc + " vào hoá đơn nhập " + mapn + " .");
-            else
-                MessageBox.Show("Thêm " + tenvc + " vào hoá đơn nhập " + mapn + " thất bại");
-            LoadChiTietPhieuNhap();
-            LoadVaccine();
-        }
+        //private void btnXoaHDNhap_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvNhapVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
 
-        private void btnXoaHDH_Click(object sender, EventArgs e)
-        {
-            if (dgvNhapVaccine.SelectedRows.Count > 0)
-            {
-                string mapn = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
-                string mavc = dgvNhapVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
-                string tenvc = cboVaccineNhapCTHD.Text;
+        //        DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa mã hoá đơn " + ma + " này không?",
+        //                                         "Xác nhận xóa",
+        //                                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            PhieuNhapBLL tmp = new PhieuNhapBLL();
+        //            bool kt = tmp.Delete(ma);
 
-                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + tenvc + " này trong Hoá đơn nhập " + mapn + " không?",
-                                                 "Xác nhận xóa",
-                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (t == DialogResult.Yes)
-                {
-                    ChiTietPhieuNhapBLL tmp = new ChiTietPhieuNhapBLL();
-                    bool kt = tmp.Delete(mapn, mavc);
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Xóa thành công hoá đơn có mã " + ma + " .");
+        //                LoadPhieuNhap();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi xóa hoá đơn có mã " + ma + " do mã hoá đơn nhập này đang được tham chiếu.");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một Hoá đơn nhập để xóa.");
+        //    }
+        //}
 
-                    if (kt)
-                    {
-                        MessageBox.Show("Xóa thành công " + tenvc + " trong hoá đơn nhập " + mapn + "");
-                        LoadChiTietPhieuNhap();
-                        LoadVaccine();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi xóa " + tenvc + " trong hoá đơn nhập " + mapn + " do mã hoá đơn nhập này đang được tham chiếu.");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá Đơn nhập để xóa.");
-            }
-        }
+        //private void btnUpdateHDNhap_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvNhapVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string ma = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+        //        string ngay = dtpNgayNhapHang.Value.Date.ToString("yyyy/MM/dd");
+        //        string mancc = cboNhaCungCap.SelectedValue.ToString();
 
-        private void btnUpdateHDN_Click(object sender, EventArgs e)
-        {
-            if (dgvNhapVaccine.SelectedRows.Count > 0)
-            {
-                string mapn = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
-                string mavc = dgvNhapVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
-                string tenvc = cboVaccineNhapCTHD.Text;
-                string soluong = txtSoLuongNhap.Text;
-                string dongia = txtDonGiaNhap.Text;
+        //        PhieuNhapDTO tmp = new PhieuNhapDTO(ma, ngay, mancc);
 
-                ChiTietPhieuNhapDTO tmp = new ChiTietPhieuNhapDTO(mapn, mavc, soluong, dongia);
 
-                var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenvc + " trong hoá đơn nhập " + mapn + " này không?",
-                                                     "Xác nhận sửa",
-                                                     MessageBoxButtons.YesNo);
-                if (t == DialogResult.Yes)
-                {
-                    ChiTietPhieuNhapBLL tmpdto = new ChiTietPhieuNhapBLL();
-                    bool kt = tmpdto.Update(tmp);
+        //        var t = MessageBox.Show("Bạn có chắc chắn muốn sửa hoá đơn " + ma + " này không?",
+        //                                             "Xác nhận sửa",
+        //                                             MessageBoxButtons.YesNo);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            PhieuNhapBLL tmpdto = new PhieuNhapBLL();
+        //            bool kt = tmpdto.Update(tmp);
 
-                    if (kt)
-                    {
-                        MessageBox.Show("Sửa thành công  " + tenvc + " trong hoá đơn nhập " + mapn + " .");
-                        LoadChiTietPhieuNhap();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi sửa " + tenvc + " trong hoá đơn nhập " + mapn + ".");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá đơn để sửa.");
-            }
-        }
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Sửa thành công.");
+        //                LoadPhieuNhap();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi sửa hoá đơn có mã " + ma + ".");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một Hoá đơn để sửa.");
+        //    }
+        //}
+
+        //private void btnThemCTHDN_Click(object sender, EventArgs e)
+        //{
+        //    string mapn = cboMaHoaDonNHap.SelectedValue.ToString();
+
+        //    string tenvc = cboVaccineNhapCTHD.Text;
+        //    string mavc = cboVaccineNhapCTHD.SelectedValue.ToString();
+        //    string soluong = txtSoLuongNhap.Text;
+        //    string dongia = txtDonGiaNhap.Text;
+        //    ChiTietPhieuNhapDTO dto = new ChiTietPhieuNhapDTO(mapn, mavc, soluong, dongia);
+        //    ChiTietPhieuNhapBLL tmp = new ChiTietPhieuNhapBLL();
+        //    bool kt = tmp.Insert(dto);
+        //    if (kt)
+        //        MessageBox.Show("Thêm thành công " + tenvc + " vào hoá đơn nhập " + mapn + " .");
+        //    else
+        //        MessageBox.Show("Thêm " + tenvc + " vào hoá đơn nhập " + mapn + " thất bại");
+        //    LoadChiTietPhieuNhap();
+        //    LoadVaccine();
+        //}
+
+        //private void btnXoaHDH_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvNhapVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string mapn = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+        //        string mavc = dgvNhapVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+        //        string tenvc = cboVaccineNhapCTHD.Text;
+
+        //        DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa " + tenvc + " này trong Hoá đơn nhập " + mapn + " không?",
+        //                                         "Xác nhận xóa",
+        //                                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            ChiTietPhieuNhapBLL tmp = new ChiTietPhieuNhapBLL();
+        //            bool kt = tmp.Delete(mapn, mavc);
+
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Xóa thành công " + tenvc + " trong hoá đơn nhập " + mapn + "");
+        //                LoadChiTietPhieuNhap();
+        //                LoadVaccine();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi xóa " + tenvc + " trong hoá đơn nhập " + mapn + " do mã hoá đơn nhập này đang được tham chiếu.");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá Đơn nhập để xóa.");
+        //    }
+        //}
+
+        //private void btnUpdateHDN_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvNhapVaccine.SelectedRows.Count > 0)
+        //    {
+        //        string mapn = dgvNhapVaccine.SelectedRows[0].Cells["MaPN"].Value.ToString();
+        //        string mavc = dgvNhapVaccine.SelectedRows[0].Cells["MaVC"].Value.ToString();
+        //        string tenvc = cboVaccineNhapCTHD.Text;
+        //        string soluong = txtSoLuongNhap.Text;
+        //        string dongia = txtDonGiaNhap.Text;
+
+        //        ChiTietPhieuNhapDTO tmp = new ChiTietPhieuNhapDTO(mapn, mavc, soluong, dongia);
+
+        //        var t = MessageBox.Show("Bạn có chắc chắn muốn sửa " + tenvc + " trong hoá đơn nhập " + mapn + " này không?",
+        //                                             "Xác nhận sửa",
+        //                                             MessageBoxButtons.YesNo);
+        //        if (t == DialogResult.Yes)
+        //        {
+        //            ChiTietPhieuNhapBLL tmpdto = new ChiTietPhieuNhapBLL();
+        //            bool kt = tmpdto.Update(tmp);
+
+        //            if (kt)
+        //            {
+        //                MessageBox.Show("Sửa thành công  " + tenvc + " trong hoá đơn nhập " + mapn + " .");
+        //                LoadChiTietPhieuNhap();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Lỗi khi sửa " + tenvc + " trong hoá đơn nhập " + mapn + ".");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một Vaccine trong Hoá đơn để sửa.");
+        //    }
+        //}
 
         private void btnThemVC_Click(object sender, EventArgs e)
         {
@@ -948,7 +952,109 @@ namespace GUI
 
         private void btnTaoPhieuNhap_Click(object sender, EventArgs e)
         {
-            pnl_2_TaoPhieuNhap.Enabled = true;
+            pnl2_PN.Enabled = true;
+            grb2_ChiTietPhieuNhap.Enabled = true;
+            btnLuuPhieuNhap.Visible = true;
+        }
+
+        private void txtSoLuongCTPN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) || e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cboNCC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSolUong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+            else
+            {
+
+            }
+        }
+
+        private void txtSolUong_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSolUong.Text.Length > 0 && txtDonGiaCTPN.Text.Length > 0)
+            {
+                txtThanhTien.Text = (double.Parse(txtSolUong.Text) * double.Parse(txtDonGiaCTPN.Text)).ToString();
+            }
+        }
+        private void CreateDTGV()
+        {
+            DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
+            {
+                Name = "STT",
+                HeaderText = "STT"
+            };
+            DataGridViewTextBoxColumn mavc = new DataGridViewTextBoxColumn
+            {
+                Name = "MaVC",
+                HeaderText = "Mã Vaccine"
+            };
+            DataGridViewTextBoxColumn tenvc = new DataGridViewTextBoxColumn
+            {
+                Name = "TenVC",
+                HeaderText = "Tên Vaccine"
+            };
+
+            DataGridViewTextBoxColumn loai = new DataGridViewTextBoxColumn
+            {
+                Name = "Loai",
+                HeaderText = "Loại Vaccine"
+            };
+
+            //Thêm vào dtg
+            dtgCTPN.Columns.Add(stt);
+            dtgCTPN.Columns.Add(mavc);
+            dtgCTPN.Columns.Add(tenvc);
+            int tmp = 1;
+            DataTable gan = loaivcbll.GetData();
+            foreach (DataRow row in vaccineBLL.LayTTVC().Rows)
+            {
+                if (row.RowState != DataRowState.Deleted)
+                {
+
+                    dtgCTPN.Rows.Add(tmp++, row["MaVC"], row["TenVC"]);
+                }
+            }
+            CustomSizeColCTPN();
+        }
+        private void CustomSizeColCTPN()
+        {
+
+            dtgCTPN.Columns[0].Width = 60;
+            dtgCTPN.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgCTPN.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dtgCTPN.Columns[1].Width = 170;
+            dtgCTPN.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dtgCTPN.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dtgCTPN.Columns[2].Width = 220;
+
+            dtgCTPN.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void dtgCTPN_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string ma = dtgCTPN.SelectedRows[0].Cells[1].Value.ToString();
+            VaccineDTO vctmp = vaccineBLL.SearchChiTiet(ma);
+            if (vctmp != null)
+            {
+                txtTenVCCTPN.Text = vctmp.Tenvc;
+                txtSolUong.Text = "0";
+                txtDonGiaCTPN.Text = vctmp.Gia.ToString();
+            }
         }
     }
 }
