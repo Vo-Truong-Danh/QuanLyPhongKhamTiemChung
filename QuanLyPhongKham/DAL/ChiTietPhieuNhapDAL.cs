@@ -63,12 +63,13 @@ namespace DAL
             { return false; }
         }
 
-        public bool Luu()
+        public bool Luu( DataTable dttb)
         {
             try
             {
+                dt = dttb;
                 SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
-                adap.Update(ds, "ChiTietPhieuNhap");
+                adap.Update(dt);
                 return true;
             }
             catch { return false; }

@@ -29,6 +29,10 @@ namespace BLL
         {
             return pn.Update(tmp);
         }
+        public bool Luu()
+        {
+            return pn.Luu();
+        }
 
     }
 }

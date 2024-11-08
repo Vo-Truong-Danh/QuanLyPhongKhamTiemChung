@@ -36,9 +36,9 @@ namespace BLL
             return ct.Update(tmp);
         }
 
-        public bool Luu()
+        public bool Luu(DataTable tmp)
         {
-            return ct.Luu();
+            return ct.Luu(tmp);
         }
     }
 }

@@ -36,23 +36,13 @@ namespace DAL
         {
             try
             {
-                if (ds.Tables["PhieuNhap"] == null)
-                {
-                    GetData();
-                }
-
-                DataRow newRow = ds.Tables["PhieuNhap"].NewRow();
+                DataRow newRow = dt.NewRow();
+                newRow["MaPN"] = tmp.Mapn;
                 newRow["NgayNhap"] = tmp.Ngaynhap;
                 newRow["MaNCC"] = tmp.Mancc;
+                newRow["TongTien"] = tmp.Tongtien;
 
-
-                ds.Tables["PhieuNhap"].Rows.Add(newRow);
-
-                // Cập nhật csdl
-                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                adap.Update(ds, "PhieuNhap");
-                GetData();
-
+                dt.Rows.Add(newRow);
                 return true;
             }
             catch
@@ -111,6 +101,16 @@ namespace DAL
             {
                 return false;
             }
+        }
+        public bool Luu()
+        {
+            try
+            {
+                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+                adap.Update(dt);
+                return true;
+            }
+            catch { return false; }
         }
     }
 }

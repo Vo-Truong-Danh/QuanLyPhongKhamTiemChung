@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             tctChinh = new TabControl();
             tabKhoVaccine = new TabPage();
@@ -96,6 +96,10 @@
             grb2_ShowVCDuocChon = new GroupBox();
             dtgDanhSachVCduocChon = new DataGridView();
             grbDSVC = new GroupBox();
+            pnlThongBaoTab2 = new Panel();
+            pnlThongBaotab2s = new Panel();
+            txtndthongbaotab2 = new Label();
+            pictureBox3 = new PictureBox();
             dtgCTPN = new DataGridView();
             imageList1 = new ImageList(components);
             timerTB = new System.Windows.Forms.Timer(components);
@@ -103,6 +107,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             toolTip = new ToolTip(components);
+            timerTB_Tab2 = new System.Windows.Forms.Timer(components);
             tctChinh.SuspendLayout();
             tabKhoVaccine.SuspendLayout();
             panel1.SuspendLayout();
@@ -133,6 +138,9 @@
             grb2_ShowVCDuocChon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgDanhSachVCduocChon).BeginInit();
             grbDSVC.SuspendLayout();
+            pnlThongBaoTab2.SuspendLayout();
+            pnlThongBaotab2s.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgCTPN).BeginInit();
             SuspendLayout();
             // 
@@ -230,25 +238,25 @@
             dgvVaccine.BorderStyle = BorderStyle.None;
             dgvVaccine.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvVaccine.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumTurquoise;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumTurquoise;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvVaccine.ColumnHeadersHeight = 29;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvVaccine.ContextMenuStrip = cntXoaSua;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle2;
             dgvVaccine.Dock = DockStyle.Fill;
             dgvVaccine.Location = new Point(0, 0);
             dgvVaccine.Margin = new Padding(0);
@@ -498,6 +506,7 @@
             pnl2_PN.Dock = DockStyle.Fill;
             pnl2_PN.Location = new Point(0, 96);
             pnl2_PN.Name = "pnl2_PN";
+            pnl2_PN.Padding = new Padding(3, 13, 3, 3);
             pnl2_PN.Size = new Size(650, 358);
             pnl2_PN.TabIndex = 10;
             pnl2_PN.TabStop = false;
@@ -654,6 +663,7 @@
             toolTip.SetToolTip(btnLuuPhieuNhap, "Nhấn vào để lưu phiếu nhập vào cơ sở dử liệu");
             btnLuuPhieuNhap.UseVisualStyleBackColor = false;
             btnLuuPhieuNhap.Visible = false;
+            btnLuuPhieuNhap.Click += btnLuuPhieuNhap_Click;
             // 
             // btnTaoPhieuNhap
             // 
@@ -855,6 +865,7 @@
             grb2_ShowVCDuocChon.Dock = DockStyle.Bottom;
             grb2_ShowVCDuocChon.Location = new Point(0, 454);
             grb2_ShowVCDuocChon.Name = "grb2_ShowVCDuocChon";
+            grb2_ShowVCDuocChon.Padding = new Padding(3, 13, 3, 3);
             grb2_ShowVCDuocChon.Size = new Size(1301, 537);
             grb2_ShowVCDuocChon.TabIndex = 0;
             grb2_ShowVCDuocChon.TabStop = false;
@@ -867,26 +878,68 @@
             dtgDanhSachVCduocChon.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dtgDanhSachVCduocChon.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgDanhSachVCduocChon.Dock = DockStyle.Fill;
-            dtgDanhSachVCduocChon.Location = new Point(3, 26);
+            dtgDanhSachVCduocChon.Location = new Point(3, 36);
             dtgDanhSachVCduocChon.MultiSelect = false;
             dtgDanhSachVCduocChon.Name = "dtgDanhSachVCduocChon";
             dtgDanhSachVCduocChon.RowHeadersVisible = false;
             dtgDanhSachVCduocChon.RowHeadersWidth = 51;
             dtgDanhSachVCduocChon.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgDanhSachVCduocChon.Size = new Size(1295, 508);
+            dtgDanhSachVCduocChon.Size = new Size(1295, 498);
             dtgDanhSachVCduocChon.TabIndex = 0;
+            dtgDanhSachVCduocChon.DataSourceChanged += dtgDanhSachVCduocChon_DataSourceChanged;
             dtgDanhSachVCduocChon.CellValueChanged += dtgDanhSachVCduocChon_CellValueChanged;
             // 
             // grbDSVC
             // 
+            grbDSVC.Controls.Add(pnlThongBaoTab2);
             grbDSVC.Controls.Add(dtgCTPN);
             grbDSVC.Dock = DockStyle.Right;
             grbDSVC.Location = new Point(1304, 3);
             grbDSVC.Name = "grbDSVC";
+            grbDSVC.Padding = new Padding(3, 13, 3, 3);
             grbDSVC.Size = new Size(583, 991);
             grbDSVC.TabIndex = 0;
             grbDSVC.TabStop = false;
             grbDSVC.Text = "Danh sách các loại Vaccine";
+            // 
+            // pnlThongBaoTab2
+            // 
+            pnlThongBaoTab2.BackColor = Color.Black;
+            pnlThongBaoTab2.Controls.Add(pnlThongBaotab2s);
+            pnlThongBaoTab2.Location = new Point(3, 892);
+            pnlThongBaoTab2.Name = "pnlThongBaoTab2";
+            pnlThongBaoTab2.Size = new Size(555, 72);
+            pnlThongBaoTab2.TabIndex = 1;
+            pnlThongBaoTab2.Visible = false;
+            // 
+            // pnlThongBaotab2s
+            // 
+            pnlThongBaotab2s.BackColor = Color.White;
+            pnlThongBaotab2s.Controls.Add(txtndthongbaotab2);
+            pnlThongBaotab2s.Controls.Add(pictureBox3);
+            pnlThongBaotab2s.Location = new Point(2, 2);
+            pnlThongBaotab2s.Name = "pnlThongBaotab2s";
+            pnlThongBaotab2s.Size = new Size(550, 68);
+            pnlThongBaotab2s.TabIndex = 2;
+            // 
+            // txtndthongbaotab2
+            // 
+            txtndthongbaotab2.AutoSize = true;
+            txtndthongbaotab2.Location = new Point(98, 22);
+            txtndthongbaotab2.Name = "txtndthongbaotab2";
+            txtndthongbaotab2.Size = new Size(107, 25);
+            txtndthongbaotab2.TabIndex = 1;
+            txtndthongbaotab2.Text = "Thông báo";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.notification_16903647;
+            pictureBox3.Location = new Point(26, 7);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(66, 54);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 0;
+            pictureBox3.TabStop = false;
             // 
             // dtgCTPN
             // 
@@ -901,7 +954,7 @@
             dtgCTPN.ColumnHeadersHeight = 60;
             dtgCTPN.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dtgCTPN.Dock = DockStyle.Fill;
-            dtgCTPN.Location = new Point(3, 26);
+            dtgCTPN.Location = new Point(3, 36);
             dtgCTPN.MultiSelect = false;
             dtgCTPN.Name = "dtgCTPN";
             dtgCTPN.ReadOnly = true;
@@ -910,7 +963,7 @@
             dtgCTPN.RowHeadersWidth = 60;
             dtgCTPN.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dtgCTPN.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgCTPN.Size = new Size(577, 962);
+            dtgCTPN.Size = new Size(577, 952);
             dtgCTPN.TabIndex = 0;
             dtgCTPN.CellClick += dtgCTPN_CellClick;
             // 
@@ -937,6 +990,11 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // timerTB_Tab2
+            // 
+            timerTB_Tab2.Interval = 4000;
+            timerTB_Tab2.Tick += timerTB_Tab2_Tick;
             // 
             // frmQLVaccine
             // 
@@ -994,6 +1052,10 @@
             grb2_ShowVCDuocChon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgDanhSachVCduocChon).EndInit();
             grbDSVC.ResumeLayout(false);
+            pnlThongBaoTab2.ResumeLayout(false);
+            pnlThongBaotab2s.ResumeLayout(false);
+            pnlThongBaotab2s.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgCTPN).EndInit();
             ResumeLayout(false);
         }
@@ -1070,5 +1132,10 @@
         private TextBox txtTongTien;
         private Label label2;
         private Label label3;
+        private Panel pnlThongBaotab2s;
+        private Panel pnlThongBaoTab2;
+        private PictureBox pictureBox3;
+        private Label txtndthongbaotab2;
+        private System.Windows.Forms.Timer timerTB_Tab2;
     }
 }

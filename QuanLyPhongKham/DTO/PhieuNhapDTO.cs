@@ -8,11 +8,12 @@ namespace DTO
 {
     public class PhieuNhapDTO
     {
-        string mapn, ngaynhap, mancc;
+        string mapn, ngaynhap, mancc,tongtien;
 
         public string Mapn { get => mapn; set => mapn = value; }
         public string Ngaynhap { get => ngaynhap; set => ngaynhap = value; }
         public string Mancc { get => mancc; set => mancc = value; }
+        public string Tongtien { get => tongtien; set => tongtien = value; }
 
         public PhieuNhapDTO() { }
 

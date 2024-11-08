@@ -2,6 +2,7 @@
 using DAL;
 using DTO;
 using Microsoft.VisualBasic;
+using System.Collections.Generic;
 using System.Data;
 using System.DirectoryServices;
 using System.Drawing;
@@ -20,9 +21,9 @@ namespace GUI
         VaccineBLL vaccineBLL = new VaccineBLL();
         LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
         PhieuNhapBLL pnbll = new PhieuNhapBLL();
-        ChiTietPhieuNhapBLL ctpnbll = new ChiTietPhieuNhapBLL();
+        static ChiTietPhieuNhapBLL ctpnbll = new ChiTietPhieuNhapBLL();
         static DataTable dt = new DataTable();
-        static DataTable luuctpntmp;
+        static DataTable luuctpntmp = ctpnbll.GetData().Clone();
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -939,6 +940,7 @@ namespace GUI
 
         private void btnTaoPhieuNhap_Click(object sender, EventArgs e)
         {
+            ThongBaoTab2("Tạo thành công phiếu nhập kho mới ", 1);
             int sl = pnbll.GetData().Rows.Count + 1;
             txtMaPhieuN.Text = "PN" + sl.ToString("D3") + "";
             pnl2_PN.Enabled = true;
@@ -1049,21 +1051,47 @@ namespace GUI
 
         private void btnThemCTPN_Click(object sender, EventArgs e)
         {
-            ChiTietPhieuNhapDTO ct = new ChiTietPhieuNhapDTO()
+            DataRow[] checktb = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
+            if (checktb.Length > 0)
             {
-                Mapn = txtMaPhieuN.Text,
-                Mavc = txtTenVCCTPN.Tag.ToString(),
-                Soluong = txtSolUong.Text,
-                Dongia = txtDonGiaCTPN.Text,
-            };
+                DialogResult t = MessageBox.Show("Bạn đã chọn Vaccine " + txtTenVCCTPN.Text + " này rồi bạn có muốn cộng dồn số lượng không ", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (t == DialogResult.Yes)
+                {
+                    checktb[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
+                    LoadCTDSPN(luuctpntmp);
+                }
+            }
+            else
+            {
+                DataRow drnew = luuctpntmp.NewRow();
+                {
+                    drnew[0] = txtMaPhieuN.Text;
+                    drnew[1] = txtTenVCCTPN.Tag.ToString();
+                    drnew[2] = txtSolUong.Text;
+                    drnew[3] = txtDonGiaCTPN.Text;
+                }
+                luuctpntmp.Rows.Add(drnew);
+                LoadCTDSPN(luuctpntmp);
+            }
 
-            ctpnbll.Insert(ct);
-
-            dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
-            dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
-            CreateDTGV_ThemVC(ctpnbll.SearchMaPN(ct.Mapn));
+        }
+        private void TinhTongTien()
+        {
+            double sum = 0;
+            foreach (DataRow row in luuctpntmp.Rows)
+            {
+                sum += double.Parse(row["DonGia"].ToString()) * double.Parse(row["SoLuong"].ToString());
+            }
+            txtTongTien.Text = sum.ToString();
         }
 
+        private void LoadCTDSPN(DataTable tmp)
+        {
+            dtgDanhSachVCduocChon.Columns.Clear();
+            dtgDanhSachVCduocChon.Rows.Clear();
+            CreateDTGV_ThemVC(tmp);
+            TinhTongTien();
+        }
 
         private void CreateDTGV_ThemVC(DataTable data)
         {
@@ -1152,22 +1180,48 @@ namespace GUI
 
         private void dtgDanhSachVCduocChon_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            double sum = 0;
-            foreach (DataGridViewRow row in dtgDanhSachVCduocChon.Rows)
-            {
-                // Kiểm tra nếu hàng này không phải là hàng mới (new row)
-                if (!row.IsNewRow)
-                {
-                    // Giả sử cột bạn cần tính tổng có tên là "Gia"
-                    double value;
-                    if (double.TryParse(row.Cells["Gia"].Value?.ToString(), out value))
-                    {
-                        sum += value;
-                    }
-                }
-            }
 
-            txtTongTien.Text = sum.ToString();
         }
+
+        private void ThongBaoTab2(string ndtb, int coloroder)
+        {
+            if (coloroder == 1)
+                txtndthongbaotab2.ForeColor = Color.Green;
+            if (coloroder == 2)
+                txtndthongbaotab2.ForeColor = Color.Red;
+
+            BoGoc(pnlThongBaoTab2, 20);
+            BoGoc(pnlThongBaotab2s, 20);
+
+            txtndthongbaotab2.Text = ndtb;
+            pnlThongBaoTab2.Visible = true;
+            timerTB_Tab2.Start();
+        }
+        private void timerTB_Tab2_Tick(object sender, EventArgs e)
+        {
+            pnlThongBaoTab2.Visible = false;
+            timerTB_Tab2.Stop();
+        }
+
+        private void dtgDanhSachVCduocChon_DataSourceChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void btnLuuPhieuNhap_Click(object sender, EventArgs e)
+        {
+            PhieuNhapDTO pndto = new PhieuNhapDTO()
+            { 
+                Mapn = txtMaPhieuN.Text,
+                Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
+                Mancc = cboNCC.SelectedValue.ToString(),
+                Tongtien = txtTongTien.Text,
+            };
+
+            pnbll.Insert(pndto);
+            pnbll.Luu();
+            ctpnbll.Luu(luuctpntmp);
+            ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
+        }
+
     }
 }

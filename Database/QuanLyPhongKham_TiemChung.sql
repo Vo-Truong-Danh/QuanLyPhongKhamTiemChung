@@ -60,6 +60,7 @@ CREATE TABLE PHIEUNHAP
     MaPN CHAR(5) PRIMARY KEY,
     NgayNhap DATE DEFAULT GETDATE(),
     MaNCC CHAR(6) NOT NULL,
+	TongTien INT DEFAULT 0 ,
     FOREIGN KEY(MaNCC) REFERENCES NHACUNGCAP(MaNCC)
 );
 
@@ -148,6 +149,22 @@ GO
 -----------------------------------------------------------------------
 --------------------------------TRIGER---------------------------------
 -----------------------------------------------------------------------
+
+--Tinh tong tien cho phieu nhap 
+GO
+CREATE TRIGGER TG_TinhTongTienPN
+ON CHITIETPHIEUNHAP
+FOR INSERT,UPDATE
+AS
+BEGIN
+	UPDATE PHIEUNHAP
+    SET TongTien = (
+        SELECT SUM(SOLUONG * DONGIA) 
+        FROM CHITIETPHIEUNHAP 
+        WHERE MaPN IN (SELECT MaPN FROM inserted)
+    )
+    WHERE MaPN IN (SELECT MaPN FROM inserted);
+END
 
 --LẤY GIÁ CHOCHITIETHOADON TỪ VACCINE
 GO 
