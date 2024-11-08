@@ -82,6 +82,7 @@
             txtSolUong = new TextBox();
             txtSoLuongCTPN = new Label();
             pnlThanhTien = new Panel();
+            label6 = new Label();
             txtThanhTien = new TextBox();
             dsd = new Label();
             btnCapNhatCTPN = new Button();
@@ -539,7 +540,6 @@
             txtTongTien.Location = new Point(154, 20);
             txtTongTien.Multiline = true;
             txtTongTien.Name = "txtTongTien";
-            txtTongTien.ReadOnly = true;
             txtTongTien.Size = new Size(295, 39);
             txtTongTien.TabIndex = 1;
             txtTongTien.Text = "0";
@@ -694,6 +694,7 @@
             grb2_ChiTietPhieuNhap.TabIndex = 2;
             grb2_ChiTietPhieuNhap.TabStop = false;
             grb2_ChiTietPhieuNhap.Text = "Chi tiết Vaccine";
+            grb2_ChiTietPhieuNhap.Leave += grb2_ChiTietPhieuNhap_Leave;
             // 
             // pnlSoLuong
             // 
@@ -730,6 +731,7 @@
             // pnlThanhTien
             // 
             pnlThanhTien.BackColor = Color.White;
+            pnlThanhTien.Controls.Add(label6);
             pnlThanhTien.Controls.Add(txtThanhTien);
             pnlThanhTien.Controls.Add(dsd);
             pnlThanhTien.Location = new Point(47, 288);
@@ -737,16 +739,27 @@
             pnlThanhTien.Size = new Size(554, 62);
             pnlThanhTien.TabIndex = 7;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(477, 18);
+            label6.Name = "label6";
+            label6.Size = new Size(54, 25);
+            label6.TabIndex = 3;
+            label6.Text = "VNĐ";
+            // 
             // txtThanhTien
             // 
             txtThanhTien.BackColor = Color.White;
             txtThanhTien.BorderStyle = BorderStyle.None;
-            txtThanhTien.Location = new Point(144, 18);
+            txtThanhTien.Location = new Point(141, 18);
             txtThanhTien.Multiline = true;
             txtThanhTien.Name = "txtThanhTien";
             txtThanhTien.PlaceholderText = "Nhập số lượng thì thành tiền sẽ được tính";
-            txtThanhTien.Size = new Size(387, 39);
+            txtThanhTien.ReadOnly = true;
+            txtThanhTien.Size = new Size(334, 39);
             txtThanhTien.TabIndex = 2;
+            txtThanhTien.TextAlign = HorizontalAlignment.Right;
             // 
             // dsd
             // 
@@ -759,45 +772,48 @@
             // 
             // btnCapNhatCTPN
             // 
+            btnCapNhatCTPN.BackColor = Color.LightSkyBlue;
             btnCapNhatCTPN.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCapNhatCTPN.Image = (Image)resources.GetObject("btnCapNhatCTPN.Image");
-            btnCapNhatCTPN.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCapNhatCTPN.Location = new Point(435, 375);
+            btnCapNhatCTPN.Location = new Point(434, 375);
             btnCapNhatCTPN.Margin = new Padding(0);
             btnCapNhatCTPN.Name = "btnCapNhatCTPN";
-            btnCapNhatCTPN.Size = new Size(62, 55);
+            btnCapNhatCTPN.Size = new Size(74, 67);
             btnCapNhatCTPN.TabIndex = 8;
             btnCapNhatCTPN.TextImageRelation = TextImageRelation.ImageBeforeText;
-            toolTip.SetToolTip(btnCapNhatCTPN, "Thêm vào danh sách đơn hàng");
-            btnCapNhatCTPN.UseVisualStyleBackColor = true;
+            toolTip.SetToolTip(btnCapNhatCTPN, "Sửa lại thông tin trong danh sách đơn hàng");
+            btnCapNhatCTPN.UseVisualStyleBackColor = false;
+            btnCapNhatCTPN.Click += btnCapNhatCTPN_Click;
             // 
             // btnXoaCTPN
             // 
+            btnXoaCTPN.BackColor = Color.FromArgb(255, 128, 128);
             btnXoaCTPN.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnXoaCTPN.Image = (Image)resources.GetObject("btnXoaCTPN.Image");
-            btnXoaCTPN.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoaCTPN.Location = new Point(274, 375);
+            btnXoaCTPN.Location = new Point(285, 375);
             btnXoaCTPN.Margin = new Padding(0);
             btnXoaCTPN.Name = "btnXoaCTPN";
-            btnXoaCTPN.Size = new Size(62, 55);
+            btnXoaCTPN.Size = new Size(74, 67);
             btnXoaCTPN.TabIndex = 7;
             btnXoaCTPN.TextImageRelation = TextImageRelation.ImageBeforeText;
-            toolTip.SetToolTip(btnXoaCTPN, "Thêm vào danh sách đơn hàng");
-            btnXoaCTPN.UseVisualStyleBackColor = true;
+            toolTip.SetToolTip(btnXoaCTPN, "Cập nhật vào danh sách đơn hàng");
+            btnXoaCTPN.UseVisualStyleBackColor = false;
+            btnXoaCTPN.Click += btnXoaCTPN_Click;
             // 
             // btnThemCTPN
             // 
+            btnThemCTPN.BackColor = Color.FromArgb(82, 255, 181);
+            btnThemCTPN.Enabled = false;
             btnThemCTPN.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnThemCTPN.Image = (Image)resources.GetObject("btnThemCTPN.Image");
-            btnThemCTPN.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemCTPN.Location = new Point(136, 375);
             btnThemCTPN.Margin = new Padding(0);
             btnThemCTPN.Name = "btnThemCTPN";
-            btnThemCTPN.Size = new Size(62, 55);
+            btnThemCTPN.Size = new Size(74, 67);
             btnThemCTPN.TabIndex = 4;
             btnThemCTPN.TextImageRelation = TextImageRelation.ImageBeforeText;
             toolTip.SetToolTip(btnThemCTPN, "Thêm vào danh sách đơn hàng");
-            btnThemCTPN.UseVisualStyleBackColor = true;
+            btnThemCTPN.UseVisualStyleBackColor = false;
             btnThemCTPN.Click += btnThemCTPN_Click;
             // 
             // pnl2dongia
@@ -873,10 +889,16 @@
             // 
             // dtgDanhSachVCduocChon
             // 
+            dtgDanhSachVCduocChon.AllowUserToAddRows = false;
+            dtgDanhSachVCduocChon.AllowUserToDeleteRows = false;
+            dtgDanhSachVCduocChon.AllowUserToResizeColumns = false;
+            dtgDanhSachVCduocChon.AllowUserToResizeRows = false;
             dtgDanhSachVCduocChon.BackgroundColor = Color.White;
             dtgDanhSachVCduocChon.BorderStyle = BorderStyle.None;
             dtgDanhSachVCduocChon.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dtgDanhSachVCduocChon.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgDanhSachVCduocChon.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgDanhSachVCduocChon.ColumnHeadersHeight = 29;
+            dtgDanhSachVCduocChon.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dtgDanhSachVCduocChon.Dock = DockStyle.Fill;
             dtgDanhSachVCduocChon.Location = new Point(3, 36);
             dtgDanhSachVCduocChon.MultiSelect = false;
@@ -887,6 +909,7 @@
             dtgDanhSachVCduocChon.Size = new Size(1295, 498);
             dtgDanhSachVCduocChon.TabIndex = 0;
             dtgDanhSachVCduocChon.DataSourceChanged += dtgDanhSachVCduocChon_DataSourceChanged;
+            dtgDanhSachVCduocChon.CellClick += dtgDanhSachVCduocChon_CellClick;
             dtgDanhSachVCduocChon.CellValueChanged += dtgDanhSachVCduocChon_CellValueChanged;
             // 
             // grbDSVC
@@ -1137,5 +1160,6 @@
         private PictureBox pictureBox3;
         private Label txtndthongbaotab2;
         private System.Windows.Forms.Timer timerTB_Tab2;
+        private Label label6;
     }
 }

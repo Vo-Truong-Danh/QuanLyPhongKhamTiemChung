@@ -210,6 +210,7 @@ namespace GUI
             dtgDanhSachVCduocChon.ColumnHeadersHeight = 60;
             dtgDanhSachVCduocChon.RowTemplate.Height = 60;
 
+            txtSolUong.Text = "1";
 
             cboLoaiVC.DataSource = loaivcbll.GetData();
             cboLoaiVC.DisplayMember = "TenLoai";
@@ -940,6 +941,7 @@ namespace GUI
 
         private void btnTaoPhieuNhap_Click(object sender, EventArgs e)
         {
+            btnThemCTPN.Enabled = true;
             ThongBaoTab2("Tạo thành công phiếu nhập kho mới ", 1);
             int sl = pnbll.GetData().Rows.Count + 1;
             txtMaPhieuN.Text = "PN" + sl.ToString("D3") + "";
@@ -969,6 +971,10 @@ namespace GUI
             }
             else
             {
+                if (txtSolUong.Text.Length > 0 && txtDonGiaCTPN.Text.Length > 0)
+                {
+                    txtThanhTien.Text = (double.Parse(txtSolUong.Text) * double.Parse(txtDonGiaCTPN.Text)).ToString();
+                }
 
             }
         }
@@ -1044,8 +1050,11 @@ namespace GUI
             {
                 txtTenVCCTPN.Tag = vctmp.Mavc1;
                 txtTenVCCTPN.Text = vctmp.Tenvc;
-                txtSolUong.Text = "0";
                 txtDonGiaCTPN.Text = vctmp.Gia.ToString();
+            }
+            if (txtSolUong.Text.Length > 0 && txtDonGiaCTPN.Text.Length > 0)
+            {
+                txtThanhTien.Text = (double.Parse(txtSolUong.Text) * double.Parse(txtDonGiaCTPN.Text)).ToString();
             }
         }
 
@@ -1210,7 +1219,7 @@ namespace GUI
         private void btnLuuPhieuNhap_Click(object sender, EventArgs e)
         {
             PhieuNhapDTO pndto = new PhieuNhapDTO()
-            { 
+            {
                 Mapn = txtMaPhieuN.Text,
                 Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
                 Mancc = cboNCC.SelectedValue.ToString(),
@@ -1223,5 +1232,53 @@ namespace GUI
             ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
         }
 
+        private void dtgDanhSachVCduocChon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnXoaCTPN.Enabled = true;
+            btnCapNhatCTPN.Enabled = true;
+            string ma = dtgDanhSachVCduocChon.SelectedRows[0].Cells[1].Value.ToString();
+            string ten = dtgDanhSachVCduocChon.SelectedRows[0].Cells[2].Value.ToString();
+            DataRow[] dr = luuctpntmp.Select("MaVC = '" + ma + "'");
+
+            if (dr != null)
+            {
+                txtTenVCCTPN.Tag = dr[0]["MaVC"].ToString();
+                txtTenVCCTPN.Text = ten;
+                txtSolUong.Text = dr[0]["SoLuong"].ToString();
+                txtDonGiaCTPN.Text = dr[0]["DonGia"].ToString();
+            }
+        }
+
+        private void grb2_ChiTietPhieuNhap_Leave(object sender, EventArgs e)
+        {
+            btnCapNhatCTPN.Enabled = false;
+            btnXoaCTPN.Enabled = false;
+            txtSolUong.Focus();
+        }
+
+        private void btnXoaCTPN_Click(object sender, EventArgs e)
+        {
+            btnXoaCTPN.Enabled = false;
+            btnXoaCTPN.Enabled = false;
+            DataRow[] dr = luuctpntmp.Select("MaVC = '"+txtTenVCCTPN.Tag.ToString()+"'");
+            if (dr != null)
+            {
+                luuctpntmp.Rows.Remove(dr[0]);
+            }
+            LoadCTDSPN(luuctpntmp);
+        }
+
+        private void btnCapNhatCTPN_Click(object sender, EventArgs e)
+        {
+            btnXoaCTPN.Enabled = false;
+            btnXoaCTPN.Enabled = false;
+            DataRow[] dr = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
+            if (dr != null)
+            {
+                dr[0]["SoLuong"] = txtSolUong.Text;
+                dr[0]["DonGia"] = txtDonGiaCTPN.Text;
+            }
+            LoadCTDSPN(luuctpntmp);
+        }
     }
 }
