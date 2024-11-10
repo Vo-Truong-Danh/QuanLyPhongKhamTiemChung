@@ -18,11 +18,12 @@ namespace GUI
         {
             InitializeComponent();
         }
-        VaccineBLL vaccineBLL = new VaccineBLL();
+        static VaccineBLL vaccineBLL = new VaccineBLL();
         LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
         PhieuNhapBLL pnbll = new PhieuNhapBLL();
         static ChiTietPhieuNhapBLL ctpnbll = new ChiTietPhieuNhapBLL();
         static DataTable dt = new DataTable();
+        static DataTable dtvc = vaccineBLL.LayTTVC();
         static DataTable luuctpntmp = ctpnbll.GetData().Clone();
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -81,6 +82,8 @@ namespace GUI
         }
         private void CreateDTGV(DataTable dttb)
         {
+            dgvVaccine.Columns.Clear();  // Xóa tất cả các cột
+            dgvVaccine.Rows.Clear();     // Xóa tất cả các hàng
             DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
             {
                 Name = "STT",
@@ -238,7 +241,7 @@ namespace GUI
             btnCapNhatCTPN.Enabled = false;
             btnXoaCTPN.Enabled = false;
             btnXoaCTPN.Enabled = false;
-            CreateDTGV();
+            CreateDTGVVaccineLuaChon();
         }
 
         private void LoadNCC()
@@ -343,7 +346,6 @@ namespace GUI
             //    }
             //    else
             //        MessageBox.Show("Không tìm thấy nội dung : " + ndtimkiem + ".");
-
             //}
         }
 
@@ -859,48 +861,36 @@ namespace GUI
             BoGoc(pnlTb, 20);
             BoGoc(pnlThongBao, 20);
             timerTB.Start();
-
-            startY = 860; pnlThongBao.Location = new Point(1640, 902);
-            targetY = startY;
-            timerHieuUng.Interval = 20;
-            timerHieuUng.Tick += SlidePanel;
-            timerHieuUng.Start();
         }
-        private int startY;
-        private int targetY;
-        private const int ANIMATION_SPEED = 1;
-        private void SlidePanel(object sender, EventArgs e)
-        {
-            if (pnlThongBao.Location.Y > targetY)
-            {
-                int newY = Math.Max(pnlThongBao.Location.Y - ANIMATION_SPEED, targetY);
-                pnlThongBao.Location = new Point(pnlThongBao.Location.X, newY);
-            }
-            else
-            {
-                timerHieuUng.Stop();
-            }
-        }
+        
         private void XoaVaccineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
             string ten = dgvVaccine.SelectedRows[0].Cells[2].Value.ToString();
+            DataRow[] drcheckctpn = ctpnbll.GetData().Select("MaVC = '"+ ma + "'");
+            if(drcheckctpn.Length == 0 )
+            {
             DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa Vaccine '" + ten + "' này không?",
                                  "Xác nhận",
                                  MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (t == DialogResult.Yes)
+                if (t == DialogResult.Yes)
+                {
+                    bool ck = vaccineBLL.Delete(ma);
+                    if (ck)
+                    {
+                        ThongBao("Xoá thành công Vaccine " + ten + "", 1);
+                        ReLoadFRM();
+                    }
+                    else
+                    {
+                        ThongBao("Xoá thất lại Vaccine " + ten + "", 2);
+                        ReLoadFRM();
+                    }
+                }
+            }
+            else
             {
-                bool ck = vaccineBLL.Delete(ma);
-                if (ck)
-                {
-                    ThongBao("Xoá thành công Vaccine " + ten + "", 1);
-                    ReLoadFRM();
-                }
-                else
-                {
-                    ThongBao("Xoá thất lại Vaccine " + ten + "", 2);
-                    ReLoadFRM();
-                }
+                ThongBao("Vaccine "+ ten + " đã được sử dụng không thể xoá thông tin!", 2);
             }
         }
 
@@ -937,6 +927,7 @@ namespace GUI
                 cboLoaiVC.DisplayMember = "TenLoai";
                 cboLoaiVC.ValueMember = "MaLoai";
             }
+
         }
 
         private void btnTaoPhieuNhap_Click(object sender, EventArgs e)
@@ -947,7 +938,11 @@ namespace GUI
             txtMaPhieuN.Text = "PN" + sl.ToString("D3") + "";
             pnl2_PN.Enabled = true;
             grb2_ChiTietPhieuNhap.Enabled = true;
+
             btnLuuPhieuNhap.Visible = true;
+            btnTaoPhieuNhap.Enabled = false;
+            btnLuuPhieuNhap.Enabled = true;
+            btnThemCTPN.Enabled = true;
         }
 
         private void txtSoLuongCTPN_KeyPress(object sender, KeyPressEventArgs e)
@@ -968,6 +963,8 @@ namespace GUI
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
             {
                 e.Handled = true;
+                ThongBaoTab2("Vui lòng chỉ được nhập số vào ô số lượng!", 2);
+
             }
             else
             {
@@ -986,7 +983,7 @@ namespace GUI
                 txtThanhTien.Text = (double.Parse(txtSolUong.Text) * double.Parse(txtDonGiaCTPN.Text)).ToString();
             }
         }
-        private void CreateDTGV()
+        private void CreateDTGVVaccineLuaChon()
         {
             DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
             {
@@ -1058,29 +1055,46 @@ namespace GUI
             }
         }
 
+        private bool CheckCTPN()
+        {
+            if(txtSolUong.Text.Length == 0 || txtThanhTien.Text.Length == 0)
+            {
+                ThongBaoTab2("Vui lòng nhập đầy đủ giá trị !",2);
+                return false;
+            }
+            return true;
+        }
+
         private void btnThemCTPN_Click(object sender, EventArgs e)
         {
-            DataRow[] checktb = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
-            if (checktb.Length > 0)
+            if(CheckCTPN())
             {
-                DialogResult t = MessageBox.Show("Bạn đã chọn Vaccine " + txtTenVCCTPN.Text + " này rồi bạn có muốn cộng dồn số lượng không ", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (t == DialogResult.Yes)
+                if (luuctpntmp == null)
                 {
-                    checktb[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
+                    luuctpntmp = ctpnbll.GetData().Clone();
+                }
+                DataRow[] checktb = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
+                if (checktb.Length > 0)
+                {
+                    DialogResult t = MessageBox.Show("Bạn đã chọn Vaccine " + txtTenVCCTPN.Text + " này rồi bạn có muốn cộng dồn số lượng không ", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (t == DialogResult.Yes)
+                    {
+                        checktb[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
+                        LoadCTDSPN(luuctpntmp);
+                    }
+                }
+                else
+                {
+                    DataRow drnew = luuctpntmp.NewRow();
+                    {
+                        drnew[0] = txtMaPhieuN.Text;
+                        drnew[1] = txtTenVCCTPN.Tag.ToString();
+                        drnew[2] = txtSolUong.Text;
+                        drnew[3] = txtDonGiaCTPN.Text;
+                    }
+                    luuctpntmp.Rows.Add(drnew);
                     LoadCTDSPN(luuctpntmp);
                 }
-            }
-            else
-            {
-                DataRow drnew = luuctpntmp.NewRow();
-                {
-                    drnew[0] = txtMaPhieuN.Text;
-                    drnew[1] = txtTenVCCTPN.Tag.ToString();
-                    drnew[2] = txtSolUong.Text;
-                    drnew[3] = txtDonGiaCTPN.Text;
-                }
-                luuctpntmp.Rows.Add(drnew);
-                LoadCTDSPN(luuctpntmp);
             }
 
         }
@@ -1230,6 +1244,19 @@ namespace GUI
             pnbll.Luu();
             ctpnbll.Luu(luuctpntmp);
             ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
+
+            dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
+            dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
+            luuctpntmp = null;
+
+            CreateDTGV(vaccineBLL.Load());
+
+
+            btnTaoPhieuNhap.Enabled = true;
+            btnLuuPhieuNhap.Enabled = false;
+            btnThemCTPN.Enabled = false;
+            txtMaPhieuN.Text = string.Empty;
+            txtThanhTien.Text = string.Empty;
         }
 
         private void dtgDanhSachVCduocChon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1247,6 +1274,7 @@ namespace GUI
                 txtSolUong.Text = dr[0]["SoLuong"].ToString();
                 txtDonGiaCTPN.Text = dr[0]["DonGia"].ToString();
             }
+            btnThemCTPN.Enabled = false ;
         }
 
         private void grb2_ChiTietPhieuNhap_Leave(object sender, EventArgs e)
@@ -1258,27 +1286,54 @@ namespace GUI
 
         private void btnXoaCTPN_Click(object sender, EventArgs e)
         {
-            btnXoaCTPN.Enabled = false;
-            btnXoaCTPN.Enabled = false;
-            DataRow[] dr = luuctpntmp.Select("MaVC = '"+txtTenVCCTPN.Tag.ToString()+"'");
-            if (dr != null)
+            if(CheckCTPN())
             {
-                luuctpntmp.Rows.Remove(dr[0]);
+                btnXoaCTPN.Enabled = false;
+                DataRow[] dr = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
+                if (dr != null)
+                {
+                    luuctpntmp.Rows.Remove(dr[0]);
+                }
+                LoadCTDSPN(luuctpntmp);
+                btnThemCTPN.Enabled = true;
             }
-            LoadCTDSPN(luuctpntmp);
         }
 
         private void btnCapNhatCTPN_Click(object sender, EventArgs e)
         {
-            btnXoaCTPN.Enabled = false;
-            btnXoaCTPN.Enabled = false;
-            DataRow[] dr = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
-            if (dr != null)
+            if (CheckCTPN())
             {
-                dr[0]["SoLuong"] = txtSolUong.Text;
-                dr[0]["DonGia"] = txtDonGiaCTPN.Text;
+                btnThemCTPN.Enabled = true;
+                btnXoaCTPN.Enabled = false;
+                DataRow[] dr = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
+                if (dr != null)
+                {
+                    dr[0]["SoLuong"] = txtSolUong.Text;
+                    dr[0]["DonGia"] = txtDonGiaCTPN.Text;
+                }
+                LoadCTDSPN(luuctpntmp);
             }
-            LoadCTDSPN(luuctpntmp);
+        }
+
+        private void cboLoaiVC_Leave(object sender, EventArgs e)
+        {
+            lblMaloaivctmp.Visible = true;
+
+        }
+
+        private void cboXuatXu_Leave(object sender, EventArgs e)
+        {
+            lblXuatXu.Visible = true;
+        }
+
+        private void pnlLoc_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dtgCTPN_Click(object sender, EventArgs e)
+        {
+            txtSolUong.Focus();
         }
     }
 }

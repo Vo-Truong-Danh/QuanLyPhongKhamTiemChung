@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             tctChinh = new TabControl();
             tabKhoVaccine = new TabPage();
@@ -104,9 +104,6 @@
             dtgCTPN = new DataGridView();
             imageList1 = new ImageList(components);
             timerTB = new System.Windows.Forms.Timer(components);
-            timerHieuUng = new System.Windows.Forms.Timer(components);
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             toolTip = new ToolTip(components);
             timerTB_Tab2 = new System.Windows.Forms.Timer(components);
             tctChinh.SuspendLayout();
@@ -191,9 +188,9 @@
             pnlThongBao.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             pnlThongBao.BackColor = Color.DimGray;
             pnlThongBao.Controls.Add(pnlTb);
-            pnlThongBao.Location = new Point(1315, 835);
+            pnlThongBao.Location = new Point(1315, 797);
             pnlThongBao.Name = "pnlThongBao";
-            pnlThongBao.Size = new Size(555, 72);
+            pnlThongBao.Size = new Size(555, 82);
             pnlThongBao.TabIndex = 2;
             pnlThongBao.Visible = false;
             // 
@@ -205,13 +202,13 @@
             pnlTb.Location = new Point(2, 2);
             pnlTb.Margin = new Padding(4, 3, 4, 3);
             pnlTb.Name = "pnlTb";
-            pnlTb.Size = new Size(550, 68);
+            pnlTb.Size = new Size(550, 78);
             pnlTb.TabIndex = 30;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.notification_16903647;
-            pictureBox1.Location = new Point(14, 6);
+            pictureBox1.Location = new Point(14, 12);
             pictureBox1.Margin = new Padding(4, 3, 4, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(66, 54);
@@ -221,11 +218,10 @@
             // 
             // lblndtb
             // 
-            lblndtb.AutoSize = true;
-            lblndtb.Location = new Point(91, 22);
+            lblndtb.Location = new Point(98, 11);
             lblndtb.Margin = new Padding(4, 0, 4, 0);
             lblndtb.Name = "lblndtb";
-            lblndtb.Size = new Size(107, 25);
+            lblndtb.Size = new Size(434, 54);
             lblndtb.TabIndex = 0;
             lblndtb.Text = "Thông báo";
             // 
@@ -239,25 +235,25 @@
             dgvVaccine.BorderStyle = BorderStyle.None;
             dgvVaccine.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvVaccine.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.MediumTurquoise;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumTurquoise;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvVaccine.ColumnHeadersHeight = 29;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvVaccine.ContextMenuStrip = cntXoaSua;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle4;
             dgvVaccine.Dock = DockStyle.Fill;
             dgvVaccine.Location = new Point(0, 0);
             dgvVaccine.Margin = new Padding(0);
@@ -368,6 +364,7 @@
             cboXuatXu.Text = "Nhóm Vaccine";
             cboXuatXu.SelectionChangeCommitted += cboXuatXu_SelectionChangeCommitted;
             cboXuatXu.Click += cboXuatXu_Click;
+            cboXuatXu.Leave += cboXuatXu_Leave;
             // 
             // pnlLoc
             // 
@@ -378,6 +375,7 @@
             pnlLoc.Name = "pnlLoc";
             pnlLoc.Size = new Size(257, 54);
             pnlLoc.TabIndex = 27;
+            pnlLoc.Paint += pnlLoc_Paint;
             // 
             // lblMaloaivctmp
             // 
@@ -404,6 +402,7 @@
             cboLoaiVC.Text = "Nhóm Vaccine";
             cboLoaiVC.SelectionChangeCommitted += cboLoaiVC_SelectionChangeCommitted;
             cboLoaiVC.Click += cboLoaiVC_Click;
+            cboLoaiVC.Leave += cboLoaiVC_Leave;
             // 
             // pnlTimKiem
             // 
@@ -430,7 +429,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Enabled = false;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(290, 10);
+            pictureBox2.Location = new Point(286, 10);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(36, 33);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -442,7 +441,7 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.Transparent;
-            btnSearch.Location = new Point(287, 6);
+            btnSearch.Location = new Point(286, 10);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(36, 33);
             btnSearch.TabIndex = 25;
@@ -989,6 +988,7 @@
             dtgCTPN.Size = new Size(577, 952);
             dtgCTPN.TabIndex = 0;
             dtgCTPN.CellClick += dtgCTPN_CellClick;
+            dtgCTPN.Click += dtgCTPN_Click;
             // 
             // imageList1
             // 
@@ -1002,17 +1002,6 @@
             // 
             timerTB.Interval = 4000;
             timerTB.Tick += timerTB_Tick;
-            // 
-            // timerHieuUng
-            // 
-            timerHieuUng.Interval = 20;
-            timerHieuUng.Tick += timerHieuUng_Tick;
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
             // 
             // timerTB_Tab2
             // 
@@ -1039,7 +1028,6 @@
             panel1.ResumeLayout(false);
             pnlThongBao.ResumeLayout(false);
             pnlTb.ResumeLayout(false);
-            pnlTb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVaccine).EndInit();
             cntXoaSua.ResumeLayout(false);
@@ -1110,13 +1098,10 @@
         private PictureBox pictureBox1;
         private Label lblndtb;
         private System.Windows.Forms.Timer timerTB;
-        private System.Windows.Forms.Timer timerHieuUng;
         private Button btnThemLoai;
         private TabPage tabNhapVC;
-        private ContextMenuStrip contextMenuStrip1;
         private Panel pnl2_VungThemNVC;
         private GroupBox grbDSVC;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private GroupBox grb2_ChiTietPhieuNhap;
         private GroupBox grb2_ShowVCDuocChon;
         private DataGridView dtgDanhSachVCduocChon;

@@ -18,6 +18,10 @@ namespace BLL
         {
             return vcbll.LayTTVC();
         }
+        public DataTable Load()
+        {
+            return vcbll.Load();
+        }
         public void Insert(VaccineDTO vaccineDTO)
         {
             vcbll.Insert(vaccineDTO);
