@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
             tctChinh = new TabControl();
             tabKhoVaccine = new TabPage();
@@ -235,25 +235,25 @@
             dgvVaccine.BorderStyle = BorderStyle.None;
             dgvVaccine.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvVaccine.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MediumTurquoise;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumTurquoise;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvVaccine.ColumnHeadersHeight = 29;
             dgvVaccine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvVaccine.ContextMenuStrip = cntXoaSua;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvVaccine.DefaultCellStyle = dataGridViewCellStyle2;
             dgvVaccine.Dock = DockStyle.Fill;
             dgvVaccine.Location = new Point(0, 0);
             dgvVaccine.Margin = new Padding(0);
@@ -353,6 +353,7 @@
             // cboXuatXu
             // 
             cboXuatXu.BackColor = Color.White;
+            cboXuatXu.DropDownStyle = ComboBoxStyle.DropDownList;
             cboXuatXu.FlatStyle = FlatStyle.Popup;
             cboXuatXu.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboXuatXu.FormattingEnabled = true;
@@ -361,7 +362,6 @@
             cboXuatXu.Name = "cboXuatXu";
             cboXuatXu.Size = new Size(183, 33);
             cboXuatXu.TabIndex = 0;
-            cboXuatXu.Text = "Nhóm Vaccine";
             cboXuatXu.SelectionChangeCommitted += cboXuatXu_SelectionChangeCommitted;
             cboXuatXu.Click += cboXuatXu_Click;
             cboXuatXu.Leave += cboXuatXu_Leave;
@@ -391,6 +391,7 @@
             // cboLoaiVC
             // 
             cboLoaiVC.BackColor = Color.White;
+            cboLoaiVC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboLoaiVC.FlatStyle = FlatStyle.Popup;
             cboLoaiVC.Font = new Font("Microsoft Sans Serif", 12F);
             cboLoaiVC.FormattingEnabled = true;
@@ -399,7 +400,6 @@
             cboLoaiVC.Name = "cboLoaiVC";
             cboLoaiVC.Size = new Size(218, 33);
             cboLoaiVC.TabIndex = 0;
-            cboLoaiVC.Text = "Nhóm Vaccine";
             cboLoaiVC.SelectionChangeCommitted += cboLoaiVC_SelectionChangeCommitted;
             cboLoaiVC.Click += cboLoaiVC_Click;
             cboLoaiVC.Leave += cboLoaiVC_Leave;
@@ -423,6 +423,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(254, 25);
             txtSearch.TabIndex = 26;
+            txtSearch.KeyPress += txtSearch_KeyPress;
             // 
             // pictureBox2
             // 
@@ -594,6 +595,7 @@
             // cboNCC
             // 
             cboNCC.BackColor = SystemColors.Window;
+            cboNCC.DropDownStyle = ComboBoxStyle.DropDownList;
             cboNCC.FlatStyle = FlatStyle.Flat;
             cboNCC.FormattingEnabled = true;
             cboNCC.Location = new Point(163, 14);
@@ -832,6 +834,7 @@
             txtDonGiaCTPN.Location = new Point(144, 19);
             txtDonGiaCTPN.Multiline = true;
             txtDonGiaCTPN.Name = "txtDonGiaCTPN";
+            txtDonGiaCTPN.ReadOnly = true;
             txtDonGiaCTPN.Size = new Size(387, 39);
             txtDonGiaCTPN.TabIndex = 2;
             // 
@@ -862,6 +865,7 @@
             txtTenVCCTPN.Multiline = true;
             txtTenVCCTPN.Name = "txtTenVCCTPN";
             txtTenVCCTPN.PlaceholderText = "Nhập vào tên Vaccine cần nhập";
+            txtTenVCCTPN.ReadOnly = true;
             txtTenVCCTPN.Size = new Size(387, 39);
             txtTenVCCTPN.TabIndex = 1;
             // 

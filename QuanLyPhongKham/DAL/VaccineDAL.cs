@@ -120,7 +120,18 @@
                 }
                 return tmp;
             }
-            public VaccineDTO SearchChiTiet(string ndtimkiem)
+
+        public DataTable SearchTen(string ndtimkiem)
+        {
+            DataRow[] dr = dt.Select("TenVC LIKE '%" + ndtimkiem + "%' ");
+            DataTable tmp = dt.Clone();
+            foreach (DataRow item in dr)
+            {
+                tmp.ImportRow(item);
+            }
+            return tmp;
+        }
+        public VaccineDTO SearchChiTiet(string ndtimkiem)
             {
                 DataRow[] dr = dt.Select("MaVC = '"+ndtimkiem+"' ");
                 VaccineDTO vcdto = new VaccineDTO()

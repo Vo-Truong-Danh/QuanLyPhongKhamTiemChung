@@ -43,7 +43,6 @@ namespace GUI
             if (t == DialogResult.Yes)
             {
                 this.Close();
-
                 VaccineDTO.CheckTB = false;
             }
         }
@@ -74,10 +73,10 @@ namespace GUI
                 dteNSX.Value = DateTime.Parse(vcdto.Ngaysx);
                 dteHSD.Value = DateTime.Parse(vcdto.Hansudung);
                 txtGia.Text = vcdto.Gia.ToString();
-                txtXuatXu.Text =vcdto.Xuatxu;
-                cboLoaiVC.SelectedValue=vcdto.Maloai;
+                txtXuatXu.Text = vcdto.Xuatxu;
+                cboLoaiVC.SelectedValue = vcdto.Maloai;
             }
-            
+
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -91,7 +90,7 @@ namespace GUI
                     int sl = vcbll.LayTTVC().Rows.Count + 1;
                     VaccineDTO vcdto = new VaccineDTO()
                     {
-                        Mavc = "VC" + sl.ToString("D3") +"",
+                        Mavc = "VC" + sl.ToString("D3") + "",
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
                         Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
@@ -117,6 +116,39 @@ namespace GUI
                 }
             }
             this.Close();
+        }
+
+        private void txtTenVC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                error.SetError(txtTenVC, "Không được nhập ký tự đặc biệt");
+            }
+            else
+                error.Clear();
+        }
+
+        private void txtGia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                error.SetError(txtGia, "Không được nhập chữ vui lòng chỉ nhập số");
+            }
+            else
+                error.Clear();
+        }
+
+        private void txtXuatXu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b' && e.KeyChar != '/')
+            {
+                e.Handled = true;
+                error.SetError(txtXuatXu, "Vui lòng chỉ nhập chữ");
+            }
+            else
+                error.Clear();
         }
     }
 }

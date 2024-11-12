@@ -69,6 +69,7 @@
             btnMoRong = new PictureBox();
             Sibar = new System.Windows.Forms.Timer(components);
             pctLogo = new PictureBox();
+            toolTip = new ToolTip(components);
             panel1.SuspendLayout();
             panel16.SuspendLayout();
             panel7.SuspendLayout();
@@ -137,6 +138,7 @@
             btnDangXuat.Size = new Size(133, 49);
             btnDangXuat.TabIndex = 0;
             btnDangXuat.Text = "Đăng Xuất";
+            toolTip.SetToolTip(btnDangXuat, "Nhấp vào để đặng xuất tài khoản");
             btnDangXuat.UseVisualStyleBackColor = false;
             btnDangXuat.Click += btnDangXuat_Click;
             // 
@@ -199,6 +201,7 @@
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(57, 49);
             btnThoat.TabIndex = 0;
+            toolTip.SetToolTip(btnThoat, "Nhấp vào để thoát ứng dụng");
             btnThoat.UseVisualStyleBackColor = false;
             btnThoat.Click += btnThoat_Click;
             // 
@@ -383,6 +386,7 @@
             btnThongKe.TabIndex = 9;
             btnThongKe.Text = "Thống Kê";
             btnThongKe.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnThongKe, "Nhấp vào để đến trang thông kê");
             btnThongKe.UseVisualStyleBackColor = false;
             // 
             // btnTraCuu
@@ -403,6 +407,7 @@
             btnTraCuu.TabIndex = 8;
             btnTraCuu.Text = "Tra Cứu";
             btnTraCuu.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnTraCuu, "Nhấp vào để đến trang tra cứu tổng hợp");
             btnTraCuu.UseVisualStyleBackColor = false;
             // 
             // btnQLNhanVien
@@ -423,6 +428,7 @@
             btnQLNhanVien.TabIndex = 7;
             btnQLNhanVien.Text = "QL Nhân Viên";
             btnQLNhanVien.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnQLNhanVien, "Nhấp vào để đến quản lý nhân viên");
             btnQLNhanVien.UseVisualStyleBackColor = false;
             // 
             // btnQLTiemChung
@@ -443,6 +449,7 @@
             btnQLTiemChung.TabIndex = 6;
             btnQLTiemChung.Text = "QL Tiêm Chủng";
             btnQLTiemChung.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnQLTiemChung, "Nhấp vào để đến quản lý tiêm chủng");
             btnQLTiemChung.UseVisualStyleBackColor = false;
             // 
             // btnQLVaccine
@@ -463,6 +470,7 @@
             btnQLVaccine.TabIndex = 5;
             btnQLVaccine.Text = "QL Vaccine";
             btnQLVaccine.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnQLVaccine, " Nhấp vào để đến trang quản lý Vaccine");
             btnQLVaccine.UseVisualStyleBackColor = false;
             btnQLVaccine.Click += btnQLVaccine_Click;
             // 
@@ -484,6 +492,7 @@
             btnQLBenhNhan.TabIndex = 4;
             btnQLBenhNhan.Text = "QL Bệnh Nhân";
             btnQLBenhNhan.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnQLBenhNhan, "Nhấp vào để đến trang quản lý bệnh nhân\r\n");
             btnQLBenhNhan.UseVisualStyleBackColor = false;
             btnQLBenhNhan.Click += btnQLBenhNhan_Click;
             // 
@@ -505,6 +514,7 @@
             btnTrangChu.TabIndex = 2;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnTrangChu, "Nhấp vào để đến trang chủ");
             btnTrangChu.UseVisualStyleBackColor = false;
             btnTrangChu.Click += btnTrangChu_Click;
             // 
@@ -548,6 +558,7 @@
             btnThuMo.TabIndex = 14;
             btnThuMo.Text = "Menu";
             btnThuMo.TextAlign = ContentAlignment.MiddleRight;
+            toolTip.SetToolTip(btnThuMo, "Nhấp vào để mở rộng hoặc thu nhỏ thanh công cụ");
             btnThuMo.UseVisualStyleBackColor = false;
             btnThuMo.Click += btnThuMo_Click;
             // 
@@ -563,6 +574,7 @@
             btnMoRong.SizeMode = PictureBoxSizeMode.StretchImage;
             btnMoRong.TabIndex = 22;
             btnMoRong.TabStop = false;
+            toolTip.SetToolTip(btnMoRong, "Nhấp vào để mở rộng hoặc thu nhỏ thanh công cụ");
             // 
             // Sibar
             // 
@@ -666,5 +678,6 @@
         private PictureBox btnMoRong;
         private System.Windows.Forms.Timer Sibar;
         private PictureBox pctLogo;
+        private ToolTip toolTip;
     }
 }

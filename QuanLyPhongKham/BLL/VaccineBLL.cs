@@ -22,6 +22,10 @@ namespace BLL
         {
             return vcbll.Load();
         }
+        public DataTable SearchTen(string nd)
+        {
+            return vcbll.SearchTen(nd);
+        }
         public void Insert(VaccineDTO vaccineDTO)
         {
             vcbll.Insert(vaccineDTO);

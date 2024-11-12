@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ThemVaccine));
             btnThoat = new PictureBox();
             pnlTenVc = new Panel();
@@ -56,6 +57,7 @@
             pnlLoai = new Panel();
             cboLoaiVC = new ComboBox();
             lblLoaiVC = new Label();
+            error = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)btnThoat).BeginInit();
             pnlTenVc.SuspendLayout();
             pnlNSX.SuspendLayout();
@@ -63,6 +65,7 @@
             pnlGia.SuspendLayout();
             pnlXuatXu.SuspendLayout();
             pnlLoai.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)error).BeginInit();
             SuspendLayout();
             // 
             // btnThoat
@@ -99,6 +102,7 @@
             txtTenVC.PlaceholderText = "Nhập tên loại Vaccine bạn muốn thêm";
             txtTenVC.Size = new Size(339, 37);
             txtTenVC.TabIndex = 0;
+            txtTenVC.KeyPress += txtTenVC_KeyPress;
             // 
             // label1
             // 
@@ -262,6 +266,7 @@
             txtGia.PlaceholderText = "Nhập giá loại Vaccine bạn muốn thêm";
             txtGia.Size = new Size(339, 37);
             txtGia.TabIndex = 0;
+            txtGia.KeyPress += txtGia_KeyPress;
             // 
             // label9
             // 
@@ -309,6 +314,7 @@
             txtXuatXu.PlaceholderText = "Nhập nguồn gốc của Vaccine vào đây";
             txtXuatXu.Size = new Size(339, 37);
             txtXuatXu.TabIndex = 0;
+            txtXuatXu.KeyPress += txtXuatXu_KeyPress;
             // 
             // label11
             // 
@@ -382,6 +388,10 @@
             lblLoaiVC.TabIndex = 46;
             lblLoaiVC.Text = "Loại Vacine";
             // 
+            // error
+            // 
+            error.ContainerControl = this;
+            // 
             // frm_ThemVaccine
             // 
             AutoScaleDimensions = new SizeF(10F, 22F);
@@ -428,6 +438,7 @@
             pnlXuatXu.ResumeLayout(false);
             pnlXuatXu.PerformLayout();
             pnlLoai.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)error).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -461,5 +472,6 @@
         private Panel pnlLoai;
         private ComboBox cboLoaiVC;
         private Label lblLoaiVC;
+        private ErrorProvider error;
     }
 }

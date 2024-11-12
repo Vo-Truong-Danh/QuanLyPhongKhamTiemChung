@@ -28,6 +28,7 @@ namespace GUI
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
+            VaccineDTO.CheckTB = false;
             this.Close();
         }
         LoaiVaccineBLL lvcbll = new LoaiVaccineBLL();
@@ -47,20 +48,6 @@ namespace GUI
                     };
                     lvcbll.Insert(lvcdto);
                     VaccineDTO.CheckTB = true;
-                }
-                else
-                {
-                    //VaccineDTO vcdto = new VaccineDTO()
-                    //{
-                    //    Mavc = mavcdto,
-                    //    Maloai = cboLoaiVC.SelectedValue.ToString(),
-                    //    Tenvc = txtTenVC.Text,
-                    //    Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
-                    //    Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
-                    //    Gia = int.Parse(txtGia.Text),
-                    //    Xuatxu = txtXuatXu.Text,
-                    //};
-                    //vcbll.Update(vcdto);
                 }
             }
             this.Close();
