@@ -70,6 +70,7 @@
             Sibar = new System.Windows.Forms.Timer(components);
             pctLogo = new PictureBox();
             toolTip = new ToolTip(components);
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1.SuspendLayout();
             panel16.SuspendLayout();
             panel7.SuspendLayout();
@@ -679,5 +680,6 @@
         private System.Windows.Forms.Timer Sibar;
         private PictureBox pctLogo;
         private ToolTip toolTip;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
