@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace GUI
             InitializeComponent();
             malvc = ma;
         }
-        
+
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
@@ -39,10 +40,10 @@ namespace GUI
             {
                 if (malvc == null)
                 {
-                    int sl = lvcbll.GetData().Rows.Count+1;
+                    int sl = lvcbll.GetData().Rows.Count + 1;
                     LoaiVaccineDTO lvcdto = new LoaiVaccineDTO()
                     {
-                        Maloai = "LV"+sl.ToString("D3")+"",
+                        Maloai = "LV" + sl.ToString("D3") + "",
                         Tenloai = txtTenLoaiVC.Text,
                         Somui = int.Parse(txtSoMui.Text),
                     };
@@ -52,6 +53,28 @@ namespace GUI
             }
             this.Close();
 
+        }
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+           (
+           int nLeft,
+           int nTop,
+           int nRight,
+           int rBottom,
+           int nWidthEllipse,
+           int nHeightEllipse
+           );
+        private void BoGoc(Control tmp, int goc)
+        {
+            tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, goc, goc));
+        }
+
+        private void frmThemLoaiVaccine_Load(object sender, EventArgs e)
+        {
+            BoGoc(this, 30);
+            BoGoc(pnlTenVc,20);
+            BoGoc(pnlGia,20);
+            BoGoc(btnLuu,20);
         }
     }
 }

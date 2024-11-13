@@ -36,7 +36,6 @@ namespace GUI
            int nWidthEllipse,
            int nHeightEllipse
            );
-        bool TrangThaiBang_1 = true;
         public void LoadVaccine()
         {
             //VaccineBLL vaccineBLL = new VaccineBLL();
@@ -1058,36 +1057,40 @@ namespace GUI
 
         private void btnThemCTPN_Click(object sender, EventArgs e)
         {
-            if (CheckCTPN())
+            if (btnTaoPhieuNhap.Enabled == false)
             {
-                if (luuctpntmp == null)
+                if (CheckCTPN())
                 {
-                    luuctpntmp = ctpnbll.GetData().Clone();
-                }
-                DataRow[] checktb = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
-                if (checktb.Length > 0)
-                {
-                    DialogResult t = MessageBox.Show("Bạn đã chọn Vaccine " + txtTenVCCTPN.Text + " này rồi bạn có muốn cộng dồn số lượng không ", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (t == DialogResult.Yes)
+                    if (luuctpntmp == null)
                     {
-                        checktb[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
+                        luuctpntmp = ctpnbll.GetData().Clone();
+                    }
+                    DataRow[] checktb = luuctpntmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "'");
+                    if (checktb.Length > 0)
+                    {
+                        DialogResult t = MessageBox.Show("Bạn đã chọn Vaccine " + txtTenVCCTPN.Text + " này rồi bạn có muốn cộng dồn số lượng không ", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (t == DialogResult.Yes)
+                        {
+                            checktb[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
+                            LoadCTDSPN(luuctpntmp);
+                        }
+                    }
+                    else
+                    {
+                        DataRow drnew = luuctpntmp.NewRow();
+                        {
+                            drnew[0] = txtMaPhieuN.Text;
+                            drnew[1] = txtTenVCCTPN.Tag.ToString();
+                            drnew[2] = txtSolUong.Text;
+                            drnew[3] = txtDonGiaCTPN.Text;
+                        }
+                        luuctpntmp.Rows.Add(drnew);
                         LoadCTDSPN(luuctpntmp);
                     }
                 }
-                else
-                {
-                    DataRow drnew = luuctpntmp.NewRow();
-                    {
-                        drnew[0] = txtMaPhieuN.Text;
-                        drnew[1] = txtTenVCCTPN.Tag.ToString();
-                        drnew[2] = txtSolUong.Text;
-                        drnew[3] = txtDonGiaCTPN.Text;
-                    }
-                    luuctpntmp.Rows.Add(drnew);
-                    LoadCTDSPN(luuctpntmp);
-                }
             }
-
+            else
+                ThongBao("Vui lòng tạo hóa phiếu nhập kho trước khi thêm ", 0);
         }
         private void TinhTongTien()
         {
@@ -1223,31 +1226,37 @@ namespace GUI
 
         private void btnLuuPhieuNhap_Click(object sender, EventArgs e)
         {
-            PhieuNhapDTO pndto = new PhieuNhapDTO()
+            DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn lưu những thay đổi sẽ được lưu vào Cơ Sở Dử Liệu",
+                     "Xác nhận",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (t == DialogResult.Yes)
             {
-                Mapn = txtMaPhieuN.Text,
-                Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
-                Mancc = cboNCC.SelectedValue.ToString(),
-                Tongtien = txtTongTien.Text,
-            };
+                PhieuNhapDTO pndto = new PhieuNhapDTO()
+                {
+                    Mapn = txtMaPhieuN.Text,
+                    Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
+                    Mancc = cboNCC.SelectedValue.ToString(),
+                    Tongtien = txtTongTien.Text,
+                };
 
-            pnbll.Insert(pndto);
-            pnbll.Luu();
-            ctpnbll.Luu(luuctpntmp);
-            ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
+                pnbll.Insert(pndto);
+                pnbll.Luu();
+                ctpnbll.Luu(luuctpntmp);
+                ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
 
-            dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
-            dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
-            luuctpntmp = null;
+                dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
+                dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
+                luuctpntmp = null;
 
-            CreateDTGV(vaccineBLL.Load());
+                CreateDTGV(vaccineBLL.Load());
 
 
-            btnTaoPhieuNhap.Enabled = true;
-            btnLuuPhieuNhap.Enabled = false;
-            btnThemCTPN.Enabled = false;
-            txtMaPhieuN.Text = string.Empty;
-            txtThanhTien.Text = string.Empty;
+                btnTaoPhieuNhap.Enabled = true;
+                btnLuuPhieuNhap.Enabled = false;
+                btnThemCTPN.Enabled = false;
+                txtMaPhieuN.Text = string.Empty;
+                txtThanhTien.Text = string.Empty;
+            }
         }
 
         private void dtgDanhSachVCduocChon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1333,6 +1342,10 @@ namespace GUI
             {
                 e.Handled = true;
                 ThongBao("Vui lòng chỉ được nhập chử và số không được nhập ký tự đặc biệt",0);
+            }
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                btnSearch_Click(sender,e);
             }
         }
     }

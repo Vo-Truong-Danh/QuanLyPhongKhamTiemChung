@@ -55,7 +55,7 @@
             btnLuu.Location = new Point(65, 402);
             btnLuu.Margin = new Padding(0);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(377, 55);
+            btnLuu.Size = new Size(405, 55);
             btnLuu.TabIndex = 65;
             btnLuu.Text = "Lưu Thông Tin";
             btnLuu.UseVisualStyleBackColor = false;
@@ -83,7 +83,7 @@
             txtSoMui.Multiline = true;
             txtSoMui.Name = "txtSoMui";
             txtSoMui.PlaceholderText = "Nhập vào số mủi cần tiêm";
-            txtSoMui.Size = new Size(339, 37);
+            txtSoMui.Size = new Size(370, 37);
             txtSoMui.TabIndex = 0;
             // 
             // label8
@@ -105,7 +105,7 @@
             pnlGia.Location = new Point(65, 281);
             pnlGia.Margin = new Padding(4, 3, 4, 3);
             pnlGia.Name = "pnlGia";
-            pnlGia.Size = new Size(377, 55);
+            pnlGia.Size = new Size(408, 55);
             pnlGia.TabIndex = 59;
             // 
             // label3
@@ -124,7 +124,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("SVN-Gotham Rounded", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(51, 58);
+            label2.Location = new Point(52, 58);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(436, 37);
@@ -153,7 +153,7 @@
             txtTenLoaiVC.Multiline = true;
             txtTenLoaiVC.Name = "txtTenLoaiVC";
             txtTenLoaiVC.PlaceholderText = "Nhập vào tên loại Vaccine ";
-            txtTenLoaiVC.Size = new Size(339, 37);
+            txtTenLoaiVC.Size = new Size(370, 37);
             txtTenLoaiVC.TabIndex = 0;
             // 
             // pnlTenVc
@@ -163,13 +163,13 @@
             pnlTenVc.Location = new Point(62, 157);
             pnlTenVc.Margin = new Padding(4, 3, 4, 3);
             pnlTenVc.Name = "pnlTenVc";
-            pnlTenVc.Size = new Size(377, 55);
+            pnlTenVc.Size = new Size(408, 55);
             pnlTenVc.TabIndex = 49;
             // 
             // btnThoat
             // 
             btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
-            btnThoat.Location = new Point(468, 25);
+            btnThoat.Location = new Point(494, 22);
             btnThoat.Margin = new Padding(5, 4, 5, 4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(19, 18);
@@ -183,7 +183,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PaleTurquoise;
-            ClientSize = new Size(523, 514);
+            ClientSize = new Size(549, 514);
             Controls.Add(btnLuu);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -197,6 +197,7 @@
             Name = "frmThemLoaiVaccine";
             StartPosition = FormStartPosition.CenterParent;
             Text = "frmThemLoaiVaccine";
+            Load += frmThemLoaiVaccine_Load;
             pnlGia.ResumeLayout(false);
             pnlGia.PerformLayout();
             pnlTenVc.ResumeLayout(false);
