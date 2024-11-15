@@ -50,6 +50,16 @@ namespace GUI
                     lvcbll.Insert(lvcdto);
                     VaccineDTO.CheckTB = true;
                 }
+                else
+                {
+                    LoaiVaccineDTO tmp = new LoaiVaccineDTO()
+                    {
+                        Maloai = malvc.ToString(),
+                        Tenloai = txtTenLoaiVC.Text,
+                        Somui = int.Parse(txtSoMui.Text),
+                    };
+                    lvcbll.Update(tmp);
+                }
             }
             this.Close();
 
@@ -75,6 +85,12 @@ namespace GUI
             BoGoc(pnlTenVc,20);
             BoGoc(pnlGia,20);
             BoGoc(btnLuu,20);
+            if (malvc != null)
+            {
+                LoaiVaccineDTO tmp = lvcbll.Search(malvc);
+                txtTenLoaiVC.Text = tmp.Tenloai.ToString();
+                txtSoMui.Text = tmp .Somui.ToString();
+            }
         }
     }
 }

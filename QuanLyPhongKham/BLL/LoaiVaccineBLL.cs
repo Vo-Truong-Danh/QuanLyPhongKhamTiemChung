@@ -16,7 +16,7 @@ namespace BLL
         {
             return loaiVaccineDAL.GetData();
         }
-        public DataTable Search(string ndtimkiem)
+        public LoaiVaccineDTO Search(string ndtimkiem)
         {
             return loaiVaccineDAL.Search(ndtimkiem);
         }

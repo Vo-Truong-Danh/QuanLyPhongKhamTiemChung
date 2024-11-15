@@ -212,6 +212,8 @@ namespace GUI
             dgvVaccine.RowTemplate.Height = 60;
             dtgCTPN.ColumnHeadersHeight = 60;
             dtgCTPN.RowTemplate.Height = 60;
+            dgvLoaiVC.ColumnHeadersHeight = 60;
+            dgvLoaiVC.RowTemplate.Height = 60;
             dtgDanhSachVCduocChon.ColumnHeadersHeight = 60;
             dtgDanhSachVCduocChon.RowTemplate.Height = 60;
 
@@ -244,6 +246,9 @@ namespace GUI
             btnXoaCTPN.Enabled = false;
             btnXoaCTPN.Enabled = false;
             CreateDTGVVaccineLuaChon();
+
+            //tab 3
+            CreateDgvLoaiVaccine(loaivcbll.GetData());
         }
 
         private void LoadNCC()
@@ -852,7 +857,22 @@ namespace GUI
             BoGoc(pnlThongBao, 20);
             timerTB.Start();
         }
+        private void ThongBaoTab3(string nd, int colortext)
+        {
+            // 0 là đen _ 1 là xanh _ 2 là đỏ   
+            if (colortext == 0)
+                lblndTab3.ForeColor = Color.Black;
+            if (colortext == 1)
+                lblndTab3.ForeColor = Color.Green;
+            if (colortext == 2)
+                lblndTab3.ForeColor = Color.Red;
 
+            lblndTab3.Text = nd;
+            pnlTb3.Visible = true;
+            BoGoc(pnlTb3, 20);
+            BoGoc(pnlTb3s, 20);
+            timerTB.Start();
+        }
         private void XoaVaccineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
@@ -908,15 +928,7 @@ namespace GUI
 
         private void btnThemLoai_Click(object sender, EventArgs e)
         {
-            frm_overlay frm = new frm_overlay(2);
-            frm.ShowDialog();
-            if (VaccineDTO.CheckTB)
-            {
-                ThongBao("Thêm thành công Loại Vaccine vào danh sách ", 1);
-                cboLoaiVC.DataSource = loaivcbll.GetData();
-                cboLoaiVC.DisplayMember = "TenLoai";
-                cboLoaiVC.ValueMember = "MaLoai";
-            }
+
 
         }
 
@@ -1043,6 +1055,9 @@ namespace GUI
             {
                 txtThanhTien.Text = (double.Parse(txtSolUong.Text) * double.Parse(txtDonGiaCTPN.Text)).ToString();
             }
+            btnCapNhatCTPN.Enabled = false;
+            btnXoaCTPN.Enabled = false;
+            btnThemCTPN.Enabled = true;
         }
 
         private bool CheckCTPN()
@@ -1338,15 +1353,147 @@ namespace GUI
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b' )
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != '\b')
             {
                 e.Handled = true;
-                ThongBao("Vui lòng chỉ được nhập chử và số không được nhập ký tự đặc biệt",0);
+                ThongBao("Vui lòng chỉ được nhập chử và số không được nhập ký tự đặc biệt", 0);
             }
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                btnSearch_Click(sender,e);
+                btnSearch_Click(sender, e);
             }
+        }
+        private void CreateDgvLoaiVaccine(DataTable dttb)
+        {
+            dgvLoaiVC.Columns.Clear();  // Xóa tất cả các cột
+            dgvLoaiVC.Rows.Clear();     // Xóa tất cả các hàng
+            DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
+            {
+                Name = "STT",
+                HeaderText = "STT"
+            };
+            DataGridViewTextBoxColumn maloai = new DataGridViewTextBoxColumn
+            {
+                Name = "MaLoai",
+                HeaderText = "Mã Loại Vaccine"
+            };
+            DataGridViewTextBoxColumn tenloai = new DataGridViewTextBoxColumn
+            {
+                Name = "TenLoai",
+                HeaderText = "Tên Loại Vaccine"
+            };
+            DataGridViewTextBoxColumn somui = new DataGridViewTextBoxColumn
+            {
+                Name = "SoMui",
+                HeaderText = "Số Mũi"
+            };
+            DataGridViewTextBoxColumn soluong = new DataGridViewTextBoxColumn
+            {
+                Name = "SoLuong",
+                HeaderText = "Số Lượng"
+            };
+
+            //Thêm vào dtg
+            dgvLoaiVC.Columns.Add(stt);
+            dgvLoaiVC.Columns.Add(maloai);
+            dgvLoaiVC.Columns.Add(tenloai);
+            dgvLoaiVC.Columns.Add(somui);
+            dgvLoaiVC.Columns.Add(soluong);
+            int tmp = 1;
+            DataTable dttmp = vaccineBLL.LayTTVC();
+            if (dttb != null)
+            {
+                foreach (DataRow row in dttb.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        string maloaivc = row["MaLoai"].ToString();
+
+                        DataRow[] sltmp = dttmp.Select("MaLoai = '" + maloaivc + "'");
+                        dgvLoaiVC.Rows.Add(tmp++, row["MaLoai"], row["TenLoai"], row["SoMui"], sltmp.Count());
+
+                    }
+                }
+            }
+            CustomSizeColLoaiVacine();
+        }
+        private void CustomSizeColLoaiVacine()
+        {
+
+            dgvLoaiVC.Columns[0].Width = 60;
+            dgvLoaiVC.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLoaiVC.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvLoaiVC.Columns[1].Width = 230;
+
+            dgvLoaiVC.Columns[2].Width = 300;
+
+            dgvLoaiVC.Columns[3].Width = 155;
+            dgvLoaiVC.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLoaiVC.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvLoaiVC.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvLoaiVC.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLoaiVC.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        private void dgvLoaiVC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnXoaLoaiVC_Click_1(object sender, EventArgs e)
+        {
+            string ma = dgvLoaiVC.SelectedRows[0].Cells[1].Value.ToString();
+            string ten = dgvLoaiVC.SelectedRows[0].Cells[2].Value.ToString();
+            DataRow[] drcheckctpn = vaccineBLL.LayTTVC().Select("MaLoai = '" + ma + "'");
+            if (drcheckctpn.Length == 0)
+            {
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa loại Vaccine '" + ten + "' này không?",
+                                     "Xác nhận",
+                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (t == DialogResult.Yes)
+                {
+                    bool ck = loaivcbll.Delete(ma);
+                    if (ck)
+                    {
+                        ThongBaoTab3("Xoá thành công loại Vaccine " + ten + "", 1);
+                        CreateDgvLoaiVaccine(loaivcbll.GetData());
+                    }
+                    else
+                    {
+                        ThongBaoTab3("Xoá thất lại loại Vaccine " + ten + "", 2);
+                        ReLoadFRM();
+                    }
+                }
+            }
+            else
+            {
+                ThongBaoTab3("Loại Vaccine " + ten + " đã được sử dụng không thể xoá thông tin!", 2);
+            }
+        }
+
+        private void btnThemLoaiVC_Click(object sender, EventArgs e)
+        {
+            frm_overlay frm = new frm_overlay(2);
+            frm.ShowDialog();
+            if (VaccineDTO.CheckTB)
+            {
+                ThongBaoTab3("Thêm thành công Loại Vaccine vào danh sách ", 1);
+                CreateDgvLoaiVaccine(loaivcbll.GetData());
+
+            }
+
+        }
+
+        private void btnCapNhatLoaiVaccine_Click(object sender, EventArgs e)
+        {
+            string ma = dgvLoaiVC.SelectedRows[0].Cells[1].Value.ToString();
+            frm_overlay frm = new frm_overlay(3, ma);
+            frm.ShowDialog();
+            ReLoadFRM();
+            ThongBaoTab3("Cập nhật thành công Loai Vaccine vào danh sách ", 1);
+            CreateDgvLoaiVaccine(loaivcbll.GetData());
         }
     }
 }
