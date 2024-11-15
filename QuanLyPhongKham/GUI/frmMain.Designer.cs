@@ -609,6 +609,7 @@
             Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.MidnightBlue;
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             MinimizeBox = false;
             Name = "frmMain";

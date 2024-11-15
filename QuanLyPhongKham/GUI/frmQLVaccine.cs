@@ -216,6 +216,8 @@ namespace GUI
             dgvLoaiVC.RowTemplate.Height = 60;
             dtgDanhSachVCduocChon.ColumnHeadersHeight = 60;
             dtgDanhSachVCduocChon.RowTemplate.Height = 60;
+            dgvNCC.ColumnHeadersHeight = 60;
+            dgvNCC.RowTemplate.Height = 60;
 
             txtSolUong.Text = "1";
 
@@ -249,6 +251,7 @@ namespace GUI
 
             //tab 3
             CreateDgvLoaiVaccine(loaivcbll.GetData());
+            CreateDgvNCC(nccbll.GetData());
         }
 
         private void LoadNCC()
@@ -871,7 +874,7 @@ namespace GUI
             pnlTb3.Visible = true;
             BoGoc(pnlTb3, 20);
             BoGoc(pnlTb3s, 20);
-            timerTB.Start();
+            TimeTab3.Start();
         }
         private void XoaVaccineToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1375,7 +1378,7 @@ namespace GUI
             DataGridViewTextBoxColumn maloai = new DataGridViewTextBoxColumn
             {
                 Name = "MaLoai",
-                HeaderText = "Mã Loại Vaccine"
+                HeaderText = "Mã Loại"
             };
             DataGridViewTextBoxColumn tenloai = new DataGridViewTextBoxColumn
             {
@@ -1424,11 +1427,11 @@ namespace GUI
             dgvLoaiVC.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvLoaiVC.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvLoaiVC.Columns[1].Width = 230;
+            dgvLoaiVC.Columns[1].Width = 110;
 
-            dgvLoaiVC.Columns[2].Width = 300;
+            dgvLoaiVC.Columns[2].Width = 260;
 
-            dgvLoaiVC.Columns[3].Width = 155;
+            dgvLoaiVC.Columns[3].Width = 110;
             dgvLoaiVC.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvLoaiVC.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -1481,7 +1484,6 @@ namespace GUI
             {
                 ThongBaoTab3("Thêm thành công Loại Vaccine vào danh sách ", 1);
                 CreateDgvLoaiVaccine(loaivcbll.GetData());
-
             }
 
         }
@@ -1494,6 +1496,142 @@ namespace GUI
             ReLoadFRM();
             ThongBaoTab3("Cập nhật thành công Loai Vaccine vào danh sách ", 1);
             CreateDgvLoaiVaccine(loaivcbll.GetData());
+        }
+        private void CreateDgvNCC(DataTable dttb)
+        {
+            dgvNCC.Columns.Clear();  // Xóa tất cả các cột
+            dgvNCC.Rows.Clear();     // Xóa tất cả các hàng
+            DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
+            {
+                Name = "STT",
+                HeaderText = "STT"
+            };
+            DataGridViewTextBoxColumn mancc = new DataGridViewTextBoxColumn
+            {
+                Name = "MaNCC",
+                HeaderText = "Mã"
+            };
+            DataGridViewTextBoxColumn tenncc = new DataGridViewTextBoxColumn
+            {
+                Name = "TenNCC",
+                HeaderText = "Tên Nhà Cung Cấp"
+            };
+            DataGridViewTextBoxColumn diachi = new DataGridViewTextBoxColumn
+            {
+                Name = "DiaChi",
+                HeaderText = "Địa Chỉ"
+            };
+            DataGridViewTextBoxColumn sdt = new DataGridViewTextBoxColumn
+            {
+                Name = "SoDienThoai",
+                HeaderText = "Số Điện Thoại"
+            };
+
+            //Thêm vào dtg
+            dgvNCC.Columns.Add(stt);
+            dgvNCC.Columns.Add(mancc);
+            dgvNCC.Columns.Add(tenncc);
+            dgvNCC.Columns.Add(diachi);
+            dgvNCC.Columns.Add(sdt);
+            int tmp = 1;
+            if (dttb != null)
+            {
+                foreach (DataRow row in dttb.Rows)
+                {
+                    if (row.RowState != DataRowState.Deleted)
+                    {
+                        dgvNCC.Rows.Add(tmp++, row["MaNCC"], row["TenNCC"], row["DiaChi"], row["SoDienThoai"]);
+                    }
+                }
+            }
+            CustomSizeColNCC();
+        }
+        private void CustomSizeColNCC()
+        {
+
+            dgvNCC.Columns[0].Width = 60;
+            dgvNCC.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvNCC.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvNCC.Columns[1].Width = 130;
+
+            dgvNCC.Columns[2].Width = 420;
+
+            dgvNCC.Columns[3].Width = 290;
+            dgvNCC.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvNCC.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvNCC.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvNCC.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvNCC.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        private void btnThemNCC_Click(object sender, EventArgs e)
+        {
+            frm_overlay frm = new frm_overlay(4);
+            frm.ShowDialog();
+            if (VaccineDTO.CheckTB)
+            {
+                ThongBaoTab3("Thêm thành công Nhà Cung Cấp mới vào danh sách ", 1);
+                CreateDgvNCC(nccbll.GetData());
+            }
+        }
+
+        private void btnXoaNCC_Click(object sender, EventArgs e)
+        {
+            string ma = dgvNCC.SelectedRows[0].Cells[1].Value.ToString();
+            string ten = dgvNCC.SelectedRows[0].Cells[2].Value.ToString();
+            DataRow[] drcheck = pnbll.GetData().Select("MaNCC = '" + ma + "'");
+            if (drcheck.Length == 0)
+            {
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa nhà cung cấp Vaccine '" + ten + "' này không?",
+                                     "Xác nhận",
+                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (t == DialogResult.Yes)
+                {
+                    bool ck = nccbll.Delete(ma);
+                    if (ck)
+                    {
+                        ThongBaoTab3("Xoá thành công nhà cung cấp Vaccine " + ten + "", 1);
+                        CreateDgvNCC(nccbll.GetData());
+                    }
+                    else
+                    {
+                        ThongBaoTab3("Xoá thất lại nhà cung cấp Vaccine " + ten + "", 2);
+                        ReLoadFRM();
+                    }
+                }
+            }
+            else
+            {
+                ThongBaoTab3("Nhà cung cấp Vaccine " + ten + " đã được sử dụng không thể xoá thông tin!", 2);
+            }
+        }
+
+        private void btnCapNhatNCC_Click(object sender, EventArgs e)
+        {
+            string ma = dgvNCC.SelectedRows[0].Cells[1].Value.ToString();
+            frm_overlay frm = new frm_overlay(5, ma);
+            frm.ShowDialog();
+            ThongBaoTab3("Cập nhật thành công nhà cung cấp Vaccine vào danh sách ", 1);
+            CreateDgvNCC(nccbll.GetData());
+        }
+
+        private void LuuLoaiVaccine_Click(object sender, EventArgs e)
+        {
+            loaivcbll.Luu();
+        }
+
+        private void btnSaveNCC_Click(object sender, EventArgs e)
+        {
+            nccbll.Luu();
+        }
+
+        private void TimeTab3_Tick(object sender, EventArgs e)
+        {
+            pnlTb3.Visible = false;
+            pnlTb3.Location = new Point((this.ClientSize.Width - pnlThongBao.Width) / 2, this.ClientSize.Height);
+            TimeTab3.Stop();
         }
     }
 }

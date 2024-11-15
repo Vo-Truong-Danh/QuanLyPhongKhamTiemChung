@@ -29,5 +29,13 @@ namespace BLL
         {
             return NhaCcDAL.Update(tmp);
         }
+        public NhaCungCapDTO Search(string ma)
+        {
+            return NhaCcDAL.Search(ma);
+        }
+        public void Luu()
+        {
+            NhaCcDAL.Luu();
+        }
     }
 }

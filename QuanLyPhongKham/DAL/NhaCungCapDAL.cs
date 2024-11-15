@@ -11,22 +11,30 @@ namespace DAL
 {
     public class NhaCungCapDAL
     {
-        DataSet ds = new DataSet();
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
-        DataTable dt;
+        private static DataTable dt = new DataTable();
 
         public NhaCungCapDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
-            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey; conn.Open();
+            //adap.MissingSchemaAction = MissingSchemaAction.AddWithKey; conn.Open();
             string truyvansql = "select * from NhaCungCap";
             adap = new SqlDataAdapter(truyvansql, conn);
-            adap.Fill(ds, "NhaCungCap");
-            adap.Fill(dt = new DataTable());
-
+            if(dt.Rows.Count == 0 )
+            {
+                adap.Fill(dt);
+            }
         }
+        public void Luu()
+        {
+            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+            // Cập nhật xuống database
+            adap.Update(dt);
 
+            // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
+            dt.AcceptChanges();
+        }
         public DataTable GetData()
         {
             return dt;
@@ -35,23 +43,13 @@ namespace DAL
         {
             try
             {
-                if (ds.Tables["NhaCungCap"] == null)
-                {
-                    GetData();
-                }
+                DataRow newrow = dt.NewRow();
+                newrow["MaNCC"] = tmp.Mancc;
+                newrow["TenNCC"] = tmp.Tenncc;
+                newrow["DiaChi"] = tmp.Diachi;
+                newrow["SoDienThoai"] = tmp.Sodienthoai;
 
-                DataRow newRow = ds.Tables["NhaCungCap"].NewRow();
-                newRow["TenNCC"] = tmp.Tenncc;
-                newRow["DiaChi"] = tmp.Diachi;
-                newRow["SoDienThoai"] = tmp.Sodienthoai;
-
-
-                ds.Tables["NhaCungCap"].Rows.Add(newRow);
-
-                // Cập nhật csdl
-                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                adap.Update(ds, "NhaCungCap");
-                GetData();
+                dt.Rows.Add(newrow);
 
                 return true;
             }
@@ -62,20 +60,13 @@ namespace DAL
         {
             try
             {
-                if (ds.Tables["NhaCungCap"] == null)
+                DataRow[] rowDeXoa = dt.Select("MaNCC = '" + tmp + "'");
+                if (rowDeXoa.Length > 0)
                 {
-                    GetData();
-                }
-                DataRow[] rowDeXoa = ds.Tables["NhaCungCap"].Select($"MaNCC = '{tmp}'");
-                foreach (DataRow row in rowDeXoa)
-                {
-                    row.Delete();
-                }
-
-                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
-                adap.Update(ds, "NhaCungCap");
-
-                return true;
+                    rowDeXoa[0].Delete();
+                    return true;
+                }   
+                return false;
             }
             catch
             {
@@ -86,12 +77,8 @@ namespace DAL
         {
             try
             {
-                if (ds.Tables["NhaCungCap"] == null)
-                {
-                    GetData();
-                }
 
-                DataRow[] rowDeUPD = ds.Tables["NhaCungCap"].Select("MaNCC = '" + tmp.Mancc + "'");
+                DataRow[] rowDeUPD = dt.Select("MaNCC = '" + tmp.Mancc + "'");
 
                 if (rowDeUPD.Length > 0)
                 {
@@ -99,10 +86,6 @@ namespace DAL
                     row["TenNCC"] = tmp.Tenncc;
                     row["DiaChi"] = tmp.Diachi;
                     row["SoDienThoai"] = tmp.Sodienthoai;
-
-                    // Cập nhật csdl
-                    SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                    adap.Update(ds, "NhaCungCap");
 
                     return true;
                 }
@@ -112,6 +95,23 @@ namespace DAL
             {
                 return false;
             }
+        }
+        public NhaCungCapDTO Search(string ma)
+        {
+            DataRow[] dr = dt.Select("MaNCC = '" + ma + "'");
+            if (dr.Length > 0)
+            {
+                NhaCungCapDTO tmp = new NhaCungCapDTO()
+                {
+                    Mancc = ma,
+                    Tenncc = dr[0]["TenNCC"].ToString(),
+                    Diachi = dr[0]["DiaChi"].ToString(),
+                    Sodienthoai = dr[0]["SoDienThoai"].ToString(),
+                   
+                };
+                return tmp;
+            }
+            return null;
         }
     }
 }

@@ -61,10 +61,19 @@ namespace DAL
                 return false; 
             }
         }
+        //public void Luu()
+        //{
+        //    SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+        //    adap.Update(dt);
+        //}
         public void Luu()
         {
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+            // Cập nhật xuống database
             adap.Update(dt);
+
+            // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
+            dt.AcceptChanges();
         }
         public bool Delete(string maLoai)
         {

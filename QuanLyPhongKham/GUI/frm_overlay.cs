@@ -35,6 +35,8 @@ namespace GUI
         // 1 cap nhat vaccine
         // 2 frm them loai
         //3 capnhat mavc
+        // 4 mo frmNCC
+        //5 cap nhapNCC
         private void frm_overlay_Load(object sender, EventArgs e)
         {
             this.Opacity = 0.75;
@@ -62,6 +64,20 @@ namespace GUI
             if (yeucaumo == 3)
             {
                 frmThemLoaiVaccine tmp = new frmThemLoaiVaccine(mavcsua);
+                tmp.TopMost = true;
+                tmp.ShowDialog();
+                this.Close();
+            }
+            if (yeucaumo == 4)
+            {
+                frmNCC tmp = new frmNCC();
+                tmp.TopMost = true;
+                tmp.ShowDialog();
+                this.Close();
+            }
+            if (yeucaumo == 5)
+            {
+                frmNCC tmp = new frmNCC(mavcsua);
                 tmp.TopMost = true;
                 tmp.ShowDialog();
                 this.Close();

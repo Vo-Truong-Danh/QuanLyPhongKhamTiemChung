@@ -207,6 +207,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmTrangChu";
             Text = "frmTrangChu";
             Load += frmTrangChu_Load;
