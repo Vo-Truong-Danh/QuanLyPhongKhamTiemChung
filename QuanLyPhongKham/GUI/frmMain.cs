@@ -17,7 +17,7 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private string tennguoidangnhap = "Nguyễn Ming Cảnh";
+        private string tennguoidangnhap = "Nguyễn Minh Cảnh";
         private int? chucvu;
 
         public frmMain(TaiKhoanDTO nd) : this()
@@ -26,11 +26,16 @@ namespace GUI
             chucvu = nd.ChucVu;
         }
         static bool checksibarMoRong = true; 
-        private int targetWidth = 1842;
-        private int collapsedWidth = 1690;
+        private int targetWidth ;
+        private int collapsedWidth ;
+        int rongmax;
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+            targetWidth = (int)(screenWidth * 0.88); // Sidebar chiếm 25% màn hình
+            collapsedWidth = (int)(screenWidth * 0.959); // Sidebar thu nhỏ chiếm 15%
+            rongmax = targetWidth;
+            pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             OpenChild(new frmTrangChu());
             txtTenHienThi.Text = ""+ tennguoidangnhap + "";
@@ -111,13 +116,12 @@ namespace GUI
             if (checksibarMoRong)
             {
                 targetWidth = collapsedWidth;
+                txtTenHienThi.Hide();
+                pctLogo.Hide();
             }
             else
             {
-                targetWidth = 1842;
-
-                txtTenHienThi.Hide();
-                pctLogo.Hide();
+                targetWidth = rongmax;
             }
             checksibarMoRong = !checksibarMoRong;
             Sibar.Start();
