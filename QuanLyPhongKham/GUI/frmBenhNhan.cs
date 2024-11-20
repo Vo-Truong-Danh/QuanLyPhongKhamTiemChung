@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using DTO;
 using BLL;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
@@ -28,22 +29,63 @@ namespace GUI
             bnBLL = new BenhNhanBLL();
             chucvu = cv;
         }
-        private void txtMaBN_TextChanged(object sender, EventArgs e)
-        {
-            Control control = (Control)sender;
-            Regex pattern = new Regex("^BN\\d{3}$");
-            if (!pattern.IsMatch(control.Text))
-            {
-                errMaSo.SetError(control, "Sai định dạng");
-            }
-            else
-            {
-                errMaSo.Clear();
-            }
-        }
+        //private void txtMaBN_TextChanged(object sender, EventArgs e)
+        //{
+        //    Control control = (Control)sender;
+        //    Regex pattern = new Regex("^BN\\d{3}$");
+        //    if (!pattern.IsMatch(control.Text))
+        //    {
+        //        errMaSo.SetError(control, "Sai định dạng");
+        //    }
+        //    else
+        //    {
+        //        errMaSo.Clear();
+        //    }
+        //}
 
+
+        public string GetGioiTinh()
+        {
+            if (rdoNam.Checked)
+                return "Nam";
+            if (rdoNu.Checked)
+                return "Nữ";
+            return string.Empty;
+        }
+        public void ClearTextBox()
+        {
+            txtHoTen.Clear();
+            txtDiaChi.Clear();
+            txtSoDT.Clear();
+        }
+        public void ClearErrorProvider()
+        {
+            errHoTen.Clear();
+            errDiaChi.Clear();
+            errSoDienThoai.Clear();
+        }
+        public bool KTDuLieu()
+        {
+            if (txtHoTen.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Bạn chưa nhập họ tên bệnh nhân");
+                return false;
+            }
+            if (txtDiaChi.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Bạn chưa nhập địa chỉ");
+                return false;
+            }
+            if (txtSoDT.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Bạn chưa nhập lại số điện thoại");
+                return false;
+            }
+            return true;
+        }
         private void txtHoTen_TextChanged(object sender, EventArgs e)
         {
+
             Control control = (Control)sender;
             Regex pattern = new Regex("^[\\p{L}\\s]+$");
 
@@ -71,7 +113,7 @@ namespace GUI
             }
         }
 
-        private void txtSoDienThoai_TextChanged(object sender, EventArgs e)
+        private void txtSoDT_TextChanged(object sender, EventArgs e)
         {
             Control control = (Control)sender;
             Regex pattern = new Regex(@"^0\d{9}$");
@@ -84,52 +126,209 @@ namespace GUI
                 errSoDienThoai.Clear();
             }
         }
-        public bool KTDuLieu()
+        public void LoadListViewDSBN()
         {
-            if (txtHoTen.Text.Trim() == string.Empty)
+            lstvDSBN.Items.Clear();
+            foreach (DataRow row in bnBLL.GetFullDataRows())
             {
-                MessageBox.Show("Bạn chưa nhập họ tên bệnh nhân");
-                return false;
+                ListViewItem item1 = new ListViewItem(row["MaBN"].ToString());
+                item1.SubItems.Add(row["HoTen"].ToString());
+                item1.SubItems.Add(Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"));
+                item1.SubItems.Add(row["GioiTinh"].ToString());
+                item1.SubItems.Add(row["DiaChi"].ToString());
+                item1.SubItems.Add(row["SoDienThoai"].ToString());
+
+                lstvDSBN.Items.Add(item1);
             }
-            if (txtDiaChi.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Bạn chưa nhập địa chỉ");
-                return false;
-            }
-            if (txtSoDienThoai.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Bạn chưa nhập lại số điện thoại");
-                return false;
-            }
-            return true;
-        }
-        public string GetGioiTinh()
-        {
-            if (rdoNam.Checked)
-                return "Nam";
-            if (rdoNu.Checked)
-                return "Nữ";
-            return string.Empty;
-        }
-        public void ClearTextBox()
-        {
-            txtHoTen.Clear();
-            txtDiaChi.Clear();
-            txtSoDienThoai.Clear();
-        }
-        public void ClearErrorProvider()
-        {
-            errHoTen.Clear();
-            errDiaChi.Clear();
-            errMaSo.Clear();
-            errSoDienThoai.Clear();
         }
         private void btnLuuBN_Click(object sender, EventArgs e)
         {
+            pnlThongtinBN.Visible=true;
+            btnXoaBN.Enabled = false;
+        }
+        
+
+        private void frmBenhNhan_Load(object sender, EventArgs e)
+        {
+            LoadListViewDSBN();
+            if (chucvu == 2)
+            {
+                btnXoaBN.Enabled = false;
+                btnCapNhat.Enabled = false;
+            }
+            pnlThongTinBenhNhan.Visible = false;
+            pnlThongtinBN.Visible = false;
+        }
+
+        private void lstvDSBN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (lstvDSBN.SelectedItems.Count > 0)
+            //{
+            //    btnLuuBN.Enabled = false;
+            //    ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
+            //    string hoTen = selectedItem.SubItems[1].Text;
+            //    string ngaySinh = selectedItem.SubItems[2].Text;
+            //    string gioiTinh = selectedItem.SubItems[3].Text;
+            //    string diaChi = selectedItem.SubItems[4].Text;
+            //    string soDienThoai = selectedItem.SubItems[5].Text;
+
+            //    txtHoTen.Text = hoTen;
+            //    dtpNgaySinh.Text = ngaySinh;
+            //    if (gioiTinh.Equals("Nam"))
+            //        rdoNam.Checked = true;
+            //    else rdoNu.Checked = true;
+            //    txtDiaChi.Text = diaChi;
+            //    txtSoDienThoai.Text = soDienThoai;
+            //}
+            //else
+            //{
+            //    btnLuuBN.Enabled = true;
+            //}
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            //if (lstvDSBN.SelectedItems.Count > 0)
+            //{
+            //    if (!KTDuLieu())
+            //        return;
+            //    ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
+            //    string selectedDateString = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
+            //    BenhNhanDTO bnDTONew = new BenhNhanDTO(txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
+            //    bool kq = bnBLL.Edit(selectedItem.SubItems[0].Text, bnDTONew);
+            //    if (kq)
+            //    {
+            //        MessageBox.Show("Cập nhật thành công");
+            //        lstvDSBN.Items.Clear();
+            //        LoadListViewDSBN();
+            //        ClearTextBox();
+            //        ClearErrorProvider();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Cập nhật thất bại");
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Không tồn tại bệnh nhân cần cập nhật thông tin", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+        }
+
+        private void btnXoaBN_Click(object sender, EventArgs e)
+        {
+            if (lstvDSBN.SelectedItems.Count > 0)
+            {
+                bool allDeleted = true;
+                foreach (ListViewItem item in lstvDSBN.SelectedItems)
+                {
+                    string maBN = item.SubItems[0].Text;
+                    bool result = bnBLL.Delete(maBN);
+                    if (!result)
+                    {
+                        allDeleted = false;
+                        MessageBox.Show("Lỗi khi xóa bệnh nhân: " + maBN, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                }
+
+                if (allDeleted)
+                {
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lstvDSBN.Items.Clear();
+                    LoadListViewDSBN();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể xóa một số bệnh nhân. Vui lòng thử lại.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tồn tại bệnh nhân cần xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
+        private void frmBenhNhan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
+        private void btnTimKiem_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtTimKiem.Text.Trim()) || !txtTimKiem.Text.Equals("Tên bệnh nhân", StringComparison.OrdinalIgnoreCase))
+            {
+                lstvDSBN.Items.Clear();
+                foreach (DataRowView rowView in bnBLL.GetDataViewFromTimKiem(txtTimKiem.Text))
+                {
+                    DataRow row = rowView.Row;
+                    ListViewItem item1 = new ListViewItem(new string[]
+                    {
+                    row["MaBN"].ToString(),
+                    row["HoTen"].ToString(),
+                    Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"),
+                    row["GioiTinh"].ToString(),
+                    row["DiaChi"].ToString(),
+                    row["SoDienThoai"].ToString()
+                    });
+                    lstvDSBN.Items.Add(item1);
+                }
+            }
+        }
+
+        private void txtTimKiem_Enter(object sender, EventArgs e)
+        {
+            if (txtTimKiem.Text == "Tên bệnh nhân")
+            {
+                txtTimKiem.Text = "";
+                txtTimKiem.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtTimKiem_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTimKiem.Text))
+            {
+                txtTimKiem.Text = "Tên bệnh nhân";
+                txtTimKiem.ForeColor = Color.Gray;
+            }
+        }
+        private bool isDefaultText = true;
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTimKiem.Text) ||
+       txtTimKiem.Text.Equals("Tên bệnh nhân", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!isDefaultText)
+                {
+                    LoadListViewDSBN();
+                    isDefaultText = true;
+                }
+            }
+            else
+            {
+                isDefaultText = false;
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDong_Click_1(object sender, EventArgs e)
+        {
+            pnlThongtinBN.Visible=false;
+            btnXoaBN.Enabled = true;
+        }
+
+        private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
+        {
             if (!KTDuLieu())
                 return;
-            string selectedDateString = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
-            BenhNhanDTO bnDTO = new BenhNhanDTO(bnBLL.TaoMaBNMoi(), txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
+            string selectedDateString = dteNgaySinh.Value.ToString("yyyy-MM-dd");
+            BenhNhanDTO bnDTO = new BenhNhanDTO(bnBLL.TaoMaBNMoi(), txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
             bool kq = bnBLL.Insert(bnDTO);
             if (kq)
             {
@@ -144,129 +343,16 @@ namespace GUI
                 MessageBox.Show("Thêm thất bại");
             }
         }
-        public void LoadListViewDSBN()
+
+        private void pnlThongTinBenhNhan_Paint(object sender, PaintEventArgs e)
         {
-            foreach (DataRow row in bnBLL.GetFullDataRows())
-            {
-                ListViewItem item1 = new ListViewItem([row["MaBN"].ToString(), row["HoTen"].ToString(), Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"), row["GioiTinh"].ToString(), row["DiaChi"].ToString(), row["SoDienThoai"].ToString()]);
-                lstvDSBN.Items.Add(item1);
-            }
-        }
-        private void frmBenhNhan_Load(object sender, EventArgs e)
-        {
-            LoadListViewDSBN();
-            if (chucvu == 2)
-            {
-                btnXoaBN.Enabled = false;
-                btnCapNhat.Enabled = false;
-            }
+
         }
 
-        private void lstvDSBN_SelectedIndexChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (lstvDSBN.SelectedItems.Count > 0)
-            {
-                btnLuuBN.Enabled = false;
-                ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
-                string hoTen = selectedItem.SubItems[1].Text;
-                string ngaySinh = selectedItem.SubItems[2].Text;
-                string gioiTinh = selectedItem.SubItems[3].Text;
-                string diaChi = selectedItem.SubItems[4].Text;
-                string soDienThoai = selectedItem.SubItems[5].Text;
-
-                txtHoTen.Text = hoTen;
-                dtpNgaySinh.Text = ngaySinh;
-                if (gioiTinh.Equals("Nam"))
-                    rdoNam.Checked = true;
-                else rdoNu.Checked = true;
-                txtDiaChi.Text = diaChi;
-                txtSoDienThoai.Text = soDienThoai;
-            }
-            else
-            {
-                btnLuuBN.Enabled = true;
-            }
+            pnlThongTinBenhNhan.Visible = false;
+            btnXoaBN.Enabled = true;
         }
-
-        private void btnCapNhat_Click(object sender, EventArgs e)
-        {
-            if (lstvDSBN.SelectedItems.Count > 0)
-            {
-                if (!KTDuLieu())
-                    return;
-                ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
-                string selectedDateString = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
-                BenhNhanDTO bnDTONew = new BenhNhanDTO(txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
-                bool kq = bnBLL.Edit(selectedItem.SubItems[0].Text, bnDTONew);
-                if (kq)
-                {
-                    MessageBox.Show("Cập nhật thành công");
-                    lstvDSBN.Items.Clear();
-                    LoadListViewDSBN();
-                    ClearTextBox();
-                    ClearErrorProvider();
-                }
-                else
-                {
-                    MessageBox.Show("Cập nhật thất bại");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Không tồn tại bệnh nhân cần cập nhật thông tin", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
-        private void btnXoaBN_Click(object sender, EventArgs e)
-        {
-            if (lstvDSBN.SelectedItems.Count > 0)
-            {
-                foreach (ListViewItem item in lstvDSBN.SelectedItems)
-                {
-                    string maBN = item.SubItems[0].Text;
-                    bool result = bnBLL.Delete(maBN);
-                    if (!result)
-                    {
-                        MessageBox.Show("Lỗi khi xóa bệnh nhân: " + maBN);
-                    }
-                }
-                MessageBox.Show("Xóa thành công");
-                lstvDSBN.Items.Clear();
-                LoadListViewDSBN();
-                ClearTextBox();
-                ClearErrorProvider();
-            }
-            else
-            {
-                MessageBox.Show("Không tồn tại bệnh nhân cần xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
-
-        private void frmBenhNhan_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            bnBLL.ClearDataSet();
-        }
-        private void btnTimKiem_Click_1(object sender, EventArgs e)
-        {
-            lstvDSBN.Items.Clear();
-            foreach (DataRowView rowView in bnBLL.GetDataViewFromTimKiem(txtTimKiem.Text))
-            {
-                DataRow row = rowView.Row;
-                ListViewItem item1 = new ListViewItem(new string[]
-                {
-                    row["MaBN"].ToString(),
-                    row["HoTen"].ToString(),
-                    Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"),
-                    row["GioiTinh"].ToString(),
-                    row["DiaChi"].ToString(),
-                    row["SoDienThoai"].ToString()
-                });
-                lstvDSBN.Items.Add(item1);
-            }
-        }
-
     }
 }
