@@ -32,8 +32,8 @@ namespace GUI
         private void frmMain_Load(object sender, EventArgs e)
         {
             int screenWidth = Screen.PrimaryScreen.Bounds.Width;
-            targetWidth = (int)(screenWidth * 0.88); // Sidebar chiếm 25% màn hình
-            collapsedWidth = (int)(screenWidth * 0.959); // Sidebar thu nhỏ chiếm 15%
+            targetWidth = (int)(screenWidth * 0.88); 
+            collapsedWidth = (int)(screenWidth * 0.959); 
             rongmax = targetWidth;
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -46,8 +46,6 @@ namespace GUI
                 btnQLNhanVien.Enabled = false;
                 btnThongKe.Enabled = false;
             }
-            pctLogo.Hide();
-            txtTenHienThi.Hide();
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
 
             
