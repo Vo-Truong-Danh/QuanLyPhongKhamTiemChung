@@ -17,13 +17,22 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private string tennguoidangnhap = "Nguyễn Minh Cảnh";
-        private int? chucvu;
+        TaiKhoanDTO? TK = new TaiKhoanDTO();
 
         public frmMain(TaiKhoanDTO nd) : this()
         {
-            tennguoidangnhap = nd.DisplayName;
-            chucvu = nd.ChucVu;
+            if (nd != null)
+            {
+                TK.UserName = nd.UserName;
+                TK.DisplayName = nd.DisplayName;
+                TK.ChucVu = nd.ChucVu;
+            }
+            else
+            {
+                TK.UserName = "NV002";
+                TK.DisplayName = "Duong Trong Hoang";
+                TK.ChucVu = 0;
+            }
         }
         static bool checksibarMoRong = true; 
         private int targetWidth ;
@@ -38,8 +47,8 @@ namespace GUI
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             OpenChild(new frmTrangChu());
-            txtTenHienThi.Text = ""+ tennguoidangnhap + "";
-            if (chucvu == 2)
+            txtTenHienThi.Text = ""+ TK.DisplayName + "";
+            if (TK.ChucVu == 2)
             {
                 btnQLVaccine.Enabled = false;
                 btnQLTiemChung.Enabled = false;
@@ -91,12 +100,12 @@ namespace GUI
 
         private void btnQLBenhNhan_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmBenhNhan(chucvu));
+            OpenChild(new frmBenhNhan(TK.ChucVu));
         }
 
         private void btnQLVaccine_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmQLVaccine());
+            OpenChild(new frmQLVaccine(TK));
         }
 
         private void btnTrangChu_Click(object sender, EventArgs e)

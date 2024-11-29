@@ -37,6 +37,7 @@ namespace DAL
             try
             {
                 DataRow newRow = dt.NewRow();
+                newRow["MaNV"] = tmp.MaNV1;
                 newRow["MaPN"] = tmp.Mapn;
                 newRow["NgayNhap"] = tmp.Ngaynhap;
                 newRow["MaNCC"] = tmp.Mancc;

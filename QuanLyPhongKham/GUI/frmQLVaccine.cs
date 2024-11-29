@@ -18,6 +18,12 @@ namespace GUI
         {
             InitializeComponent();
         }
+        private TaiKhoanDTO TK = new TaiKhoanDTO();
+        public frmQLVaccine(TaiKhoanDTO tk)
+        {
+            TK = tk;
+            InitializeComponent();
+        }
         static VaccineBLL vaccineBLL = new VaccineBLL();
         LoaiVaccineBLL loaivcbll = new LoaiVaccineBLL();
         PhieuNhapBLL pnbll = new PhieuNhapBLL();
@@ -1252,6 +1258,7 @@ namespace GUI
                 PhieuNhapDTO pndto = new PhieuNhapDTO()
                 {
                     Mapn = txtMaPhieuN.Text,
+                    MaNV1 = TK.UserName,
                     Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
                     Mancc = cboNCC.SelectedValue.ToString(),
                     Tongtien = txtTongTien.Text,
