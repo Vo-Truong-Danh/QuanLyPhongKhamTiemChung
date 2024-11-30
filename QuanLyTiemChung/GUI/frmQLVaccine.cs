@@ -1643,6 +1643,8 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            frmReport rp = new frmReport(1);
+            rp.ShowDialog();
 
         }
 

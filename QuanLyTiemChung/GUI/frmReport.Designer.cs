@@ -50,6 +50,8 @@
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "frmReport";
             this.Text = "frmRepory";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmReport_Load);
             this.ResumeLayout(false);
 
         }

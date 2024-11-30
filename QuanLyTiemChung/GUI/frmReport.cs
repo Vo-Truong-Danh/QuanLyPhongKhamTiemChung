@@ -16,5 +16,19 @@ namespace GUI
         {
             InitializeComponent();
         }
+        private int YeuCau;
+        public frmReport(int yc)
+        {
+            InitializeComponent();
+            YeuCau = yc;
+
+        }
+        private void frmReport_Load(object sender, EventArgs e)
+        {
+            if(YeuCau == 1)
+            {
+                crystalReportViewer1.ReportSource = crystalReportViewer1.ReportSource;
+            }
+        }
     }
 }
