@@ -11,38 +11,39 @@ namespace DAL
 {
     public class BenhNhanDAL
     {
-        DataSet ds;
-        DataColumn[] key = new DataColumn[1];
         SqlDataAdapter adap;
         SqlConnection conn;
-        DataTable dt;
+        DataTable dt = new DataTable();
         private int lastMaBN = 0;
         public BenhNhanDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
-            ds = new DataSet();
             string selectStr = "select * from BENHNHAN";
             adap = new SqlDataAdapter(selectStr, conn);
-            adap.Fill(ds, "BENHNHAN");
-            // Them khoa chinh
-            key[0] = ds.Tables["BENHNHAN"].Columns[0];
-            ds.Tables["BENHNHAN"].PrimaryKey = key;
-            lastMaBN = LayMaBNCuoiCung();
-            adap.Fill(dt = new DataTable());
+            if (dt.Rows.Count == 0)
+                adap.Fill(dt);
         }
         public int SoLuong()
         {
             return dt.Rows.Count;
         }
-        
+        public void Luu()
+        {
+            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
+            // Cập nhật xuống database
+            adap.Update(dt);
+
+            // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
+            dt.AcceptChanges();
+        }
         private int LayMaBNCuoiCung()
         {
             // nếu mã cuối cùng là "BN005" thì hàm này trả về 5
             string query = "SELECT TOP 1 MaBN FROM BENHNHAN ORDER BY MaBN DESC";
             string maBN = "BN000"; // Giá trị mặc định 
-            if (conn.State != ConnectionState.Open||conn==null)
+            if (conn.State != ConnectionState.Open || conn == null)
             {
-              conn  = new SqlConnection(GeneralDAL.connectStrg);
+                conn = new SqlConnection(GeneralDAL.connectStrg);
             }
             try
             {
@@ -74,15 +75,16 @@ namespace DAL
         }
         public string TaoMaBNMoi()
         {
-            lastMaBN++; // Tăng giá trị của mã BN
-            return "BN" + lastMaBN.ToString("D3"); // Định dạng với 3 chữ số, ví dụ "BN001"
+            lastMaBN = LayMaBNCuoiCung();
+            lastMaBN++;
+            return "BN" + lastMaBN.ToString("D3");
         }
         public bool Insert(BenhNhanDTO bnDTO)
         {
             try
             {
-                DataRow newRow = ds.Tables["BENHNHAN"].NewRow();
-                newRow["MaBN"]=bnDTO.MaBN;
+                DataRow newRow = dt.NewRow();
+                newRow["MaBN"] = bnDTO.MaBN;
                 newRow["HoTen"] = bnDTO.HoTen;
                 newRow["NgaySinh"] = bnDTO.NgaySinh;
                 newRow["GioiTinh"] = bnDTO.GioiTinh;
@@ -90,11 +92,10 @@ namespace DAL
                 newRow["SoDienThoai"] = bnDTO.SoDienThoai;
 
                 // Thêm dòng dữ liệu vào DataSet
-                ds.Tables["BENHNHAN"].Rows.Add(newRow);
+                dt.Rows.Add(newRow);
 
                 // Cập nhật CSDL
-                SqlCommandBuilder sqlCommand = new SqlCommandBuilder(adap);
-                adap.Update(ds, "BENHNHAN");
+                Luu();
                 return true;
             }
             catch (Exception ex)
@@ -104,16 +105,16 @@ namespace DAL
             }
         }
 
-        public DataRowCollection GetFullDataRows()
+        public DataTable GetFullData()
         {
-            return ds.Tables["BENHNHAN"].Rows;
+            return dt;
         }
         public bool Edit(string MaBNCanSua, BenhNhanDTO bnDTONew)
         {
             try
             {
                 // Tim dong du lieu can sua dua theo MaBN
-                DataRow dr = ds.Tables["BENHNHAN"].Rows.Find(MaBNCanSua);
+                DataRow dr = dt.Rows.Find(MaBNCanSua);
                 // Edit
                 if (dr != null)
                 {
@@ -124,8 +125,7 @@ namespace DAL
                     dr["SoDienThoai"] = bnDTONew.SoDienThoai;
                 }
                 // Cap nhat trong CSDL
-                SqlCommandBuilder cb = new SqlCommandBuilder(adap);
-                adap.Update(ds, "BENHNHAN");
+                Luu();
                 return true;
             }
             catch (Exception)
@@ -133,41 +133,45 @@ namespace DAL
                 return false;
             }
         }
-        public bool Delete(string maBN)
+        public bool KTKhoaNgoai(string MaBN)
         {
-            try
+            string queryCheckFK = "SELECT COUNT(*) FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN";
+            using (SqlConnection conn = new SqlConnection(GeneralDAL.connectStrg))
             {
-                // Tìm dòng dữ liệu cần xóa theo MaBN
-                DataRow dr = ds.Tables["BENHNHAN"].Rows.Find(maBN);
-                if (dr != null)
-                {
-                    dr.Delete();
-                    // Cập nhật trong CSDL
-                    SqlCommandBuilder cb = new SqlCommandBuilder(adap);
-                    adap.Update(ds, "BENHNHAN");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(queryCheckFK, conn);
+                cmd.Parameters.AddWithValue("@MaBN", MaBN);
+
+                int relatedCount = (int)cmd.ExecuteScalar();
+                return relatedCount > 0;
             }
-            catch (Exception ex)
+        }
+        public bool Delete(string MaBN)
+        {
+            if (KTKhoaNgoai(MaBN))
             {
-                Console.WriteLine("Lỗi khi xóa: " + ex.Message);
+                return false;
+            }
+
+            DataRow dr = dt.Select("MaBN = '" + MaBN + "'").FirstOrDefault();
+            if (dr != null)
+            {
+                dr.Delete();
+                Luu();
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }
+
+
         public DataView GetDataViewFromTimKiem(string searchStr)
         {
-            DataTable dt = ds.Tables["BENHNHAN"];
             DataView dtView = new DataView(dt);
             dtView.RowFilter = "HoTen LIKE '%" + searchStr.Replace("'", "''") + "%'";
             return dtView;
         }//HoTen LIKE N'%' + 'searchStr' + N'%';
-        public void ClearDataSet()
-        {
-            ds.Tables["BENHNHAN"].Clear();
-        }
     }
 }

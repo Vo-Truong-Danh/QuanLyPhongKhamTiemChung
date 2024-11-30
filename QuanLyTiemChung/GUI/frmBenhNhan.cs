@@ -17,6 +17,7 @@ namespace GUI
     public partial class frmBenhNhan : Form
     {
         BenhNhanBLL bnBLL;
+        public string maBN {  get; set; }
         public frmBenhNhan()
         {
             InitializeComponent();
@@ -29,20 +30,6 @@ namespace GUI
             bnBLL = new BenhNhanBLL();
             chucvu = cv;
         }
-        //private void txtMaBN_TextChanged(object sender, EventArgs e)
-        //{
-        //    Control control = (Control)sender;
-        //    Regex pattern = new Regex("^BN\\d{3}$");
-        //    if (!pattern.IsMatch(control.Text))
-        //    {
-        //        errMaSo.SetError(control, "Sai định dạng");
-        //    }
-        //    else
-        //    {
-        //        errMaSo.Clear();
-        //    }
-        //}
-
 
         public string GetGioiTinh()
         {
@@ -129,24 +116,27 @@ namespace GUI
         public void LoadListViewDSBN()
         {
             lstvDSBN.Items.Clear();
-            foreach (DataRow row in bnBLL.GetFullDataRows())
+            foreach (DataRow row in bnBLL.GetFullData().Rows)
             {
-                ListViewItem item1 = new ListViewItem(row["MaBN"].ToString());
-                item1.SubItems.Add(row["HoTen"].ToString());
-                item1.SubItems.Add(Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd"));
-                item1.SubItems.Add(row["GioiTinh"].ToString());
-                item1.SubItems.Add(row["DiaChi"].ToString());
-                item1.SubItems.Add(row["SoDienThoai"].ToString());
-
-                lstvDSBN.Items.Add(item1);
+                if (row.RowState != DataRowState.Deleted)
+                {
+                    ListViewItem item1 = new ListViewItem(row["MaBN"].ToString());
+                    item1.SubItems.Add(row["HoTen"].ToString());
+                    item1.SubItems.Add(Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy"));
+                    item1.SubItems.Add(row["GioiTinh"].ToString());
+                    item1.SubItems.Add(row["DiaChi"].ToString());
+                    item1.SubItems.Add(row["SoDienThoai"].ToString());
+                    lstvDSBN.Items.Add(item1);
+                }
             }
         }
+
         private void btnLuuBN_Click(object sender, EventArgs e)
         {
-            pnlThongtinBN.Visible=true;
+            pnlThongtinBN.Visible = true;
             btnXoaBN.Enabled = false;
         }
-        
+
 
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
@@ -158,32 +148,6 @@ namespace GUI
             }
             pnlThongTinBenhNhan.Visible = false;
             pnlThongtinBN.Visible = false;
-        }
-
-        private void lstvDSBN_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (lstvDSBN.SelectedItems.Count > 0)
-            //{
-            //    btnLuuBN.Enabled = false;
-            //    ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
-            //    string hoTen = selectedItem.SubItems[1].Text;
-            //    string ngaySinh = selectedItem.SubItems[2].Text;
-            //    string gioiTinh = selectedItem.SubItems[3].Text;
-            //    string diaChi = selectedItem.SubItems[4].Text;
-            //    string soDienThoai = selectedItem.SubItems[5].Text;
-
-            //    txtHoTen.Text = hoTen;
-            //    dtpNgaySinh.Text = ngaySinh;
-            //    if (gioiTinh.Equals("Nam"))
-            //        rdoNam.Checked = true;
-            //    else rdoNu.Checked = true;
-            //    txtDiaChi.Text = diaChi;
-            //    txtSoDienThoai.Text = soDienThoai;
-            //}
-            //else
-            //{
-            //    btnLuuBN.Enabled = true;
-            //}
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
@@ -220,44 +184,36 @@ namespace GUI
         {
             if (lstvDSBN.SelectedItems.Count > 0)
             {
-                bool allDeleted = true;
+                bool xoaThanhCong = true;
                 foreach (ListViewItem item in lstvDSBN.SelectedItems)
                 {
                     string maBN = item.SubItems[0].Text;
                     bool result = bnBLL.Delete(maBN);
                     if (!result)
                     {
-                        allDeleted = false;
-                        MessageBox.Show("Lỗi khi xóa bệnh nhân: " + maBN, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        xoaThanhCong = false;
                         break;
                     }
                 }
-
-                if (allDeleted)
+                if (xoaThanhCong)
                 {
-                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lstvDSBN.Items.Clear();
-                    LoadListViewDSBN();
+                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Không thể xóa một số bệnh nhân. Vui lòng thử lại.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Xóa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                LoadListViewDSBN();
             }
             else
             {
-                MessageBox.Show("Không tồn tại bệnh nhân cần xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn ít nhất một bệnh nhân để xóa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-
-
-        private void frmBenhNhan_FormClosing(object sender, FormClosingEventArgs e)
-        {
-        }
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtTimKiem.Text.Trim()) || !txtTimKiem.Text.Equals("Tên bệnh nhân", StringComparison.OrdinalIgnoreCase))
+            if (txtTimKiem.Text != "Tên bệnh nhân")
             {
                 lstvDSBN.Items.Clear();
                 foreach (DataRowView rowView in bnBLL.GetDataViewFromTimKiem(txtTimKiem.Text))
@@ -274,6 +230,10 @@ namespace GUI
                     });
                     lstvDSBN.Items.Add(item1);
                 }
+            }
+            else if (string.IsNullOrEmpty(txtTimKiem.Text) || txtTimKiem.Text == "Tên bệnh nhân")
+            {
+                LoadListViewDSBN();
             }
         }
 
@@ -294,35 +254,24 @@ namespace GUI
                 txtTimKiem.ForeColor = Color.Gray;
             }
         }
-        private bool isDefaultText = true;
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTimKiem.Text) ||
-       txtTimKiem.Text.Equals("Tên bệnh nhân", StringComparison.OrdinalIgnoreCase))
+            if (txtTimKiem.Text == "")
             {
-                if (!isDefaultText)
-                {
-                    LoadListViewDSBN();
-                    isDefaultText = true;
-                }
+                LoadListViewDSBN();
             }
-            else
-            {
-                isDefaultText = false;
-            }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnDong_Click_1(object sender, EventArgs e)
         {
-            pnlThongtinBN.Visible=false;
+            pnlThongtinBN.Visible = false;
             btnXoaBN.Enabled = true;
         }
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pnlThongTinBenhNhan.Visible = false;
+            btnXoaBN.Enabled = true;
+        }
         private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
         {
             if (!KTDuLieu())
@@ -333,7 +282,6 @@ namespace GUI
             if (kq)
             {
                 MessageBox.Show("Thêm thành công");
-                lstvDSBN.Items.Clear();
                 LoadListViewDSBN();
                 ClearTextBox();
                 ClearErrorProvider();
@@ -342,17 +290,27 @@ namespace GUI
             {
                 MessageBox.Show("Thêm thất bại");
             }
+        }      
+
+        private void btnKQTiemChung_Click(object sender, EventArgs e)
+        {
+            if (lstvDSBN.Items.Count > 0)
+            {
+                ListViewItem item = lstvDSBN.Items[0];
+                frmKetQuaTiemChungBN frm = new frmKetQuaTiemChungBN();
+                frm.maBN = item.SubItems[0].Text;
+                frm.ShowDialog();
+            }
         }
 
-        private void pnlThongTinBenhNhan_Paint(object sender, PaintEventArgs e)
+        private void btnThongTinChiTietBenhNhan_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            pnlThongTinBenhNhan.Visible = false;
-            btnXoaBN.Enabled = true;
+            if (lstvDSBN.SelectedItems.Count > 0)
+            {
+                btnXoaBN.Enabled = false;
+                pnlThongtinBN.Visible = true;
+                pnlThongTinBenhNhan.BringToFront();
+            }
         }
     }
 }

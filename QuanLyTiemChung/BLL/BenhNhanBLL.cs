@@ -14,23 +14,31 @@ namespace BLL
         BenhNhanDAL bnDAL = new BenhNhanDAL();
         public bool Insert(BenhNhanDTO bnDTO)
         {
-            bnDAL.Insert(bnDTO);
-            return true;
+            try
+            {
+                bnDAL.Insert(bnDTO);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
+
         public string TaoMaBNMoi()
         {
             return bnDAL.TaoMaBNMoi();
         }
-        public DataRowCollection GetFullDataRows()
+        public DataTable GetFullData()
         {
-            return bnDAL.GetFullDataRows();
+            return bnDAL.GetFullData();
         }
         public bool Edit(string MaBNCanSua, BenhNhanDTO bnDTONew)
         {
-            if(bnDAL.Edit(MaBNCanSua, bnDTONew))
-                return true;
-            else return false;
+            return bnDAL.Edit(MaBNCanSua, bnDTONew);
         }
+
         public bool Delete(string maBN)
         {
             return bnDAL.Delete(maBN);
@@ -40,10 +48,10 @@ namespace BLL
                 DataView view = bnDAL.GetDataViewFromTimKiem(searchStr);
                 return view;
         }
-        public void ClearDataSet()
-        {
-            bnDAL.ClearDataSet();
-        }
+        //public void ClearDataSet()
+        //{
+        //    bnDAL.ClearDataSet();
+        //}
         public int SoLuong()
         {
             return bnDAL.SoLuong();
