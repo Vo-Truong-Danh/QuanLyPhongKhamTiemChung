@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using DTO;
 using BLL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Globalization;
 
 namespace GUI
 {
@@ -33,9 +34,9 @@ namespace GUI
 
         public string GetGioiTinh()
         {
-            if (rdoNam.Checked)
+            if (rdoNam.Checked||rdoNaminTTBN.Checked)
                 return "Nam";
-            if (rdoNu.Checked)
+            if (rdoNu.Checked||rdoNuinTTBN.Checked)
                 return "Nữ";
             return string.Empty;
         }
@@ -64,6 +65,25 @@ namespace GUI
                 return false;
             }
             if (txtSoDT.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Bạn chưa nhập lại số điện thoại");
+                return false;
+            }
+            return true;
+        }
+        public bool KTDuLieuinTNBN()
+        {
+            if (txtHoTeninTTBN.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Bạn chưa nhập họ tên bệnh nhân");
+                return false;
+            }
+            if (txtDiaChiinTTBN.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Bạn chưa nhập địa chỉ");
+                return false;
+            }
+            if (txtSoDTinTTBN.Text.Trim() == string.Empty)
             {
                 MessageBox.Show("Bạn chưa nhập lại số điện thoại");
                 return false;
@@ -133,7 +153,7 @@ namespace GUI
 
         private void btnLuuBN_Click(object sender, EventArgs e)
         {
-            pnlThongtinBN.Visible = true;
+            pnlThemBN.Visible = true;
             btnXoaBN.Enabled = false;
         }
 
@@ -147,37 +167,28 @@ namespace GUI
                 btnCapNhat.Enabled = false;
             }
             pnlThongTinBenhNhan.Visible = false;
-            pnlThongtinBN.Visible = false;
+            pnlThemBN.Visible = false;
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            //if (lstvDSBN.SelectedItems.Count > 0)
-            //{
-            //    if (!KTDuLieu())
-            //        return;
-            //    ListViewItem selectedItem = lstvDSBN.SelectedItems[0];
-            //    string selectedDateString = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
-            //    BenhNhanDTO bnDTONew = new BenhNhanDTO(txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDienThoai.Text.Trim(), selectedDateString);
-            //    bool kq = bnBLL.Edit(selectedItem.SubItems[0].Text, bnDTONew);
-            //    if (kq)
-            //    {
-            //        MessageBox.Show("Cập nhật thành công");
-            //        lstvDSBN.Items.Clear();
-            //        LoadListViewDSBN();
-            //        ClearTextBox();
-            //        ClearErrorProvider();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Cập nhật thất bại");
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Không tồn tại bệnh nhân cần cập nhật thông tin", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+            if (!KTDuLieuinTNBN())
+                return;
+            string selectedDateString = dtpNgaySinhinTTBN.Value.ToString("yyyy-MM-dd");
+            BenhNhanDTO bnDTONew = new BenhNhanDTO(txtHoTeninTTBN.Text.Trim(), GetGioiTinh(), txtDiaChiinTTBN.Text.Trim(), txtSoDTinTTBN.Text.Trim(), selectedDateString);
+            bool kq = bnBLL.Edit(MaBenhNhan, bnDTONew);
+            if (kq)
+            {
+                MessageBox.Show("Cập nhật thành công");
+                lstvDSBN.Items.Clear();
+                LoadListViewDSBN();
+                ClearTextBox();
+                ClearErrorProvider();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại");
+            }
         }
 
         private void btnXoaBN_Click(object sender, EventArgs e)
@@ -264,7 +275,13 @@ namespace GUI
 
         private void btnDong_Click_1(object sender, EventArgs e)
         {
-            pnlThongtinBN.Visible = false;
+            txtHoTeninTTBN.Clear();
+            txtDiaChiinTTBN.Clear();
+            txtSoDTinTTBN.Clear();
+            rdoNuinTTBN.Checked=false;
+            rdoNaminTTBN.Checked=false;
+            pnlThemBN.Visible = false;
+            pnlThongTinBenhNhan.Visible = false;
             btnXoaBN.Enabled = true;
         }
         private void button1_Click(object sender, EventArgs e)
@@ -302,15 +319,57 @@ namespace GUI
                 frm.ShowDialog();
             }
         }
-
+        private string MaBenhNhan;
         private void btnThongTinChiTietBenhNhan_Click(object sender, EventArgs e)
         {
             if (lstvDSBN.SelectedItems.Count > 0)
             {
                 btnXoaBN.Enabled = false;
-                pnlThongtinBN.Visible = true;
+                pnlThemBN.Visible = true;
+                pnlThongTinBenhNhan.Visible = true;
                 pnlThongTinBenhNhan.BringToFront();
+
+                // Lấy giá trị từ ListViewItem
+                ListViewItem item = lstvDSBN.SelectedItems[0]; 
+                MaBenhNhan = item.SubItems[0].Text;
+                string HoTen = item.SubItems[1].Text;
+                string NgaySinh = item.SubItems[2].Text; 
+                string GioiTinh = item.SubItems[3].Text;
+                string DiaChi = item.SubItems[4].Text;
+                string SoDT = item.SubItems[5].Text;
+              
+                string[] date = NgaySinh.Split('/');
+
+                txtHoTeninTTBN.Text = HoTen;
+                if (GioiTinh == "Nam")
+                    rdoNaminTTBN.Checked = true;
+                else
+                    rdoNuinTTBN.Checked = true;
+                dtpNgaySinhinTTBN.Value =new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
+                txtDiaChiinTTBN.Text = DiaChi;
+                txtSoDTinTTBN.Text = SoDT;
             }
+        }
+
+
+        private void btnXoaBNinTTBN_Click(object sender, EventArgs e)
+        {
+            bool xoaThanhCong = true;
+            bool result = bnBLL.Delete(MaBenhNhan);
+            if (!result)
+            {
+                xoaThanhCong = false;
+            }
+            if (xoaThanhCong)
+            {
+                MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnDong_Click_1(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LoadListViewDSBN();
         }
     }
 }

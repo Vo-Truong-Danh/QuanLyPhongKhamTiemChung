@@ -114,7 +114,7 @@ namespace DAL
             try
             {
                 // Tim dong du lieu can sua dua theo MaBN
-                DataRow dr = dt.Rows.Find(MaBNCanSua);
+                DataRow dr = dt.Select("MaBN = '" + MaBNCanSua + "'").FirstOrDefault();
                 // Edit
                 if (dr != null)
                 {
