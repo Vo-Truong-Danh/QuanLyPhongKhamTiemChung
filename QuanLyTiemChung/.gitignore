@@ -1,0 +1,9 @@
+.vs/
+bin/
+obj/
+*.wsuo
+*.json
+GUI/obj/GUI.csproj.nuget.dgspec.json
+GUI/obj/GUI.csproj.nuget.g.props
+GUI/obj/project.assets.json
+GUI/obj/project.nuget.cache
