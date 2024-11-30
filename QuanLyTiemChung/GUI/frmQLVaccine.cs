@@ -954,6 +954,8 @@ namespace GUI
             btnTaoPhieuNhap.Enabled = false;
             btnLuuPhieuNhap.Enabled = true;
             btnThemCTPN.Enabled = true;
+            btnInPhieuNhap.Visible = false;
+
         }
 
         private void txtSoLuongCTPN_KeyPress(object sender, KeyPressEventArgs e)
@@ -1279,11 +1281,13 @@ namespace GUI
                 btnTaoPhieuNhap.Enabled = true;
                 btnLuuPhieuNhap.Enabled = false;
                 btnThemCTPN.Enabled = false;
+                mapnvuatao = txtMaPhieuN.Text;
                 txtMaPhieuN.Text = string.Empty;
                 txtThanhTien.Text = string.Empty;
             }
+            btnInPhieuNhap.Visible = true;
         }
-
+        private string mapnvuatao;
         private void dtgDanhSachVCduocChon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnXoaCTPN.Enabled = true;
@@ -1641,12 +1645,12 @@ namespace GUI
             TimeTab3.Stop();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnInPhieuNhap_Click(object sender, EventArgs e)
         {
-            frmReport rp = new frmReport(1);
+            frmReport rp = new frmReport(1,mapnvuatao);
+            this.Close();
             rp.ShowDialog();
-
         }
-
     }
 }

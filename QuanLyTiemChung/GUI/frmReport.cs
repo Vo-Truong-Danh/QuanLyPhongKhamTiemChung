@@ -17,17 +17,21 @@ namespace GUI
             InitializeComponent();
         }
         private int YeuCau;
-        public frmReport(int yc)
+        private string Ma;
+        public frmReport(int yc , string ma)
         {
             InitializeComponent();
             YeuCau = yc;
-
+            Ma = ma;
         }
         private void frmReport_Load(object sender, EventArgs e)
         {
-            if(YeuCau == 1)
+            if(YeuCau == 1)//Yeu cau 1 in phiêu nhap
             {
-                crystalReportViewer1.ReportSource = crystalReportViewer1.ReportSource;
+                ReportPhieuNhap rp = new ReportPhieuNhap();
+                rp.SetDatabaseLogon("sa", "123");
+                rp.SetParameterValue("MaPN", Ma);
+                crystalReportViewer1.ReportSource = rp;
             }
         }
     }

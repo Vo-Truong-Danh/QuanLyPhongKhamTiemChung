@@ -346,6 +346,8 @@ namespace GUI
             this.txtTenHienThi.Name = "txtTenHienThi";
             this.txtTenHienThi.Size = new System.Drawing.Size(216, 20);
             this.txtTenHienThi.TabIndex = 1;
+            this.txtTenHienThi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTenHienThi.TextChanged += new System.EventHandler(this.txtTenHienThi_TextChanged);
             // 
             // pctLogo
             // 
@@ -420,6 +422,7 @@ namespace GUI
             this.btnDangXuat.TabIndex = 1;
             this.btnDangXuat.Text = "Đăng Xuất";
             this.btnDangXuat.UseVisualStyleBackColor = true;
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
             // btnThoat
             // 

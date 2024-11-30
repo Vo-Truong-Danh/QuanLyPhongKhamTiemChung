@@ -15,6 +15,9 @@ namespace GUI
     {
         public frmMain()
         {
+            TK.UserName = "NV002";
+            TK.DisplayName = "Nguyễn Văn Nam";
+            TK.ChucVu = 0;
             InitializeComponent();
         }
         TaiKhoanDTO TK = new TaiKhoanDTO();
@@ -49,6 +52,7 @@ namespace GUI
                 {
                     Sibar.Stop();
                 }
+                txtTenHienThi.Show();
             }
             else if (pnlShow.Width > targetWidth)
             {
@@ -59,6 +63,7 @@ namespace GUI
                     txtTenHienThi.Show();
                     pctLogo.Show();
                 }
+                txtTenHienThi.Hide();
             }
         }
 
@@ -71,7 +76,7 @@ namespace GUI
             rongmax = targetWidth;
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
             OpenChild(new frmTrangChu());
-            txtTenHienThi.Text = "" + TK.DisplayName + "";
+            txtTenHienThi.Text = TK.DisplayName;
             if (TK.ChucVu == 2)
             {
                 //btnQLVaccine.Enabled = false;
@@ -222,6 +227,18 @@ namespace GUI
         private void btnQLBenhNhans_Click(object sender, EventArgs e)
         {
             OpenChild(new frmBenhNhan());
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            frmDangNhap tmp = new frmDangNhap();
+            tmp.ShowDialog();
+            this.Close();
+        }
+
+        private void txtTenHienThi_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
