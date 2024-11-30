@@ -4,7 +4,7 @@
 
 *.wsuo
 *.json
-/QuanLyPhongKham/GUI/obj/GUI.csproj.nuget.dgspec.json
-/QuanLyPhongKham/GUI/obj/GUI.csproj.nuget.g.props
-/QuanLyPhongKham/GUI/obj/project.assets.json
-/QuanLyPhongKham/GUI/obj/project.nuget.cache
+/QuanLyTiemChung/GUI/obj/GUI.csproj.nuget.dgspec.json
+/QuanLyTiemChung/GUI/obj/GUI.csproj.nuget.g.props
+/QuanLyTiemChung/GUI/obj/project.assets.json
+/QuanLyTiemChung/GUI/obj/project.nuget.cache

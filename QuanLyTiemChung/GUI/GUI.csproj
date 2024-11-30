@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3CBDAC86-7C3B-4CF8-8159-0E6665F6F683}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUI</RootNamespace>
+    <AssemblyName>GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmBenhNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBenhNhan.Designer.cs">
+      <DependentUpon>frmBenhNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangNhap.Designer.cs">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNCC.Designer.cs">
+      <DependentUpon>frmNCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQLVaccine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQLVaccine.Designer.cs">
+      <DependentUpon>frmQLVaccine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemLoaiVaccine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemLoaiVaccine.Designer.cs">
+      <DependentUpon>frmThemLoaiVaccine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTrangChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrangChu.Designer.cs">
+      <DependentUpon>frmTrangChu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_overlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_overlay.Designer.cs">
+      <DependentUpon>frm_overlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ThemVaccine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ThemVaccine.Designer.cs">
+      <DependentUpon>frm_ThemVaccine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBenhNhan.resx">
+      <DependentUpon>frmBenhNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDangNhap.resx">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNCC.resx">
+      <DependentUpon>frmNCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQLVaccine.resx">
+      <DependentUpon>frmQLVaccine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemLoaiVaccine.resx">
+      <DependentUpon>frmThemLoaiVaccine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrangChu.resx">
+      <DependentUpon>frmTrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_overlay.resx">
+      <DependentUpon>frm_overlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ThemVaccine.resx">
+      <DependentUpon>frm_ThemVaccine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\add1.png" />
+    <Content Include="Resources\add2.png" />
+    <Content Include="Resources\add3.png" />
+    <Content Include="Resources\add4.png" />
+    <Content Include="Resources\add_4671484.png" />
+    <Content Include="Resources\calendar_5408851.png" />
+    <Content Include="Resources\cancel_8344966.png" />
+    <Content Include="Resources\cut.png" />
+    <Content Include="Resources\dangnhap.gif" />
+    <Content Include="Resources\doctor_5528539.png" />
+    <Content Include="Resources\edit_7790272.png" />
+    <Content Include="Resources\file_10964691.png" />
+    <Content Include="Resources\hospital_16767235.gif" />
+    <Content Include="Resources\house-medical_9239309.png" />
+    <Content Include="Resources\image-removebg-preview.png" />
+    <Content Include="Resources\load.png" />
+    <Content Include="Resources\login_8717908.gif" />
+    <Content Include="Resources\logout_4263191.png" />
+    <Content Include="Resources\nguoi.png" />
+    <Content Include="Resources\notification_16903647.gif" />
+    <Content Include="Resources\refresh_9903652.png" />
+    <Content Include="Resources\sach.gif" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\save1.png" />
+    <Content Include="Resources\search_14265494.png" />
+    <Content Include="Resources\search_17548385.png" />
+    <Content Include="Resources\sync_8468966.png" />
+    <Content Include="Resources\thongke.png" />
+    <Content Include="Resources\tim.gif" />
+    <Content Include="Resources\timkiem.png" />
+    <Content Include="Resources\update_6373820.png" />
+    <Content Include="Resources\vaccine_3021063.png" />
+    <Content Include="Resources\xoa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{f60b185d-8b00-4baa-bcb0-35e70748b87c}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{1485ac43-a18b-4b94-8b8f-f1c9004e4bfc}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
