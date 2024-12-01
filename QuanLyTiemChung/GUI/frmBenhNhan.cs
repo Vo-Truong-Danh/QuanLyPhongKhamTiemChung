@@ -321,10 +321,9 @@ namespace GUI
         {
             if (lstvDSBN.Items.Count > 0)
             {
-                ListViewItem item = lstvDSBN.Items[0];
-                frmKetQuaTiemChungBN frm = new frmKetQuaTiemChungBN();
-                frm.maBN = item.SubItems[0].Text;
-                frm.ShowDialog();
+                string maBN = lstvDSBN.SelectedItems[0].SubItems[0].Text;
+                frmReport rp = new frmReport(2,maBN);
+                rp.ShowDialog();
             }
         }
         private string MaBenhNhan;

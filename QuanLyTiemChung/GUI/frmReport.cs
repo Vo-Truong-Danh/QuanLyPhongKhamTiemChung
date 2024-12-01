@@ -33,6 +33,13 @@ namespace GUI
                 rp.SetParameterValue("MaPN", Ma);
                 crystalReportViewer1.ReportSource = rp;
             }
+            if (YeuCau == 2)//Yeu cau 2 in lich su tiem chung
+            {
+                Rp_LichSuTiemChung rp = new Rp_LichSuTiemChung();
+                rp.SetDatabaseLogon("sa", "123");
+                rp.SetParameterValue("MaBN", Ma);
+                crystalReportViewer1.ReportSource = rp;
+            }
         }
     }
 }
