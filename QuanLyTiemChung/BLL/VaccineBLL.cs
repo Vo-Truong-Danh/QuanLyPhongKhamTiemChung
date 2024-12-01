@@ -50,14 +50,13 @@ namespace BLL
         {
             vcbll.Luu(); 
         }
-
         public VaccineDTO SearchChiTiet(string mavc)
         {
             return  vcbll.SearchChiTiet(mavc);
         }
-        public DataTable ThongKeVCDaTiem()
+        public List<VaccineDTO> LoadDSVaccine()
         {
-            return vcbll.ThongKeVCDaTiem();
+            return vcbll.LoadDSVaccine();
         }
     }
 }

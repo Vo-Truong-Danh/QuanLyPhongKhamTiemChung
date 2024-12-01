@@ -1,11 +1,11 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Data.SqlClient;
-    using System.Data;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using DTO;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DTO;
 
     namespace DAL
     {
@@ -26,110 +26,100 @@
                 if (dt.Rows.Count == 0)
                     adap.Fill(dt);
             }
-        private DataTable dtvc = new DataTable();
-        public DataTable ThongKeVCDaTiem()
-        {
-            string query = @"
-            select VACCINE.TenVC , sum(CTHD.SOLUONG) as SoLuong from VACCINE join CHITIETHOADON CTHD on CTHD.MaVC = VACCINE.MaVC Group by TenVC";
 
-            SqlDataAdapter adap = new SqlDataAdapter(query, conn);
-            adap.Fill(dtvc);
-            return dtvc;
+            public DataTable Load()
+            {
+                adap.Update(dt);
+
+            dt.AcceptChanges();
+
+            dt.Clear();
+            adap.Fill(dt);
+            return dt;
+        }
+        public DataTable LayTTVC()
+        {
+            return dt;
+        }
+        public void Insert(VaccineDTO vcDTO)
+        {
+            DataRow newrow = dt.NewRow();
+            newrow["MaVC"] = vcDTO.Mavc;
+            newrow["MaLoai"] = vcDTO.Maloai;
+            newrow["TenVC"] = vcDTO.Tenvc;
+            newrow["NgaySX"] = vcDTO.Ngaysx;
+            newrow["HanSuDung"] = vcDTO.Hansudung;
+            newrow["SoLuongTon"] = 0;
+            newrow["Gia"] = vcDTO.Gia;
+            newrow["XuatXu"] = vcDTO.Xuatxu;
+
+            dt.Rows.Add(newrow);
         }
 
-        public DataTable Load()
+        public bool Delete(string maVC)
+        {
+            try
             {
-                adap.Update(dt);
-
-                dt.AcceptChanges();
-
-                dt.Clear();
-                adap.Fill(dt);
-                return dt;
-            }
-            public DataTable LayTTVC()
-            {
-                return dt;
-            }
-            public void Insert(VaccineDTO vcDTO)
-            {
-                DataRow newrow = dt.NewRow();
-                newrow["MaVC"] = vcDTO.Mavc;
-                newrow["MaLoai"] = vcDTO.Maloai;
-                newrow["TenVC"] = vcDTO.Tenvc;
-                newrow["NgaySX"] = vcDTO.Ngaysx;
-                newrow["HanSuDung"] = vcDTO.Hansudung;
-                newrow["SoLuongTon"] = 0;
-                newrow["Gia"] = vcDTO.Gia;
-                newrow["XuatXu"] = vcDTO.Xuatxu;
-
-                dt.Rows.Add(newrow);
-            }
-
-            public bool Delete(string maVC)
-            {
-                try
+                DataRow[] rowDeXoa = dt.Select("MaVC = '" + maVC + "'");
+                if (rowDeXoa.Length > 0)
                 {
-                    DataRow[] rowDeXoa = dt.Select("MaVC = '"+maVC+"'");
-                    if (rowDeXoa.Length > 0)
-                    {
-                        //dt.Rows.Remove(rowDeXoa[0]);
-                        rowDeXoa[0].Delete();
-                        return true;
-                    }
-                    return false;
+                    //dt.Rows.Remove(rowDeXoa[0]);
+                    rowDeXoa[0].Delete();
+                    return true;
                 }
-                catch
-                {
-                    return false;
-                }
+                return false;
             }
-
-            public bool Update(VaccineDTO vcDTO)
+            catch
             {
-                try
-                {
-                    DataRow[] rowDeUPD = dt.Select("MaVC = '" + vcDTO.Mavc + "'");
-
-                    if (rowDeUPD.Length > 0)
-                    {
-                        DataRow row = rowDeUPD[0];
-                        row["MaLoai"] = vcDTO.Maloai;
-                        row["TenVC"] = vcDTO.Tenvc;
-                        row["NgaySX"] = vcDTO.Ngaysx;
-                        row["HanSuDung"] = vcDTO.Hansudung;
-                        row["Gia"] = vcDTO.Gia;
-                        row["XuatXu"] = vcDTO.Xuatxu;
-
-                        dt.Rows.Add (row);
-
-                        return true;
-                    }
-                    else return false;
-                }
-                catch
-                {
-                    return false;
-                }
+                return false;
             }
-            public void Luu()
+        }
+
+        public bool Update(VaccineDTO vcDTO)
+        {
+            try
             {
-                // Cập nhật xuống database
-                adap.Update(dt);
+                DataRow[] rowDeUPD = dt.Select("MaVC = '" + vcDTO.Mavc + "'");
 
-                // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
-                dt.AcceptChanges();
-            }
-            public DataTable Search(string ndtimkiem)
-            {
-                DataRow[] dr = dt.Select("MaLoai = '"+ndtimkiem+"' OR XuatXu =  '"+ndtimkiem+"' ");
-                DataTable tmp = dt.Clone();
-                foreach (DataRow item in dr)
+                if (rowDeUPD.Length > 0)
                 {
-                    tmp.ImportRow(item);
+                    DataRow row = rowDeUPD[0];
+                    row["MaLoai"] = vcDTO.Maloai;
+                    row["TenVC"] = vcDTO.Tenvc;
+                    row["NgaySX"] = vcDTO.Ngaysx;
+                    row["HanSuDung"] = vcDTO.Hansudung;
+                    row["Gia"] = vcDTO.Gia;
+                    row["XuatXu"] = vcDTO.Xuatxu;
+
+                    dt.Rows.Add(row);
+
+                    return true;
                 }
-                return tmp;
+                else return false;
             }
+            catch
+            {
+                return false;
+            }
+        }
+        public void Luu()
+        {
+            // Cập nhật xuống database
+            adap.Update(dt);
+
+            // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
+            dt.AcceptChanges();
+        }
+        public DataTable Search(string ndtimkiem)
+        {
+            DataRow[] dr = dt.Select("MaLoai = '" + ndtimkiem + "' OR XuatXu =  '" + ndtimkiem + "' ");
+            DataTable tmp = dt.Clone();
+            foreach (DataRow item in dr)
+            {
+                tmp.ImportRow(item);
+            }
+            return tmp;
+        }
 
         public DataTable SearchTen(string ndtimkiem)
         {
@@ -142,33 +132,46 @@
             return tmp;
         }
         public VaccineDTO SearchChiTiet(string ndtimkiem)
+        {
+            DataRow[] dr = dt.Select("MaVC = '" + ndtimkiem + "' ");
+            VaccineDTO vcdto = new VaccineDTO()
             {
-                DataRow[] dr = dt.Select("MaVC = '"+ndtimkiem+"' ");
-                VaccineDTO vcdto = new VaccineDTO()
-                {
-                    Mavc = dr[0][0].ToString(),
-                    Maloai = dr[0][1].ToString(),
-                    Tenvc = dr[0][2].ToString(),
-                    Ngaysx = dr[0][3].ToString(),
-                    Hansudung = dr[0][4].ToString(),
-                    Gia = int.Parse(dr[0][6].ToString()),
-                    Xuatxu = dr[0][7].ToString(),
+                Mavc = dr[0][0].ToString(),
+                Maloai = dr[0][1].ToString(),
+                Tenvc = dr[0][2].ToString(),
+                Ngaysx = dr[0][3].ToString(),
+                Hansudung = dr[0][4].ToString(),
+                Gia = int.Parse(dr[0][6].ToString()),
+                Xuatxu = dr[0][7].ToString(),
 
-                };
-                return vcdto;
-            }
-
-            public List<string> LoadDSXuatXu()
-            {
-                DataRow[] dr = dt.Select("");
-                List<string> xuatXuList = dr
-                    .Select(row => row["XuatXu"].ToString())
-                    .Distinct()
-                    .ToList();
-
-                return xuatXuList;
-            }
-
-
+            };
+            return vcdto;
         }
+
+        public List<string> LoadDSXuatXu()
+        {
+            DataRow[] dr = dt.Select("");
+            List<string> xuatXuList = dr
+                .Select(row => row["XuatXu"].ToString())
+                .Distinct()
+                .ToList();
+            return xuatXuList;
+        }
+        public List<VaccineDTO> LoadDSVaccine()
+        {
+            DataRow[] dr = dt.Select("");
+            List<VaccineDTO> dsVaccine = dr.Select(row => new VaccineDTO
+            {
+                Mavc = row["MaVC"].ToString(),
+                Maloai = row["MaLoai"].ToString(),
+                Tenvc = row["TenVC"].ToString(),
+                Ngaysx = row["NgaySX"].ToString(),
+                Hansudung = row["HanSuDung"].ToString(),
+                Gia = int.Parse(row["Gia"].ToString()),
+                Xuatxu = row["XuatXu"].ToString()
+            }).ToList();
+            return dsVaccine;
+        }
+
     }
+}

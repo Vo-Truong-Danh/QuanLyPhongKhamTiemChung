@@ -46,6 +46,7 @@ namespace GUI
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlThemBN = new System.Windows.Forms.Panel();
             this.pnlThongTinBenhNhan = new System.Windows.Forms.Panel();
+            this.dtpNgaySinhinTTBN = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnXoaBNinTTBN = new System.Windows.Forms.Button();
@@ -84,7 +85,8 @@ namespace GUI
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dtpNgaySinhinTTBN = new System.Windows.Forms.DateTimePicker();
+            this.cboVaccine = new System.Windows.Forms.ComboBox();
+            this.cboLoaiVaccine = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errMaSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errHoTen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errDiaChi)).BeginInit();
@@ -199,6 +201,7 @@ namespace GUI
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pnlThongTinBenhNhan);
             this.panel1.Controls.Add(this.btnKQTiemChung);
             this.panel1.Controls.Add(this.btnLuuBN);
             this.panel1.Controls.Add(this.btnXoaBN);
@@ -209,7 +212,7 @@ namespace GUI
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1476, 75);
+            this.panel1.Size = new System.Drawing.Size(1885, 75);
             this.panel1.TabIndex = 18;
             // 
             // btnKQTiemChung
@@ -254,12 +257,13 @@ namespace GUI
             this.panel2.Location = new System.Drawing.Point(0, 75);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1476, 613);
+            this.panel2.Size = new System.Drawing.Size(1885, 801);
             this.panel2.TabIndex = 19;
             // 
             // pnlThemBN
             // 
-            this.pnlThemBN.Controls.Add(this.pnlThongTinBenhNhan);
+            this.pnlThemBN.Controls.Add(this.cboLoaiVaccine);
+            this.pnlThemBN.Controls.Add(this.cboVaccine);
             this.pnlThemBN.Controls.Add(this.label7);
             this.pnlThemBN.Controls.Add(this.btnDong);
             this.pnlThemBN.Controls.Add(this.btnThemBenhNhan);
@@ -281,7 +285,7 @@ namespace GUI
             this.pnlThemBN.Location = new System.Drawing.Point(0, 0);
             this.pnlThemBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlThemBN.Name = "pnlThemBN";
-            this.pnlThemBN.Size = new System.Drawing.Size(1476, 613);
+            this.pnlThemBN.Size = new System.Drawing.Size(1885, 801);
             this.pnlThemBN.TabIndex = 49;
             // 
             // pnlThongTinBenhNhan
@@ -303,12 +307,19 @@ namespace GUI
             this.pnlThongTinBenhNhan.Controls.Add(this.label14);
             this.pnlThongTinBenhNhan.Controls.Add(this.label15);
             this.pnlThongTinBenhNhan.Controls.Add(this.label16);
-            this.pnlThongTinBenhNhan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlThongTinBenhNhan.Location = new System.Drawing.Point(0, 0);
+            this.pnlThongTinBenhNhan.Location = new System.Drawing.Point(891, 11);
             this.pnlThongTinBenhNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlThongTinBenhNhan.Name = "pnlThongTinBenhNhan";
             this.pnlThongTinBenhNhan.Size = new System.Drawing.Size(1476, 613);
-            this.pnlThongTinBenhNhan.TabIndex = 64;          
+            this.pnlThongTinBenhNhan.TabIndex = 64;
+            // 
+            // dtpNgaySinhinTTBN
+            // 
+            this.dtpNgaySinhinTTBN.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNgaySinhinTTBN.Location = new System.Drawing.Point(890, 217);
+            this.dtpNgaySinhinTTBN.Name = "dtpNgaySinhinTTBN";
+            this.dtpNgaySinhinTTBN.Size = new System.Drawing.Size(242, 26);
+            this.dtpNgaySinhinTTBN.TabIndex = 80;
             // 
             // label8
             // 
@@ -353,7 +364,7 @@ namespace GUI
             this.label9.ForeColor = System.Drawing.Color.Red;
             this.label9.Location = new System.Drawing.Point(258, 309);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 36);
+            this.label9.Size = new System.Drawing.Size(15, 20);
             this.label9.TabIndex = 76;
             this.label9.Text = "*";
             // 
@@ -363,7 +374,7 @@ namespace GUI
             this.label11.ForeColor = System.Drawing.Color.Red;
             this.label11.Location = new System.Drawing.Point(258, 219);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(26, 36);
+            this.label11.Size = new System.Drawing.Size(15, 20);
             this.label11.TabIndex = 75;
             this.label11.Text = "*";
             // 
@@ -373,7 +384,7 @@ namespace GUI
             this.rdoNaminTTBN.Location = new System.Drawing.Point(968, 308);
             this.rdoNaminTTBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNaminTTBN.Name = "rdoNaminTTBN";
-            this.rdoNaminTTBN.Size = new System.Drawing.Size(94, 40);
+            this.rdoNaminTTBN.Size = new System.Drawing.Size(67, 24);
             this.rdoNaminTTBN.TabIndex = 74;
             this.rdoNaminTTBN.TabStop = true;
             this.rdoNaminTTBN.Text = "Nam";
@@ -385,7 +396,7 @@ namespace GUI
             this.rdoNuinTTBN.Location = new System.Drawing.Point(1058, 308);
             this.rdoNuinTTBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNuinTTBN.Name = "rdoNuinTTBN";
-            this.rdoNuinTTBN.Size = new System.Drawing.Size(74, 40);
+            this.rdoNuinTTBN.Size = new System.Drawing.Size(54, 24);
             this.rdoNuinTTBN.TabIndex = 73;
             this.rdoNuinTTBN.TabStop = true;
             this.rdoNuinTTBN.Text = "Nữ";
@@ -406,7 +417,7 @@ namespace GUI
             this.txtSoDTinTTBN.Location = new System.Drawing.Point(472, 309);
             this.txtSoDTinTTBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSoDTinTTBN.Name = "txtSoDTinTTBN";
-            this.txtSoDTinTTBN.Size = new System.Drawing.Size(333, 42);
+            this.txtSoDTinTTBN.Size = new System.Drawing.Size(333, 26);
             this.txtSoDTinTTBN.TabIndex = 71;
             this.txtSoDTinTTBN.TextChanged += new System.EventHandler(this.txtSoDT_TextChanged);
             // 
@@ -415,7 +426,7 @@ namespace GUI
             this.txtHoTeninTTBN.Location = new System.Drawing.Point(394, 217);
             this.txtHoTeninTTBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHoTeninTTBN.Name = "txtHoTeninTTBN";
-            this.txtHoTeninTTBN.Size = new System.Drawing.Size(316, 42);
+            this.txtHoTeninTTBN.Size = new System.Drawing.Size(316, 26);
             this.txtHoTeninTTBN.TabIndex = 70;
             this.txtHoTeninTTBN.TextChanged += new System.EventHandler(this.txtHoTen_TextChanged);
             // 
@@ -425,7 +436,7 @@ namespace GUI
             this.label12.Location = new System.Drawing.Point(731, 220);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 36);
+            this.label12.Size = new System.Drawing.Size(86, 20);
             this.label12.TabIndex = 69;
             this.label12.Text = "Ngày sinh :";
             // 
@@ -435,7 +446,7 @@ namespace GUI
             this.label13.Location = new System.Drawing.Point(276, 312);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(179, 36);
+            this.label13.Size = new System.Drawing.Size(110, 20);
             this.label13.TabIndex = 68;
             this.label13.Text = "Số điện thoại :";
             // 
@@ -445,7 +456,7 @@ namespace GUI
             this.label14.Location = new System.Drawing.Point(276, 220);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(106, 36);
+            this.label14.Size = new System.Drawing.Size(65, 20);
             this.label14.TabIndex = 67;
             this.label14.Text = "Họ tên :";
             // 
@@ -455,7 +466,7 @@ namespace GUI
             this.label15.Location = new System.Drawing.Point(848, 309);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(126, 36);
+            this.label15.Size = new System.Drawing.Size(75, 20);
             this.label15.TabIndex = 66;
             this.label15.Text = "Giới tính :";
             // 
@@ -465,7 +476,7 @@ namespace GUI
             this.label16.Location = new System.Drawing.Point(276, 404);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(105, 36);
+            this.label16.Size = new System.Drawing.Size(65, 20);
             this.label16.TabIndex = 65;
             this.label16.Text = "Địa chỉ :";
             // 
@@ -473,7 +484,7 @@ namespace GUI
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(538, 65);
+            this.label7.Location = new System.Drawing.Point(631, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(424, 54);
             this.label7.TabIndex = 63;
@@ -481,7 +492,7 @@ namespace GUI
             // 
             // btnDong
             // 
-            this.btnDong.Location = new System.Drawing.Point(910, 426);
+            this.btnDong.Location = new System.Drawing.Point(712, 383);
             this.btnDong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(101, 47);
@@ -497,7 +508,7 @@ namespace GUI
             this.btnThemBenhNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemBenhNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
             this.btnThemBenhNhan.ForeColor = System.Drawing.Color.OldLace;
-            this.btnThemBenhNhan.Location = new System.Drawing.Point(1016, 426);
+            this.btnThemBenhNhan.Location = new System.Drawing.Point(818, 383);
             this.btnThemBenhNhan.Margin = new System.Windows.Forms.Padding(0);
             this.btnThemBenhNhan.Name = "btnThemBenhNhan";
             this.btnThemBenhNhan.Size = new System.Drawing.Size(238, 47);
@@ -510,7 +521,7 @@ namespace GUI
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(216, 257);
+            this.label10.Location = new System.Drawing.Point(18, 214);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(26, 36);
             this.label10.TabIndex = 60;
@@ -520,7 +531,7 @@ namespace GUI
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(216, 166);
+            this.label6.Location = new System.Drawing.Point(18, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(26, 36);
             this.label6.TabIndex = 59;
@@ -532,7 +543,7 @@ namespace GUI
             this.dteNgaySinh.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dteNgaySinh.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dteNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteNgaySinh.Location = new System.Drawing.Point(839, 166);
+            this.dteNgaySinh.Location = new System.Drawing.Point(641, 123);
             this.dteNgaySinh.Margin = new System.Windows.Forms.Padding(117, 10, 117, 10);
             this.dteNgaySinh.Name = "dteNgaySinh";
             this.dteNgaySinh.Size = new System.Drawing.Size(414, 39);
@@ -541,7 +552,7 @@ namespace GUI
             // rdoNam
             // 
             this.rdoNam.AutoSize = true;
-            this.rdoNam.Location = new System.Drawing.Point(926, 255);
+            this.rdoNam.Location = new System.Drawing.Point(728, 212);
             this.rdoNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNam.Name = "rdoNam";
             this.rdoNam.Size = new System.Drawing.Size(94, 40);
@@ -553,7 +564,7 @@ namespace GUI
             // rdoNu
             // 
             this.rdoNu.AutoSize = true;
-            this.rdoNu.Location = new System.Drawing.Point(1016, 255);
+            this.rdoNu.Location = new System.Drawing.Point(818, 212);
             this.rdoNu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNu.Name = "rdoNu";
             this.rdoNu.Size = new System.Drawing.Size(74, 40);
@@ -564,7 +575,7 @@ namespace GUI
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(337, 350);
+            this.txtDiaChi.Location = new System.Drawing.Point(139, 307);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
@@ -574,7 +585,7 @@ namespace GUI
             // 
             // txtSoDT
             // 
-            this.txtSoDT.Location = new System.Drawing.Point(405, 257);
+            this.txtSoDT.Location = new System.Drawing.Point(207, 214);
             this.txtSoDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSoDT.Name = "txtSoDT";
             this.txtSoDT.Size = new System.Drawing.Size(333, 42);
@@ -583,7 +594,7 @@ namespace GUI
             // 
             // txtHoTen
             // 
-            this.txtHoTen.Location = new System.Drawing.Point(352, 165);
+            this.txtHoTen.Location = new System.Drawing.Point(154, 122);
             this.txtHoTen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(316, 42);
@@ -593,7 +604,7 @@ namespace GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(689, 167);
+            this.label5.Location = new System.Drawing.Point(491, 124);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 36);
@@ -603,7 +614,7 @@ namespace GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(235, 259);
+            this.label4.Location = new System.Drawing.Point(37, 216);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(179, 36);
@@ -613,7 +624,7 @@ namespace GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(235, 167);
+            this.label3.Location = new System.Drawing.Point(37, 124);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 36);
@@ -623,7 +634,7 @@ namespace GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(806, 257);
+            this.label2.Location = new System.Drawing.Point(608, 214);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 36);
@@ -633,7 +644,7 @@ namespace GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(235, 351);
+            this.label1.Location = new System.Drawing.Point(37, 308);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 36);
@@ -658,7 +669,7 @@ namespace GUI
             this.lstvDSBN.Location = new System.Drawing.Point(0, 0);
             this.lstvDSBN.Margin = new System.Windows.Forms.Padding(2);
             this.lstvDSBN.Name = "lstvDSBN";
-            this.lstvDSBN.Size = new System.Drawing.Size(1476, 614);
+            this.lstvDSBN.Size = new System.Drawing.Size(1885, 802);
             this.lstvDSBN.TabIndex = 17;
             this.lstvDSBN.UseCompatibleStateImageBehavior = false;
             this.lstvDSBN.View = System.Windows.Forms.View.Details;
@@ -693,20 +704,28 @@ namespace GUI
             this.columnHeader6.Text = "Số điện thoại";
             this.columnHeader6.Width = 300;
             // 
-            // dtpNgaySinhinTTBN
+            // cboVaccine
             // 
-            this.dtpNgaySinhinTTBN.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgaySinhinTTBN.Location = new System.Drawing.Point(890, 217);
-            this.dtpNgaySinhinTTBN.Name = "dtpNgaySinhinTTBN";
-            this.dtpNgaySinhinTTBN.Size = new System.Drawing.Size(242, 42);
-            this.dtpNgaySinhinTTBN.TabIndex = 80;
+            this.cboVaccine.FormattingEnabled = true;
+            this.cboVaccine.Location = new System.Drawing.Point(1185, 125);
+            this.cboVaccine.Name = "cboVaccine";
+            this.cboVaccine.Size = new System.Drawing.Size(316, 44);
+            this.cboVaccine.TabIndex = 64;
+            // 
+            // cboLoaiVaccine
+            // 
+            this.cboLoaiVaccine.FormattingEnabled = true;
+            this.cboLoaiVaccine.Location = new System.Drawing.Point(1185, 223);
+            this.cboLoaiVaccine.Name = "cboLoaiVaccine";
+            this.cboLoaiVaccine.Size = new System.Drawing.Size(316, 44);
+            this.cboLoaiVaccine.TabIndex = 65;
             // 
             // frmBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1476, 688);
+            this.ClientSize = new System.Drawing.Size(1885, 876);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -784,5 +803,7 @@ namespace GUI
         private Label label16;
         private Button btnKQTiemChung;
         private DateTimePicker dtpNgaySinhinTTBN;
+        private ComboBox cboLoaiVaccine;
+        private ComboBox cboVaccine;
     }
 }

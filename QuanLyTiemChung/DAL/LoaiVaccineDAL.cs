@@ -109,6 +109,17 @@ namespace DAL
             }
             return false;
         }
+        public List<LoaiVaccineDTO> LoadDSLoaiVaccine()
+        {
+            DataRow[] dr = dt.Select("");
+            List<LoaiVaccineDTO> dsLoaiVaccine = dr.Select(row => new LoaiVaccineDTO
+            {
+                Maloai = row["MaLoai"].ToString(),
+                Tenloai = row["TenLoai"].ToString(),
+                Somui = int.Parse(row["SoMui"].ToString())
+            }).ToList();
+            return dsLoaiVaccine;
+        }
 
     }
 }

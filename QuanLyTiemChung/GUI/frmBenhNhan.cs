@@ -18,6 +18,8 @@ namespace GUI
     public partial class frmBenhNhan : Form
     {
         BenhNhanBLL bnBLL;
+        VaccineBLL vcBLL = new VaccineBLL();
+        LoaiVaccineBLL loaiVCBLL = new LoaiVaccineBLL();
         public string maBN {  get; set; }
         public frmBenhNhan()
         {
@@ -31,7 +33,12 @@ namespace GUI
             bnBLL = new BenhNhanBLL();
             chucvu = cv;
         }
-
+        public void LoadComboBoxVaccine()
+        {
+            cboVaccine.DataSource = loaiVCBLL.GetData();
+            cboVaccine.DisplayMember = "TenLoai";
+            cboVaccine.ValueMember = "MaLoai";
+        }
         public string GetGioiTinh()
         {
             if (rdoNam.Checked||rdoNaminTTBN.Checked)
@@ -161,6 +168,7 @@ namespace GUI
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
             LoadListViewDSBN();
+            LoadComboBoxVaccine();
             if (chucvu == 2)
             {
                 btnXoaBN.Enabled = false;
