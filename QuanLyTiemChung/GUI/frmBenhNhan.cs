@@ -35,9 +35,9 @@ namespace GUI
         }
         public void LoadComboBoxVaccine()
         {
-            cboVaccine.DataSource = loaiVCBLL.GetData();
-            cboVaccine.DisplayMember = "TenLoai";
-            cboVaccine.ValueMember = "MaLoai";
+            cboLoaiVaccine.DataSource = loaiVCBLL.GetData();
+            cboLoaiVaccine.DisplayMember = "TenLoai";
+            cboLoaiVaccine.ValueMember = "MaLoai";
         }
         public string GetGioiTinh()
         {
@@ -377,6 +377,25 @@ namespace GUI
                 MessageBox.Show("Xóa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadListViewDSBN();
+        }
+
+        private void cboLoaiVaccine_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+            DataTable dr = vcBLL.Search(maLoai);
+            cboVaccine.DataSource = dr;
+            cboVaccine.DisplayMember = "TenVC";
+            cboVaccine.ValueMember = "MaVC";
+        }
+
+        private void btnKQTiemChung_Click_1(object sender, EventArgs e)
+        {
+            if (lstvDSBN.SelectedItems.Count > 0)
+            {
+                string MaBenhNhan = lstvDSBN.SelectedItems[0].SubItems[0].Text;
+                frmReport fm = new frmReport(2,MaBenhNhan);
+                fm.ShowDialog();
+            }
         }
     }
 }

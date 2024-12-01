@@ -17,5 +17,11 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void frmKetQuaTiemChungBN_Load(object sender, EventArgs e)
+        {
+            Rp_LichSuTiemChung rp = new Rp_LichSuTiemChung();
+            rpViewerKetQuaTiemChungBN.ReportSource = rp;
+        }
     }
 }
