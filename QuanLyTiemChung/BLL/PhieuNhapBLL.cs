@@ -33,6 +33,13 @@ namespace BLL
         {
             return pn.Luu();
         }
-
+        public DataTable ThongKe()
+        {
+            return pn.ThongKe();
+        }
+        public DataTable ThongKeHD()
+        {
+            return pn.ThongKeHD();
+        }
     }
 }

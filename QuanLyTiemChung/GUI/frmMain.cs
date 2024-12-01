@@ -240,5 +240,17 @@ namespace GUI
         {
 
         }
+
+        private void btnThongKes_Click(object sender, EventArgs e)
+        {
+
+            OpenChild(new frmThongKe());
+        }
+
+        private void btnThongke_Click(object sender, EventArgs e)
+        {
+            OpenChild(new frmThongKe());
+
+        }
     }
 }

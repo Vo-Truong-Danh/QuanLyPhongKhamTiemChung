@@ -26,8 +26,18 @@
                 if (dt.Rows.Count == 0)
                     adap.Fill(dt);
             }
+        private DataTable dtvc = new DataTable();
+        public DataTable ThongKeVCDaTiem()
+        {
+            string query = @"
+            select VACCINE.TenVC , sum(CTHD.SOLUONG) as SoLuong from VACCINE join CHITIETHOADON CTHD on CTHD.MaVC = VACCINE.MaVC Group by TenVC";
 
-            public DataTable Load()
+            SqlDataAdapter adap = new SqlDataAdapter(query, conn);
+            adap.Fill(dtvc);
+            return dtvc;
+        }
+
+        public DataTable Load()
             {
                 adap.Update(dt);
 

@@ -1652,5 +1652,17 @@ namespace GUI
             this.Close();
             rp.ShowDialog();
         }
+
+        private void cboLoaiVC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblMaloaivctmp.Hide();
+            lblXuatXu.Show();
+        }
+
+        private void cboXuatXu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblMaloaivctmp.Show();
+            lblXuatXu.Hide();
+        }
     }
 }

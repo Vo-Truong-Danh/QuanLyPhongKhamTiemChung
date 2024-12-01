@@ -15,6 +15,7 @@ namespace DAL
         SqlDataAdapter adap = new SqlDataAdapter();
         SqlConnection conn;
         DataTable dt;
+        DataTable dtthongke= new DataTable();
 
         public PhieuNhapDAL()
         {
@@ -27,6 +28,39 @@ namespace DAL
             conn.Close();
 
         }
+
+        public DataTable ThongKeHD()
+        {
+            string query = @"
+            SELECT 
+                CONCAT(MONTH(NgayLap), '-', YEAR(NgayLap)) AS ThangNam, 
+                SUM(TongTien) AS TongTien
+            FROM HOADON
+            GROUP BY YEAR(NgayLap), MONTH(NgayLap)
+            ORDER BY YEAR(NgayLap), MONTH(NgayLap)";
+
+            SqlDataAdapter adap = new SqlDataAdapter(query, conn);
+            adap.Fill(dtthongke);
+            return dtthongke;
+        }
+
+
+        public DataTable ThongKe()
+        {
+            string query = @"
+            SELECT 
+                CONCAT(MONTH(NgayNhap), '-', YEAR(NgayNhap)) AS ThangNam, 
+                SUM(TongTien) AS TongTien
+            FROM PHIEUNHAP
+            GROUP BY YEAR(NgayNhap), MONTH(NgayNhap)
+            ORDER BY YEAR(NgayNhap), MONTH(NgayNhap)";
+
+            SqlDataAdapter adap = new SqlDataAdapter(query, conn);
+            adap.Fill(dtthongke);
+            return dtthongke;
+        }
+
+
 
         public DataTable GetData()
         {

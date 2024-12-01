@@ -34,8 +34,8 @@ namespace GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlShow = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnThongke = new System.Windows.Forms.Button();
+            this.btnThongKes = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -95,41 +95,43 @@ namespace GUI
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.btnThongke);
+            this.panel3.Controls.Add(this.btnThongKes);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 492);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(229, 60);
             this.panel3.TabIndex = 2;
             // 
-            // button3
+            // btnThongke
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(63, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(166, 60);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Thống Kê";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnThongke.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnThongke.FlatAppearance.BorderSize = 0;
+            this.btnThongke.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongke.ForeColor = System.Drawing.Color.Black;
+            this.btnThongke.Location = new System.Drawing.Point(63, 0);
+            this.btnThongke.Name = "btnThongke";
+            this.btnThongke.Size = new System.Drawing.Size(166, 60);
+            this.btnThongke.TabIndex = 1;
+            this.btnThongke.Text = "Thống Kê";
+            this.btnThongke.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThongke.UseVisualStyleBackColor = true;
+            this.btnThongke.Click += new System.EventHandler(this.btnThongke_Click);
             // 
-            // button4
+            // btnThongKes
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.button4.Image = global::GUI.Properties.Resources.thongke;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(63, 60);
-            this.button4.TabIndex = 0;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnThongKes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnThongKes.FlatAppearance.BorderSize = 0;
+            this.btnThongKes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongKes.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.btnThongKes.Image = global::GUI.Properties.Resources.thongke;
+            this.btnThongKes.Location = new System.Drawing.Point(0, 0);
+            this.btnThongKes.Name = "btnThongKes";
+            this.btnThongKes.Size = new System.Drawing.Size(63, 60);
+            this.btnThongKes.TabIndex = 0;
+            this.btnThongKes.UseVisualStyleBackColor = true;
+            this.btnThongKes.Click += new System.EventHandler(this.btnThongKes_Click);
             // 
             // panel8
             // 
@@ -516,8 +518,8 @@ namespace GUI
         private Button btnFrmTrangChu;
         private Button btnfrmTrangchus;
         private Panel panel3;
-        private Button button3;
-        private Button button4;
+        private Button btnThongke;
+        private Button btnThongKes;
         private Panel panel8;
         private Button button11;
         private Button button12;

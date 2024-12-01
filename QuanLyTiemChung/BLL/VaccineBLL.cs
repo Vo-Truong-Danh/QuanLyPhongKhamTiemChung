@@ -55,5 +55,9 @@ namespace BLL
         {
             return  vcbll.SearchChiTiet(mavc);
         }
+        public DataTable ThongKeVCDaTiem()
+        {
+            return vcbll.ThongKeVCDaTiem();
+        }
     }
 }
