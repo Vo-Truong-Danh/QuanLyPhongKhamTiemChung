@@ -172,6 +172,15 @@ using DTO;
             }).ToList();
             return dsVaccine;
         }
+        private DataTable dtvc = new DataTable();
+        public DataTable ThongKeVCDaTiem()
+        {
+            string query = @"
+            select VACCINE.TenVC , sum(CTHD.SOLUONG) as SoLuong from VACCINE join CHITIETHOADON CTHD on CTHD.MaVC = VACCINE.MaVC Group by TenVC";
 
+            SqlDataAdapter adap = new SqlDataAdapter(query, conn);
+            adap.Fill(dtvc);
+            return dtvc;
+        }
     }
 }

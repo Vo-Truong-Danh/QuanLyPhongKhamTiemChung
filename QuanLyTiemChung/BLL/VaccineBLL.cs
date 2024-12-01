@@ -58,5 +58,9 @@ namespace BLL
         {
             return vcbll.LoadDSVaccine();
         }
+        public DataTable ThongKeVCDaTiem()
+        {
+            return vcbll.ThongKeVCDaTiem();
+        }
     }
 }
