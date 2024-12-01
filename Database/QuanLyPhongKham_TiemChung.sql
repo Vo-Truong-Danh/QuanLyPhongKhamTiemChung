@@ -293,6 +293,22 @@ BEGIN
 END
 GO
 
+--===================================Thông kê==============================================
+	
+--Thống kê nhập hàng theo tháng
+select YEAR(NgayNhap),MONTH(NgayNhap) AS N'Tháng Lập' , SUM(TongTien) from PHIEUNHAP group by YEAR(NgayNhap),MONTH(NgayNhap) order by YEAR(NgayNhap) , MONTH(NgayNhap) 
+
+
+--Thống kê doanh thu bán hàng theo tháng
+SELECT CONCAT(MONTH(NgayLap), '-', YEAR(NgayLap)) AS ThangNam, SUM(TongTien) AS TongTien FROM HOADON GROUP BY YEAR(NgayLap), MONTH(NgayLap)ORDER BY YEAR(NgayLap), MONTH(NgayLap)
+
+--Thống kê số lượng vaccine đã tiêm
+select VACCINE.TenVC , sum(CTHD.SOLUONG) as SoLuong from VACCINE join CHITIETHOADON CTHD on CTHD.MaVC = VACCINE.MaVC Group by TenVC
+
+
+--=================================================================================
+
+
 --CREATE CLUSTERED INDEX IX_MaBN_Counter ON dbo.MaBN_Counter (MaBN);
 --CREATE CLUSTERED INDEX IX_MaNV_Counter ON dbo.MaNV_Counter (MaNV);
 --CREATE CLUSTERED INDEX IX_MaNCC_Counter ON dbo.MaNCC_Counter (MaNCC);
