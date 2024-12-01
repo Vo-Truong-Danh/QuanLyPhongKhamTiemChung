@@ -81,7 +81,7 @@ namespace GUI
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(104, 161);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(551, 37);
+            this.label2.Size = new System.Drawing.Size(583, 38);
             this.label2.TabIndex = 2;
             this.label2.Text = "Chăm sóc sức khỏe là nền tảng của cuộc sống.";
             // 
@@ -220,6 +220,7 @@ namespace GUI
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmTrangChu";
             this.Text = "frmTrangChu";
+            this.Load += new System.EventHandler(this.frmTrangChu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

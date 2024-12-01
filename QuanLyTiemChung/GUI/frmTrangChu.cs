@@ -33,5 +33,6 @@ namespace GUI
             lblMuiTiem.Text = " " + cthdbll.SoLuong() + " Mũi đã tiêm ";
             lblMuiTiem.ForeColor = Color.Black;
         }
+
     }
 }
