@@ -134,18 +134,23 @@ namespace DAL
             }
         }
         public bool KTKhoaNgoai(string MaBN)
-        {
-            string queryCheckFK = "SELECT COUNT(*) FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN";
+        {           
+            string queryCheckFK = @"
+        SELECT count(*) FROM GHINHANTIEMCHUNG GN,HOADON HD,LICHTIEM LT WHERE GN.MaBN = @MaBN OR HD.MaBN=@MaBN OR LT.MaBN=@MaBN";
+
             using (SqlConnection conn = new SqlConnection(GeneralDAL.connectStrg))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(queryCheckFK, conn);
-                cmd.Parameters.AddWithValue("@MaBN", MaBN);
-
-                int relatedCount = (int)cmd.ExecuteScalar();
-                return relatedCount > 0;
+                using (SqlCommand cmd = new SqlCommand(queryCheckFK, conn))
+                {                    
+                    cmd.Parameters.AddWithValue("@MaBN", MaBN);                   
+                    var result = cmd.ExecuteScalar();
+                    int relatedCount = result != null ? Convert.ToInt32(result) : 0;                    
+                    return relatedCount > 0;
+                }
             }
         }
+
         public bool Delete(string MaBN)
         {
             if (KTKhoaNgoai(MaBN))

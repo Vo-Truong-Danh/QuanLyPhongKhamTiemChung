@@ -15,7 +15,7 @@ namespace DAL
         // Thêm hóa đơn
         public HoaDonDAL()
         {
-            //dbHelper = new DatabaseHelper(GeneralDAL.connectStrg);
+            dbHelper = new DatabaseHelper(GeneralDAL.connectStrg);
         }
         public bool AddInvoice(HoaDonDTO hoaDonDTO)
         {

@@ -38,7 +38,7 @@ namespace BLL
             hdDAL.ClearDataSet();
         }
 
-        public string GetLastHDID()
+        public string NewIDHD()
         {
            return hdDAL.NewIDHD();
         }

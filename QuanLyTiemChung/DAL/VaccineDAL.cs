@@ -120,7 +120,6 @@ using DTO;
             }
             return tmp;
         }
-
         public DataTable SearchTen(string ndtimkiem)
         {
             DataRow[] dr = dt.Select("TenVC LIKE '%" + ndtimkiem + "%' ");
@@ -133,20 +132,31 @@ using DTO;
         }
         public VaccineDTO SearchChiTiet(string ndtimkiem)
         {
-            DataRow[] dr = dt.Select("MaVC = '" + ndtimkiem + "' ");
-            VaccineDTO vcdto = new VaccineDTO()
+            if (string.IsNullOrEmpty(ndtimkiem))
+            {
+                return null;
+            }
+
+            DataRow[] dr = dt.Select("MaVC = '" + ndtimkiem + "'");
+            if (dr == null || dr.Length == 0)
+            {
+                return null; 
+            }
+
+            VaccineDTO vcdto = new VaccineDTO
             {
                 Mavc = dr[0][0].ToString(),
                 Maloai = dr[0][1].ToString(),
                 Tenvc = dr[0][2].ToString(),
                 Ngaysx = dr[0][3].ToString(),
                 Hansudung = dr[0][4].ToString(),
-                Gia = int.Parse(dr[0][6].ToString()),
-                Xuatxu = dr[0][7].ToString(),
-
+                Gia = int.TryParse(dr[0][6].ToString(), out int gia) ? gia : 0,
+                Xuatxu = dr[0][7].ToString()
             };
+
             return vcdto;
         }
+
 
         public List<string> LoadDSXuatXu()
         {

@@ -48,10 +48,6 @@ namespace BLL
                 DataView view = bnDAL.GetDataViewFromTimKiem(searchStr);
                 return view;
         }
-        //public void ClearDataSet()
-        //{
-        //    bnDAL.ClearDataSet();
-        //}
         public int SoLuong()
         {
             return bnDAL.SoLuong();
