@@ -31,12 +31,12 @@ namespace GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQLVaccine));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tctChinh = new System.Windows.Forms.TabControl();
             this.tabKhoVaccine = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -49,6 +49,7 @@ namespace GUI
             this.XoaVaccineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CapNhatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.pnlLocXuatXu = new System.Windows.Forms.Panel();
@@ -270,25 +271,25 @@ namespace GUI
             this.dgvVaccine.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVaccine.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvVaccine.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVaccine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
             this.dgvVaccine.ColumnHeadersHeight = 29;
             this.dgvVaccine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvVaccine.ContextMenuStrip = this.cntXoaSua;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvVaccine.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvVaccine.DefaultCellStyle = dataGridViewCellStyle43;
             this.dgvVaccine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvVaccine.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dgvVaccine.EnableHeadersVisualStyles = false;
@@ -317,16 +318,19 @@ namespace GUI
             this.XoaVaccineToolStripMenuItem.Name = "XoaVaccineToolStripMenuItem";
             this.XoaVaccineToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.XoaVaccineToolStripMenuItem.Text = "Xoá Vaccine";
+            this.XoaVaccineToolStripMenuItem.Click += new System.EventHandler(this.XoaVaccineToolStripMenuItem_Click);
             // 
             // CapNhatToolStripMenuItem
             // 
             this.CapNhatToolStripMenuItem.Name = "CapNhatToolStripMenuItem";
             this.CapNhatToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.CapNhatToolStripMenuItem.Text = "Cập nhật";
+            this.CapNhatToolStripMenuItem.Click += new System.EventHandler(this.CapNhatToolStripMenuItem_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnLuu);
             this.panel2.Controls.Add(this.pnlLocXuatXu);
@@ -339,17 +343,27 @@ namespace GUI
             this.panel2.Size = new System.Drawing.Size(1884, 70);
             this.panel2.TabIndex = 5;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button2.Image = global::GUI.Properties.Resources.cancel_83449661;
+            this.button2.Location = new System.Drawing.Point(1155, 8);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
+            this.button2.Size = new System.Drawing.Size(62, 54);
+            this.button2.TabIndex = 31;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.button1.Image = global::GUI.Properties.Resources.vaccine_3021063;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1081, 8);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.button1.Image = global::GUI.Properties.Resources.file_109646911;
+            this.button1.Location = new System.Drawing.Point(1077, 8);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
-            this.button1.Size = new System.Drawing.Size(146, 54);
+            this.button1.Size = new System.Drawing.Size(62, 54);
             this.button1.TabIndex = 30;
-            this.button1.Text = "Report";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = false;
             // 
@@ -358,7 +372,7 @@ namespace GUI
             this.btnLuu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(102)))));
             this.btnLuu.Image = global::GUI.Properties.Resources.save;
             this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuu.Location = new System.Drawing.Point(1233, 7);
+            this.btnLuu.Location = new System.Drawing.Point(1233, 8);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
             this.btnLuu.Size = new System.Drawing.Size(118, 54);
@@ -486,7 +500,7 @@ namespace GUI
             // 
             // btnThemVC
             // 
-            this.btnThemVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btnThemVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnThemVC.Image = global::GUI.Properties.Resources.vaccine_3021063;
             this.btnThemVC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnThemVC.Location = new System.Drawing.Point(888, 8);
@@ -689,7 +703,8 @@ namespace GUI
             // 
             // btnInPhieuNhap
             // 
-            this.btnInPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnInPhieuNhap.Image = global::GUI.Properties.Resources._in;
             this.btnInPhieuNhap.Location = new System.Drawing.Point(275, 24);
             this.btnInPhieuNhap.Name = "btnInPhieuNhap";
             this.btnInPhieuNhap.Size = new System.Drawing.Size(70, 46);
@@ -703,11 +718,11 @@ namespace GUI
             // btnLuuPhieuNhap
             // 
             this.btnLuuPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnLuuPhieuNhap.Image = global::GUI.Properties.Resources.save;
             this.btnLuuPhieuNhap.Location = new System.Drawing.Point(191, 24);
             this.btnLuuPhieuNhap.Name = "btnLuuPhieuNhap";
             this.btnLuuPhieuNhap.Size = new System.Drawing.Size(78, 46);
             this.btnLuuPhieuNhap.TabIndex = 4;
-            this.btnLuuPhieuNhap.Text = "Lưu";
             this.toolTip.SetToolTip(this.btnLuuPhieuNhap, "Nhấn vào để lưu phiếu nhập vào cơ sở dử liệu");
             this.btnLuuPhieuNhap.UseVisualStyleBackColor = false;
             this.btnLuuPhieuNhap.Visible = false;
@@ -715,7 +730,7 @@ namespace GUI
             // 
             // btnTaoPhieuNhap
             // 
-            this.btnTaoPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btnTaoPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnTaoPhieuNhap.Location = new System.Drawing.Point(5, 24);
             this.btnTaoPhieuNhap.Name = "btnTaoPhieuNhap";
             this.btnTaoPhieuNhap.Size = new System.Drawing.Size(180, 46);
@@ -817,9 +832,9 @@ namespace GUI
             // 
             // btnCapNhatCTPN
             // 
-            this.btnCapNhatCTPN.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnCapNhatCTPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnCapNhatCTPN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhatCTPN.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhatCTPN.Image")));
+            this.btnCapNhatCTPN.Image = global::GUI.Properties.Resources.file_109646911;
             this.btnCapNhatCTPN.Location = new System.Drawing.Point(347, 300);
             this.btnCapNhatCTPN.Margin = new System.Windows.Forms.Padding(0);
             this.btnCapNhatCTPN.Name = "btnCapNhatCTPN";
@@ -832,9 +847,9 @@ namespace GUI
             // 
             // btnXoaCTPN
             // 
-            this.btnXoaCTPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnXoaCTPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnXoaCTPN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaCTPN.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaCTPN.Image")));
+            this.btnXoaCTPN.Image = global::GUI.Properties.Resources.xoa;
             this.btnXoaCTPN.Location = new System.Drawing.Point(198, 300);
             this.btnXoaCTPN.Margin = new System.Windows.Forms.Padding(0);
             this.btnXoaCTPN.Name = "btnXoaCTPN";
@@ -847,10 +862,10 @@ namespace GUI
             // 
             // btnThemCTPN
             // 
-            this.btnThemCTPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(255)))), ((int)(((byte)(181)))));
+            this.btnThemCTPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnThemCTPN.Enabled = false;
             this.btnThemCTPN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemCTPN.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCTPN.Image")));
+            this.btnThemCTPN.Image = global::GUI.Properties.Resources.them2;
             this.btnThemCTPN.Location = new System.Drawing.Point(49, 300);
             this.btnThemCTPN.Margin = new System.Windows.Forms.Padding(0);
             this.btnThemCTPN.Name = "btnThemCTPN";
@@ -943,14 +958,14 @@ namespace GUI
             this.dtgDanhSachVCduocChon.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgDanhSachVCduocChon.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dtgDanhSachVCduocChon.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgDanhSachVCduocChon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgDanhSachVCduocChon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle39;
             this.dtgDanhSachVCduocChon.ColumnHeadersHeight = 29;
             this.dtgDanhSachVCduocChon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgDanhSachVCduocChon.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -983,7 +998,7 @@ namespace GUI
             // 
             this.pnlThongBaoTab2.BackColor = System.Drawing.Color.Black;
             this.pnlThongBaoTab2.Controls.Add(this.pnlThongBaotab2s);
-            this.pnlThongBaoTab2.Location = new System.Drawing.Point(3, 892);
+            this.pnlThongBaoTab2.Location = new System.Drawing.Point(6, 715);
             this.pnlThongBaoTab2.Name = "pnlThongBaoTab2";
             this.pnlThongBaoTab2.Size = new System.Drawing.Size(555, 72);
             this.pnlThongBaoTab2.TabIndex = 1;
@@ -1080,7 +1095,7 @@ namespace GUI
             // 
             this.pnlTb3.BackColor = System.Drawing.Color.DimGray;
             this.pnlTb3.Controls.Add(this.pnlTb3s);
-            this.pnlTb3.Location = new System.Drawing.Point(488, 861);
+            this.pnlTb3.Location = new System.Drawing.Point(290, 687);
             this.pnlTb3.Name = "pnlTb3";
             this.pnlTb3.Size = new System.Drawing.Size(555, 91);
             this.pnlTb3.TabIndex = 11;
@@ -1117,8 +1132,8 @@ namespace GUI
             // 
             // btnSaveNCC
             // 
-            this.btnSaveNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(102)))));
-            this.btnSaveNCC.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNCC.Image")));
+            this.btnSaveNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSaveNCC.Image = global::GUI.Properties.Resources.save;
             this.btnSaveNCC.Location = new System.Drawing.Point(471, 29);
             this.btnSaveNCC.Margin = new System.Windows.Forms.Padding(0);
             this.btnSaveNCC.Name = "btnSaveNCC";
@@ -1129,8 +1144,8 @@ namespace GUI
             // 
             // btnCapNhatNCC
             // 
-            this.btnCapNhatNCC.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnCapNhatNCC.Image = global::GUI.Properties.Resources.file_10964691;
+            this.btnCapNhatNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnCapNhatNCC.Image = global::GUI.Properties.Resources.file_109646911;
             this.btnCapNhatNCC.Location = new System.Drawing.Point(407, 29);
             this.btnCapNhatNCC.Name = "btnCapNhatNCC";
             this.btnCapNhatNCC.Size = new System.Drawing.Size(55, 50);
@@ -1148,14 +1163,14 @@ namespace GUI
             this.dgvNCC.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvNCC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvNCC.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNCC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNCC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.dgvNCC.ColumnHeadersHeight = 29;
             this.dgvNCC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvNCC.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -1173,8 +1188,8 @@ namespace GUI
             // 
             // btnXoaNCC
             // 
-            this.btnXoaNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(134)))));
-            this.btnXoaNCC.Image = global::GUI.Properties.Resources.cancel_8344966;
+            this.btnXoaNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnXoaNCC.Image = global::GUI.Properties.Resources.cancel_83449661;
             this.btnXoaNCC.Location = new System.Drawing.Point(343, 29);
             this.btnXoaNCC.Name = "btnXoaNCC";
             this.btnXoaNCC.Size = new System.Drawing.Size(55, 50);
@@ -1184,8 +1199,8 @@ namespace GUI
             // 
             // btnThemNCC
             // 
-            this.btnThemNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(231)))), ((int)(((byte)(154)))));
-            this.btnThemNCC.Image = ((System.Drawing.Image)(resources.GetObject("btnThemNCC.Image")));
+            this.btnThemNCC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnThemNCC.Image = global::GUI.Properties.Resources.them2;
             this.btnThemNCC.Location = new System.Drawing.Point(279, 29);
             this.btnThemNCC.Name = "btnThemNCC";
             this.btnThemNCC.Size = new System.Drawing.Size(55, 50);
@@ -1220,8 +1235,8 @@ namespace GUI
             // 
             // LuuLoaiVaccine
             // 
-            this.LuuLoaiVaccine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(102)))));
-            this.LuuLoaiVaccine.Image = ((System.Drawing.Image)(resources.GetObject("LuuLoaiVaccine.Image")));
+            this.LuuLoaiVaccine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.LuuLoaiVaccine.Image = global::GUI.Properties.Resources.save;
             this.LuuLoaiVaccine.Location = new System.Drawing.Point(431, 29);
             this.LuuLoaiVaccine.Margin = new System.Windows.Forms.Padding(0);
             this.LuuLoaiVaccine.Name = "LuuLoaiVaccine";
@@ -1232,8 +1247,8 @@ namespace GUI
             // 
             // btnCapNhatLoaiVaccine
             // 
-            this.btnCapNhatLoaiVaccine.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnCapNhatLoaiVaccine.Image = global::GUI.Properties.Resources.file_10964691;
+            this.btnCapNhatLoaiVaccine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnCapNhatLoaiVaccine.Image = global::GUI.Properties.Resources.file_109646911;
             this.btnCapNhatLoaiVaccine.Location = new System.Drawing.Point(373, 29);
             this.btnCapNhatLoaiVaccine.Name = "btnCapNhatLoaiVaccine";
             this.btnCapNhatLoaiVaccine.Size = new System.Drawing.Size(55, 50);
@@ -1243,14 +1258,14 @@ namespace GUI
             // 
             // btnXoaLoaiVC
             // 
-            this.btnXoaLoaiVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(134)))));
-            this.btnXoaLoaiVC.Image = global::GUI.Properties.Resources.cancel_8344966;
+            this.btnXoaLoaiVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnXoaLoaiVC.Image = global::GUI.Properties.Resources.cancel_83449661;
             this.btnXoaLoaiVC.Location = new System.Drawing.Point(312, 29);
             this.btnXoaLoaiVC.Name = "btnXoaLoaiVC";
             this.btnXoaLoaiVC.Size = new System.Drawing.Size(55, 50);
             this.btnXoaLoaiVC.TabIndex = 3;
             this.btnXoaLoaiVC.UseVisualStyleBackColor = false;
-            this.btnXoaLoaiVC.Click += new System.EventHandler(this.btnXoaLoaiVC_Click_1);
+            this.btnXoaLoaiVC.Click += new System.EventHandler(this.btnXoaLoaiVC_Click);
             // 
             // label8
             // 
@@ -1264,8 +1279,8 @@ namespace GUI
             // 
             // btnThemLoaiVC
             // 
-            this.btnThemLoaiVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(231)))), ((int)(((byte)(154)))));
-            this.btnThemLoaiVC.Image = ((System.Drawing.Image)(resources.GetObject("btnThemLoaiVC.Image")));
+            this.btnThemLoaiVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnThemLoaiVC.Image = global::GUI.Properties.Resources.them2;
             this.btnThemLoaiVC.Location = new System.Drawing.Point(251, 29);
             this.btnThemLoaiVC.Name = "btnThemLoaiVC";
             this.btnThemLoaiVC.Size = new System.Drawing.Size(55, 50);
@@ -1283,14 +1298,14 @@ namespace GUI
             this.dgvLoaiVC.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvLoaiVC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvLoaiVC.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLoaiVC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLoaiVC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.dgvLoaiVC.ColumnHeadersHeight = 29;
             this.dgvLoaiVC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvLoaiVC.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -1500,7 +1515,8 @@ namespace GUI
         private PictureBox pictureBox4;
         private TextBox lblndTab3;
         private System.Windows.Forms.Timer TimeTab3;
-        private Button button1;
         private Button btnInPhieuNhap;
+        private Button button1;
+        private Button button2;
     }
 }

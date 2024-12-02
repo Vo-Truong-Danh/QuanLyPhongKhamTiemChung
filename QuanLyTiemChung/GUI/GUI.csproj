@@ -187,6 +187,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Rp_LichSuTiemChung.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -214,14 +215,17 @@
     <Content Include="Resources\add_4671484.png" />
     <Content Include="Resources\calendar_5408851.png" />
     <Content Include="Resources\cancel_8344966.png" />
+    <None Include="Resources\cancel_83449661.png" />
     <Content Include="Resources\cut.png" />
     <Content Include="Resources\dangnhap.gif" />
     <Content Include="Resources\doctor_5528539.png" />
     <Content Include="Resources\edit_7790272.png" />
     <Content Include="Resources\file_10964691.png" />
+    <None Include="Resources\file_109646911.png" />
     <Content Include="Resources\hospital_16767235.gif" />
     <Content Include="Resources\house-medical_9239309.png" />
     <Content Include="Resources\image-removebg-preview.png" />
+    <None Include="Resources\in.png" />
     <Content Include="Resources\load.png" />
     <Content Include="Resources\login_8717908.gif" />
     <Content Include="Resources\logout_4263191.png" />
@@ -234,6 +238,9 @@
     <Content Include="Resources\search_14265494.png" />
     <Content Include="Resources\search_17548385.png" />
     <Content Include="Resources\sync_8468966.png" />
+    <None Include="Resources\them.png" />
+    <None Include="Resources\them1.png" />
+    <None Include="Resources\them2.png" />
     <Content Include="Resources\thongke.png" />
     <Content Include="Resources\tim.gif" />
     <Content Include="Resources\timkiem.png" />
