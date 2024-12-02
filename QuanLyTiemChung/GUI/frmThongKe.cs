@@ -71,7 +71,7 @@ namespace GUI
             chartVCDaTiem.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 8f);
 
             // Gán cột từ DataTable cho seriesVaccine
-            seriesVaccine.XValueMember = "TenVC"; // Tên Vaccine trên trục X
+            seriesVaccine.XValueMember = "TenLoai"; // Tên Vaccine trên trục X
             seriesVaccine.YValueMembers = "SoLuong"; // Số lượng đã tiêm trên trục Y
             seriesVaccine.ChartType = SeriesChartType.Column;
             seriesVaccine.IsValueShownAsLabel = true;

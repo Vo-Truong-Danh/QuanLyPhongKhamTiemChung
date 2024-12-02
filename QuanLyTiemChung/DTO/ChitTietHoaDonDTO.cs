@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class ChiTietHoaDonDTO
+    public class ChitTietHoaDonDTO
     {
 		public string MaHD { get; set; }
 		public string MaVC { get; set; }
 		public int SoLuong { get; set; }
 		public float DonGia { get; set; }
 
-		public ChiTietHoaDonDTO(string maHD, string maVC, int soLuong, float donGia)
+		public ChitTietHoaDonDTO(string maHD, string maVC, int soLuong, float donGia)
 		{
 			MaHD = maHD;
 			MaVC = maVC;

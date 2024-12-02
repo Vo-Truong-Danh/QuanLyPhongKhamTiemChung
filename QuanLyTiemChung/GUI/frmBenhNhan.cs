@@ -21,6 +21,7 @@ namespace GUI
         VaccineBLL vcBLL = new VaccineBLL();
         LoaiVaccineBLL loaiVCBLL = new LoaiVaccineBLL();
         HoaDonBLL hdBLL = new HoaDonBLL();
+        ChiTietHoaDonBLL cthdBLL = new ChiTietHoaDonBLL();
         public string maBN { get; set; }
         public frmBenhNhan()
         {
@@ -305,7 +306,6 @@ namespace GUI
         private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
         {
             bool kq = false;
-            string ketqua = "";
             string mabenhnhan = bnBLL.TaoMaBNMoi();
             // Them benh nhan
             if (!KTDuLieuBN())
@@ -316,7 +316,6 @@ namespace GUI
             if (kq)
             {
                 LoadListViewDSBN();
-                ketqua = "Bệnh nhân";
             }
             // Them hoa don
             if (txtMaHD.Text!=null)
@@ -326,37 +325,14 @@ namespace GUI
             }
             if (kq)
             {
-                ketqua = ketqua+" Hóa đơn";
-            }
-            // Them chi tiet hoa don
-            if (txtMaHD.Text != null)
-            { 
-                foreach(DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                {
-                    if(row.Cells[0].Value==null)
-                    { break; }    
-                    string mavc = row.Cells[0].Value.ToString();
-                    int soluong = int.Parse(row.Cells[3].Value.ToString());
-                    float dongia = float.Parse(row.Cells[4].Value.ToString());
-                    ChiTietHoaDonDTO hd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
-                    hdBLL.AddCTHD(hd);
-                }
-                ketqua = ketqua + " Chi tiết hóa đơn";
-            }
-
-
-
-            if (ketqua!=null)
-            {
-                MessageBox.Show($"Thêm thành công {ketqua}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearTextBox();
+                ClearErrorProvider();
             }
             else
             {
                 MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            ClearTextBox();
-            ClearErrorProvider();
-            ketqua =string.Empty;
         }
 
         private void btnKQTiemChung_Click(object sender, EventArgs e)
@@ -477,7 +453,6 @@ namespace GUI
             if (txtDonGia.Text == null || txtDonGia.Text == "")
             {
                 MessageBox.Show("Không thể thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
             }
             int ThanhTien = 0;
             string mavc = cboVaccine.SelectedValue.ToString();

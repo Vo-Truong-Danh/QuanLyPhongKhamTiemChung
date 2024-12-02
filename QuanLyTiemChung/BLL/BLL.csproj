@@ -45,7 +45,6 @@
     <Compile Include="ChiTietHoaDonBLL.cs" />
     <Compile Include="ChiTietPhieuNhapBLL.cs" />
     <Compile Include="HoaDonBLL.cs" />
-    <Compile Include="LichTiemBLL.cs" />
     <Compile Include="LoaiVaccineBLL.cs" />
     <Compile Include="NhaCungCapBLL.cs" />
     <Compile Include="NhanVienBLL.cs" />

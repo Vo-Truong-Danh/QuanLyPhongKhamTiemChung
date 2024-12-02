@@ -70,7 +70,7 @@ namespace DAL
         }
 
         // Thêm chi tiết hóa đơn
-        public void AddInvoiceDetail(ChiTietHoaDonDTO chitTietHoaDonDTO)
+        public void AddInvoiceDetail(ChitTietHoaDonDTO chitTietHoaDonDTO)
         {
             string query = "INSERT INTO CHITIETHOADON (MaHD, MaVC, SOLUONG, DONGIA) VALUES (@MaHD, @MaVC, @SoLuong, @DonGia)";
             SqlParameter[] parameters = {
@@ -93,7 +93,7 @@ namespace DAL
         }
 
         // Cập nhật chi tiết hóa đơn
-        public void UpdateInvoiceDetail(ChiTietHoaDonDTO chitTietHoaDonDTO)
+        public void UpdateInvoiceDetail(ChitTietHoaDonDTO chitTietHoaDonDTO)
         {
             string query = "UPDATE CHITIETHOADON SET SOLUONG = @SoLuong, DONGIA = @DonGia WHERE MaHD = @MaHD AND MaVC = @MaVC";
             SqlParameter[] parameters = {
@@ -198,7 +198,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public void UpdateOrNewCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
+        public void UpdateOrNewCTHD(ChitTietHoaDonDTO chitTietHoaDonDTO)
         {
             string query = "SELECT * FROM CHITIETHOADON WHERE MaHD = @MaHD and MaVC = @MaVC";
             SqlParameter[] parameters = {
@@ -208,8 +208,8 @@ namespace DAL
             DataTable dt = dbHelper.ExecuteQuery(query, parameters);
             if (dt.Rows.Count > 0)
             {
-                int newAmount = int.Parse(dt.Rows[0]["Soluong"].ToString()) + chitTietHoaDonDTO.SoLuong;
-                ChiTietHoaDonDTO newCthd = new ChiTietHoaDonDTO(chitTietHoaDonDTO.MaHD, chitTietHoaDonDTO.MaVC, newAmount, chitTietHoaDonDTO.DonGia);
+                int newAmount =  int.Parse(dt.Rows[0]["Soluong"].ToString()) + chitTietHoaDonDTO.SoLuong;
+                ChitTietHoaDonDTO newCthd = new ChitTietHoaDonDTO(chitTietHoaDonDTO.MaHD, chitTietHoaDonDTO.MaVC, newAmount, chitTietHoaDonDTO.DonGia);
                 UpdateInvoiceDetail(newCthd);
             }
             else
@@ -226,7 +226,7 @@ namespace DAL
         };
             DataTable dt = dbHelper.ExecuteQuery(query, parameters);
             return dt.Rows[0]["Gia"].ToString();
-
+            
         }
 
         public void UpdateHoaDonByNV(string maNV)

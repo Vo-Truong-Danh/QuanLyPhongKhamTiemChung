@@ -106,7 +106,7 @@
             this.chartVCDaTiem.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.chartVCDaTiem.Legends.Add(legend3);
-            this.chartVCDaTiem.Location = new System.Drawing.Point(622, 38);
+            this.chartVCDaTiem.Location = new System.Drawing.Point(581, 38);
             this.chartVCDaTiem.Name = "chartVCDaTiem";
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
@@ -120,7 +120,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(828, 21);
+            this.label3.Location = new System.Drawing.Point(794, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 16);
             this.label3.TabIndex = 5;
