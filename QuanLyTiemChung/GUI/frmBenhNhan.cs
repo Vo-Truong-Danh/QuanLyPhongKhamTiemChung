@@ -35,11 +35,10 @@ namespace GUI
             bnBLL = new BenhNhanBLL();
             chucvu = cv;
         }
-        public void LoadComboBoxVaccine()
+
+        public void LoadComboboxLoaiVacxin()
         {
-            cboLoaiVaccine.DataSource = loaiVCBLL.GetData();
-            cboLoaiVaccine.DisplayMember = "TenLoai";
-            cboLoaiVaccine.ValueMember = "MaLoai";
+
         }
         public string GetGioiTinh()
         {
@@ -54,11 +53,7 @@ namespace GUI
             txtHoTen.Clear();
             txtDiaChi.Clear();
             txtSoDT.Clear();
-            txtMaHD.Clear();
-            txtNgayLap.Clear();
-            txtTongTien.Clear();
-            dgvChiTietHoaDon.DataSource=null;
-        }
+        } 
         public void ClearErrorProvider()
         {
             errHoTen.Clear();
@@ -174,7 +169,6 @@ namespace GUI
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
             LoadListViewDSBN();
-            LoadComboBoxVaccine();
             if (chucvu == 2)
             {
                 btnXoaBN.Enabled = false;
@@ -289,18 +283,12 @@ namespace GUI
 
         private void btnDong_Click_1(object sender, EventArgs e)
         {
-            txtHoTeninTTBN.Clear();
-            txtDiaChiinTTBN.Clear();
-            txtSoDTinTTBN.Clear();
-            rdoNuinTTBN.Checked = false;
-            rdoNaminTTBN.Checked = false;
+            
             pnlThemBN.Visible = false;
-            pnlThongTinBenhNhan.Visible = false;
-            btnXoaBN.Enabled = true;
+            btnXoaBN.Enabled = true;;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            pnlThongTinBenhNhan.Visible = false;
             btnXoaBN.Enabled = true;
         }
         private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
@@ -320,30 +308,7 @@ namespace GUI
                 ketqua = "Bệnh nhân";
             }
             // Them hoa don
-            if (txtMaHD.Text != null)
-            {
-                HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, mabenhnhan, "NV001", float.Parse(txtTongTien.Text));
-                kq = hdBLL.Insert(hd);
-            }
-            if (kq)
-            {
-                ketqua = ketqua + " Hóa đơn";
-            }
-            // Them chi tiet hoa don
-            if (txtMaHD.Text != null)
-            {
-                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                {
-                    if (row.Cells[0].Value == null)
-                    { break; }
-                    string mavc = row.Cells[0].Value.ToString();
-                    int soluong = int.Parse(row.Cells[3].Value.ToString());
-                    float dongia = float.Parse(row.Cells[4].Value.ToString());
-                    ChiTietHoaDonDTO hd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
-                    hdBLL.AddCTHD(hd);
-                }
-                ketqua = ketqua + " Chi tiết hóa đơn";
-            }
+            
 
 
 
@@ -372,33 +337,7 @@ namespace GUI
         private string MaBenhNhan;
         private void btnThongTinChiTietBenhNhan_Click(object sender, EventArgs e)
         {
-            if (lstvDSBN.SelectedItems.Count > 0)
-            {
-                btnXoaBN.Enabled = false;
-                pnlThemBN.Visible = true;
-                pnlThongTinBenhNhan.Visible = true;
-                pnlThongTinBenhNhan.BringToFront();
-
-                // Lấy giá trị từ ListViewItem
-                ListViewItem item = lstvDSBN.SelectedItems[0];
-                MaBenhNhan = item.SubItems[0].Text;
-                string HoTen = item.SubItems[1].Text;
-                string NgaySinh = item.SubItems[2].Text;
-                string GioiTinh = item.SubItems[3].Text;
-                string DiaChi = item.SubItems[4].Text;
-                string SoDT = item.SubItems[5].Text;
-
-                string[] date = NgaySinh.Split('/');
-
-                txtHoTeninTTBN.Text = HoTen;
-                if (GioiTinh == "Nam")
-                    rdoNaminTTBN.Checked = true;
-                else
-                    rdoNuinTTBN.Checked = true;
-                dtpNgaySinhinTTBN.Value = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
-                txtDiaChiinTTBN.Text = DiaChi;
-                txtSoDTinTTBN.Text = SoDT;
-            }
+            
         }
 
 
@@ -422,14 +361,7 @@ namespace GUI
             LoadListViewDSBN();
         }
 
-        private void cboLoaiVaccine_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-            DataTable dr = vcBLL.LayTTVC().Select("MaLoai='" + maLoai + "'").CopyToDataTable();
-            cboVaccine.DataSource = dr;
-            cboVaccine.DisplayMember = "TenVC";
-            cboVaccine.ValueMember = "MaVC";
-        }
+        
 
         private void btnKQTiemChung_Click_1(object sender, EventArgs e)
         {
@@ -440,109 +372,39 @@ namespace GUI
                 fm.ShowDialog();
             }
         }
-        // Tạo Hóa Đơn
-        private void btnTaoHD_Click(object sender, EventArgs e)
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            txtMaHD.Text = hdBLL.NewIDHD();
-            txtNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            txtTongTien.Text = 0.ToString();
-            btnThemBenhNhan.Enabled = true;
-            btnThemMuiTiem.Enabled = true;
-            btnDieuChinhSoLuong.Enabled = true;
+            pnlThongTinBenhNhan.Visible = false;
+            btnXoaBN.Enabled = true; ;
         }
 
-        private void cboVaccine_SelectionChangeCommitted(object sender, EventArgs e)
+        private void lstvDSBN_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (cboVaccine.SelectedValue == null || cboVaccine.SelectedValue.ToString() == "")
-            {
-                txtDonGia.Text = string.Empty;
-                return;
-            }
+            
+                btnXoaBN.Enabled = false;
+                pnlThongTinBenhNhan.Visible = true;
+                pnlThongTinBenhNhan.BringToFront();
+                // Lấy giá trị từ ListViewItem
+                ListViewItem item = lstvDSBN.SelectedItems[0];
+                MaBenhNhan = item.SubItems[0].Text;
+                string HoTen = item.SubItems[1].Text;
+                string NgaySinh = item.SubItems[2].Text;
+                string GioiTinh = item.SubItems[3].Text;
+                string DiaChi = item.SubItems[4].Text;
+                string SoDT = item.SubItems[5].Text;
 
-            string mavaccine = cboVaccine.SelectedValue.ToString();
-            VaccineDTO vaccine = vcBLL.SearchChiTiet(mavaccine);
+                string[] date = NgaySinh.Split('/');
 
-            if (vaccine != null)
-            {
-                txtDonGia.Text = vaccine.Gia.ToString();
-                txtSoLuong.Text = 1.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Không tìm thấy vaccine!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btnThemMuiTiem_Click(object sender, EventArgs e)
-        {
-            if (txtDonGia.Text == null || txtDonGia.Text == "")
-            {
-                MessageBox.Show("Không thể thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            int ThanhTien = 0;
-            string mavc = cboVaccine.SelectedValue.ToString();
-            foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-            {
-                if (row.Cells[0].Value== mavc)
-                {
-                    DialogResult r = MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có muốn thêm vào không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if(r==DialogResult.Yes)
-                    {
-                        row.Cells[3].Value = int.Parse(txtSoLuong.Text.Trim()) + int.Parse(row.Cells[3].Value.ToString());
-                        row.Cells[5].Value = int.Parse(row.Cells[3].Value.ToString()) * int.Parse(row.Cells[4].Value.ToString());
-                        return;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
-            ThanhTien = int.Parse(txtSoLuong.Text) * int.Parse(txtDonGia.Text);
-            dgvChiTietHoaDon.Rows.Add(mavc, cboVaccine.Text, cboLoaiVaccine.Text, int.Parse(txtSoLuong.Text), int.Parse(txtDonGia.Text), ThanhTien);
-        }
-
-        private void btnDieuChinhSoLuong_Click(object sender, EventArgs e)
-        {
-            if (dgvChiTietHoaDon.CurrentRow != null && txtSoLuong.Text.Trim() != null)
-            {
-                dgvChiTietHoaDon.CurrentRow.Cells[3].Value = txtSoLuong.Text;
-                dgvChiTietHoaDon.CurrentRow.Cells[5].Value = int.Parse(dgvChiTietHoaDon.CurrentRow.Cells[3].Value.ToString()) * int.Parse(dgvChiTietHoaDon.CurrentRow.Cells[4].Value.ToString());
-            }
-            else
-                MessageBox.Show("Không thể điều chỉnh!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        public int TongThanhTienHoaDon()
-        {
-            int tong = 0;
-            foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-            {
-                if (row.IsNewRow || row.Cells[5].Value == null)
-                    continue;
-                if (int.TryParse(row.Cells[5].Value.ToString(), out int value))
-                {
-                    tong += value;
-                }
-            }
-            return tong;
-        }
-        private void dgvChiTietHoaDon_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvChiTietHoaDon.Rows.Count == 0) return;
-            txtTongTien.Text = TongThanhTienHoaDon().ToString();
-        }
-
-        private void dgvChiTietHoaDon_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            if (dgvChiTietHoaDon.Rows.Count == 0) return;
-            txtTongTien.Text = TongThanhTienHoaDon().ToString();
-        }
-
-        private void dgvChiTietHoaDon_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            if (dgvChiTietHoaDon.Rows.Count == 0) return;
-            txtTongTien.Text = TongThanhTienHoaDon().ToString();
+                txtHoTeninTTBN.Text = HoTen;
+                if (GioiTinh == "Nam")
+                    rdoNaminTTBN.Checked = true;
+                else
+                    rdoNuinTTBN.Checked = true;
+                dtpNgaySinhinTTBN.Value = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
+                txtDiaChiinTTBN.Text = DiaChi;
+                txtSoDTinTTBN.Text = SoDT;
+            
         }
     }
 }

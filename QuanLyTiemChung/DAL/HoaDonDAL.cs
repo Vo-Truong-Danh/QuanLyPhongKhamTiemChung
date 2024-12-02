@@ -27,14 +27,10 @@ namespace DAL
             new SqlParameter("@MaNV", hoaDonDTO.MaNV),
             new SqlParameter("@TongTien", hoaDonDTO.TongTien)
         };
-            try
-            {
+            
+            
                 dbHelper.ExecuteNonQuery(query, parameters);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            
             return true;
         }
 
