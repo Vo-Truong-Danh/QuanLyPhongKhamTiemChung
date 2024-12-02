@@ -1,4 +1,5 @@
 ﻿using BLL;
+using CrystalDecisions.Shared;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -149,6 +150,72 @@ namespace GUI
             }
             else
                 error.Clear();
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            VaccineDTO.CheckTB = true;
+            DialogResult t = MessageBox.Show("Bạn có chắc muốn lưu thông tin này không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (t == DialogResult.Yes)
+            {
+                if (mavcdto == null)
+                {
+                    int sl = vcbll.LayTTVC().Rows.Count + 1;
+                    VaccineDTO vcdto = new VaccineDTO()
+                    {
+                        Mavc = "VC" + sl.ToString("D3") + "",
+                        Maloai = cboLoaiVC.SelectedValue.ToString(),
+                        Tenvc = txtTenVC.Text,
+                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Gia = int.Parse(txtGia.Text),
+                        Xuatxu = txtXuatXu.Text,
+                    };
+                    vcbll.Insert(vcdto);
+                }
+                else
+                {
+                    VaccineDTO vcdto = new VaccineDTO()
+                    {
+                        Mavc = mavcdto,
+                        Maloai = cboLoaiVC.SelectedValue.ToString(),
+                        Tenvc = txtTenVC.Text,
+                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Gia = int.Parse(txtGia.Text),
+                        Xuatxu = txtXuatXu.Text,
+                    };
+                    vcbll.Update(vcdto);
+                }
+            }
+            this.Close();
+        }
+
+        private void dteNSX_ValueChanged(object sender, EventArgs e)
+        {
+            if (dteNSX.Value > DateTime.Now)
+            {
+                dteNSX.Value = DateTime.Now.AddMonths(-1);
+                dteNSX.Focus();
+                error.SetError(dteNSX, "Ngày sản xuất không được sớm hơn thời gian hiện tại");
+            }
+            else
+            {
+                error.Clear();
+            }
+        }
+
+        private void dteHSD_ValueChanged(object sender, EventArgs e)
+        {
+            if (dteHSD.Value < dteNSX.Value)
+            {
+                dteHSD.Value = dteNSX.Value.AddMonths(24);
+                error.SetError(dteNSX, "Hạn sử dụng không được nhỏ hơn ngày sản xuất");
+            }
+            else
+            {
+                error.Clear();
+            }
         }
     }
 }
