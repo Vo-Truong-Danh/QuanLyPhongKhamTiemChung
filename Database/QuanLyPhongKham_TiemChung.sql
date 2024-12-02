@@ -129,34 +129,18 @@ CREATE TABLE GHINHANTIEMCHUNG
     TinhTrangSucKhoe NVARCHAR(50)
 );
 GO
-
-CREATE TRIGGER TR_MaLT_AutoGen
-ON LICHTIEM
-INSTEAD OF INSERT
-AS
-BEGIN
-    DECLARE @NewMaLT CHAR(5);
-    
-    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
-    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
-    FROM LICHTIEM;
-
-    -- Chèn vào bảng LICHTIEM với mã tự động
-    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
-    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
-    FROM INSERTED;
-END;
-GO
-
 -----------------------------------------------------------------------
 --------------------------------TRIGER---------------------------------
 -----------------------------------------------------------------------
 
---Tinh tong tien cho phieu nhap 
+-- =============================================
+-- Trigger: Tính tổng tiền cho phiếu nhập
+-- Mô tả: Tự động tính tổng tiền của phiếu nhập khi có sự thay đổi trong bảng CHITIETPHIEUNHAP (INSERT, UPDATE).
+-- =============================================
 GO
 CREATE TRIGGER TG_TinhTongTienPN
 ON CHITIETPHIEUNHAP
-FOR INSERT,UPDATE
+FOR INSERT, UPDATE
 AS
 BEGIN
 	UPDATE PHIEUNHAP
@@ -168,11 +152,14 @@ BEGIN
     WHERE MaPN IN (SELECT MaPN FROM inserted);
 END
 
---LẤY GIÁ CHOCHITIETHOADON TỪ VACCINE
+-- =============================================
+-- Trigger: Lấy giá cho chi tiết hóa đơn từ vaccine
+-- Mô tả: Cập nhật giá trong bảng CHITIETHOADON từ bảng VACCINE khi có sự thay đổi trong bảng CHITIETHOADON (INSERT, UPDATE).
+-- =============================================
 GO 
 CREATE TRIGGER TG_LAYDONGIACHOCTHD
 ON CHITIETHOADON
-FOR INSERT,UPDATE
+FOR INSERT, UPDATE
 AS
 BEGIN
 	UPDATE CHITIETHOADON
@@ -180,7 +167,11 @@ BEGIN
 	FROM VACCINE VC
 	WHERE VC.MaVC = CHITIETHOADON.MaVC
 END
--- tự tính tổng tiền hoá đơn 
+
+-- =============================================
+-- Trigger: Tính tổng tiền cho hóa đơn
+-- Mô tả: Tự động tính tổng tiền của hóa đơn khi có sự thay đổi trong bảng CHITIETHOADON (INSERT, UPDATE).
+-- =============================================
 GO
 CREATE TRIGGER TG_TINHTONGTIEN
 ON CHITIETHOADON
@@ -196,7 +187,10 @@ BEGIN
     WHERE MaHD IN (SELECT MaHD FROM inserted);
 END
 
---TỰ TẠO LỊCH TIÊM KHI CÓ HOÁ ĐƠN
+-- =============================================
+-- Trigger: Tạo lịch tiêm khi có hóa đơn
+-- Mô tả: Tự động tạo lịch tiêm khi có thêm hóa đơn vào bảng HOADON.
+-- =============================================
 GO 
 CREATE TRIGGER TG_TAOLICHTIEMKHITHEMHOADON
 ON HOADON
@@ -208,7 +202,10 @@ BEGIN
     FROM INSERTED i;
 END
 
---TỰ Thêm MÃ VACCINE vào LỊCH TIÊM KHI Thêm chi tiết hoá đơn
+-- =============================================
+-- Trigger: Thêm mã vaccine vào lịch tiêm khi có chi tiết hóa đơn
+-- Mô tả: Tự động thêm mã vaccine vào lịch tiêm khi có chi tiết hóa đơn.
+-- =============================================
 GO 
 CREATE TRIGGER TG_THEMMAVCVAOLICHTIEM
 ON CHITIETHOADON
@@ -222,8 +219,11 @@ BEGIN
 END
 GO
 
-
---Cộng số lượng tồn trong vaccine
+-- =============================================
+-- Trigger: Cộng số lượng tồn trong vaccine
+-- Mô tả: Cập nhật số lượng tồn của vaccine sau khi có thêm phiếu nhập vào bảng CHITIETPHIEUNHAP.
+-- =============================================
+GO
 CREATE TRIGGER TG_CONGSOLUONGTONCUAVACCINE
 ON CHITIETPHIEUNHAP
 FOR INSERT
@@ -240,7 +240,10 @@ BEGIN
     JOIN inserted I ON V.MaVC = I.MaVC;
 END
 
---Sau khi thêm GHINHANTIEMCHUNG, cập nhật TrangThai trong bảng LICHTIEM.
+-- =============================================
+-- Trigger: Cập nhật trạng thái lịch tiêm sau khi thêm ghi nhận tiêm chủng
+-- Mô tả: Cập nhật trạng thái của lịch tiêm sau khi thêm ghi nhận tiêm chủng vào bảng GHINHANTIEMCHUNG.
+-- =============================================
 GO
 CREATE TRIGGER TG_CAPNHAPTRANGTHAILICHTIEM
 ON GHINHANTIEMCHUNG
@@ -257,7 +260,10 @@ BEGIN
 	WHERE MaLT = (SELECT MaLT FROM inserted) AND MaVC = (SELECT MaVC FROM inserted ) AND MaBN = (SELECT MaBN FROM inserted)
 END
 
--- Kiểm tra số lượng vaccine trước khi thêm/cập nhật CHITIETHOADON.
+-- =============================================
+-- Trigger: Kiểm tra số lượng vaccine trước khi thêm/cập nhật chi tiết hóa đơn
+-- Mô tả: Kiểm tra số lượng vaccine còn lại trước khi thêm/cập nhật chi tiết hóa đơn.
+-- =============================================
 GO
 CREATE TRIGGER TG_KiemTraSoLuongVaccine
 ON CHITIETHOADON
@@ -293,7 +299,8 @@ BEGIN
 END
 GO
 
---===================================Thông kê==============================================
+
+--===================================Thống kê==============================================
 	
 --Thống kê nhập hàng theo tháng
 select YEAR(NgayNhap),MONTH(NgayNhap) AS N'Tháng Lập' , SUM(TongTien) from PHIEUNHAP group by YEAR(NgayNhap),MONTH(NgayNhap) order by YEAR(NgayNhap) , MONTH(NgayNhap) 
@@ -323,25 +330,527 @@ select VACCINE.TenVC , sum(CTHD.SOLUONG) as SoLuong from VACCINE join CHITIETHOA
 --------------------------Procedures----------------------------------
 ----------------------------------------------------------------------
 
---ThemLichTiem(@MaLT, @MaVC,@MaBN @NgayHenTiem)
---GO
---CREATE PROC PR_ThemLichTiem @MaLT CHAR(5), @MaVC CHAR(5),@MaNV CHAR(5),@MaBN CHAR(5), @NgayHenTiem DATE
---AS
---	IF EXISTS (SELECT * FROM LICHTIEM WHERE MaLT= @MaLT)
---		BEGIN
---			PRINT N'Mã lịch tiêm đã tồn tại'
---		END
---	ELSE IF NOT EXISTS ( SELECT * FROM LICHTIEM WHERE MaBN = @MaBN and MaVC =@MaVC )
---		BEGIN
---			PRINT N'Dử liệu không đúng'
---		END
---	ELSE
---		BEGIN 
---			INSERT INTO LICHTIEM([MaLT], [MaBN], [MaVC], [NgayHenTiem], [TrangThai]) VALUES(@MaLT,@MaBN,@MaVC,@NgayHenTiem,'Chưa tiêm')
---		END
-	
---exec PR_ThemLichTiem 'LT001','VC0006','NV0001','BN0002','2023-12-02'
+-- =============================================
+-- Procedure: Thêm bệnh nhân mới
+-- =============================================
+CREATE PROCEDURE sp_ThemBenhNhan
+    @MaBN CHAR(5),
+    @HoTen NVARCHAR(50),
+    @NgaySinh DATE,
+    @GioiTinh NVARCHAR(3),
+    @DiaChi NVARCHAR(90),
+    @SoDienThoai CHAR(10)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân đã tồn tại
+    IF EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân đã tồn tại.', 16, 1);
+        RETURN;
+    END
 
---select * from LICHTIEM
-	
+    -- Thêm mới bệnh nhân
+    INSERT INTO BENHNHAN (MaBN, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai)
+    VALUES (@MaBN, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai);
+END;
+GO
+
+-- =============================================
+-- Procedure: Cập nhật thông tin bệnh nhân
+-- =============================================
+CREATE PROCEDURE sp_CapNhatBenhNhan
+    @MaBN CHAR(5),
+    @HoTen NVARCHAR(50),
+    @NgaySinh DATE,
+    @GioiTinh NVARCHAR(3),
+    @DiaChi NVARCHAR(90),
+    @SoDienThoai CHAR(10)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Cập nhật thông tin bệnh nhân
+    UPDATE BENHNHAN
+    SET HoTen = @HoTen,
+        NgaySinh = @NgaySinh,
+        GioiTinh = @GioiTinh,
+        DiaChi = @DiaChi,
+        SoDienThoai = @SoDienThoai
+    WHERE MaBN = @MaBN;
+END;
+GO
+
+-- =============================================
+-- Procedure: Xóa bệnh nhân
+-- =============================================
+CREATE PROCEDURE sp_XoaBenhNhan
+    @MaBN CHAR(5)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Xóa bệnh nhân
+    DELETE FROM BENHNHAN
+    WHERE MaBN = @MaBN;
+END;
+GO
+
+-- =============================================
+-- Procedure: Thêm lịch tiêm
+-- =============================================
+CREATE PROCEDURE sp_ThemLichTiem
+    @MaLT CHAR(5),
+    @MaHD CHAR(5),
+    @MaBN CHAR(5),
+    @MaVC CHAR(5),
+    @NgayHenTiem DATE,
+    @TrangThai NVARCHAR(15)
+AS
+BEGIN
+    -- Kiểm tra mã lịch tiêm đã tồn tại
+    IF EXISTS (SELECT * FROM LICHTIEM WHERE MaLT = @MaLT)
+    BEGIN
+        RAISERROR(N'Mã lịch tiêm đã tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Kiểm tra mã bệnh nhân và vaccine tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    IF NOT EXISTS (SELECT * FROM VACCINE WHERE MaVC = @MaVC)
+    BEGIN
+        RAISERROR(N'Mã vaccine không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Thêm lịch tiêm
+    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+    VALUES (@MaLT, @MaHD, @MaBN, @MaVC, @NgayHenTiem, @TrangThai);
+END;
+GO
+
+-- =============================================
+-- Procedure: Cập nhật trạng thái lịch tiêm
+-- =============================================
+CREATE PROCEDURE sp_CapNhatTrangThaiLichTiem
+    @MaLT CHAR(5),
+    @MaHD CHAR(5),
+    @TrangThai NVARCHAR(15)
+AS
+BEGIN
+    -- Kiểm tra mã lịch tiêm tồn tại
+    IF NOT EXISTS (SELECT * FROM LICHTIEM WHERE MaLT = @MaLT AND MaHD = @MaHD)
+    BEGIN
+        RAISERROR(N'Lịch tiêm không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Cập nhật trạng thái lịch tiêm
+    UPDATE LICHTIEM
+    SET TrangThai = @TrangThai
+    WHERE MaLT = @MaLT AND MaHD = @MaHD;
+END;
+GO
+
+-- =============================================
+-- Procedure: Thêm hóa đơn
+-- =============================================
+CREATE PROCEDURE sp_ThemHoaDon
+    @MaHD CHAR(5),
+    @NgayLap DATE,
+    @MaBN CHAR(5),
+    @MaNV CHAR(5),
+    @TongTien FLOAT
+AS
+BEGIN
+    -- Kiểm tra mã hóa đơn đã tồn tại
+    IF EXISTS (SELECT * FROM HOADON WHERE MaHD = @MaHD)
+    BEGIN
+        RAISERROR(N'Mã hóa đơn đã tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Kiểm tra mã bệnh nhân và nhân viên tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    IF NOT EXISTS (SELECT * FROM NHANVIEN WHERE MaNV = @MaNV)
+    BEGIN
+        RAISERROR(N'Mã nhân viên không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Thêm hóa đơn
+    INSERT INTO HOADON (MaHD, NgayLap, MaBN, MaNV, TongTien)
+    VALUES (@MaHD, @NgayLap, @MaBN, @MaNV, @TongTien);
+END;
+GO
+
+-- =============================================
+-- Procedure: Thêm chi tiết hóa đơn
+-- =============================================
+CREATE PROCEDURE sp_ThemChiTietHoaDon
+    @MaHD CHAR(5),
+    @MaVC CHAR(5),
+    @SoLuong INT,
+    @DonGia FLOAT
+AS
+BEGIN
+    -- Kiểm tra mã hóa đơn và vaccine tồn tại
+    IF NOT EXISTS (SELECT * FROM HOADON WHERE MaHD = @MaHD)
+    BEGIN
+        RAISERROR(N'Mã hóa đơn không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    IF NOT EXISTS (SELECT * FROM VACCINE WHERE MaVC = @MaVC)
+    BEGIN
+        RAISERROR(N'Mã vaccine không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Thêm chi tiết hóa đơn
+    INSERT INTO CHITIETHOADON (MaHD, MaVC, SoLuong, DonGia)
+    VALUES (@MaHD, @MaVC, @SoLuong, @DonGia);
+END;
+GO
+
+-- =============================================
+-- Procedure: Lấy thông tin bệnh nhân theo mã
+-- =============================================
+CREATE PROCEDURE sp_LayThongTinBenhNhan
+    @MaBN CHAR(5)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Lấy thông tin bệnh nhân
+    SELECT * FROM BENHNHAN
+    WHERE MaBN = @MaBN;
+END;
+GO
+
+-- =============================================
+-- Procedure: Thống kê số lượng vaccine còn lại
+-- =============================================
+CREATE PROCEDURE sp_ThongKeSoLuongVaccine
+AS
+BEGIN
+    SELECT TenVC, SoLuongTon
+    FROM VACCINE
+    ORDER BY TenVC;
+END;
+GO
+
+-- =============================================
+-- Procedure: Thống kê lịch tiêm theo bệnh nhân
+-- =============================================
+CREATE PROCEDURE sp_ThongKeLichTiemTheoBenhNhan
+    @MaBN CHAR(5)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Thống kê lịch tiêm
+    SELECT LT.MaLT, LT.NgayHenTiem, LT.TrangThai, VC.TenVC
+    FROM LICHTIEM LT
+    JOIN VACCINE VC ON LT.MaVC = VC.MaVC
+    WHERE LT.MaBN = @MaBN;
+END;
+GO
+
+-- =============================================
+-- Procedure: Thống kê doanh thu
+-- =============================================
+CREATE PROCEDURE sp_ThongKeDoanhThu
+AS
+BEGIN
+    SELECT FORMAT(NgayLap, 'yyyy-MM') AS Thang, SUM(TongTien) AS DoanhThu
+    FROM HOADON
+    GROUP BY FORMAT(NgayLap, 'yyyy-MM')
+    ORDER BY Thang;
+END;
+GO
+-- Thống kê hàm
+-- 1. sp_ThemBenhNhan: Thêm bệnh nhân mới.
+-- 2. sp_CapNhatBenhNhan: Cập nhật thông tin bệnh nhân.
+-- 3. sp_XoaBenhNhan: Xóa bệnh nhân.
+-- 4. sp_ThemLichTiem: Thêm lịch tiêm.
+-- 5. sp_CapNhatTrangThaiLichTiem: Cập nhật trạng thái lịch tiêm.
+-- 6. sp_ThemHoaDon: Thêm hóa đơn.
+-- 7. sp_ThemChiTietHoaDon: Thêm chi tiết hóa đơn.
+-- 8. sp_LayThongTinBenhNhan: Lấy thông tin bệnh nhân theo mã.
+-- 9. sp_ThongKeSoLuongVaccine: Thống kê số lượng vaccine còn lại.
+-- 10. sp_ThongKeLichTiemTheoBenhNhan: Thống kê lịch tiêm theo bệnh nhân.
+-- 11. sp_ThongKeDoanhThu: Thống kê doanh thu.
+
+-----------------------------------------------------------------------
+--------------------------------FUNCTION-------------------------------
+-----------------------------------------------------------------------
+
+-- Bệnh nhân 
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_BenhNhan()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaBN CHAR(5);
+
+    SELECT @NewMaBN = 'BN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaBN, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM BENHNHAN;
+
+    RETURN @NewMaBN;
+END;
+GO
+-- Nhân viên
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_NhanVien()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaNV CHAR(5);
+
+    SELECT @NewMaNV = 'NV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaNV, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM NHANVIEN;
+
+    RETURN @NewMaNV;
+END;
+GO
+-- Nhà cung cấp
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_NhanVien()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaNV CHAR(5);
+
+    SELECT @NewMaNV = 'NV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaNV, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM NHANVIEN;
+
+    RETURN @NewMaNV;
+END;
+GO
+-- Loại vaccine
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_LoaiVaccine()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaLoai CHAR(5);
+
+    SELECT @NewMaLoai = 'LV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLoai, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LOAIVACCINE;
+
+    RETURN @NewMaLoai;
+END;
+GO
+-- Vaccine
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_LoaiVaccine()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaLoai CHAR(5);
+
+    SELECT @NewMaLoai = 'LV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLoai, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LOAIVACCINE;
+
+    RETURN @NewMaLoai;
+END;
+GO
+-- Hóa đơn
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_HoaDon()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaHD CHAR(5);
+
+    SELECT @NewMaHD = 'HD' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaHD, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM HOADON;
+
+    RETURN @NewMaHD;
+END;
+GO
+-- Phiếu nhập
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_PhieuNhap()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaPN CHAR(5);
+
+    SELECT @NewMaPN = 'PN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaPN, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM PHIEUNHAP;
+
+    RETURN @NewMaPN;
+END;
+GO
+-- Lịch tiêm
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_LichTiem()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaLT CHAR(5);
+
+    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LICHTIEM;
+
+    RETURN @NewMaLT;
+END;
+GO
+
+-- =============================================
+-- Function: Lấy số lượng vaccine còn lại
+-- =============================================
+CREATE FUNCTION fn_LaySoLuongVaccine (@MaVC CHAR(5))
+RETURNS INT
+AS
+BEGIN
+    DECLARE @SoLuong INT;
+    SELECT @SoLuong = SoLuongTon
+    FROM VACCINE
+    WHERE MaVC = @MaVC;
+    
+    RETURN @SoLuong;
+END;
+GO
+
+-- =============================================
+-- Function: Kiểm tra sự tồn tại của bệnh nhân
+-- =============================================
+CREATE FUNCTION fn_KiemTraBenhNhan (@MaBN CHAR(5))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @IsExist BIT;
+    IF EXISTS (SELECT 1 FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        SET @IsExist = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsExist = 0;
+    END
+
+    RETURN @IsExist;
+END;
+GO
+
+-- =============================================
+-- Function: Kiểm tra sự tồn tại của lịch tiêm
+-- =============================================
+CREATE FUNCTION fn_KiemTraLichTiem (@MaLT CHAR(5))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @IsExist BIT;
+    IF EXISTS (SELECT 1 FROM LICHTIEM WHERE MaLT = @MaLT)
+    BEGIN
+        SET @IsExist = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsExist = 0;
+    END
+
+    RETURN @IsExist;
+END;
+GO
+
+-- =============================================
+-- Function: Tính tổng tiền của hóa đơn
+-- =============================================
+CREATE FUNCTION fn_TinhTongTienHoaDon (@MaHD CHAR(5))
+RETURNS FLOAT
+AS
+BEGIN
+    DECLARE @TongTien FLOAT;
+    SELECT @TongTien = SUM(SoLuong * DonGia)
+    FROM CHITIETHOADON
+    WHERE MaHD = @MaHD;
+    
+    RETURN @TongTien;
+END;
+GO
+
+-- =============================================
+-- Function: Kiểm tra tính hợp lệ của số điện thoại
+-- =============================================
+CREATE FUNCTION fn_KiemTraSoDienThoai (@SoDienThoai CHAR(10))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @IsValid BIT;
+    IF LEN(@SoDienThoai) = 10 AND @SoDienThoai LIKE '[0-9]%' 
+    BEGIN
+        SET @IsValid = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsValid = 0;
+    END
+
+    RETURN @IsValid;
+END;
+GO
+
+-- =============================================
+-- Function: Kiểm tra sự tồn tại của vaccine
+-- =============================================
+CREATE FUNCTION fn_KiemTraVaccine (@MaVC CHAR(5))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @IsExist BIT;
+    IF EXISTS (SELECT 1 FROM VACCINE WHERE MaVC = @MaVC)
+    BEGIN
+        SET @IsExist = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsExist = 0;
+    END
+
+    RETURN @IsExist;
+END;
+GO
+
+-- =============================================
+-- Thống kê hàm
+-- 1. fn_LaySoLuongVaccine: Lấy số lượng vaccine còn lại.
+-- 2. fn_KiemTraBenhNhan: Kiểm tra sự tồn tại của bệnh nhân.
+-- 3. fn_KiemTraLichTiem: Kiểm tra sự tồn tại của lịch tiêm.
+-- 4. fn_TinhTongTienHoaDon: Tính tổng tiền của hóa đơn.
+-- 5. fn_KiemTraSoDienThoai: Kiểm tra tính hợp lệ của số điện thoại.
+-- 6. fn_KiemTraVaccine: Kiểm tra sự tồn tại của vaccine.
+-- =============================================
 
