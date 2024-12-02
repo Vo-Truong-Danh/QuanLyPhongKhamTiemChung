@@ -70,7 +70,7 @@ namespace DAL
         }
 
         // Thêm chi tiết hóa đơn
-        public void AddInvoiceDetail(ChitTietHoaDonDTO chitTietHoaDonDTO)
+        public void AddInvoiceDetail(ChiTietHoaDonDTO chitTietHoaDonDTO)
         {
             string query = "INSERT INTO CHITIETHOADON (MaHD, MaVC, SOLUONG, DONGIA) VALUES (@MaHD, @MaVC, @SoLuong, @DonGia)";
             SqlParameter[] parameters = {
@@ -93,7 +93,7 @@ namespace DAL
         }
 
         // Cập nhật chi tiết hóa đơn
-        public void UpdateInvoiceDetail(ChitTietHoaDonDTO chitTietHoaDonDTO)
+        public void UpdateInvoiceDetail(ChiTietHoaDonDTO chitTietHoaDonDTO)
         {
             string query = "UPDATE CHITIETHOADON SET SOLUONG = @SoLuong, DONGIA = @DonGia WHERE MaHD = @MaHD AND MaVC = @MaVC";
             SqlParameter[] parameters = {
@@ -198,7 +198,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public void UpdateOrNewCTHD(ChitTietHoaDonDTO chitTietHoaDonDTO)
+        public void UpdateOrNewCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
         {
             string query = "SELECT * FROM CHITIETHOADON WHERE MaHD = @MaHD and MaVC = @MaVC";
             SqlParameter[] parameters = {
@@ -209,7 +209,7 @@ namespace DAL
             if (dt.Rows.Count > 0)
             {
                 int newAmount =  int.Parse(dt.Rows[0]["Soluong"].ToString()) + chitTietHoaDonDTO.SoLuong;
-                ChitTietHoaDonDTO newCthd = new ChitTietHoaDonDTO(chitTietHoaDonDTO.MaHD, chitTietHoaDonDTO.MaVC, newAmount, chitTietHoaDonDTO.DonGia);
+                ChiTietHoaDonDTO newCthd = new ChiTietHoaDonDTO(chitTietHoaDonDTO.MaHD, chitTietHoaDonDTO.MaVC, newAmount, chitTietHoaDonDTO.DonGia);
                 UpdateInvoiceDetail(newCthd);
             }
             else
