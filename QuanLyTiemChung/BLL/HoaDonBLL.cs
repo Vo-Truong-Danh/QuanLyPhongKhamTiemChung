@@ -53,12 +53,12 @@ namespace BLL
             hdDAL.AddAmount(v); ;
         }
 
-        public void AddCTHD(ChitTietHoaDonDTO chitTietHoaDonDTO)
+        public void AddCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
         {
             hdDAL.AddInvoiceDetail(chitTietHoaDonDTO);
         }
 
-        public void UpdateOrNewCTHD(ChitTietHoaDonDTO chitTietHoaDonDTO)
+        public void UpdateOrNewCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
         {
             hdDAL.UpdateOrNewCTHD(chitTietHoaDonDTO);
         }
@@ -78,7 +78,7 @@ namespace BLL
             return hdDAL.GetInvoiceDetails(maHD).Rows;
         }
 
-        public void EditCTHD(ChitTietHoaDonDTO ct)
+        public void EditCTHD(ChiTietHoaDonDTO ct)
         {
             hdDAL.UpdateInvoiceDetail(ct);
         }
