@@ -62,5 +62,15 @@ namespace BLL
         {
             return vcbll.ThongKeVCDaTiem();
         }
+
+        public DataTable LayTTVCByLoaiVC(string maLoai)
+        {
+            return vcbll.LayTTVCByLoaiVC(maLoai);
+        }
+
+        public string LoadDonGiaById(string maVC)
+        {
+            return vcbll.LoadDGVaccineById(maVC);
+        }
     }
 }

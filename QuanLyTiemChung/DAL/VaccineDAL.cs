@@ -9,27 +9,27 @@ using DTO;
 
     namespace DAL
     {
-        public class VaccineDAL
+    public class VaccineDAL
+    {
+        //DataSet ds = new DataSet();
+        SqlDataAdapter adap = new SqlDataAdapter();
+        SqlConnection conn;
+        private static DataTable dt = new DataTable();
+        public VaccineDAL()
         {
-            //DataSet ds = new DataSet();
-            SqlDataAdapter adap = new SqlDataAdapter();
-            SqlConnection conn;
-            private static DataTable dt = new DataTable();
-            public VaccineDAL()
-            {
-                conn = new SqlConnection(GeneralDAL.connectStrg);
-                adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-                conn.Open();
-                string truyvansql = "select * from Vaccine";
-                adap = new SqlDataAdapter(truyvansql, conn);
-                adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-                if (dt.Rows.Count == 0)
-                    adap.Fill(dt);
-            }
+            conn = new SqlConnection(GeneralDAL.connectStrg);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            conn.Open();
+            string truyvansql = "select * from Vaccine";
+            adap = new SqlDataAdapter(truyvansql, conn);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            if (dt.Rows.Count == 0)
+                adap.Fill(dt);
+        }
 
-            public DataTable Load()
-            {
-                adap.Update(dt);
+        public DataTable Load()
+        {
+            adap.Update(dt);
 
             dt.AcceptChanges();
 
@@ -140,7 +140,7 @@ using DTO;
             DataRow[] dr = dt.Select("MaVC = '" + ndtimkiem + "'");
             if (dr == null || dr.Length == 0)
             {
-                return null; 
+                return null;
             }
 
             VaccineDTO vcdto = new VaccineDTO
@@ -194,6 +194,23 @@ using DTO;
             SqlDataAdapter adap = new SqlDataAdapter(query, conn);
             adap.Fill(dtvc);
             return dtvc;
+        }
+
+        public DataTable LayTTVCByLoaiVC(string maLoai)
+        {
+            DataRow[] dr = dt.Select("MaLoai = '" + maLoai + "'");
+            DataTable tmp = dt.Clone();
+            foreach (DataRow item in dr)
+            {
+                tmp.ImportRow(item);
+            }
+            return tmp;
+        }
+
+        public string LoadDGVaccineById(string maVC)
+        {
+            DataRow[] dr = dt.Select("MaVC = '" + maVC + "'");
+            return dr[0]["Gia"].ToString();
         }
     }
 }

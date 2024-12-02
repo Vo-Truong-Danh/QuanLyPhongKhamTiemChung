@@ -17,9 +17,16 @@ namespace GUI
         VaccineBLL vcBLL;
         HoaDonBLL hdBLL;
         LoaiVaccineBLL loaiVCBLL;
+        NhanVienBLL nvBLL;
+        BenhNhanBLL bnBLL;
         public HoaDon()
         {
             InitializeComponent();
+            vcBLL = new VaccineBLL();
+            hdBLL = new HoaDonBLL();
+            loaiVCBLL = new LoaiVaccineBLL();
+            nvBLL = new NhanVienBLL();
+            bnBLL = new BenhNhanBLL();
         }
         // Tạo Hóa Đơn
         private void btnTaoHD_Click(object sender, EventArgs e)
@@ -29,16 +36,10 @@ namespace GUI
             txtTongTien.Text = 0.ToString();
             btnThemMuiTiem.Enabled = true;
             btnDieuChinhSoLuong.Enabled = true;
-           /* if (true)
-            {
-                HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, mabenhnhan, "NV001", float.Parse(txtTongTien.Text));
-                kq = hdBLL.Insert(hd);
-            }
-            if (kq)
-            {
-                ketqua = ketqua + " Hóa đơn";
-            }*/
-            // Them chi tiet hoa don
+           
+                HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, cbbBenhNhan.SelectedValue.ToString(), "NV001", float.Parse(txtTongTien.Text));
+                hdBLL.Insert(hd);
+            
             if (txtMaHD.Text != null)
             {
                 foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
@@ -48,8 +49,8 @@ namespace GUI
                     string mavc = row.Cells[0].Value.ToString();
                     int soluong = int.Parse(row.Cells[3].Value.ToString());
                     float dongia = float.Parse(row.Cells[4].Value.ToString());
-                    ChiTietHoaDonDTO hd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
-                    hdBLL.AddCTHD(hd);
+                    ChiTietHoaDonDTO cthd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
+                    hdBLL.AddCTHD(cthd);
                 }
                 
             }
@@ -57,24 +58,7 @@ namespace GUI
 
         private void cboVaccine_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cboVaccine.SelectedValue == null || cboVaccine.SelectedValue.ToString() == "")
-            {
-                txtDonGia.Text = string.Empty;
-                return;
-            }
 
-            string mavaccine = cboVaccine.SelectedValue.ToString();
-            VaccineDTO vaccine = vcBLL.SearchChiTiet(mavaccine);
-
-            if (vaccine != null)
-            {
-                txtDonGia.Text = vaccine.Gia.ToString();
-                txtSoLuong.Text = 1.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Không tìm thấy vaccine!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void btnThemMuiTiem_Click(object sender, EventArgs e)
@@ -134,7 +118,11 @@ namespace GUI
 
         private void cboLoaiVaccine_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+            DataTable dr = vcBLL.LayTTVCByLoaiVC(maLoai);
+            cboVaccine.DataSource = dr;
+            cboVaccine.DisplayMember = "TenVC";
+            cboVaccine.ValueMember = "MaVC";
         }
 
         private void dgvChiTietHoaDon_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -153,17 +141,58 @@ namespace GUI
         }
         private void cboLoaiVaccine_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-            DataTable dr = vcBLL.LayTTVC().Select("MaLoai='" + maLoai + "'").CopyToDataTable();
-            cboVaccine.DataSource = dr;
-            cboVaccine.DisplayMember = "TenVC";
-            cboVaccine.ValueMember = "MaVC";
         }
         public void LoadComboBoxVaccine()
         {
             cboLoaiVaccine.DataSource = loaiVCBLL.GetData();
             cboLoaiVaccine.DisplayMember = "TenLoai";
             cboLoaiVaccine.ValueMember = "MaLoai";
+        }
+        public void LoadComboBoxNhanVien() { 
+           /* cboLoaiVaccine.DataSource = nvBLL.();
+            cboLoaiVaccine.DisplayMember = "TenLoai";
+            cboLoaiVaccine.ValueMember = "MaLoai";*/
+        }
+        public void LoadComboBoxBenhNhan()
+        {
+            cbbBenhNhan.DataSource = bnBLL.GetFullData();
+            cbbBenhNhan.DisplayMember = "HoTen";
+            cbbBenhNhan.ValueMember = "MaBN";
+        }
+        private void btnThemHoaDon_Click(object sender, EventArgs e)
+        {
+            pnlThemHoaDon.Visible = true;
+            txtMaHD.Text = hdBLL.NewIDHD();
+            txtNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtTongTien.Text = 0.ToString();
+            btnThemMuiTiem.Enabled = true;
+            btnDieuChinhSoLuong.Enabled = true;
+            LoadComboBoxBenhNhan();
+            LoadComboBoxVaccine();
+            //
+        }
+
+        private void HoaDon_Load(object sender, EventArgs e)
+        {
+            LoadListHoaDon();
+        }
+
+        private void LoadListHoaDon()
+        {
+            foreach (DataRow r in hdBLL.GetFullDataRows()) {
+                ListViewItem listItem = new ListViewItem(r["MaHD"].ToString());
+                listItem.SubItems.Add(r["MaBN"].ToString());
+                listItem.SubItems.Add(r["MaBN"].ToString());
+                listItem.SubItems.Add(r["NgayLap"].ToString());
+                listItem.SubItems.Add(r["TongTien"].ToString());
+                lstvDSHD.Items.Add(listItem);
+            }
+        }
+
+        private void cboVaccine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string maVC = cboVaccine.SelectedValue.ToString();
+            txtDonGia.Text = vcBLL.LoadDonGiaById(maVC);
         }
     }
 }

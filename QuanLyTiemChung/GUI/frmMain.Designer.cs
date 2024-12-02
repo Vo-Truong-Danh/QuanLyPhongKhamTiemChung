@@ -62,6 +62,8 @@ namespace GUI
             this.btnThoat = new System.Windows.Forms.Button();
             this.pnlHienThi = new System.Windows.Forms.Panel();
             this.Sibar = new System.Windows.Forms.Timer(this.components);
+            this.btnHoaDon = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnlShow.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -77,6 +79,8 @@ namespace GUI
             // 
             // pnlShow
             // 
+            this.pnlShow.Controls.Add(this.button2);
+            this.pnlShow.Controls.Add(this.btnHoaDon);
             this.pnlShow.Controls.Add(this.panel3);
             this.pnlShow.Controls.Add(this.panel8);
             this.pnlShow.Controls.Add(this.panel7);
@@ -346,7 +350,7 @@ namespace GUI
             this.txtTenHienThi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenHienThi.Location = new System.Drawing.Point(10, 99);
             this.txtTenHienThi.Name = "txtTenHienThi";
-            this.txtTenHienThi.Size = new System.Drawing.Size(216, 20);
+            this.txtTenHienThi.Size = new System.Drawing.Size(216, 31);
             this.txtTenHienThi.TabIndex = 1;
             this.txtTenHienThi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTenHienThi.TextChanged += new System.EventHandler(this.txtTenHienThi_TextChanged);
@@ -455,9 +459,28 @@ namespace GUI
             this.Sibar.Interval = 10;
             this.Sibar.Tick += new System.EventHandler(this.Sibar_Tick);
             // 
+            // btnHoaDon
+            // 
+            this.btnHoaDon.Location = new System.Drawing.Point(48, 581);
+            this.btnHoaDon.Name = "btnHoaDon";
+            this.btnHoaDon.Size = new System.Drawing.Size(140, 72);
+            this.btnHoaDon.TabIndex = 7;
+            this.btnHoaDon.Text = "Hóa đơn";
+            this.btnHoaDon.UseVisualStyleBackColor = true;
+            this.btnHoaDon.Click += new System.EventHandler(this.btnHoaDon_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(48, 699);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 72);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1924, 943);
@@ -526,5 +549,7 @@ namespace GUI
         private Panel panel7;
         private Button btnQLTiemChung;
         private Button btnQLTiemChungS;
+        private Button button2;
+        private Button btnHoaDon;
     }
 }

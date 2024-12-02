@@ -252,5 +252,10 @@ namespace GUI
             OpenChild(new frmThongKe());
 
         }
+
+        private void btnHoaDon_Click(object sender, EventArgs e)
+        {
+            OpenChild(new HoaDon());
+        }
     }
 }
