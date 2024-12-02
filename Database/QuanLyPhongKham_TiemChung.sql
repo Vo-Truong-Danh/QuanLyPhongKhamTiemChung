@@ -298,6 +298,64 @@ BEGIN
     ) I ON I.MaVC = V.MaVC;
 END
 GO
+-- =============================================
+-- Trigger:  Kiểm tra vaccine hết hạn trước khi thêm vào hóa đơn
+-- Mô tả: Ngăn chặn việc thêm chi tiết hóa đơn với vaccine đã hết hạn.
+-- =============================================
+CREATE TRIGGER trg_KiemTraVaccineHetHan
+ON CHITIETHOADON
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @MaVC CHAR(5), @HanSuDung DATE
+    SELECT @MaVC = MaVC FROM INSERTED
+
+    SELECT @HanSuDung = HanSuDung FROM VACCINE WHERE MaVC = @MaVC
+    IF @HanSuDung <= GETDATE()
+    BEGIN
+        PRINT 'Không thể thêm vaccine đã hết hạn vào hóa đơn.'
+        ROLLBACK TRANSACTION
+    END
+END
+-- =============================================
+-- Trigger:  Tự động hủy lịch tiêm khi vaccine bị xóa
+-- Mô tả: Hủy các lịch tiêm liên quan nếu vaccine đó không còn tồn tại.
+-- =============================================
+CREATE TRIGGER trg_HuyLichTiemKhiXoaVaccine
+ON VACCINE
+AFTER DELETE
+AS
+BEGIN
+    DECLARE @MaVC CHAR(5)
+    SELECT @MaVC = MaVC FROM DELETED
+
+    UPDATE LICHTIEM
+    SET TrangThai = N'Hủy'
+    WHERE MaVC = @MaVC AND TrangThai = N'Chưa thực hiện'
+END
+-- =============================================
+-- Trigger:  Kiểm tra hạn sử dụng trước khi nhập vaccine
+-- Mô tả: Ngăn nhập vaccine nếu hạn sử dụng dưới 1 năm.
+-- =============================================
+CREATE TRIGGER trg_KiemTraHanSuDungVaccine
+ON VACCINE
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @NgaySX DATE, @HanSuDung DATE
+
+    SELECT @NgaySX = NgaySX, @HanSuDung = HanSuDung
+    FROM INSERTED
+
+    IF DATEDIFF(YEAR, @NgaySX, @HanSuDung) < 1
+    BEGIN
+        PRINT 'Không thể nhập vaccine có hạn sử dụng dưới 1 năm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
+
+
 
 
 --===================================Thống kê==============================================
@@ -598,6 +656,18 @@ BEGIN
     ORDER BY Thang;
 END;
 GO
+-- =============================================
+-- Procedure: Thống kê vaccine sắp hết hạn
+-- =============================================
+CREATE PROCEDURE sp_ThongKeVaccineHetHan
+AS
+BEGIN
+    SELECT MaVC, TenVC, HanSuDung, SoLuongTon
+    FROM VACCINE
+    WHERE HanSuDung <= DATEADD(DAY, 30, GETDATE())
+END
+
+
 -- Thống kê hàm
 -- 1. sp_ThemBenhNhan: Thêm bệnh nhân mới.
 -- 2. sp_CapNhatBenhNhan: Cập nhật thông tin bệnh nhân.
@@ -843,6 +913,74 @@ BEGIN
     RETURN @IsExist;
 END;
 GO
+-- =============================================
+-- Function:  Kiểm tra bệnh nhân đã có lịch tiêm trong ngày hay không
+-- =============================================
+CREATE FUNCTION fn_KiemTraTrungLichTiem(
+    @MaBN CHAR(5),
+    @NgayHenTiem DATE
+)
+RETURNS BIT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 
+               FROM LICHTIEM 
+               WHERE MaBN = @MaBN AND NgayHenTiem = @NgayHenTiem)
+        RETURN 1
+    RETURN 0
+END
+-- =============================================
+-- Function:  Kiểm tra vaccine có đủ số lượng để thêm vào hóa đơn 
+-- =============================================
+CREATE FUNCTION fn_KiemTraSoLuongVaccine(
+    @MaVC CHAR(5),
+    @SoLuong INT
+)
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @SoLuongTon INT
+    SELECT @SoLuongTon = SoLuongTon FROM VACCINE WHERE MaVC = @MaVC
+    IF @SoLuongTon >= @SoLuong
+        RETURN 1
+    RETURN 0
+END
+-- =============================================
+-- Function:  Kiểm tra vaccine có nằm trong danh sách sắp hết hạn hay không
+-- =============================================
+
+CREATE FUNCTION fn_KiemTraVaccineSapHetHan
+(
+    @MaVC CHAR(5)
+)
+RETURNS BIT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 
+               FROM VACCINE 
+               WHERE MaVC = @MaVC AND HanSuDung <= DATEADD(DAY, 30, GETDATE()))
+        RETURN 1
+    RETURN 0
+END
+-- =============================================
+-- Function:  Kiểm tra vaccine sắp hết số lượng tồn
+-- Mô tả : xem khi nào vaccine đó sắp hết trong kho
+-- =============================================
+CREATE FUNCTION fn_VaccineSapHet
+(
+    @SoLuongCanhBao INT
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT MaVC, TenVC, SoLuongTon
+    FROM VACCINE
+    WHERE SoLuongTon <= @SoLuongCanhBao
+)
+
+
+
 
 -- =============================================
 -- Thống kê hàm
