@@ -52,6 +52,14 @@ namespace BLL
         {
             return bnDAL.SoLuong();
         }
+        public List<string> DSMaBenhNhan()
+        {
+            return bnDAL.DSMaBenhNhan();
+        }
+        public bool KTMaBNCoTonTai(string mabn)
+        {
+            return bnDAL.KTMaBNCoTonTai(mabn);
+        }
     }
 }
 

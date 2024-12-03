@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE DATABASE QUANLYPHONGKHAM_TIEMCHUNG
 ON  
 PRIMARY  
@@ -27,6 +28,11 @@ LOG ON
 GO
 
 
+=======
+CREATE DATABASE QUANLYPHONGKHAM_TIEMCHUNG;
+GO
+
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 USE QUANLYPHONGKHAM_TIEMCHUNG;
 GO
 
@@ -216,6 +222,7 @@ END
 -- =============================================
 -- Trigger: Tạo lịch tiêm khi có hóa đơn
 -- Mô tả: Tự động tạo lịch tiêm khi có thêm hóa đơn vào bảng HOADON.
+<<<<<<< HEAD
 -- =============================================\
 CREATE TRIGGER TR_MaLT_AutoGen
 ON LICHTIEM
@@ -233,6 +240,10 @@ BEGIN
 END;
 GO
 
+=======
+-- =============================================
+GO 
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 CREATE TRIGGER TG_TAOLICHTIEMKHITHEMHOADON
 ON HOADON
 FOR INSERT
@@ -340,6 +351,14 @@ BEGIN
 END
 GO
 
+<<<<<<< HEAD
+=======
+
+--===================================Thống kê==============================================
+	
+--Thống kê nhập hàng theo tháng
+select YEAR(NgayNhap),MONTH(NgayNhap) AS N'Tháng Lập' , SUM(TongTien) from PHIEUNHAP group by YEAR(NgayNhap),MONTH(NgayNhap) order by YEAR(NgayNhap) , MONTH(NgayNhap) 
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 
 --===================================Thống kê==============================================
 	
@@ -371,7 +390,11 @@ BEGIN
     -- Kiểm tra mã bệnh nhân đã tồn tại
     IF EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
     BEGIN
+<<<<<<< HEAD
         Print N'Mã bệnh nhân đã tồn tại.';
+=======
+        RAISERROR(N'Mã bệnh nhân đã tồn tại.', 16, 1);
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
         RETURN;
     END
 
@@ -380,6 +403,7 @@ BEGIN
     VALUES (@MaBN, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai);
 END;
 GO
+<<<<<<< HEAD
 sp_ThemBenhNhan 'BN025', N'Nguyễn Văn An', '2003-01-15', N'Nam', N'12 Nguyễn Trãi, Quận 1, TP.HCM', '0912345678'
 -- =============================================
 -- Procedure: Cập nhật thông tin bệnh nhân
@@ -436,12 +460,128 @@ drop proc sp_ThemHoaDon
 sp_XoaBenhNhan 'BN001'
 
 -- =============================================
+=======
+
+-- =============================================
+-- Procedure: Cập nhật thông tin bệnh nhân
+-- =============================================
+CREATE PROCEDURE sp_CapNhatBenhNhan
+    @MaBN CHAR(5),
+    @HoTen NVARCHAR(50),
+    @NgaySinh DATE,
+    @GioiTinh NVARCHAR(3),
+    @DiaChi NVARCHAR(90),
+    @SoDienThoai CHAR(10)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Cập nhật thông tin bệnh nhân
+    UPDATE BENHNHAN
+    SET HoTen = @HoTen,
+        NgaySinh = @NgaySinh,
+        GioiTinh = @GioiTinh,
+        DiaChi = @DiaChi,
+        SoDienThoai = @SoDienThoai
+    WHERE MaBN = @MaBN;
+END;
+GO
+
+-- =============================================
+-- Procedure: Xóa bệnh nhân
+-- =============================================
+CREATE PROCEDURE sp_XoaBenhNhan
+    @MaBN CHAR(5)
+AS
+BEGIN
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Xóa bệnh nhân
+    DELETE FROM BENHNHAN
+    WHERE MaBN = @MaBN;
+END;
+GO
+
+-- =============================================
+-- Procedure: Thêm lịch tiêm
+-- =============================================
+CREATE PROCEDURE sp_ThemLichTiem
+    @MaLT CHAR(5),
+    @MaHD CHAR(5),
+    @MaBN CHAR(5),
+    @MaVC CHAR(5),
+    @NgayHenTiem DATE,
+    @TrangThai NVARCHAR(15)
+AS
+BEGIN
+    -- Kiểm tra mã lịch tiêm đã tồn tại
+    IF EXISTS (SELECT * FROM LICHTIEM WHERE MaLT = @MaLT)
+    BEGIN
+        RAISERROR(N'Mã lịch tiêm đã tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Kiểm tra mã bệnh nhân và vaccine tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    IF NOT EXISTS (SELECT * FROM VACCINE WHERE MaVC = @MaVC)
+    BEGIN
+        RAISERROR(N'Mã vaccine không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Thêm lịch tiêm
+    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+    VALUES (@MaLT, @MaHD, @MaBN, @MaVC, @NgayHenTiem, @TrangThai);
+END;
+GO
+
+-- =============================================
+-- Procedure: Cập nhật trạng thái lịch tiêm
+-- =============================================
+CREATE PROCEDURE sp_CapNhatTrangThaiLichTiem
+    @MaLT CHAR(5),
+    @MaHD CHAR(5),
+    @TrangThai NVARCHAR(15)
+AS
+BEGIN
+    -- Kiểm tra mã lịch tiêm tồn tại
+    IF NOT EXISTS (SELECT * FROM LICHTIEM WHERE MaLT = @MaLT AND MaHD = @MaHD)
+    BEGIN
+        RAISERROR(N'Lịch tiêm không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Cập nhật trạng thái lịch tiêm
+    UPDATE LICHTIEM
+    SET TrangThai = @TrangThai
+    WHERE MaLT = @MaLT AND MaHD = @MaHD;
+END;
+GO
+
+-- =============================================
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- Procedure: Thêm hóa đơn
 -- =============================================
 CREATE PROCEDURE sp_ThemHoaDon
     @MaHD CHAR(5),
     @NgayLap DATE,
     @MaBN CHAR(5),
+<<<<<<< HEAD
     @MaNV CHAR(5)
 AS
 BEGIN
@@ -454,11 +594,29 @@ BEGIN
     IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
     BEGIN
         Print N'Mã bệnh nhân không tồn tại.';
+=======
+    @MaNV CHAR(5),
+    @TongTien FLOAT
+AS
+BEGIN
+    -- Kiểm tra mã hóa đơn đã tồn tại
+    IF EXISTS (SELECT * FROM HOADON WHERE MaHD = @MaHD)
+    BEGIN
+        RAISERROR(N'Mã hóa đơn đã tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Kiểm tra mã bệnh nhân và nhân viên tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
         RETURN;
     END
 
     IF NOT EXISTS (SELECT * FROM NHANVIEN WHERE MaNV = @MaNV)
     BEGIN
+<<<<<<< HEAD
         Print N'Mã nhân viên không tồn tại.';
         RETURN;
     END
@@ -469,34 +627,69 @@ END;
 GO
 
 sp_ThemHoaDon 'HD045', '2022-01-05', 'BN088', 'NV001'
+=======
+        RAISERROR(N'Mã nhân viên không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Thêm hóa đơn
+    INSERT INTO HOADON (MaHD, NgayLap, MaBN, MaNV, TongTien)
+    VALUES (@MaHD, @NgayLap, @MaBN, @MaNV, @TongTien);
+END;
+GO
+
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Procedure: Thêm chi tiết hóa đơn
 -- =============================================
 CREATE PROCEDURE sp_ThemChiTietHoaDon
     @MaHD CHAR(5),
     @MaVC CHAR(5),
+<<<<<<< HEAD
     @SoLuong INT
 AS
 BEGIN
     IF NOT EXISTS (SELECT * FROM HOADON WHERE MaHD = @MaHD)
     BEGIN
         Print N'Mã hóa đơn không tồn tại.';
+=======
+    @SoLuong INT,
+    @DonGia FLOAT
+AS
+BEGIN
+    -- Kiểm tra mã hóa đơn và vaccine tồn tại
+    IF NOT EXISTS (SELECT * FROM HOADON WHERE MaHD = @MaHD)
+    BEGIN
+        RAISERROR(N'Mã hóa đơn không tồn tại.', 16, 1);
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
         RETURN;
     END
 
     IF NOT EXISTS (SELECT * FROM VACCINE WHERE MaVC = @MaVC)
     BEGIN
+<<<<<<< HEAD
         Print N'Mã vaccine không tồn tại.';
+=======
+        RAISERROR(N'Mã vaccine không tồn tại.', 16, 1);
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
         RETURN;
     END
 
     -- Thêm chi tiết hóa đơn
+<<<<<<< HEAD
     INSERT INTO CHITIETHOADON (MaHD, MaVC, SoLuong)
     VALUES (@MaHD, @MaVC, @SoLuong);
 END;
 GO
 
 sp_ThemChiTietHoaDon 'HD0056', 'VC001', 2
+=======
+    INSERT INTO CHITIETHOADON (MaHD, MaVC, SoLuong, DonGia)
+    VALUES (@MaHD, @MaVC, @SoLuong, @DonGia);
+END;
+GO
+
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Procedure: Lấy thông tin bệnh nhân theo mã
 -- =============================================
@@ -504,18 +697,32 @@ CREATE PROCEDURE sp_LayThongTinBenhNhan
     @MaBN CHAR(5)
 AS
 BEGIN
+<<<<<<< HEAD
     IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
     BEGIN
         Print N'Mã bệnh nhân không tồn tại.';
         RETURN;
     END
 
+=======
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+        RETURN;
+    END
+
+    -- Lấy thông tin bệnh nhân
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
     SELECT * FROM BENHNHAN
     WHERE MaBN = @MaBN;
 END;
 GO
 
+<<<<<<< HEAD
 sp_LayThongTinBenhNhan 'BN001'
+=======
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Procedure: Thống kê số lượng vaccine còn lại
 -- =============================================
@@ -528,7 +735,10 @@ BEGIN
 END;
 GO
 
+<<<<<<< HEAD
 sp_ThongKeSoLuongVaccine
+=======
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Procedure: Thống kê lịch tiêm theo bệnh nhân
 -- =============================================
@@ -536,9 +746,16 @@ CREATE PROCEDURE sp_ThongKeLichTiemTheoBenhNhan
     @MaBN CHAR(5)
 AS
 BEGIN
+<<<<<<< HEAD
     IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
     BEGIN
         Print N'Mã bệnh nhân không tồn tại.';
+=======
+    -- Kiểm tra mã bệnh nhân tồn tại
+    IF NOT EXISTS (SELECT * FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        RAISERROR(N'Mã bệnh nhân không tồn tại.', 16, 1);
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
         RETURN;
     END
 
@@ -550,7 +767,10 @@ BEGIN
 END;
 GO
 
+<<<<<<< HEAD
 sp_ThongKeLichTiemTheoBenhNhan 'BN555'
+=======
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Procedure: Thống kê doanh thu
 -- =============================================
@@ -563,8 +783,11 @@ BEGIN
     ORDER BY Thang;
 END;
 GO
+<<<<<<< HEAD
 
 sp_ThongKeDoanhThu
+=======
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- Thống kê hàm
 -- 1. sp_ThemBenhNhan: Thêm bệnh nhân mới.
 -- 2. sp_CapNhatBenhNhan: Cập nhật thông tin bệnh nhân.
@@ -582,6 +805,122 @@ sp_ThongKeDoanhThu
 --------------------------------FUNCTION-------------------------------
 -----------------------------------------------------------------------
 
+<<<<<<< HEAD
+=======
+-- Bệnh nhân 
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_BenhNhan()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaBN CHAR(5);
+
+    SELECT @NewMaBN = 'BN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaBN, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM BENHNHAN;
+
+    RETURN @NewMaBN;
+END;
+GO
+-- Nhân viên
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_NhanVien()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaNV CHAR(5);
+
+    SELECT @NewMaNV = 'NV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaNV, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM NHANVIEN;
+
+    RETURN @NewMaNV;
+END;
+GO
+-- Nhà cung cấp
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_NhanVien()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaNV CHAR(5);
+
+    SELECT @NewMaNV = 'NV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaNV, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM NHANVIEN;
+
+    RETURN @NewMaNV;
+END;
+GO
+-- Loại vaccine
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_LoaiVaccine()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaLoai CHAR(5);
+
+    SELECT @NewMaLoai = 'LV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLoai, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LOAIVACCINE;
+
+    RETURN @NewMaLoai;
+END;
+GO
+-- Vaccine
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_LoaiVaccine()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaLoai CHAR(5);
+
+    SELECT @NewMaLoai = 'LV' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLoai, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LOAIVACCINE;
+
+    RETURN @NewMaLoai;
+END;
+GO
+-- Hóa đơn
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_HoaDon()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaHD CHAR(5);
+
+    SELECT @NewMaHD = 'HD' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaHD, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM HOADON;
+
+    RETURN @NewMaHD;
+END;
+GO
+-- Phiếu nhập
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_PhieuNhap()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaPN CHAR(5);
+
+    SELECT @NewMaPN = 'PN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaPN, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM PHIEUNHAP;
+
+    RETURN @NewMaPN;
+END;
+GO
+-- Lịch tiêm
+-- Tạo mã tự động
+CREATE FUNCTION dbo.TaoMaTuDong_LichTiem()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @NewMaLT CHAR(5);
+
+    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LICHTIEM;
+
+    RETURN @NewMaLT;
+END;
+GO
+
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Function: Lấy số lượng vaccine còn lại
 -- =============================================
@@ -598,9 +937,12 @@ BEGIN
 END;
 GO
 
+<<<<<<< HEAD
 Declare @kq INT;
 set @kq = [dbo].fn_LaySoLuongVaccine('VC001')
 print @kq
+=======
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Function: Kiểm tra sự tồn tại của bệnh nhân
 -- =============================================
@@ -608,6 +950,7 @@ CREATE FUNCTION fn_KiemTraBenhNhan (@MaBN CHAR(5))
 RETURNS BIT
 AS
 BEGIN
+<<<<<<< HEAD
     DECLARE @kt BIT;
     IF EXISTS (SELECT 1 FROM BENHNHAN WHERE MaBN = @MaBN)
     BEGIN
@@ -628,6 +971,22 @@ if @kq=0
 	print N'Bệnh nhân không tồn tại'
 else
 	print N'Tồn tại'
+=======
+    DECLARE @IsExist BIT;
+    IF EXISTS (SELECT 1 FROM BENHNHAN WHERE MaBN = @MaBN)
+    BEGIN
+        SET @IsExist = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsExist = 0;
+    END
+
+    RETURN @IsExist;
+END;
+GO
+
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- =============================================
 -- Function: Kiểm tra sự tồn tại của lịch tiêm
 -- =============================================
@@ -635,6 +994,7 @@ CREATE FUNCTION fn_KiemTraLichTiem (@MaLT CHAR(5))
 RETURNS BIT
 AS
 BEGIN
+<<<<<<< HEAD
     DECLARE @kt BIT;
     IF EXISTS (SELECT 1 FROM LICHTIEM WHERE MaLT = @MaLT)
     BEGIN
@@ -646,28 +1006,74 @@ BEGIN
     END
 
     RETURN @kt;
+=======
+    DECLARE @IsExist BIT;
+    IF EXISTS (SELECT 1 FROM LICHTIEM WHERE MaLT = @MaLT)
+    BEGIN
+        SET @IsExist = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsExist = 0;
+    END
+
+    RETURN @IsExist;
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 END;
 GO
 
 -- =============================================
 -- Function: Tính tổng tiền của hóa đơn
 -- =============================================
+<<<<<<< HEAD
 CREATE FUNCTION fn_TinhTongTienCuaBenhNhan (@MaBN CHAR(5))
+=======
+CREATE FUNCTION fn_TinhTongTienHoaDon (@MaHD CHAR(5))
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 RETURNS FLOAT
 AS
 BEGIN
     DECLARE @TongTien FLOAT;
+<<<<<<< HEAD
     SELECT @TongTien = SUM(TongTien)
     FROM HOADON
     WHERE MaBN = @MaBN;
+=======
+    SELECT @TongTien = SUM(SoLuong * DonGia)
+    FROM CHITIETHOADON
+    WHERE MaHD = @MaHD;
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
     
     RETURN @TongTien;
 END;
 GO
 
+<<<<<<< HEAD
 Declare @TongTien Float;
 set @TongTien = [dbo].fn_TinhTongTienCuaBenhNhan('BN001')
 print Convert(int,@TongTien)
+=======
+-- =============================================
+-- Function: Kiểm tra tính hợp lệ của số điện thoại
+-- =============================================
+CREATE FUNCTION fn_KiemTraSoDienThoai (@SoDienThoai CHAR(10))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @IsValid BIT;
+    IF LEN(@SoDienThoai) = 10 AND @SoDienThoai LIKE '[0-9]%' 
+    BEGIN
+        SET @IsValid = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsValid = 0;
+    END
+
+    RETURN @IsValid;
+END;
+GO
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 
 -- =============================================
 -- Function: Kiểm tra sự tồn tại của vaccine
@@ -676,6 +1082,7 @@ CREATE FUNCTION fn_KiemTraVaccine (@MaVC CHAR(5))
 RETURNS BIT
 AS
 BEGIN
+<<<<<<< HEAD
     DECLARE @kt BIT;
     IF EXISTS (SELECT 1 FROM VACCINE WHERE MaVC = @MaVC)
     BEGIN
@@ -687,6 +1094,19 @@ BEGIN
     END
 
     RETURN @kt;
+=======
+    DECLARE @IsExist BIT;
+    IF EXISTS (SELECT 1 FROM VACCINE WHERE MaVC = @MaVC)
+    BEGIN
+        SET @IsExist = 1;
+    END
+    ELSE
+    BEGIN
+        SET @IsExist = 0;
+    END
+
+    RETURN @IsExist;
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 END;
 GO
 
@@ -696,6 +1116,10 @@ GO
 -- 2. fn_KiemTraBenhNhan: Kiểm tra sự tồn tại của bệnh nhân.
 -- 3. fn_KiemTraLichTiem: Kiểm tra sự tồn tại của lịch tiêm.
 -- 4. fn_TinhTongTienHoaDon: Tính tổng tiền của hóa đơn.
+<<<<<<< HEAD
+=======
+-- 5. fn_KiemTraSoDienThoai: Kiểm tra tính hợp lệ của số điện thoại.
+>>>>>>> parent of 73c7e19 (Update QuanLyPhongKham_TiemChung.sql)
 -- 6. fn_KiemTraVaccine: Kiểm tra sự tồn tại của vaccine.
 -- =============================================
 

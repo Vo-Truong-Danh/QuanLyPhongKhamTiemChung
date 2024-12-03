@@ -138,10 +138,9 @@ namespace DAL
 
         public string NewIDHD()
         {
-            // nếu mã cuối cùng là "BN005" thì hàm này trả về 5
             int lastMaHD = 0;
             string query = "SELECT TOP 1 MaHD FROM HOADON ORDER BY MaHD DESC";
-            string maHD = "HD000"; // Giá trị mặc định 
+            string maHD = "HD000";
             SqlConnection conn = new SqlConnection(GeneralDAL.connectStrg);
             try
             {
@@ -167,8 +166,6 @@ namespace DAL
                 {
                     conn.Close();
                 }
-
-                // Hủy đối tượng kết nối (giải phóng bộ nhớ)
                 conn.Dispose();
             }
             return "HD" + lastMaHD.ToString("D3");

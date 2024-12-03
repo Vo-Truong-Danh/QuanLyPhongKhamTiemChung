@@ -134,7 +134,7 @@ namespace DAL
             }
         }
         public bool KTKhoaNgoai(string MaBN)
-        {           
+        {
             string queryCheckFK = @"
         SELECT count(*) FROM GHINHANTIEMCHUNG GN,HOADON HD,LICHTIEM LT WHERE GN.MaBN = @MaBN OR HD.MaBN=@MaBN OR LT.MaBN=@MaBN";
 
@@ -142,10 +142,10 @@ namespace DAL
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(queryCheckFK, conn))
-                {                    
-                    cmd.Parameters.AddWithValue("@MaBN", MaBN);                   
+                {
+                    cmd.Parameters.AddWithValue("@MaBN", MaBN);
                     var result = cmd.ExecuteScalar();
-                    int relatedCount = result != null ? Convert.ToInt32(result) : 0;                    
+                    int relatedCount = result != null ? Convert.ToInt32(result) : 0;
                     return relatedCount > 0;
                 }
             }
@@ -178,5 +178,29 @@ namespace DAL
             dtView.RowFilter = "HoTen LIKE '%" + searchStr.Replace("'", "''") + "%'";
             return dtView;
         }//HoTen LIKE N'%' + 'searchStr' + N'%';
+        public List<string> DSMaBenhNhan()
+        {
+            List<string> list = new List<string>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (dr["MaBN"] != null)
+                {
+                    if (dr["MaBN"].ToString() != "")
+                    {
+                        list.Add(dr["MaBN"].ToString());
+                    }
+                }
+            }
+            return list;
+        }
+        public bool KTMaBNCoTonTai(string mabn)
+        {
+            foreach (string ma in DSMaBenhNhan())
+            {
+                if(ma==mabn)
+                    return true;
+            }
+            return false;
+        }
     }
 }
