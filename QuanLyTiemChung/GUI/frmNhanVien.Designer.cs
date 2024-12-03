@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhanVien));
             this.timerTB_Tab2 = new System.Windows.Forms.Timer(this.components);
             this.tabKhoVaccine = new System.Windows.Forms.TabPage();
@@ -79,14 +79,14 @@
             this.tabKhoVaccine.BackColor = System.Drawing.Color.Transparent;
             this.tabKhoVaccine.Controls.Add(this.panel1);
             this.tabKhoVaccine.Controls.Add(this.panel2);
-            this.tabKhoVaccine.ImageIndex = 3;
+            this.tabKhoVaccine.ImageIndex = 4;
             this.tabKhoVaccine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabKhoVaccine.Location = new System.Drawing.Point(4, 54);
             this.tabKhoVaccine.Name = "tabKhoVaccine";
             this.tabKhoVaccine.Padding = new System.Windows.Forms.Padding(3);
             this.tabKhoVaccine.Size = new System.Drawing.Size(1413, 701);
             this.tabKhoVaccine.TabIndex = 0;
-            this.tabKhoVaccine.Text = "Lịch Tiêm";
+            this.tabKhoVaccine.Text = "Nhân Viên";
             // 
             // panel1
             // 
@@ -150,25 +150,25 @@
             this.dgvNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvNhanVien.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvNhanVien.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNhanVien.ColumnHeadersHeight = 29;
             this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvNhanVien.ContextMenuStrip = this.cntXoaSua;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNhanVien.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dgvNhanVien.EnableHeadersVisualStyles = false;
@@ -240,7 +240,6 @@
             // cboTrangThai
             // 
             this.cboTrangThai.BackColor = System.Drawing.Color.White;
-            this.cboTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTrangThai.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboTrangThai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cboTrangThai.FormattingEnabled = true;
@@ -268,7 +267,7 @@
             // 
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(26, 14);
+            this.txtSearch.Location = new System.Drawing.Point(26, 13);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(254, 25);
             this.txtSearch.TabIndex = 26;
@@ -295,6 +294,7 @@
             this.btnSearch.Size = new System.Drawing.Size(36, 33);
             this.btnSearch.TabIndex = 25;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // imageList1
             // 
@@ -304,6 +304,7 @@
             this.imageList1.Images.SetKeyName(1, "khovc.png");
             this.imageList1.Images.SetKeyName(2, "more_6512218.png");
             this.imageList1.Images.SetKeyName(3, "appointment_16951807.png");
+            this.imageList1.Images.SetKeyName(4, "id-card-clip-alt_9856425.png");
             // 
             // timerTB
             // 

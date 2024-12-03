@@ -129,5 +129,26 @@ namespace GUI
             dgvNhanVien.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string ndtimkiem = txtSearch.Text;
+
+            DataRow[] dr = nvbll.Load().Select(
+                $"MaNV LIKE '%{ndtimkiem}%' OR " +
+                $"HoTen LIKE '%{ndtimkiem}%' OR " +
+                $"GioiTinh LIKE '%{ndtimkiem}%' OR " +
+                $"ChucVu LIKE '%{ndtimkiem}%' OR " +
+                $"DiaChi LIKE '%{ndtimkiem}%' OR " +
+                $"SoDienThoai LIKE '%{ndtimkiem}%'"
+            );
+            if (dr.Length > 0)
+            {
+                CreateDTGVLichTiem(dr.CopyToDataTable());
+            }
+            else {
+                MessageBox.Show("Không có nội dung tìm kiếm khớp !");
+                CreateDTGVLichTiem(nvbll.Load());
+            }
+        }
     }
 }

@@ -196,7 +196,14 @@ namespace GUI
             if(drbn.Length > 0)
                 ndtimkiem = drbn[0]["MaBN"].ToString();
             DataRow[] dr = ltbll.Load().Select($"MaLT LIKE '%{txtSearch.Text}%' OR MaBN LIKE '%{ndtimkiem}%' OR MaHD LIKE '%{txtSearch.Text}%'");
-            CreateDTGVLichTiem(dr.CopyToDataTable());
+            if (dr.Length > 0)
+            {
+                CreateDTGVLichTiem(dr.CopyToDataTable());
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy nội dung tìm kiếm !");
+            }
         }
     }
 }
