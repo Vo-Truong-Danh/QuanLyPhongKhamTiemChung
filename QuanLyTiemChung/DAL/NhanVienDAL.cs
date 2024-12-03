@@ -38,7 +38,8 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw;
+                Console.WriteLine(ex.ToString());
+                return null;
             }
         }
         public int SoLuong()

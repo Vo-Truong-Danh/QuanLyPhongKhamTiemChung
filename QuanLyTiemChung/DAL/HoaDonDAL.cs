@@ -12,9 +12,17 @@ namespace DAL
     public class HoaDonDAL
     {
         DatabaseHelper dbHelper;
+        SqlDataAdapter adap;
+        SqlConnection conn;
+        DataTable dt = new DataTable();
         // Thêm hóa đơn
         public HoaDonDAL()
         {
+            conn = new SqlConnection(GeneralDAL.connectStrg);
+            string selectStr = "select * from HOADON";
+            adap = new SqlDataAdapter(selectStr, conn);
+            if (dt.Rows.Count == 0)
+                adap.Fill(dt);
             dbHelper = new DatabaseHelper(GeneralDAL.connectStrg);
         }
         public bool AddInvoice(HoaDonDTO hoaDonDTO)
@@ -257,5 +265,26 @@ namespace DAL
         };
             dbHelper.ExecuteNonQuery(query, parameters);
         }
+        public bool DeleteHoaDonByMaBN(string maBN)
+        {
+            try
+            {
+                conn.Open();
+                string query = "DELETE FROM HOADON WHERE MaBN = @MaBN";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaBN", maBN);
+                int result = cmd.ExecuteNonQuery();
+                conn.Close();
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xóa HOADON: " + ex.Message);
+                if (conn.State == ConnectionState.Open) conn.Close();
+                return false;
+            }
+        }
+
+
     }
 }

@@ -233,32 +233,40 @@ namespace GUI
         {
             if (lstvDSBN.SelectedItems.Count > 0)
             {
-                bool xoaThanhCong = true;
-                foreach (ListViewItem item in lstvDSBN.SelectedItems)
+                DialogResult r = MessageBox.Show("Bạn có chắc chắn xóa tất cả thông tin bệnh nhân này ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (r == DialogResult.Yes)
                 {
-                    string maBN = item.SubItems[0].Text;
-                    bool result = bnBLL.Delete(maBN);
-                    if (!result)
+                    bool xoaThanhCong = true;
+                    foreach (ListViewItem item in lstvDSBN.SelectedItems)
                     {
-                        xoaThanhCong = false;
-                        break;
+                        string maBN = item.SubItems[0].Text;
+
+                        bool result = bnBLL.Delete(maBN);
+
+                        if (!result)
+                        {
+                            xoaThanhCong = false;
+                            break;
+                        }
                     }
+
+                    if (xoaThanhCong)
+                    {
+                        MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    LoadListViewDSBN();
                 }
-                if (xoaThanhCong)
-                {
-                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Xóa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                LoadListViewDSBN();
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn ít nhất một bệnh nhân để xóa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
@@ -356,7 +364,7 @@ namespace GUI
                     kq = false;
                 }
                 // Them hoa don
-                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "")
+                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && KTDataGridView(dgvChiTietHoaDon))
                 {
                     HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, TK.UserName, float.Parse(txtTongTien.Text));
                     kq = hdBLL.Insert(hd);
@@ -366,7 +374,7 @@ namespace GUI
                     ketqua = ketqua + " Hóa đơn";
                 }
                 // Them chi tiet hoa don
-                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "")
+                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != ""&&kq)
                 {
                     foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
                     {
@@ -566,7 +574,7 @@ namespace GUI
         {
             btnThemBenhNhan.Enabled = true;
             string ma = cboVaccine.SelectedValue.ToString();
-            DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '"+ma+"' ");
+            DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '" + ma + "' ");
             if (txtSoLuong.Text != null && txtSoLuong.Text != "")
             {
                 int sl = int.Parse(txtSoLuong.Text);
@@ -578,7 +586,7 @@ namespace GUI
                         return;
                     }
                     int ThanhTien = 0;
-                    string mavc = cboVaccine.SelectedValue.ToString();  
+                    string mavc = cboVaccine.SelectedValue.ToString();
                     foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
                     {
                         if (row.Cells[0].Value == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
@@ -654,7 +662,7 @@ namespace GUI
             {
                 foreach (DataGridViewRow row in dgvChiTietHoaDon.SelectedRows)
                 {
-                    if (!row.IsNewRow) 
+                    if (!row.IsNewRow)
                     {
                         dgvChiTietHoaDon.Rows.Remove(row);
                     }

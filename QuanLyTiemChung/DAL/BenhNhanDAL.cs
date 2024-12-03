@@ -144,26 +144,48 @@ namespace DAL
                 }
             }
         }
-
+        LichTiemDAL LichTiemDAL = new LichTiemDAL();
+        ChiTietHoaDonDAL cthdDAL = new ChiTietHoaDonDAL();
+        HoaDonDAL HoaDonDAL = new HoaDonDAL();
+        GhiNhanTiemChungDAL gnDAL = new GhiNhanTiemChungDAL();
         public bool Delete(string MaBN)
         {
-            if (KTKhoaNgoai(MaBN))
+            try
             {
-                return false;
-            }
 
-            DataRow dr = dt.Select("MaBN = '" + MaBN + "'").FirstOrDefault();
-            if (dr != null)
-            {
-                dr.Delete();
-                Luu();
-                return true;
+                LichTiemDAL lichTiemDAL = new LichTiemDAL();
+                ChiTietHoaDonDAL chiTietHoaDonDAL = new ChiTietHoaDonDAL();
+                HoaDonDAL hoaDonDAL = new HoaDonDAL();
+                GhiNhanTiemChungDAL ghiNhanTiemChungDAL = new GhiNhanTiemChungDAL();
+                bool resultGhiNhanTiemChung = ghiNhanTiemChungDAL.DeleteGhiNhanTiemChungByMaBN(MaBN);
+                bool resultLichTiem = lichTiemDAL.DeleteLichTiemByMaBN(MaBN);
+                bool resultChiTietHoaDon = chiTietHoaDonDAL.DeleteChiTietHoaDonByMaBN(MaBN);
+                bool resultHoaDon = hoaDonDAL.DeleteHoaDonByMaBN(MaBN);
+                
+
+                if (!(resultLichTiem && resultChiTietHoaDon && resultHoaDon && resultGhiNhanTiemChung))
+                {
+                    return false;
+                }
+
+                string query = "DELETE FROM BENHNHAN WHERE MaBN = @MaBN";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaBN", MaBN);
+
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                conn.Close();
+
+                return rowsAffected > 0;
             }
-            else
+            catch (Exception ex)
             {
+                Console.WriteLine("Lỗi khi xóa bệnh nhân: " + ex.Message);
+                if (conn.State == ConnectionState.Open) conn.Close();
                 return false;
             }
         }
+
 
 
         public DataView GetDataViewFromTimKiem(string searchStr)

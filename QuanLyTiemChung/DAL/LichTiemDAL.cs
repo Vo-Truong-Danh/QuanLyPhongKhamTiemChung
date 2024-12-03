@@ -189,5 +189,38 @@ namespace DAL
         };
             dataHelper.ExecuteNonQuery(query, parameters);
         }
+        public bool DeleteLichTiemByMaBN(string maBN)
+        {
+            try
+            {
+                // Kiểm tra kết nối trước khi mở
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
+                string query = "DELETE FROM LICHTIEM WHERE MaBN = @MaBN";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaBN", maBN);
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xóa LICHTIEM: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                // Đảm bảo đóng kết nối sau khi hoàn tất
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
     }
 }

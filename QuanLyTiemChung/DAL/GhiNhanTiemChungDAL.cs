@@ -80,5 +80,25 @@ namespace DAL
             }
             return false;
         }
+        public bool DeleteGhiNhanTiemChungByMaBN(string maBN)
+        {
+            try
+            {
+                conn.Open();
+                string query = "DELETE FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaBN", maBN);
+                int result = cmd.ExecuteNonQuery();
+                conn.Close();
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi xóa GHINHANTIEMCHUNG: " + ex.Message);
+                if (conn.State == ConnectionState.Open) conn.Close();
+                return false;
+            }
+        }
+
     }
 }
