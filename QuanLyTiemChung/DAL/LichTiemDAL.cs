@@ -13,10 +13,65 @@ namespace DAL
     public class LichTiemDAL
     {
         private DatabaseHelper dataHelper;
+        SqlDataAdapter adap = new SqlDataAdapter();
+        SqlConnection conn;
+        private static DataTable dt = new DataTable();
 
         public LichTiemDAL()
         {
             dataHelper = new DatabaseHelper(GeneralDAL.connectStrg);
+
+            conn = new SqlConnection(GeneralDAL.connectStrg);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            SqlCommandBuilder builder = new SqlCommandBuilder(adap);
+            conn.Open();
+            string truyvansql = "select * from LICHTIEM";
+            adap = new SqlDataAdapter(truyvansql, conn);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            if (dt.Rows.Count == 0)
+                adap.Fill(dt);
+        }
+        public DataTable Load()
+        {
+            try
+            {
+                SqlCommandBuilder builder = new SqlCommandBuilder(adap);
+                adap.Update(dt);
+
+                dt.AcceptChanges();
+                dt.Clear();
+                adap.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi trong Load: " + ex.Message);
+                throw;
+            }
+        }
+
+        public bool ThemLichTiemChoHoaDon(LichTiemDTO lt)
+        {
+            Load();
+            try
+            {
+                DataRow[] rowDeUPD = dt.Select("MaVC = '" + lt.MaVC + "' and MaHD = '"+lt.MaHD+"' ");
+
+                if (rowDeUPD.Length > 0)    
+                {
+                    DataRow row = rowDeUPD[0];
+                    row["NgayHenTiem"] = lt.NgayHenTiem;
+
+                    Load();
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool AddLichTiem(LichTiemDTO lichTiemDTO)

@@ -13,10 +13,12 @@ namespace DTO
         public string MaHD { get; set; }
         public string MaBN { get; set; }
         public string MaVC { get; set; }
-        public DateTime NgayHenTiem { get; set; }
+        public string NgayHenTiem { get; set; }
         public string TrangThai { get; set; }
 
-        public LichTiemDTO(string maLT, string maHD, string maBN, string maVC, DateTime ngayHenTiem, string trangThai)
+        public LichTiemDTO() { }
+
+        public LichTiemDTO(string maLT, string maHD, string maBN, string maVC, string ngayHenTiem, string trangThai)
         {
             MaLT = maLT;
             MaHD = maHD;
