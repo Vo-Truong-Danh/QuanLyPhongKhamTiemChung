@@ -79,8 +79,7 @@ namespace GUI
             txtTenHienThi.Text = nv.HoTen;
             if (nv.Quyen != 1)
             {
-                button11.Enabled = false;
-                button12.Enabled = false;
+                //button11.Visible = false;
                 //btnQLVaccine.Enabled = false;
                 //btnQLTiemChung.Enabled = false;
                 //btnQLNhanVien.Enabled = false;
@@ -139,7 +138,9 @@ namespace GUI
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                DialogResult t = MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                    this.Close();
             }
         }
 
@@ -258,7 +259,6 @@ namespace GUI
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            this.Hide();
             frmDangNhap tmp = new frmDangNhap();
             tmp.ShowDialog();
             this.Close();

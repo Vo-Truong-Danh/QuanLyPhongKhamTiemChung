@@ -80,6 +80,12 @@
     <Compile Include="frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemNV.Designer.cs">
+      <DependentUpon>frmThemNV.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemNV.resx">
+      <DependentUpon>frmThemNV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>

@@ -48,10 +48,32 @@ namespace GUI
             dgvNhanVien.RowTemplate.Height = 60;
             CreateDTGVLichTiem(nvbll.Load());
         }
+        public void ReloadDGV()
+        {
+            try
+            {
+                DataTable dttb = nvbll.Load();
+
+                if (dttb != null && dttb.Rows.Count > 0)
+                {
+                    CreateDTGVLichTiem(dttb);
+                }
+                else
+                {
+                    dgvNhanVien.Rows.Clear();
+                    MessageBox.Show("Không có dữ liệu để hiển thị!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi khi tải dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void CreateDTGVLichTiem(DataTable dttb)
         {
-            dgvNhanVien.Columns.Clear();  // Xóa tất cả các cột
-            dgvNhanVien.Rows.Clear();     // Xóa tất cả các hàng
+            dgvNhanVien.Columns.Clear(); 
+            dgvNhanVien.Rows.Clear();    
             DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
             {
                 Name = "STT",
@@ -150,5 +172,18 @@ namespace GUI
                 CreateDTGVLichTiem(nvbll.Load());
             }
         }
+
+        private void btnThemNV_Click(object sender, EventArgs e)
+        {
+            frmThemNV f = new frmThemNV();
+            f.ShowDialog();
+            ReloadDGV();
+            if(NhanVienDTO.CheckTB)
+            {
+                MessageBox.Show("Thêm thành công!");
+            }
+
+        }
+
     }
 }

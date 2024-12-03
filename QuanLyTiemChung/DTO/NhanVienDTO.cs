@@ -10,7 +10,7 @@ namespace DTO
     {
         string maNV,hoTen,gioiTinh, chucVu,diaChi,soDienThoai, pass;
         int? quyen;
-
+        public static bool CheckTB = false;
         public string MaNV { get => maNV; set => maNV = value; }
         public string HoTen { get => hoTen; set => hoTen = value; }
         public string GioiTinh { get => gioiTinh; set => gioiTinh = value; }

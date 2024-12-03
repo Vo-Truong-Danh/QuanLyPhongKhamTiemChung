@@ -334,6 +334,8 @@ namespace GUI
             pnlThemBN.Visible = false;
             pnlThongTinBenhNhan.Visible = false;
             btnXoaBN.Enabled = true;
+            groupBox1.Visible = true;
+            groupBox2.Visible = true;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -480,7 +482,8 @@ namespace GUI
                 pnlThemBN.Visible = true;
                 pnlThongTinBenhNhan.Visible = true;
                 pnlThongTinBenhNhan.BringToFront();
-
+                groupBox1.Visible = false;
+                groupBox2.Visible = false;
                 // Lấy giá trị từ ListViewItem
                 ListViewItem item = lstvDSBN.SelectedItems[0];
                 MaBenhNhan = item.SubItems[0].Text;
@@ -622,7 +625,7 @@ namespace GUI
                     string mavc = cboVaccine.SelectedValue.ToString();
                     foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
                     {
-                        if (row.Cells[0].Value == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
+                        if (row.Cells[0].Value.ToString() == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
                         {
                             DialogResult r = MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có muốn thêm vào không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (r == DialogResult.Yes)

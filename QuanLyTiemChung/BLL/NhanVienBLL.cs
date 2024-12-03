@@ -16,6 +16,10 @@ namespace BLL
         {
             return dal.SoLuong();
         }
+        public DataTable GetData()
+        {
+            return dal.GetData();
+        }
         public DataTable Load()
         {
             return dal.Load();
@@ -23,6 +27,22 @@ namespace BLL
         public NhanVienDTO CheckUserNameAndPassword(string userName, string password)
         {
            return dal.CheckUserNameAndPassword(userName, password);
+        }
+        public void Insert(NhanVienDTO nvDTO)
+        {
+            dal.Insert(nvDTO);
+        }
+        public bool Delete(string mavc)
+        {
+            return dal.Delete(mavc);
+        }
+        public bool Update(NhanVienDTO nvDTO)
+        {
+            return dal.Update(nvDTO);
+        }
+        public string TaoMaNVMoi()
+        {
+            return dal.TaoMaNVMoi();
         }
     }
 }
