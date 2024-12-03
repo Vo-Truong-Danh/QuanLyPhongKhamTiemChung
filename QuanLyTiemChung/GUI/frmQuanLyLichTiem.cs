@@ -164,7 +164,7 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Lỗi khi xác nhận tiêm cho bênh nhân ");
+                MessageBox.Show("Lịch tiêm của hoá đơn này đã tiêm rồi ! ");
             }
 
         }
