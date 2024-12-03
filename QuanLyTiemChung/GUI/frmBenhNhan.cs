@@ -194,8 +194,9 @@ namespace GUI
 
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
-            dgvChiTietHoaDon.ColumnHeadersHeight = 60;
-            dgvChiTietHoaDon.RowTemplate.Height = 60;
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(1, 40); 
+            lstvDSBN.SmallImageList = imageList;
 
             LoadListViewDSBN();
             LoadComboBoxVaccine();
@@ -374,7 +375,7 @@ namespace GUI
                     ketqua = ketqua + " Hóa đơn";
                 }
                 // Them chi tiet hoa don
-                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != ""&&kq)
+                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && kq)
                 {
                     foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
                     {
@@ -526,12 +527,37 @@ namespace GUI
             }
             LoadListViewDSBN();
         }
+        public bool KTSoMuiTiemChoPhepTiem(LoaiVaccineDTO loaiVC)
+        {
+            int soLuongHienTai = 0;
+             if (dgvChiTietHoaDon.Rows.Count > 0 && loaiVC.Tenloai!=null&&loaiVC.Tenloai!="")
+            {
+                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                {
+                    if(row.Cells[2].Value.ToString() ==loaiVC.Tenloai)
+                        soLuongHienTai += int.Parse(row.Cells[3].Value.ToString());
+                }
+            }
+            int? soMuiDuocTiem = loaiVCBLL.Search(loaiVC.Maloai).Somui;
+            if (soLuongHienTai >= soMuiDuocTiem)
+            {
+                MessageBox.Show($"Vượt quá số lượng mũi được tiêm! Số mũi nhiều nhất ở loại này là {soMuiDuocTiem}");
+                return false;
+            }
+            return true;
+        }
 
         private void cboLoaiVaccine_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
                 string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+                LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
+                if (!KTSoMuiTiemChoPhepTiem(loaiVC))
+                {
+                    cboVaccine.DataSource = null;
+                    return;
+                }
                 DataTable dr = vcBLL.LayTTVC().Select("MaLoai='" + maLoai + "' and SoLuongTon > 0 ").CopyToDataTable();
                 cboVaccine.DataSource = dr;
                 cboVaccine.DisplayMember = "TenVC";
@@ -572,6 +598,13 @@ namespace GUI
 
         private void btnThemMuiTiem_Click(object sender, EventArgs e)
         {
+            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+            LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
+            if (!KTSoMuiTiemChoPhepTiem(loaiVC))
+            {
+                cboVaccine.DataSource = null;
+                return;
+            }
             btnThemBenhNhan.Enabled = true;
             string ma = cboVaccine.SelectedValue.ToString();
             DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '" + ma + "' ");
@@ -699,6 +732,46 @@ namespace GUI
 
         private void cboLoaiVaccine_Click(object sender, EventArgs e)
         {
+        }
+
+        private void txtSoLuong_TextChanged(object sender, EventArgs e)
+        {
+            Control ctr = (Control)sender;
+            if (txtDonGia.Text != null && txtDonGia.Text.Length > 0)
+            {
+                txtSoLuong.Enabled = true;
+            }
+            else
+            {
+                txtSoLuong.Enabled=false;
+            }
+            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+            LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
+            if (loaiVC != null)
+            {
+                int soLuongHienTai = 0;
+                if (dgvChiTietHoaDon.Rows.Count > 0 && loaiVC.Tenloai != null && loaiVC.Tenloai != "")
+                {
+                    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                    {
+                        if (row.Cells[2].Value.ToString() == loaiVC.Tenloai)
+                            soLuongHienTai += int.Parse(row.Cells[3].Value.ToString());
+                    }
+                }
+                if(ctr.Text!=null && ctr.Text.Length > 0)
+                    soLuongHienTai += int.Parse(ctr.Text);
+                int? soMuiDuocTiem = loaiVCBLL.Search(loaiVC.Maloai).Somui;
+                if (soLuongHienTai > soMuiDuocTiem)
+                {
+                    btnThemMuiTiem.Enabled = false;
+                    errSoLuong.SetError(ctr, "Số lượng vượt mức cho phép.");
+                }
+                else
+                {
+                    btnThemMuiTiem.Enabled=true;
+                    errSoLuong.Clear();
+                }
+            }
         }
     }
 }

@@ -118,6 +118,7 @@ namespace GUI
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.errSoLuong = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errMaSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errHoTen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errDiaChi)).BeginInit();
@@ -131,6 +132,7 @@ namespace GUI
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietHoaDon)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errSoLuong)).BeginInit();
             this.SuspendLayout();
             // 
             // btnXoaBN
@@ -349,7 +351,7 @@ namespace GUI
             this.rdoNaminTTBN.Location = new System.Drawing.Point(860, 246);
             this.rdoNaminTTBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNaminTTBN.Name = "rdoNaminTTBN";
-            this.rdoNaminTTBN.Size = new System.Drawing.Size(57, 20);
+            this.rdoNaminTTBN.Size = new System.Drawing.Size(54, 20);
             this.rdoNaminTTBN.TabIndex = 74;
             this.rdoNaminTTBN.TabStop = true;
             this.rdoNaminTTBN.Text = "Nam";
@@ -361,7 +363,7 @@ namespace GUI
             this.rdoNuinTTBN.Location = new System.Drawing.Point(940, 246);
             this.rdoNuinTTBN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNuinTTBN.Name = "rdoNuinTTBN";
-            this.rdoNuinTTBN.Size = new System.Drawing.Size(45, 20);
+            this.rdoNuinTTBN.Size = new System.Drawing.Size(42, 20);
             this.rdoNuinTTBN.TabIndex = 73;
             this.rdoNuinTTBN.TabStop = true;
             this.rdoNuinTTBN.Text = "Nữ";
@@ -678,7 +680,6 @@ namespace GUI
             this.cboLoaiVaccine.TabIndex = 65;
             this.cboLoaiVaccine.SelectionChangeCommitted += new System.EventHandler(this.cboLoaiVaccine_SelectionChangeCommitted);
             this.cboLoaiVaccine.SelectedValueChanged += new System.EventHandler(this.cboLoaiVaccine_SelectedValueChanged);
-            this.cboLoaiVaccine.Click += new System.EventHandler(this.cboLoaiVaccine_Click);
             // 
             // cboVaccine
             // 
@@ -801,6 +802,7 @@ namespace GUI
             this.txtSoLuong.Size = new System.Drawing.Size(45, 36);
             this.txtSoLuong.TabIndex = 55;
             this.txtSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSoLuong.TextChanged += new System.EventHandler(this.txtSoLuong_TextChanged);
             // 
             // dgvChiTietHoaDon
             // 
@@ -973,7 +975,7 @@ namespace GUI
             this.rdoNam.Location = new System.Drawing.Point(167, 339);
             this.rdoNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNam.Name = "rdoNam";
-            this.rdoNam.Size = new System.Drawing.Size(80, 34);
+            this.rdoNam.Size = new System.Drawing.Size(77, 34);
             this.rdoNam.TabIndex = 58;
             this.rdoNam.TabStop = true;
             this.rdoNam.Text = "Nam";
@@ -985,7 +987,7 @@ namespace GUI
             this.rdoNu.Location = new System.Drawing.Point(247, 339);
             this.rdoNu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoNu.Name = "rdoNu";
-            this.rdoNu.Size = new System.Drawing.Size(63, 34);
+            this.rdoNu.Size = new System.Drawing.Size(60, 34);
             this.rdoNu.TabIndex = 57;
             this.rdoNu.TabStop = true;
             this.rdoNu.Text = "Nữ";
@@ -1122,6 +1124,10 @@ namespace GUI
             this.columnHeader6.Text = "Số điện thoại";
             this.columnHeader6.Width = 350;
             // 
+            // errSoLuong
+            // 
+            this.errSoLuong.ContainerControl = this;
+            // 
             // frmBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1153,6 +1159,7 @@ namespace GUI
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietHoaDon)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errSoLuong)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1245,5 +1252,6 @@ namespace GUI
         private DataGridViewTextBoxColumn Column7;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem xóaMũiTiêmToolStripMenuItem;
+        private ErrorProvider errSoLuong;
     }
 }
