@@ -105,6 +105,7 @@ namespace GUI
             this.button2.TabIndex = 8;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             // 
             // btnHoaDon
             // 
@@ -114,6 +115,7 @@ namespace GUI
             this.btnHoaDon.TabIndex = 7;
             this.btnHoaDon.Text = "Hóa đơn";
             this.btnHoaDon.UseVisualStyleBackColor = true;
+            this.btnHoaDon.Visible = false;
             this.btnHoaDon.Click += new System.EventHandler(this.btnHoaDon_Click);
             // 
             // panel3
