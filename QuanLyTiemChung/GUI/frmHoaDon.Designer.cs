@@ -64,6 +64,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnXoaHD = new System.Windows.Forms.Button();
+            this.btnSuaChiTiet = new System.Windows.Forms.Button();
             this.pnlTTHD.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +92,7 @@
             this.btnFilter.TabIndex = 113;
             this.btnFilter.Text = "Lọc";
             this.btnFilter.UseVisualStyleBackColor = false;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // btnDong
             // 
@@ -127,7 +129,7 @@
             this.btnInHD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnInHD.ForeColor = System.Drawing.Color.YellowGreen;
             this.btnInHD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInHD.Location = new System.Drawing.Point(957, 30);
+            this.btnInHD.Location = new System.Drawing.Point(957, 26);
             this.btnInHD.Margin = new System.Windows.Forms.Padding(0);
             this.btnInHD.Name = "btnInHD";
             this.btnInHD.Size = new System.Drawing.Size(249, 80);
@@ -202,6 +204,7 @@
             this.lstvDSHD.View = System.Windows.Forms.View.Details;
             this.lstvDSHD.ItemActivate += new System.EventHandler(this.lstvDSHD_ItemActivate);
             this.lstvDSHD.SelectedIndexChanged += new System.EventHandler(this.lstvDSHD_SelectedIndexChanged);
+            this.lstvDSHD.DoubleClick += new System.EventHandler(this.lstvDSHD_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -442,11 +445,30 @@
             this.btnXoaHD.UseVisualStyleBackColor = false;
             this.btnXoaHD.Click += new System.EventHandler(this.btnXoaHD_Click);
             // 
+            // btnSuaChiTiet
+            // 
+            this.btnSuaChiTiet.BackColor = System.Drawing.Color.Transparent;
+            this.btnSuaChiTiet.FlatAppearance.BorderColor = System.Drawing.Color.YellowGreen;
+            this.btnSuaChiTiet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSuaChiTiet.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnSuaChiTiet.ForeColor = System.Drawing.Color.Gold;
+            this.btnSuaChiTiet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSuaChiTiet.Location = new System.Drawing.Point(1230, 26);
+            this.btnSuaChiTiet.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSuaChiTiet.Name = "btnSuaChiTiet";
+            this.btnSuaChiTiet.Size = new System.Drawing.Size(249, 80);
+            this.btnSuaChiTiet.TabIndex = 131;
+            this.btnSuaChiTiet.Text = "Sửa hóa đơn";
+            this.btnSuaChiTiet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSuaChiTiet.UseVisualStyleBackColor = false;
+            this.btnSuaChiTiet.Click += new System.EventHandler(this.btnSuaChiTiet_Click);
+            // 
             // frmHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1871, 1214);
+            this.Controls.Add(this.btnSuaChiTiet);
             this.Controls.Add(this.btnXoaHD);
             this.Controls.Add(this.pnlTTHD);
             this.Controls.Add(this.lstvDSHD);
@@ -507,5 +529,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Button btnSuaChiTiet;
     }
 }
