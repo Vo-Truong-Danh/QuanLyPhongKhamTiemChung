@@ -12,6 +12,7 @@ using DTO;
 using BLL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Globalization;
+using CrystalDecisions.Shared.Json;
 
 namespace GUI
 {
@@ -573,14 +574,22 @@ namespace GUI
                 cboVaccine.DataSource = null;
             }
         }
-
+        GhiNhanTiemChungBLL gntcbll = new GhiNhanTiemChungBLL();
         private void btnKQTiemChung_Click_1(object sender, EventArgs e)
         {
             if (lstvDSBN.SelectedItems.Count > 0)
             {
                 string MaBenhNhan = lstvDSBN.SelectedItems[0].SubItems[0].Text;
-                frmReport fm = new frmReport(2, MaBenhNhan);
-                fm.ShowDialog();
+                DataRow[] dr2 = gntcbll.Load().Select("MaBN = '" + MaBenhNhan + "'");
+                if (dr2.Length > 0)
+                {
+                    frmReport fm = new frmReport(2, MaBenhNhan);
+                    fm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Bệnh nhân chưa có lịch sử tiêm chủng tại đây ");
+                }
             }
         }
         // Tạo Hóa Đơn
@@ -601,52 +610,59 @@ namespace GUI
 
         private void btnThemMuiTiem_Click(object sender, EventArgs e)
         {
-            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-            LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
-            if (!KTSoMuiTiemChoPhepTiem(loaiVC))
+            try
             {
-                cboVaccine.DataSource = null;
-                return;
-            }
-            btnThemBenhNhan.Enabled = true;
-            string ma = cboVaccine.SelectedValue.ToString();
-            DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '" + ma + "' ");
-            if (txtSoLuong.Text != null && txtSoLuong.Text != "")
-            {
-                int sl = int.Parse(txtSoLuong.Text);
-                if (dr.Length > 0 && int.Parse(dr[0]["SoLuongTon"].ToString()) > sl)
+                string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+                LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
+                if (!KTSoMuiTiemChoPhepTiem(loaiVC))
                 {
-                    if (txtDonGia.Text == null || txtDonGia.Text == "")
+                    cboVaccine.DataSource = null;
+                    return;
+                }
+                btnThemBenhNhan.Enabled = true;
+                string ma = cboVaccine.SelectedValue.ToString();
+                DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '" + ma + "' ");
+                if (txtSoLuong.Text != null && txtSoLuong.Text != "")
+                {
+                    int sl = int.Parse(txtSoLuong.Text);
+                    if (dr.Length > 0 && int.Parse(dr[0]["SoLuongTon"].ToString()) > sl)
                     {
-                        MessageBox.Show("Không thể thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    int ThanhTien = 0;
-                    string mavc = cboVaccine.SelectedValue.ToString();
-                    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                    {
-                        if (row.Cells[0].Value.ToString() == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
+                        if (txtDonGia.Text == null || txtDonGia.Text == "")
                         {
-                            DialogResult r = MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có muốn thêm vào không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (r == DialogResult.Yes)
+                            MessageBox.Show("Không thể thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        int ThanhTien = 0;
+                        string mavc = cboVaccine.SelectedValue.ToString();
+                        foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                        {
+                            if (row.Cells[0].Value.ToString() == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
                             {
-                                row.Cells[3].Value = int.Parse(txtSoLuong.Text.Trim()) + int.Parse(row.Cells[3].Value.ToString());
-                                row.Cells[5].Value = int.Parse(row.Cells[3].Value.ToString()) * int.Parse(row.Cells[4].Value.ToString());
-                                return;
-                            }
-                            else
-                            {
-                                return;
+                                DialogResult r = MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có muốn thêm vào không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (r == DialogResult.Yes)
+                                {
+                                    row.Cells[3].Value = int.Parse(txtSoLuong.Text.Trim()) + int.Parse(row.Cells[3].Value.ToString());
+                                    row.Cells[5].Value = int.Parse(row.Cells[3].Value.ToString()) * int.Parse(row.Cells[4].Value.ToString());
+                                    return;
+                                }
+                                else
+                                {
+                                    return;
+                                }
                             }
                         }
+                        ThanhTien = int.Parse(txtSoLuong.Text) * int.Parse(txtDonGia.Text);
+                        dgvChiTietHoaDon.Rows.Add(mavc, cboVaccine.Text, cboLoaiVaccine.Text, int.Parse(txtSoLuong.Text), int.Parse(txtDonGia.Text), ThanhTien, dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"));
                     }
-                    ThanhTien = int.Parse(txtSoLuong.Text) * int.Parse(txtDonGia.Text);
-                    dgvChiTietHoaDon.Rows.Add(mavc, cboVaccine.Text, cboLoaiVaccine.Text, int.Parse(txtSoLuong.Text), int.Parse(txtDonGia.Text), ThanhTien, dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"));
+                    else
+                    {
+                        MessageBox.Show("Số lượng còn lại của VACCINE không đủ");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Số lượng còn lại của VACCINE không đủ");
-                }
+            }
+            catch 
+            {
+                MessageBox.Show("Vui lòng chọn lại dữ liệu VACCINE");
             }
         }
 
