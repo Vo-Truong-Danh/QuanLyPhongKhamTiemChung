@@ -194,8 +194,9 @@ namespace GUI
 
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
-            dgvChiTietHoaDon.ColumnHeadersHeight = 60;
-            dgvChiTietHoaDon.RowTemplate.Height = 60;
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(1, 40); 
+            lstvDSBN.SmallImageList = imageList;
 
             LoadListViewDSBN();
             LoadComboBoxVaccine();

@@ -120,6 +120,23 @@ namespace GUI
                 }
             }
             CustomSizeColLT();
+            foreach (DataGridViewRow row in dgvLichTiem.Rows)
+            {
+                if (row.Cells["TrangThai"].Value != null)
+                {
+                    string trangThai = row.Cells["TrangThai"].Value.ToString();
+
+                    if (trangThai == "Đã tiêm")
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else if (trangThai == "Chưa tiêm")
+                    {
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 224);
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
         }
         private void CustomSizeColLT()
         {

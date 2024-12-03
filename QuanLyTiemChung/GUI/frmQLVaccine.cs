@@ -165,6 +165,24 @@ namespace GUI
                 }
             }
             CustomSizeCol();
+            foreach (DataGridViewRow row in dgvVaccine.Rows)
+            {
+                if (row.Cells["SoLuongTon"].Value != null)
+                {
+                    int soLuongTon;
+                    if (int.TryParse(row.Cells["SoLuongTon"].Value.ToString(), out soLuongTon))
+                    {
+                        if (soLuongTon < 10)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.LightYellow;
+                        }
+                        if (soLuongTon < 2)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.FromArgb(255, 192, 192);
+                        }
+                    }
+                }
+            }
         }
         private void CustomSizeCol()
         {
