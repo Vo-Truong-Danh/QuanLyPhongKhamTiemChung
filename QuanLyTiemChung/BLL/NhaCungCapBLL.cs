@@ -37,5 +37,6 @@ namespace BLL
         {
             NhaCcDAL.Luu();
         }
+
     }
 }

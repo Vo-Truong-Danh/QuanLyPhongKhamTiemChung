@@ -23,6 +23,24 @@ namespace DAL
             adap.Fill(dt = new DataTable());
             conn.Close();
         }
+        public DataTable Load()
+        {
+            try
+            {
+                SqlCommandBuilder builder = new SqlCommandBuilder(adap);
+                adap.Update(dt);
+
+                dt.AcceptChanges();
+                dt.Clear();
+                adap.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public int SoLuong()
         {
             return dt.Rows.Count;

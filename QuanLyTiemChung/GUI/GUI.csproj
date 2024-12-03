@@ -59,6 +59,12 @@
     <Compile Include="frmKetQuaTiemChungBN.Designer.cs">
       <DependentUpon>frmKetQuaTiemChungBN.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhanVien.Designer.cs">
+      <DependentUpon>frmNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmQuanLyLichTiem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </Compile>
     <EmbeddedResource Include="frmKetQuaTiemChungBN.resx">
       <DependentUpon>frmKetQuaTiemChungBN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNhanVien.resx">
+      <DependentUpon>frmNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuanLyLichTiem.resx">
       <DependentUpon>frmQuanLyLichTiem.cs</DependentUpon>

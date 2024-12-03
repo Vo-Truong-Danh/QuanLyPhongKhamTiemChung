@@ -180,6 +180,7 @@ namespace GUI
             this.button11.Text = "QL Nhân Viên";
             this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 
@@ -193,6 +194,7 @@ namespace GUI
             this.button12.Size = new System.Drawing.Size(63, 60);
             this.button12.TabIndex = 0;
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // panel7
             // 

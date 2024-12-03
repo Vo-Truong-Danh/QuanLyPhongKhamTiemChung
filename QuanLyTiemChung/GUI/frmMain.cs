@@ -305,5 +305,16 @@ namespace GUI
 
             OpenChild(new frmQuanLyLichTiem());
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            OpenChild(new frmNhanVien(TK));
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+            OpenChild(new frmNhanVien(TK));
+        }
     }
 }
