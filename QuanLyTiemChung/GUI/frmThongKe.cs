@@ -29,30 +29,31 @@ namespace GUI
             foreach (Series t in chartPhieuNhap.Series)
             {
                 t.IsValueShownAsLabel = true;
-                // Tùy chỉnh định dạng nhãn nếu cần
-                t.LabelFormat = "{C}"; // Hoặc "{N0}"
+                // Tùy chỉnh định dạng nhãn cho tiền tệ Việt Nam
+                t.LabelFormat = "{0,0}₫"; // Định dạng theo tiền Việt, sử dụng dấu phân cách hàng nghìn
             }
             series.XValueMember = "ThangNam"; // Gán cột "ThangNam" làm trục X
             series.YValueMembers = "TongTien"; // Gán cột "TongTien" làm giá trị Y
-            series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column; // Hiển thị dạng cột
+            series.ChartType = SeriesChartType.Column; // Hiển thị dạng cột
 
             chartPhieuNhap.DataBind(); // Ràng buộc dữ liệu
 
 
             chartHoaDon.DataSource = pnbll.ThongKeHD();
-            chartHoaDon.Series.Clear(); chartHoaDon.ChartAreas[0].AxisX.Interval = 1;
+            chartHoaDon.Series.Clear();
+            chartHoaDon.ChartAreas[0].AxisX.Interval = 1;
             chartHoaDon.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
             chartHoaDon.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 8f);
             var seriess = chartHoaDon.Series.Add("Tổng Tiền");
             foreach (Series t in chartHoaDon.Series)
             {
                 t.IsValueShownAsLabel = true;
-                // Tùy chỉnh định dạng nhãn nếu cần
-                t.LabelFormat = "{C}"; // Hoặc "{N0}"
+                // Tùy chỉnh định dạng nhãn cho tiền tệ Việt Nam
+                t.LabelFormat = "{0,0}₫"; // Định dạng theo tiền Việt, sử dụng dấu phân cách hàng nghìn
             }
             seriess.XValueMember = "ThangNam"; // Gán cột "ThangNam" làm trục X
             seriess.YValueMembers = "TongTien"; // Gán cột "TongTien" làm giá trị Y
-            seriess.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column; // Hiển thị dạng cột
+            seriess.ChartType = SeriesChartType.Column; // Hiển thị dạng cột
 
             chartHoaDon.DataBind(); // Ràng buộc dữ liệu
 
@@ -63,7 +64,6 @@ namespace GUI
 
             // Tạo Series MỚI cho chartVCDaTiem, không sử dụng seriesss của chartHoaDon
             Series seriesVaccine = chartVCDaTiem.Series.Add("Số lượng Vaccine đã tiêm");
-
 
             // Cấu hình cho chartVCDaTiem
             chartVCDaTiem.ChartAreas[0].AxisX.Interval = 1;
@@ -77,10 +77,7 @@ namespace GUI
             seriesVaccine.IsValueShownAsLabel = true;
             seriesVaccine.LabelFormat = "{N0}"; // Định dạng số lượng (không có tiền tệ)
 
-
-
             chartVCDaTiem.DataBind();
-
         }
     }
 }

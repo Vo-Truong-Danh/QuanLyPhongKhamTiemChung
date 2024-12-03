@@ -177,7 +177,7 @@ namespace GUI
             // pctHU
             // 
             this.pctHU.Image = ((System.Drawing.Image)(resources.GetObject("pctHU.Image")));
-            this.pctHU.Location = new System.Drawing.Point(246, 31);
+            this.pctHU.Location = new System.Drawing.Point(213, 31);
             this.pctHU.Margin = new System.Windows.Forms.Padding(4);
             this.pctHU.Name = "pctHU";
             this.pctHU.Size = new System.Drawing.Size(356, 345);
@@ -297,6 +297,7 @@ namespace GUI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDangNhap";
             this.Load += new System.EventHandler(this.frmDangNhap_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmDangNhap_KeyUp_1);
             ((System.ComponentModel.ISupportInitialize)(this.pctmain)).EndInit();
             this.pnlMatkhau.ResumeLayout(false);
             this.pnlMatkhau.PerformLayout();
