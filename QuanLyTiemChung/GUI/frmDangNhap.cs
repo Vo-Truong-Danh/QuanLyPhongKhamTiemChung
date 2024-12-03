@@ -147,5 +147,20 @@ namespace GUI
             frmMain.ShowDialog();
             this.Close();
         }
+
+        private void frmDangNhap_KeyUp_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtTaiKhoan.Focused)
+                {
+                    txtMatKhau.Focus();
+                }
+                else if (txtMatKhau.Focused)
+                {
+                    btnDangNhap.PerformClick();
+                }
+            }
+        }
     }
 }
