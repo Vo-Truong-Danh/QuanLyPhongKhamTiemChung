@@ -40,6 +40,13 @@ namespace GUI
                 rp.SetParameterValue("MaBN", Ma);
                 crystalReportViewer1.ReportSource = rp;
             }
+            if (YeuCau == 3)//Yeu cau 3 in hoa don
+            {
+                Rp_HoaDon rp = new Rp_HoaDon();
+                rp.SetDatabaseLogon("sa", "123");
+                rp.SetParameterValue("MaHD", Ma);
+                crystalReportViewer1.ReportSource = rp;
+            }
         }
     }
 }

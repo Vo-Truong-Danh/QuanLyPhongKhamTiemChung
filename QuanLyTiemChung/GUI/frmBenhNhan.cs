@@ -29,6 +29,13 @@ namespace GUI
             InitializeComponent();
             bnBLL = new BenhNhanBLL();
         }
+        TaiKhoanDTO TK;
+        public frmBenhNhan(TaiKhoanDTO tk)
+        {
+            TK = tk;
+            InitializeComponent();
+            bnBLL = new BenhNhanBLL();
+        }
         int? chucvu;
         public frmBenhNhan(int? cv)
         {
@@ -325,6 +332,7 @@ namespace GUI
         {
             bool kq = false;
             string ketqua = "";
+            string mahdtmp = txtMaHD.Text;
             // Them benh nhan
             if (!KTDuLieuBN())
                 return;
@@ -344,7 +352,7 @@ namespace GUI
             // Them hoa don
             if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "")
             {
-                HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, "NV001", float.Parse(txtTongTien.Text));
+                HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, TK.UserName, float.Parse(txtTongTien.Text));
                 kq = hdBLL.Insert(hd);
             }
             if (kq)
@@ -396,6 +404,8 @@ namespace GUI
             {
                 MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            frmReport rp = new frmReport(3, mahdtmp);
+            rp.ShowDialog();
             ClearTextBox();
             ClearErrorProvider();
             dgvChiTietHoaDon.DataSource = null;
