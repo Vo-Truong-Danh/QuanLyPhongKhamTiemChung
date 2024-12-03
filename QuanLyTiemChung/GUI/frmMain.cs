@@ -15,26 +15,26 @@ namespace GUI
     {
         public frmMain()
         {
-            TK.UserName = "NV002";
-            TK.DisplayName = "Nguyễn Văn Nam";
-            TK.ChucVu = 0;
+            nv.MaNV = "NV002";
+            nv.HoTen= "Trần Tấn Tài";
+            nv.Quyen = 0;
             InitializeComponent();
         }
-        TaiKhoanDTO TK = new TaiKhoanDTO();
+        NhanVienDTO nv = new NhanVienDTO();
 
-        public frmMain(TaiKhoanDTO nd) : this()
+        public frmMain(NhanVienDTO nd) : this()
         {
             if (nd != null)
             {
-                TK.UserName = nd.UserName;
-                TK.DisplayName = nd.DisplayName;
-                TK.ChucVu = nd.ChucVu;
+                nv.MaNV = nd.MaNV;
+                nv.HoTen = nd.HoTen;
+                nv.Quyen= nd.Quyen;
             }
             else
             {
-                TK.UserName = "NV002";
-                TK.DisplayName = "Duong Trong Hoang";
-                TK.ChucVu = 0;
+                nv.MaNV = "NV002";
+                nv.HoTen= "Võ Trường Danh";
+                nv.Quyen= 0;
             }
         }
         static bool checksibarMoRong = true; 
@@ -76,8 +76,8 @@ namespace GUI
             rongmax = targetWidth;
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
             OpenChild(new frmTrangChu());
-            txtTenHienThi.Text = TK.DisplayName;
-            if (TK.ChucVu != 1)
+            txtTenHienThi.Text = nv.HoTen;
+            if (nv.Quyen != 1)
             {
                 button11.Visible = false;
                 //btnQLVaccine.Enabled = false;
@@ -121,20 +121,20 @@ namespace GUI
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (!isExiting)
-            {
-                DialogResult t = MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (t == DialogResult.No)
-                    e.Cancel = true;
-            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (!isExiting)
+            {
+                DialogResult t = MessageBox.Show("Bạn có chắc muốn thoát ứng dụng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (t == DialogResult.Yes)
+                    this.Close();
+            }
         }
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -189,13 +189,13 @@ namespace GUI
             }
             checksibarMoRong = !checksibarMoRong;
             Sibar.Start();
-            OpenChild(new frmQLVaccine(TK));
+            OpenChild(new frmQLVaccine(nv));
 
         }
 
         private void btnQLVaccines_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmQLVaccine(TK));
+            OpenChild(new frmQLVaccine(nv));
 
         }
 
@@ -246,17 +246,18 @@ namespace GUI
             }
             checksibarMoRong = !checksibarMoRong;
             Sibar.Start();
-            OpenChild(new frmBenhNhan(TK));
+            OpenChild(new frmBenhNhan(nv));
         }
 
         private void btnQLBenhNhans_Click(object sender, EventArgs e)
         {
 
-            OpenChild(new frmBenhNhan(TK));
+            OpenChild(new frmBenhNhan(nv));
         }
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
+            this.Hide();
             frmDangNhap tmp = new frmDangNhap();
             tmp.ShowDialog();
             this.Close();
@@ -309,13 +310,13 @@ namespace GUI
 
         private void button11_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmNhanVien(TK));
+            OpenChild(new frmNhanVien(nv));
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
 
-            OpenChild(new frmNhanVien(TK));
+            OpenChild(new frmNhanVien(nv));
         }
 
         private void button1_Click(object sender, EventArgs e)

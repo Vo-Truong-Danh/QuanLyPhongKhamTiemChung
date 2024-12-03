@@ -20,8 +20,8 @@ namespace GUI
         {
             InitializeComponent();
         }
-        TaiKhoanDTO TK;
-        public frmNhanVien(TaiKhoanDTO tk)
+        NhanVienDTO TK;
+        public frmNhanVien(NhanVienDTO tk)
         {
             TK = tk;
             InitializeComponent();
