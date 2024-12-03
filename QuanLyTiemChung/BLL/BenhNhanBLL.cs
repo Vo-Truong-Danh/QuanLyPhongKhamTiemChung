@@ -12,6 +12,10 @@ namespace BLL
     public class BenhNhanBLL
     {
         BenhNhanDAL bnDAL = new BenhNhanDAL();
+        public DataTable GetData()
+        {
+            return bnDAL.GetData();
+        }
         public bool Insert(BenhNhanDTO bnDTO)
         {
             try

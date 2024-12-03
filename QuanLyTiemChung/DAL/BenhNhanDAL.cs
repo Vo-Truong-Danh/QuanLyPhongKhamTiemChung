@@ -23,6 +23,10 @@ namespace DAL
             if (dt.Rows.Count == 0)
                 adap.Fill(dt);
         }
+        public DataTable GetData()
+        {
+            return dt;
+        }
         public int SoLuong()
         {
             return dt.Rows.Count;

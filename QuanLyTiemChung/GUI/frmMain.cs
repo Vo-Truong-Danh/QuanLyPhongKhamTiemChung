@@ -291,12 +291,19 @@ namespace GUI
 
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmHoaDon());
+            OpenChild(new HoaDon());
         }
 
         private void btnQLTiemChung_Click(object sender, EventArgs e)
         {
 
+            OpenChild(new frmQuanLyLichTiem());
+        }
+
+        private void btnQLTiemChungS_Click(object sender, EventArgs e)
+        {
+
+            OpenChild(new frmQuanLyLichTiem());
         }
     }
 }

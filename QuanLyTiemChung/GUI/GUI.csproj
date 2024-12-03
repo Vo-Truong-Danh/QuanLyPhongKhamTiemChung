@@ -59,11 +59,11 @@
     <Compile Include="frmKetQuaTiemChungBN.Designer.cs">
       <DependentUpon>frmKetQuaTiemChungBN.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLichTiem.cs">
+    <Compile Include="frmQuanLyLichTiem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLichTiem.Designer.cs">
-      <DependentUpon>frmLichTiem.cs</DependentUpon>
+    <Compile Include="frmQuanLyLichTiem.Designer.cs">
+      <DependentUpon>frmQuanLyLichTiem.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReport.cs">
       <SubType>Form</SubType>
@@ -77,11 +77,11 @@
     <Compile Include="frmThongKe.Designer.cs">
       <DependentUpon>frmThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmHoaDon.cs">
+    <Compile Include="HoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHoaDon.Designer.cs">
-      <DependentUpon>frmHoaDon.cs</DependentUpon>
+    <Compile Include="HoaDon.Designer.cs">
+      <DependentUpon>HoaDon.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportPhieuNhap.cs">
       <AutoGen>True</AutoGen>
@@ -160,8 +160,8 @@
     <EmbeddedResource Include="frmKetQuaTiemChungBN.resx">
       <DependentUpon>frmKetQuaTiemChungBN.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLichTiem.resx">
-      <DependentUpon>frmLichTiem.cs</DependentUpon>
+    <EmbeddedResource Include="frmQuanLyLichTiem.resx">
+      <DependentUpon>frmQuanLyLichTiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHoaDon.resx">
-      <DependentUpon>frmHoaDon.cs</DependentUpon>
+    <EmbeddedResource Include="HoaDon.resx">
+      <DependentUpon>HoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPhieuNhap.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

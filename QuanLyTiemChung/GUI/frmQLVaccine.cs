@@ -846,10 +846,6 @@ namespace GUI
             }
         }
 
-        private void CapNhatToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
         private void ThongBao(string nd, int colortext)
         {
             // 0 là đen _ 1 là xanh _ 2 là đỏ
@@ -913,7 +909,7 @@ namespace GUI
             }
         }
 
-        private void CapNhatToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void CapNhatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
             frm_overlay frm = new frm_overlay(1, ma);
@@ -1662,6 +1658,46 @@ namespace GUI
         {
             lblMaloaivctmp.Show();
             lblXuatXu.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
+            frm_overlay frm = new frm_overlay(1, ma);
+            frm.ShowDialog();
+            ReLoadFRM();
+            ThongBao("Cập nhật thành công Vaccine vào danh sách ", 1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string ma = dgvVaccine.SelectedRows[0].Cells[1].Value.ToString();
+            string ten = dgvVaccine.SelectedRows[0].Cells[2].Value.ToString();
+            DataRow[] drcheckctpn = ctpnbll.GetData().Select("MaVC = '" + ma + "'");
+            if (drcheckctpn.Length == 0)
+            {
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn xóa Vaccine '" + ten + "' này không?",
+                                     "Xác nhận",
+                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (t == DialogResult.Yes)
+                {
+                    bool ck = vaccineBLL.Delete(ma);
+                    if (ck)
+                    {
+                        ThongBao("Xoá thành công Vaccine " + ten + "", 1);
+                        ReLoadFRM();
+                    }
+                    else
+                    {
+                        ThongBao("Xoá thất lại Vaccine " + ten + "", 2);
+                        ReLoadFRM();
+                    }
+                }
+            }
+            else
+            {
+                ThongBao("Vaccine " + ten + " đã được sử dụng không thể xoá thông tin!", 2);
+            }
         }
     }
 }

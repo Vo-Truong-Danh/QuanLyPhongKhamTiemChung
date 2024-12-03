@@ -46,6 +46,7 @@
     <Compile Include="ChiTietPhieuNhapDAL.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="GeneralDAL.cs" />
+    <Compile Include="GhiNhanTiemChungDAL.cs" />
     <Compile Include="HoaDonDAL.cs" />
     <Compile Include="LichTiemDAL.cs" />
     <Compile Include="LoaiVaccineDAL.cs" />

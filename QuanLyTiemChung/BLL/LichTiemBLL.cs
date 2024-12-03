@@ -24,7 +24,10 @@ namespace BLL
         {
             return lichTiemDAL.NewIDLT();
         }
-
+        public DataTable GetData()
+        {
+            return lichTiemDAL.GetData();
+        }
 
         public string GetNgayTiem(string maHD)
         {
@@ -48,6 +51,11 @@ namespace BLL
         public bool ThemLichTiemChoHoaDon(LichTiemDTO lt)
         {
                 return lichTiemDAL.ThemLichTiemChoHoaDon(lt);  
+        }
+
+        public DataTable Load()
+        {
+            return lichTiemDAL.Load();
         }
     }
 }

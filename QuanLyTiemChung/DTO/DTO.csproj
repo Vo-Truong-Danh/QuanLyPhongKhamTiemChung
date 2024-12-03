@@ -44,6 +44,7 @@
     <Compile Include="BenhNhanDTO.cs" />
     <Compile Include="ChiTietPhieuNhapDTO.cs" />
     <Compile Include="ChiTietHoaDonDTO.cs" />
+    <Compile Include="GhiNhanTiemChungDTO.cs" />
     <Compile Include="HoaDonDTO.cs" />
     <Compile Include="LichTiemDTO.cs" />
     <Compile Include="LoaiVaccineDTO.cs" />

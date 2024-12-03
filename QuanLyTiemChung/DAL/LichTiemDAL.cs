@@ -50,7 +50,10 @@ namespace DAL
                 throw;
             }
         }
-
+        public DataTable GetData()
+        {
+            return dt;
+        }
         public bool ThemLichTiemChoHoaDon(LichTiemDTO lt)
         {
             Load();
