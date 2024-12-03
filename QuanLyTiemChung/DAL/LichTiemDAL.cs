@@ -13,9 +13,19 @@ namespace DAL
     public class LichTiemDAL
     {
         private DatabaseHelper dataHelper;
-
+        SqlDataAdapter adap = new SqlDataAdapter();
+        SqlConnection conn;
+        private static DataTable dt = new DataTable();
         public LichTiemDAL()
         {
+            conn = new SqlConnection(GeneralDAL.connectStrg);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            conn.Open();
+            string truyvansql = "select * from LichTiem";
+            adap = new SqlDataAdapter(truyvansql, conn);
+            adap.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            if (dt.Rows.Count == 0)
+                adap.Fill(dt);
             dataHelper = new DatabaseHelper(GeneralDAL.connectStrg);
         }
 
@@ -23,7 +33,7 @@ namespace DAL
         {
             string query = "INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai) VALUES (@MaLT, @MaHD, @MaBN, @MaVC, @NgayHenTiem, 'Chưa tiêm')";
             SqlParameter[] parameters = new SqlParameter[]
-            {   
+            {
                 new SqlParameter("MaLT", lichTiemDTO.MaLT),
                 new SqlParameter("@MaHD", lichTiemDTO.MaHD),
                 new SqlParameter("@MaBN", lichTiemDTO.MaBN),
@@ -53,7 +63,42 @@ namespace DAL
             };
             dataHelper.ExecuteNonQuery(query, parameters);
         }
+        public DataTable Load()
+        {
+            adap.Update(dt);
 
+            dt.AcceptChanges();
+
+            dt.Clear();
+            adap.Fill(dt);
+            return dt;
+        }
+        public bool UpdateNgayHenTiem(LichTiemDTO lichTiemDTO)
+        {
+            try
+            {
+                Load();
+                DataRow[] rowDeUPD = dt.Select("MaLT ='" + lichTiemDTO.MaLT + "'");
+
+                if (rowDeUPD.Length > 0)
+                {
+                    DataRow row = rowDeUPD[0];
+                    string date = lichTiemDTO.NgayHenTiem.ToString("yyyy-MM-dd");
+                    row["NgayHenTiem"] = date;
+                    // Cập nhật xuống database
+                    adap.Update(dt);
+
+                    // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
+                    dt.AcceptChanges();
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public DataTable GetLichTiem()
         {
             string query = "SELECT * FROM LICHTIEM";
@@ -104,7 +149,8 @@ namespace DAL
 
         public string GetNgayTiem(string maHD)
         {
-            foreach (DataRow row in GetFullDataRows()) {
+            foreach (DataRow row in GetFullDataRows())
+            {
 
                 if (row["MaHD"].ToString() == maHD)
                 {

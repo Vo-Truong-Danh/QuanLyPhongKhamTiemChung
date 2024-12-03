@@ -65,12 +65,6 @@
     <Compile Include="frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmThanhToan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmThanhToan.Designer.cs">
-      <DependentUpon>frmThanhToan.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmThongKe.cs">
       <SubType>Form</SubType>
     </Compile>

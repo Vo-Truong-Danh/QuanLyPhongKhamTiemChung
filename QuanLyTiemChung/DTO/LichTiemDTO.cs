@@ -25,5 +25,12 @@ namespace DTO
             NgayHenTiem = ngayHenTiem;
             TrangThai = trangThai;
         }
+        public LichTiemDTO(string maHD, string maVC, DateTime ngayHenTiem)
+        {
+            MaHD = maHD;
+            MaVC = maVC;
+            NgayHenTiem = ngayHenTiem;
+        }
+        public LichTiemDTO() { }    
     }
 }

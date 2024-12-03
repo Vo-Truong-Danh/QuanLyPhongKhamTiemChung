@@ -45,5 +45,9 @@ namespace BLL
         {
             lichTiemDAL.DeleteLTByMaHD(maHD);
         }
+        public bool UpdateNgayHenTiem(LichTiemDTO lichTiemDTO)
+        {
+           return lichTiemDAL.UpdateNgayHenTiem(lichTiemDTO);
+        }
     }
 }
