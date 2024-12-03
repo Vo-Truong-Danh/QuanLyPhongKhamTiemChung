@@ -31,287 +31,285 @@ namespace GUI
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangNhap));
-            pctmain = new PictureBox();
-            label1 = new Label();
-            btnDangNhap = new Button();
-            pnlTaiKhoan = new Panel();
-            pnlMatkhau = new Panel();
-            btnAnpass = new PictureBox();
-            pictureBox4 = new PictureBox();
-            btnHienpass = new PictureBox();
-            txtMatKhau = new TextBox();
-            pctHU = new PictureBox();
-            labLoiTaiKhoan = new Label();
-            lblLoiMatKhau = new Label();
-            txtTaiKhoan = new TextBox();
-            pictureBox3 = new PictureBox();
-            lblsai = new Label();
-            timer = new System.Windows.Forms.Timer(components);
-            timerSaiTK = new System.Windows.Forms.Timer(components);
-            btnThoat = new PictureBox();
-            HU = new System.Windows.Forms.Timer(components);
-            pnlHuGoc = new Panel();
-            ((System.ComponentModel.ISupportInitialize)pctmain).BeginInit();
-            pnlMatkhau.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnAnpass).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnHienpass).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pctHU).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnThoat).BeginInit();
-            pnlHuGoc.SuspendLayout();
-            SuspendLayout();
+            this.pctmain = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnDangNhap = new System.Windows.Forms.Button();
+            this.pnlTaiKhoan = new System.Windows.Forms.Panel();
+            this.pnlMatkhau = new System.Windows.Forms.Panel();
+            this.btnAnpass = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btnHienpass = new System.Windows.Forms.PictureBox();
+            this.txtMatKhau = new System.Windows.Forms.TextBox();
+            this.pctHU = new System.Windows.Forms.PictureBox();
+            this.labLoiTaiKhoan = new System.Windows.Forms.Label();
+            this.lblLoiMatKhau = new System.Windows.Forms.Label();
+            this.txtTaiKhoan = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lblsai = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timerSaiTK = new System.Windows.Forms.Timer(this.components);
+            this.btnThoat = new System.Windows.Forms.PictureBox();
+            this.HU = new System.Windows.Forms.Timer(this.components);
+            this.pnlHuGoc = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pctmain)).BeginInit();
+            this.pnlMatkhau.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAnpass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHienpass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctHU)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnThoat)).BeginInit();
+            this.pnlHuGoc.SuspendLayout();
+            this.SuspendLayout();
             // 
             // pctmain
             // 
-            pctmain.Image = Properties.Resources.dangnhap;
-            pctmain.Location = new Point(38, 82);
-            pctmain.Margin = new Padding(4);
-            pctmain.Name = "pctmain";
-            pctmain.Size = new Size(294, 294);
-            pctmain.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctmain.TabIndex = 21;
-            pctmain.TabStop = false;
+            this.pctmain.Image = global::GUI.Properties.Resources.dangnhap;
+            this.pctmain.Location = new System.Drawing.Point(38, 82);
+            this.pctmain.Margin = new System.Windows.Forms.Padding(4);
+            this.pctmain.Name = "pctmain";
+            this.pctmain.Size = new System.Drawing.Size(294, 294);
+            this.pctmain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctmain.TabIndex = 21;
+            this.pctmain.TabStop = false;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("SVN-Gotham Rounded", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(458, 40);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(216, 37);
-            label1.TabIndex = 20;
-            label1.Text = "Đăng nhập";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(458, 40);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(193, 39);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Đăng nhập";
             // 
             // btnDangNhap
             // 
-            btnDangNhap.BackColor = Color.FromArgb(0, 237, 250);
-            btnDangNhap.FlatAppearance.BorderSize = 0;
-            btnDangNhap.FlatStyle = FlatStyle.Flat;
-            btnDangNhap.Font = new Font("SVN-Oscine", 14.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDangNhap.ForeColor = Color.Black;
-            btnDangNhap.Location = new Point(391, 307);
-            btnDangNhap.Margin = new Padding(0);
-            btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(351, 54);
-            btnDangNhap.TabIndex = 19;
-            btnDangNhap.Text = "Đăng nhập";
-            btnDangNhap.UseVisualStyleBackColor = false;
-            btnDangNhap.Click += btnDangNhap_Click_1;
+            this.btnDangNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(250)))));
+            this.btnDangNhap.FlatAppearance.BorderSize = 0;
+            this.btnDangNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangNhap.ForeColor = System.Drawing.Color.Black;
+            this.btnDangNhap.Location = new System.Drawing.Point(391, 307);
+            this.btnDangNhap.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDangNhap.Name = "btnDangNhap";
+            this.btnDangNhap.Size = new System.Drawing.Size(351, 54);
+            this.btnDangNhap.TabIndex = 19;
+            this.btnDangNhap.Text = "Đăng nhập";
+            this.btnDangNhap.UseVisualStyleBackColor = false;
+            this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click_1);
             // 
             // pnlTaiKhoan
             // 
-            pnlTaiKhoan.BackColor = Color.FromArgb(224, 224, 224);
-            pnlTaiKhoan.Location = new Point(391, 124);
-            pnlTaiKhoan.Name = "pnlTaiKhoan";
-            pnlTaiKhoan.Size = new Size(351, 54);
-            pnlTaiKhoan.TabIndex = 24;
+            this.pnlTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnlTaiKhoan.Location = new System.Drawing.Point(391, 124);
+            this.pnlTaiKhoan.Name = "pnlTaiKhoan";
+            this.pnlTaiKhoan.Size = new System.Drawing.Size(351, 54);
+            this.pnlTaiKhoan.TabIndex = 24;
             // 
             // pnlMatkhau
             // 
-            pnlMatkhau.BackColor = Color.FromArgb(224, 224, 224);
-            pnlMatkhau.Controls.Add(btnAnpass);
-            pnlMatkhau.Controls.Add(pictureBox4);
-            pnlMatkhau.Controls.Add(btnHienpass);
-            pnlMatkhau.Controls.Add(txtMatKhau);
-            pnlMatkhau.Location = new Point(391, 217);
-            pnlMatkhau.Name = "pnlMatkhau";
-            pnlMatkhau.Size = new Size(351, 54);
-            pnlMatkhau.TabIndex = 27;
+            this.pnlMatkhau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnlMatkhau.Controls.Add(this.btnAnpass);
+            this.pnlMatkhau.Controls.Add(this.pictureBox4);
+            this.pnlMatkhau.Controls.Add(this.btnHienpass);
+            this.pnlMatkhau.Controls.Add(this.txtMatKhau);
+            this.pnlMatkhau.Location = new System.Drawing.Point(391, 217);
+            this.pnlMatkhau.Name = "pnlMatkhau";
+            this.pnlMatkhau.Size = new System.Drawing.Size(351, 54);
+            this.pnlMatkhau.TabIndex = 27;
             // 
             // btnAnpass
             // 
-            btnAnpass.BackColor = Color.FromArgb(224, 224, 224);
-            btnAnpass.ErrorImage = Properties.Resources.login_8717908;
-            btnAnpass.Image = (Image)resources.GetObject("btnAnpass.Image");
-            btnAnpass.Location = new Point(292, 8);
-            btnAnpass.Margin = new Padding(4);
-            btnAnpass.Name = "btnAnpass";
-            btnAnpass.Size = new Size(36, 34);
-            btnAnpass.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnAnpass.TabIndex = 30;
-            btnAnpass.TabStop = false;
-            btnAnpass.Click += btnAnpass_Click;
+            this.btnAnpass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAnpass.ErrorImage = global::GUI.Properties.Resources.login_8717908;
+            this.btnAnpass.Image = ((System.Drawing.Image)(resources.GetObject("btnAnpass.Image")));
+            this.btnAnpass.Location = new System.Drawing.Point(291, 7);
+            this.btnAnpass.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAnpass.Name = "btnAnpass";
+            this.btnAnpass.Size = new System.Drawing.Size(36, 34);
+            this.btnAnpass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnAnpass.TabIndex = 30;
+            this.btnAnpass.TabStop = false;
+            this.btnAnpass.Click += new System.EventHandler(this.btnAnpass_Click);
             // 
             // pictureBox4
             // 
-            pictureBox4.BackColor = Color.FromArgb(224, 224, 224);
-            pictureBox4.ErrorImage = Properties.Resources.login_8717908;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(20, 9);
-            pictureBox4.Margin = new Padding(4);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(30, 34);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 25;
-            pictureBox4.TabStop = false;
+            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pictureBox4.ErrorImage = global::GUI.Properties.Resources.login_8717908;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(20, 9);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(30, 34);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 25;
+            this.pictureBox4.TabStop = false;
             // 
             // btnHienpass
             // 
-            btnHienpass.BackColor = Color.FromArgb(224, 224, 224);
-            btnHienpass.ErrorImage = Properties.Resources.login_8717908;
-            btnHienpass.Image = (Image)resources.GetObject("btnHienpass.Image");
-            btnHienpass.Location = new Point(294, 10);
-            btnHienpass.Margin = new Padding(4);
-            btnHienpass.Name = "btnHienpass";
-            btnHienpass.Size = new Size(32, 30);
-            btnHienpass.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnHienpass.TabIndex = 26;
-            btnHienpass.TabStop = false;
-            btnHienpass.Click += btnHienpass_Click;
+            this.btnHienpass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnHienpass.ErrorImage = global::GUI.Properties.Resources.login_8717908;
+            this.btnHienpass.Image = ((System.Drawing.Image)(resources.GetObject("btnHienpass.Image")));
+            this.btnHienpass.Location = new System.Drawing.Point(294, 10);
+            this.btnHienpass.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHienpass.Name = "btnHienpass";
+            this.btnHienpass.Size = new System.Drawing.Size(32, 30);
+            this.btnHienpass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnHienpass.TabIndex = 26;
+            this.btnHienpass.TabStop = false;
+            this.btnHienpass.Click += new System.EventHandler(this.btnHienpass_Click);
             // 
             // txtMatKhau
             // 
-            txtMatKhau.BackColor = Color.FromArgb(224, 224, 224);
-            txtMatKhau.BorderStyle = BorderStyle.None;
-            txtMatKhau.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtMatKhau.Location = new Point(68, 12);
-            txtMatKhau.Name = "txtMatKhau";
-            txtMatKhau.PasswordChar = '*';
-            //txtMatKhau.PlaceholderText = "Mật khẩu";
-            txtMatKhau.Size = new Size(248, 31);
-            txtMatKhau.TabIndex = 0;
+            this.txtMatKhau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtMatKhau.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMatKhau.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMatKhau.Location = new System.Drawing.Point(68, 12);
+            this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.PasswordChar = '*';
+            this.txtMatKhau.Size = new System.Drawing.Size(248, 31);
+            this.txtMatKhau.TabIndex = 0;
             // 
             // pctHU
             // 
-            pctHU.Image = (Image)resources.GetObject("pctHU.Image");
-            pctHU.Location = new Point(236, 67);
-            pctHU.Margin = new Padding(4);
-            pctHU.Name = "pctHU";
-            pctHU.Size = new Size(294, 294);
-            pctHU.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctHU.TabIndex = 31;
-            pctHU.TabStop = false;
+            this.pctHU.Image = ((System.Drawing.Image)(resources.GetObject("pctHU.Image")));
+            this.pctHU.Location = new System.Drawing.Point(246, 31);
+            this.pctHU.Margin = new System.Windows.Forms.Padding(4);
+            this.pctHU.Name = "pctHU";
+            this.pctHU.Size = new System.Drawing.Size(356, 345);
+            this.pctHU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctHU.TabIndex = 31;
+            this.pctHU.TabStop = false;
             // 
             // labLoiTaiKhoan
             // 
-            labLoiTaiKhoan.AutoSize = true;
-            labLoiTaiKhoan.ForeColor = Color.Red;
-            labLoiTaiKhoan.Location = new Point(391, 95);
-            labLoiTaiKhoan.Name = "labLoiTaiKhoan";
-            labLoiTaiKhoan.Size = new Size(0, 25);
-            labLoiTaiKhoan.TabIndex = 28;
+            this.labLoiTaiKhoan.AutoSize = true;
+            this.labLoiTaiKhoan.ForeColor = System.Drawing.Color.Red;
+            this.labLoiTaiKhoan.Location = new System.Drawing.Point(391, 95);
+            this.labLoiTaiKhoan.Name = "labLoiTaiKhoan";
+            this.labLoiTaiKhoan.Size = new System.Drawing.Size(0, 25);
+            this.labLoiTaiKhoan.TabIndex = 28;
             // 
             // lblLoiMatKhau
             // 
-            lblLoiMatKhau.AutoSize = true;
-            lblLoiMatKhau.ForeColor = Color.Red;
-            lblLoiMatKhau.Location = new Point(391, 182);
-            lblLoiMatKhau.Name = "lblLoiMatKhau";
-            lblLoiMatKhau.Size = new Size(0, 25);
-            lblLoiMatKhau.TabIndex = 29;
+            this.lblLoiMatKhau.AutoSize = true;
+            this.lblLoiMatKhau.ForeColor = System.Drawing.Color.Red;
+            this.lblLoiMatKhau.Location = new System.Drawing.Point(391, 182);
+            this.lblLoiMatKhau.Name = "lblLoiMatKhau";
+            this.lblLoiMatKhau.Size = new System.Drawing.Size(0, 25);
+            this.lblLoiMatKhau.TabIndex = 29;
             // 
             // txtTaiKhoan
             // 
-            txtTaiKhoan.BackColor = Color.FromArgb(224, 224, 224);
-            txtTaiKhoan.BorderStyle = BorderStyle.None;
-            txtTaiKhoan.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTaiKhoan.Location = new Point(459, 136);
-            txtTaiKhoan.Name = "txtTaiKhoan";
-            //txtTaiKhoan.PlaceholderText = "Tài khoản";
-            txtTaiKhoan.Size = new Size(250, 31);
-            txtTaiKhoan.TabIndex = 0;
+            this.txtTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtTaiKhoan.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTaiKhoan.Location = new System.Drawing.Point(459, 136);
+            this.txtTaiKhoan.Name = "txtTaiKhoan";
+            this.txtTaiKhoan.Size = new System.Drawing.Size(250, 31);
+            this.txtTaiKhoan.TabIndex = 0;
             // 
             // pictureBox3
             // 
-            pictureBox3.BackColor = Color.FromArgb(224, 224, 224);
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(411, 133);
-            pictureBox3.Margin = new Padding(4);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(30, 34);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 25;
-            pictureBox3.TabStop = false;
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(411, 133);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 34);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 25;
+            this.pictureBox3.TabStop = false;
             // 
             // lblsai
             // 
-            lblsai.AutoSize = true;
-            lblsai.ForeColor = Color.Red;
-            lblsai.Location = new Point(391, 276);
-            lblsai.Name = "lblsai";
-            lblsai.Size = new Size(0, 25);
-            lblsai.TabIndex = 30;
+            this.lblsai.AutoSize = true;
+            this.lblsai.ForeColor = System.Drawing.Color.Red;
+            this.lblsai.Location = new System.Drawing.Point(391, 276);
+            this.lblsai.Name = "lblsai";
+            this.lblsai.Size = new System.Drawing.Size(0, 25);
+            this.lblsai.TabIndex = 30;
             // 
             // timer
             // 
-            timer.Tick += timer_Tick;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // timerSaiTK
             // 
-            timerSaiTK.Interval = 4000;
-            timerSaiTK.Tick += timerSaiTK_Tick;
+            this.timerSaiTK.Interval = 4000;
+            this.timerSaiTK.Tick += new System.EventHandler(this.timerSaiTK_Tick);
             // 
             // btnThoat
             // 
-            btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
-            btnThoat.Location = new Point(760, 31);
-            btnThoat.Margin = new Padding(4);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(27, 28);
-            btnThoat.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnThoat.TabIndex = 23;
-            btnThoat.TabStop = false;
-            btnThoat.Click += btnThoat_Click;
+            this.btnThoat.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.Image")));
+            this.btnThoat.Location = new System.Drawing.Point(760, 31);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(27, 28);
+            this.btnThoat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnThoat.TabIndex = 23;
+            this.btnThoat.TabStop = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // HU
             // 
-            HU.Interval = 3200;
-            HU.Tick += HU_Tick;
+            this.HU.Interval = 3200;
+            this.HU.Tick += new System.EventHandler(this.HU_Tick);
             // 
             // pnlHuGoc
             // 
-            pnlHuGoc.BackColor = Color.White;
-            pnlHuGoc.Controls.Add(pctHU);
-            pnlHuGoc.Controls.Add(pnlMatkhau);
-            pnlHuGoc.Controls.Add(btnDangNhap);
-            pnlHuGoc.Controls.Add(label1);
-            pnlHuGoc.Controls.Add(lblsai);
-            pnlHuGoc.Controls.Add(pctmain);
-            pnlHuGoc.Controls.Add(pictureBox3);
-            pnlHuGoc.Controls.Add(btnThoat);
-            pnlHuGoc.Controls.Add(txtTaiKhoan);
-            pnlHuGoc.Controls.Add(pnlTaiKhoan);
-            pnlHuGoc.Controls.Add(lblLoiMatKhau);
-            pnlHuGoc.Controls.Add(labLoiTaiKhoan);
-            pnlHuGoc.Location = new Point(3, 3);
-            pnlHuGoc.Name = "pnlHuGoc";
-            pnlHuGoc.Size = new Size(822, 410);
-            pnlHuGoc.TabIndex = 32;
+            this.pnlHuGoc.BackColor = System.Drawing.Color.White;
+            this.pnlHuGoc.Controls.Add(this.pnlMatkhau);
+            this.pnlHuGoc.Controls.Add(this.btnDangNhap);
+            this.pnlHuGoc.Controls.Add(this.label1);
+            this.pnlHuGoc.Controls.Add(this.lblsai);
+            this.pnlHuGoc.Controls.Add(this.pctHU);
+            this.pnlHuGoc.Controls.Add(this.pictureBox3);
+            this.pnlHuGoc.Controls.Add(this.btnThoat);
+            this.pnlHuGoc.Controls.Add(this.txtTaiKhoan);
+            this.pnlHuGoc.Controls.Add(this.pnlTaiKhoan);
+            this.pnlHuGoc.Controls.Add(this.lblLoiMatKhau);
+            this.pnlHuGoc.Controls.Add(this.labLoiTaiKhoan);
+            this.pnlHuGoc.Controls.Add(this.pctmain);
+            this.pnlHuGoc.Location = new System.Drawing.Point(3, 3);
+            this.pnlHuGoc.Name = "pnlHuGoc";
+            this.pnlHuGoc.Size = new System.Drawing.Size(822, 410);
+            this.pnlHuGoc.TabIndex = 32;
             // 
             // frmDangNhap
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(827, 415);
-            Controls.Add(pnlHuGoc);
-            Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            FormBorderStyle = FormBorderStyle.None;
-            KeyPreview = true;
-            Margin = new Padding(2);
-            MaximizeBox = false;
-            Name = "frmDangNhap";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmDangNhap";
-            Load += frmDangNhap_Load;
-            KeyUp += frmDangNhap_KeyUp;
-            ((System.ComponentModel.ISupportInitialize)pctmain).EndInit();
-            pnlMatkhau.ResumeLayout(false);
-            pnlMatkhau.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)btnAnpass).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnHienpass).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pctHU).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnThoat).EndInit();
-            pnlHuGoc.ResumeLayout(false);
-            pnlHuGoc.PerformLayout();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(827, 415);
+            this.Controls.Add(this.pnlHuGoc);
+            this.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.Name = "frmDangNhap";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frmDangNhap";
+            this.Load += new System.EventHandler(this.frmDangNhap_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pctmain)).EndInit();
+            this.pnlMatkhau.ResumeLayout(false);
+            this.pnlMatkhau.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAnpass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnHienpass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctHU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnThoat)).EndInit();
+            this.pnlHuGoc.ResumeLayout(false);
+            this.pnlHuGoc.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

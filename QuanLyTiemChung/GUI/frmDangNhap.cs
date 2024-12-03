@@ -19,7 +19,7 @@ namespace GUI
 {
     public partial class frmDangNhap : Form
     {
-        TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+        NhanVienBLL nvBLL = new NhanVienBLL();
         public frmDangNhap()
         {
             InitializeComponent();
@@ -64,12 +64,12 @@ namespace GUI
             pctHU.Hide();
             timer.Interval = 4000;
         }
-        TaiKhoanDTO kt;
+        NhanVienDTO kt;
         private void btnDangNhap_Click_1(object sender, EventArgs e)
         {
             if (txtTaiKhoan.Text.Trim().Length > 0 && txtMatKhau.Text.Trim().Length > 0)
             {
-                kt = tkBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
+                kt = nvBLL.CheckUserNameAndPassword(txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim());
                 if (kt == null)
                 {
                     lblsai.Text = "Tài khoản hoặc mật khẩu không khớp";

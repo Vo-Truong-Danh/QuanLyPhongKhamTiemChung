@@ -18,8 +18,8 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private TaiKhoanDTO TK = new TaiKhoanDTO();
-        public frmQLVaccine(TaiKhoanDTO tk)
+        private NhanVienDTO TK = new NhanVienDTO();
+        public frmQLVaccine(NhanVienDTO tk)
         {
             TK = tk;
             InitializeComponent();
@@ -165,24 +165,6 @@ namespace GUI
                 }
             }
             CustomSizeCol();
-            foreach (DataGridViewRow row in dgvVaccine.Rows)
-            {
-                if (row.Cells["SoLuongTon"].Value != null)
-                {
-                    int soLuongTon;
-                    if (int.TryParse(row.Cells["SoLuongTon"].Value.ToString(), out soLuongTon))
-                    {
-                        if (soLuongTon < 10)
-                        {
-                            row.DefaultCellStyle.BackColor = Color.LightYellow;
-                        }
-                        if (soLuongTon < 2)
-                        {
-                            row.DefaultCellStyle.BackColor = Color.FromArgb(255, 192, 192);
-                        }
-                    }
-                }
-            }
         }
         private void CustomSizeCol()
         {
@@ -1274,7 +1256,7 @@ namespace GUI
                 PhieuNhapDTO pndto = new PhieuNhapDTO()
                 {
                     Mapn = txtMaPhieuN.Text,
-                    MaNV1 = TK.UserName,
+                    MaNV1 = TK.MaNV,
                     Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
                     Mancc = cboNCC.SelectedValue.ToString(),
                     Tongtien = txtTongTien.Text,

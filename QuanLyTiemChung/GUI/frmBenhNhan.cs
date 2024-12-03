@@ -29,10 +29,10 @@ namespace GUI
             InitializeComponent();
             bnBLL = new BenhNhanBLL();
         }
-        TaiKhoanDTO TK;
-        public frmBenhNhan(TaiKhoanDTO tk)
+        NhanVienDTO NV;
+        public frmBenhNhan(NhanVienDTO nv)
         {
-            TK = tk;
+            NV= nv;
             InitializeComponent();
             bnBLL = new BenhNhanBLL();
         }
@@ -367,7 +367,7 @@ namespace GUI
                 // Them hoa don
                 if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && KTDataGridView(dgvChiTietHoaDon))
                 {
-                    HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, TK.UserName, float.Parse(txtTongTien.Text));
+                    HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, NV.MaNV, float.Parse(txtTongTien.Text));
                     kq = hdBLL.Insert(hd);
                 }
                 if (kq)
