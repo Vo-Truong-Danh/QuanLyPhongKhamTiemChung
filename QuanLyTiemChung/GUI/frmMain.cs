@@ -300,13 +300,13 @@ namespace GUI
         private void btnQLTiemChung_Click(object sender, EventArgs e)
         {
 
-            OpenChild(new frmQuanLyLichTiem());
+            OpenChild(new frmQuanLyLichTiem(nv));
         }
 
         private void btnQLTiemChungS_Click(object sender, EventArgs e)
         {
 
-            OpenChild(new frmQuanLyLichTiem());
+            OpenChild(new frmQuanLyLichTiem(nv));
         }
 
         private void button11_Click(object sender, EventArgs e)

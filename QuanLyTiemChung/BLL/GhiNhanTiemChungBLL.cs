@@ -14,9 +14,9 @@ namespace BLL
         private DatabaseHelper dataHelper;
         GhiNhanTiemChungDAL dal = new GhiNhanTiemChungDAL();
 
-        public bool XacNhanTiem(LichTiemDTO loaiVaccineDTO)
+        public bool XacNhanTiem(LichTiemDTO loaiVaccineDTO , string manv)
         {
-            return dal.XacNhanTiem(loaiVaccineDTO);
+            return dal.XacNhanTiem(loaiVaccineDTO,manv);
         }
         public void DeleteByMaHD(string maHD)
         {

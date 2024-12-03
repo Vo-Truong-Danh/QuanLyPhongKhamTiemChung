@@ -19,7 +19,13 @@ namespace GUI
         {
             InitializeComponent();
         }
+        public frmQuanLyLichTiem(NhanVienDTO tk)
+        {
+            TK = tk;
+            InitializeComponent();
+        }
 
+        NhanVienDTO TK;
         LichTiemBLL ltbll = new LichTiemBLL();
         VaccineBLL vcbll = new VaccineBLL();
         BenhNhanBLL bnbll = new BenhNhanBLL();
@@ -164,26 +170,27 @@ namespace GUI
         GhiNhanTiemChungBLL gntcbll = new GhiNhanTiemChungBLL();
         private void btnCapNhatTrangThai_Click(object sender, EventArgs e)
         {
-            string ma = dgvLichTiem.SelectedRows[0].Cells[1].Value.ToString();
-            DataRow[] dr = ltbll.GetData().Select("MaLT = '"+ma+"'");
-            LichTiemDTO lt = new LichTiemDTO()
+            string trangthai = dgvLichTiem.SelectedRows[0].Cells[6].Value.ToString();
+            if (trangthai != "Đã tiêm")
             {
-                MaLT = ma,
-                MaHD = dr[0]["MaHD"].ToString(),
-                MaBN = dr[0]["MaBN"].ToString(),
-                MaVC = dr[0]["MaVC"].ToString(),
-                NgayHenTiem = DateTime.Now.ToString("yyyy-MM-dd"),
-            };
-            if (gntcbll.XacNhanTiem(lt))
-            {
-                MessageBox.Show("Đã xác nhận tiêm cho bênh nhân thành công ");
+                string ma = dgvLichTiem.SelectedRows[0].Cells[1].Value.ToString();
+                DataRow[] dr = ltbll.GetData().Select("MaLT = '" + ma + "'");
+                LichTiemDTO lt = new LichTiemDTO()
+                {
+                    MaLT = ma,
+                    MaHD = dr[0]["MaHD"].ToString(),
+                    MaBN = dr[0]["MaBN"].ToString(),
+                    MaVC = dr[0]["MaVC"].ToString(),
+                    NgayHenTiem = DateTime.Now.ToString("yyyy-MM-dd"),
+                };
+                frm_overlay tmp = new frm_overlay(lt,TK.MaNV);
+                tmp.ShowDialog();
                 CreateDTGVLichTiem(ltbll.Load());
             }
             else
             {
-                MessageBox.Show("Lịch tiêm của hoá đơn này đã tiêm rồi ! ");
+                MessageBox.Show("Lịch tiêm của VACCINE này đã được tiêm rồi !");
             }
-
         }
 
         private void btnXacNhanTiem_Click(object sender, EventArgs e)
@@ -228,6 +235,11 @@ namespace GUI
             {
                 MessageBox.Show("Không tìm thấy nội dung tìm kiếm !");
             }
+        }
+
+        private void CapNhatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

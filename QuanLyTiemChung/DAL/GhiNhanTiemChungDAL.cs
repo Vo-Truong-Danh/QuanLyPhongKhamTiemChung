@@ -56,7 +56,7 @@ namespace DAL
             // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
             dt.AcceptChanges();
         }
-        public bool XacNhanTiem(LichTiemDTO xn)
+        public bool XacNhanTiem(LichTiemDTO xn,string manv)
         {
             try
             {
@@ -64,11 +64,11 @@ namespace DAL
                 DataRow newrow = dt.NewRow();
                 newrow["MaBN"] = xn.MaBN;
                 newrow["MaVC"] = xn.MaVC;
-                newrow["MaNV"] = "NV002";
+                newrow["MaNV"] = manv;
                 newrow["MaLT"] = xn.MaLT;
                 newrow["MaHD"] = xn.MaHD;
                 newrow["NgayTiem"] = xn.NgayHenTiem;
-                newrow["TinhTrangSucKhoe"] = "Khoẻ mạnh";
+                newrow["TinhTrangSucKhoe"] = xn.TrangThai;
 
                 dt.Rows.Add(newrow);
                 Load();

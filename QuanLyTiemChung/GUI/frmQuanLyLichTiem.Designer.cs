@@ -44,7 +44,6 @@
             this.lblndtb = new System.Windows.Forms.Label();
             this.dgvLichTiem = new System.Windows.Forms.DataGridView();
             this.cntXoaSua = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.XoaVaccineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CapNhatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlLoc = new System.Windows.Forms.Panel();
             this.btnCapNhatTrangThai = new System.Windows.Forms.Button();
@@ -204,22 +203,16 @@
             // 
             this.cntXoaSua.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cntXoaSua.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.XoaVaccineToolStripMenuItem,
             this.CapNhatToolStripMenuItem});
             this.cntXoaSua.Name = "contextMenuStrip1";
-            this.cntXoaSua.Size = new System.Drawing.Size(159, 52);
-            // 
-            // XoaVaccineToolStripMenuItem
-            // 
-            this.XoaVaccineToolStripMenuItem.Name = "XoaVaccineToolStripMenuItem";
-            this.XoaVaccineToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
-            this.XoaVaccineToolStripMenuItem.Text = "Xoá Vaccine";
+            this.cntXoaSua.Size = new System.Drawing.Size(211, 56);
             // 
             // CapNhatToolStripMenuItem
             // 
             this.CapNhatToolStripMenuItem.Name = "CapNhatToolStripMenuItem";
-            this.CapNhatToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
-            this.CapNhatToolStripMenuItem.Text = "Cập nhật";
+            this.CapNhatToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.CapNhatToolStripMenuItem.Text = "Xác Nhận Tiêm";
+            this.CapNhatToolStripMenuItem.Click += new System.EventHandler(this.CapNhatToolStripMenuItem_Click);
             // 
             // pnlLoc
             // 
@@ -233,7 +226,7 @@
             // btnCapNhatTrangThai
             // 
             this.btnCapNhatTrangThai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnCapNhatTrangThai.Image = global::GUI.Properties.Resources.file_109646911;
+            this.btnCapNhatTrangThai.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhatTrangThai.Image")));
             this.btnCapNhatTrangThai.Location = new System.Drawing.Point(657, 6);
             this.btnCapNhatTrangThai.Name = "btnCapNhatTrangThai";
             this.btnCapNhatTrangThai.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
@@ -372,7 +365,6 @@
         private System.Windows.Forms.Label lblndtb;
         private System.Windows.Forms.DataGridView dgvLichTiem;
         private System.Windows.Forms.ContextMenuStrip cntXoaSua;
-        private System.Windows.Forms.ToolStripMenuItem XoaVaccineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CapNhatToolStripMenuItem;
         private System.Windows.Forms.Panel pnlLoc;
         private System.Windows.Forms.Button btnCapNhatTrangThai;

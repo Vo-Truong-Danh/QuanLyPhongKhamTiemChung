@@ -31,6 +31,14 @@ namespace GUI
             yeucaumo = yeucua;
             mavcsua = ma;
         }
+        LichTiemDTO LT;
+        string MANV;
+        public frm_overlay( LichTiemDTO lt ,string manv )
+        {
+            LT = lt;
+            MANV = manv;
+            InitializeComponent();
+        }
         // 0  frm thêm vaccine
         // 1 cap nhat vaccine
         // 2 frm them loai
@@ -78,6 +86,13 @@ namespace GUI
             if (yeucaumo == 5)
             {
                 frmNCC tmp = new frmNCC(mavcsua);
+                tmp.TopMost = true;
+                tmp.ShowDialog();
+                this.Close();
+            }
+            if (LT != null)
+            {
+                frmXacNhanTiem tmp = new frmXacNhanTiem(LT, MANV);
                 tmp.TopMost = true;
                 tmp.ShowDialog();
                 this.Close();
