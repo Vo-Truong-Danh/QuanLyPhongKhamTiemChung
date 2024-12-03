@@ -333,7 +333,7 @@ namespace GUI
         }
         private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
         {
-            if (dgvChiTietHoaDon == null)
+            if (dgvChiTietHoaDon.DataSource == null)
             {
                 bool kq = false;
                 string ketqua = "";
