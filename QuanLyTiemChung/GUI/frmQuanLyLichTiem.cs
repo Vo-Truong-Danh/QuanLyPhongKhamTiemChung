@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,13 +22,28 @@ namespace GUI
 
         LichTiemBLL ltbll = new LichTiemBLL();
         VaccineBLL vcbll = new VaccineBLL();
-        BenhNhanBLL bnbll = new BenhNhanBLL();  
+        BenhNhanBLL bnbll = new BenhNhanBLL();
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+           (
+           int nLeft,
+           int nTop,
+           int nRight,
+           int rBottom,
+           int nWidthEllipse,
+           int nHeightEllipse
+           );
+        private void BoGoc(Control tmp, int goc)
+        {
+            tmp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tmp.Width, tmp.Height, goc, goc));
+        }
         private void frmQuanLyLichTiem_Load(object sender, EventArgs e)
         {
-
             dgvLichTiem.ColumnHeadersHeight = 60;
             dgvLichTiem.RowTemplate.Height = 60;
+            BoGoc(pnlLoc, 50);
+            BoGoc(pnlTimKiem, 50);  
 
             CreateDTGVLichTiem(ltbll.Load());
         }
@@ -50,6 +66,11 @@ namespace GUI
                 Name = "HoTen",
                 HeaderText = "Tên Bệnh Nhân"
             };
+            DataGridViewTextBoxColumn mahd = new DataGridViewTextBoxColumn
+            {
+                Name = "MaHD",
+                HeaderText = "Mã Hoá Đơn"
+            };
             DataGridViewTextBoxColumn tenvc = new DataGridViewTextBoxColumn
             {
                 Name = "TenVC",
@@ -69,6 +90,7 @@ namespace GUI
             //Thêm vào dtg
             dgvLichTiem.Columns.Add(stt);
             dgvLichTiem.Columns.Add(malt);
+            dgvLichTiem.Columns.Add(mahd);
             dgvLichTiem.Columns.Add(tenbn);
             dgvLichTiem.Columns.Add(tenvc);
             dgvLichTiem.Columns.Add(ngaytiem);
@@ -92,7 +114,7 @@ namespace GUI
                             ngayhen = parsedDate.ToString("dd-MM-yyyy");
                         }
 
-                        dgvLichTiem.Rows.Add(tmp++, row["MaLT"], TenBn, TenVC, ngayhen, row["TrangThai"] );
+                        dgvLichTiem.Rows.Add(tmp++, row["MaLT"], row["MaHD"], TenBn, TenVC, ngayhen, row["TrangThai"] );
 
                     }
                 }
@@ -106,19 +128,17 @@ namespace GUI
             dgvLichTiem.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvLichTiem.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvLichTiem.Columns[1].Width = 150;
-            dgvLichTiem.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvLichTiem.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLichTiem.Columns[1].Width = 170;
 
-            dgvLichTiem.Columns[2].Width = 320;
+            dgvLichTiem.Columns[2].Width = 170;
 
-            dgvLichTiem.Columns[3].Width = 375;
+            dgvLichTiem.Columns[3].Width = 315;
 
-            dgvLichTiem.Columns[4].Width = 375;
-            dgvLichTiem.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvLichTiem.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLichTiem.Columns[4].Width = 315;
 
-            dgvLichTiem.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvLichTiem.Columns[5].Width = 175;
+
+            dgvLichTiem.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void dgvLichTiem_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -153,6 +173,30 @@ namespace GUI
         {
 
             string ma = dgvLichTiem.SelectedRows[0].Cells[1].Value.ToString();
+        }
+
+        private void cboTrangThai_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            DataRow[] dr = ltbll.Load().Select();
+            if (cboTrangThai.SelectedIndex == 1)
+            {
+                 dr = ltbll.Load().Select("TrangThai = 'Đã tiêm' ");
+            }
+            if (cboTrangThai.SelectedIndex == 2)
+            {
+                dr = ltbll.Load().Select("TrangThai = 'Chưa tiêm' ");
+            }
+            CreateDTGVLichTiem(dr.CopyToDataTable());
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string ndtimkiem = txtSearch.Text;
+            DataRow[] drbn = bnbll.GetData().Select($"HoTen LIKE '%{ndtimkiem}%'");
+            if(drbn.Length > 0)
+                ndtimkiem = drbn[0]["MaBN"].ToString();
+            DataRow[] dr = ltbll.Load().Select($"MaLT LIKE '%{txtSearch.Text}%' OR MaBN LIKE '%{ndtimkiem}%' OR MaHD LIKE '%{txtSearch.Text}%'");
+            CreateDTGVLichTiem(dr.CopyToDataTable());
         }
     }
 }
