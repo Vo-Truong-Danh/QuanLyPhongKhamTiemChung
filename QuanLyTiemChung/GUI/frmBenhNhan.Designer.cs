@@ -116,6 +116,8 @@ namespace GUI
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xóaMũiTiêmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errMaSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errHoTen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errDiaChi)).BeginInit();
@@ -128,6 +130,7 @@ namespace GUI
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietHoaDon)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnXoaBN
@@ -809,6 +812,7 @@ namespace GUI
             this.Column4,
             this.Column6,
             this.Column7});
+            this.dgvChiTietHoaDon.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvChiTietHoaDon.Location = new System.Drawing.Point(447, 14);
             this.dgvChiTietHoaDon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvChiTietHoaDon.Name = "dgvChiTietHoaDon";
@@ -1099,6 +1103,21 @@ namespace GUI
             this.columnHeader6.Text = "Số điện thoại";
             this.columnHeader6.Width = 350;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xóaMũiTiêmToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 36);
+            // 
+            // xóaMũiTiêmToolStripMenuItem
+            // 
+            this.xóaMũiTiêmToolStripMenuItem.Name = "xóaMũiTiêmToolStripMenuItem";
+            this.xóaMũiTiêmToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.xóaMũiTiêmToolStripMenuItem.Text = "Xóa mũi tiêm";
+            this.xóaMũiTiêmToolStripMenuItem.Click += new System.EventHandler(this.xóaMũiTiêmToolStripMenuItem_Click);
+            // 
             // frmBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1129,6 +1148,7 @@ namespace GUI
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietHoaDon)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1219,5 +1239,7 @@ namespace GUI
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem xóaMũiTiêmToolStripMenuItem;
     }
 }
