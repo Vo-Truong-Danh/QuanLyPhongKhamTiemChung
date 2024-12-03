@@ -919,7 +919,7 @@ namespace GUI
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(18, 214);
+            this.label10.Location = new System.Drawing.Point(18, 204);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(26, 36);
             this.label10.TabIndex = 60;
@@ -942,7 +942,7 @@ namespace GUI
             this.dteNgaySinh.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dteNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dteNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dteNgaySinh.Location = new System.Drawing.Point(187, 372);
+            this.dteNgaySinh.Location = new System.Drawing.Point(187, 369);
             this.dteNgaySinh.Margin = new System.Windows.Forms.Padding(117, 10, 117, 10);
             this.dteNgaySinh.Name = "dteNgaySinh";
             this.dteNgaySinh.Size = new System.Drawing.Size(251, 39);
@@ -974,7 +974,7 @@ namespace GUI
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(140, 308);
+            this.txtDiaChi.Location = new System.Drawing.Point(140, 294);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
@@ -984,7 +984,7 @@ namespace GUI
             // 
             // txtSoDT
             // 
-            this.txtSoDT.Location = new System.Drawing.Point(216, 214);
+            this.txtSoDT.Location = new System.Drawing.Point(216, 204);
             this.txtSoDT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSoDT.Name = "txtSoDT";
             this.txtSoDT.Size = new System.Drawing.Size(223, 42);
@@ -1003,7 +1003,7 @@ namespace GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 372);
+            this.label5.Location = new System.Drawing.Point(37, 369);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 36);
@@ -1013,7 +1013,7 @@ namespace GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 216);
+            this.label4.Location = new System.Drawing.Point(37, 206);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(179, 36);
@@ -1043,7 +1043,7 @@ namespace GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 308);
+            this.label1.Location = new System.Drawing.Point(37, 294);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 36);

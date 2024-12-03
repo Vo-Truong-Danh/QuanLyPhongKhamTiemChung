@@ -34,17 +34,13 @@ namespace DAL
         public void Luu()
         {
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
-            // Cập nhật xuống database
             adap.Update(dt);
-
-            // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
             dt.AcceptChanges();
         }
         private int LayMaBNCuoiCung()
         {
-            // nếu mã cuối cùng là "BN005" thì hàm này trả về 5
             string query = "SELECT TOP 1 MaBN FROM BENHNHAN ORDER BY MaBN DESC";
-            string maBN = "BN000"; // Giá trị mặc định 
+            string maBN = "BN000"; 
             if (conn.State != ConnectionState.Open || conn == null)
             {
                 conn = new SqlConnection(GeneralDAL.connectStrg);
@@ -71,8 +67,7 @@ namespace DAL
                 {
                     conn.Close();
                 }
-
-                // Hủy đối tượng kết nối (giải phóng bộ nhớ)
+ 
                 conn.Dispose();
             }
             return int.Parse(maBN.Substring(2));
@@ -95,10 +90,8 @@ namespace DAL
                 newRow["DiaChi"] = bnDTO.DiaChi;
                 newRow["SoDienThoai"] = bnDTO.SoDienThoai;
 
-                // Thêm dòng dữ liệu vào DataSet
                 dt.Rows.Add(newRow);
 
-                // Cập nhật CSDL
                 Luu();
                 return true;
             }
@@ -117,9 +110,7 @@ namespace DAL
         {
             try
             {
-                // Tim dong du lieu can sua dua theo MaBN
                 DataRow dr = dt.Select("MaBN = '" + MaBNCanSua + "'").FirstOrDefault();
-                // Edit
                 if (dr != null)
                 {
                     dr["HoTen"] = bnDTONew.HoTen;
@@ -128,7 +119,6 @@ namespace DAL
                     dr["DiaChi"] = bnDTONew.DiaChi;
                     dr["SoDienThoai"] = bnDTONew.SoDienThoai;
                 }
-                // Cap nhat trong CSDL
                 Luu();
                 return true;
             }

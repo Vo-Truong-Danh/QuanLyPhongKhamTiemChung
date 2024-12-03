@@ -77,8 +77,9 @@ namespace GUI
             pnlShow.Width = checksibarMoRong ? targetWidth : collapsedWidth;
             OpenChild(new frmTrangChu());
             txtTenHienThi.Text = TK.DisplayName;
-            if (TK.ChucVu == 2)
+            if (TK.ChucVu != 1)
             {
+                button11.Visible = false;
                 //btnQLVaccine.Enabled = false;
                 //btnQLTiemChung.Enabled = false;
                 //btnQLNhanVien.Enabled = false;
