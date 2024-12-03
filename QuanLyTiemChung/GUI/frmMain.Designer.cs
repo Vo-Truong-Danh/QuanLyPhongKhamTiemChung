@@ -33,7 +33,7 @@ namespace GUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlShow = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnLichTiem = new System.Windows.Forms.Button();
             this.btnHoaDon = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnThongke = new System.Windows.Forms.Button();
@@ -79,7 +79,7 @@ namespace GUI
             // 
             // pnlShow
             // 
-            this.pnlShow.Controls.Add(this.button2);
+            this.pnlShow.Controls.Add(this.btnLichTiem);
             this.pnlShow.Controls.Add(this.btnHoaDon);
             this.pnlShow.Controls.Add(this.panel3);
             this.pnlShow.Controls.Add(this.panel8);
@@ -97,18 +97,18 @@ namespace GUI
             this.pnlShow.Size = new System.Drawing.Size(229, 943);
             this.pnlShow.TabIndex = 0;
             // 
-            // button2
+            // btnLichTiem
             // 
-            this.button2.Location = new System.Drawing.Point(48, 699);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 72);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLichTiem.Location = new System.Drawing.Point(-48, 672);
+            this.btnLichTiem.Name = "btnLichTiem";
+            this.btnLichTiem.Size = new System.Drawing.Size(140, 72);
+            this.btnLichTiem.TabIndex = 8;
+            this.btnLichTiem.Text = "Lịch Tiêm";
+            this.btnLichTiem.UseVisualStyleBackColor = true;
             // 
             // btnHoaDon
             // 
-            this.btnHoaDon.Location = new System.Drawing.Point(48, 581);
+            this.btnHoaDon.Location = new System.Drawing.Point(-48, 574);
             this.btnHoaDon.Name = "btnHoaDon";
             this.btnHoaDon.Size = new System.Drawing.Size(140, 72);
             this.btnHoaDon.TabIndex = 7;
@@ -370,7 +370,7 @@ namespace GUI
             this.txtTenHienThi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenHienThi.Location = new System.Drawing.Point(10, 99);
             this.txtTenHienThi.Name = "txtTenHienThi";
-            this.txtTenHienThi.Size = new System.Drawing.Size(216, 24);
+            this.txtTenHienThi.Size = new System.Drawing.Size(216, 31);
             this.txtTenHienThi.TabIndex = 1;
             this.txtTenHienThi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTenHienThi.TextChanged += new System.EventHandler(this.txtTenHienThi_TextChanged);
@@ -481,7 +481,7 @@ namespace GUI
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1924, 943);
@@ -550,7 +550,7 @@ namespace GUI
         private Panel panel7;
         private Button btnQLTiemChung;
         private Button btnQLTiemChungS;
-        private Button button2;
+        private Button btnLichTiem;
         private Button btnHoaDon;
     }
 }

@@ -291,7 +291,7 @@ namespace GUI
 
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
-            OpenChild(new HoaDon());
+            OpenChild(new frmHoaDon());
         }
 
         private void btnQLTiemChung_Click(object sender, EventArgs e)
