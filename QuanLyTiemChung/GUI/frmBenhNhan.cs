@@ -551,7 +551,6 @@ namespace GUI
         {
             LoadComboBoxVaccine();
             txtMaHD.Text = hdBLL.NewIDHD();
-            btnThemBenhNhan.Enabled = true;
             txtNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
             txtTongTien.Text = 0.ToString();
             btnDieuChinhSoLuong.Enabled = true;
@@ -565,6 +564,7 @@ namespace GUI
 
         private void btnThemMuiTiem_Click(object sender, EventArgs e)
         {
+            btnThemBenhNhan.Enabled = true;
             string ma = cboVaccine.SelectedValue.ToString();
             DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '"+ma+"' ");
             if (txtSoLuong.Text != null && txtSoLuong.Text != "")

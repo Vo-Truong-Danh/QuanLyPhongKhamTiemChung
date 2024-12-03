@@ -186,7 +186,14 @@ namespace GUI
             {
                 dr = ltbll.Load().Select("TrangThai = 'Chưa tiêm' ");
             }
-            CreateDTGVLichTiem(dr.CopyToDataTable());
+            if (dr.Length > 0)
+            {
+                CreateDTGVLichTiem(dr.CopyToDataTable());
+            }
+            else
+            {
+                MessageBox.Show("Dử liệu được lọc không phù hợp");
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
