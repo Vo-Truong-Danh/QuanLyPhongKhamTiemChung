@@ -335,6 +335,7 @@ namespace GUI
         {
             if (dgvChiTietHoaDon.DataSource == null)
             {
+                btnTaoHD.Enabled = true;
                 bool kq = false;
                 string ketqua = "";
                 string mahdtmp = txtMaHD.Text;
@@ -527,6 +528,7 @@ namespace GUI
                 cboVaccine.DataSource = dr;
                 cboVaccine.DisplayMember = "TenVC";
                 cboVaccine.ValueMember = "MaVC";
+                btnThemMuiTiem.Enabled = true;
             }
             catch
             {
@@ -553,6 +555,7 @@ namespace GUI
             txtNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
             txtTongTien.Text = 0.ToString();
             btnDieuChinhSoLuong.Enabled = true;
+            btnTaoHD.Enabled = false;
         }
 
         private void cboVaccine_SelectionChangeCommitted(object sender, EventArgs e)
@@ -688,7 +691,6 @@ namespace GUI
 
         private void cboLoaiVaccine_Click(object sender, EventArgs e)
         {
-            btnThemMuiTiem.Enabled = true;
         }
     }
 }

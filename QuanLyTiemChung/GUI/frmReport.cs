@@ -29,6 +29,7 @@ namespace GUI
             if(YeuCau == 1)//Yeu cau 1 in phiêu nhap
             {
                 ReportPhieuNhap rp = new ReportPhieuNhap();
+                rp.Refresh();
                 rp.SetDatabaseLogon("sa", "123");
                 rp.SetParameterValue("MaPN", Ma);
                 crystalReportViewer1.ReportSource = rp;
@@ -36,6 +37,7 @@ namespace GUI
             if (YeuCau == 2)//Yeu cau 2 in lich su tiem chung
             {
                 Rp_LichSuTiemChung rp = new Rp_LichSuTiemChung();
+                rp.Refresh();
                 rp.SetDatabaseLogon("sa", "123");
                 rp.SetParameterValue("MaBN", Ma);
                 crystalReportViewer1.ReportSource = rp;
@@ -43,6 +45,7 @@ namespace GUI
             if (YeuCau == 3)//Yeu cau 3 in hoa don
             {
                 Rp_HoaDon rp = new Rp_HoaDon();
+                rp.Refresh();
                 rp.SetDatabaseLogon("sa", "123");
                 rp.SetParameterValue("MaHD", Ma);
                 crystalReportViewer1.ReportSource = rp;
