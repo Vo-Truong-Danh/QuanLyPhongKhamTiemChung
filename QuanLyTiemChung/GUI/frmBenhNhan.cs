@@ -24,7 +24,6 @@ namespace GUI
         ChiTietHoaDonBLL cthdBLL = new ChiTietHoaDonBLL();
         LichTiemBLL ltBLL = new LichTiemBLL();
         public string maBN { get; set; }
-        string MaHoaDonHienTai;
         public frmBenhNhan()
         {
             InitializeComponent();
@@ -324,7 +323,6 @@ namespace GUI
         }
         private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
         {
-            string maLT = ltBLL.TaoMaLT();
             bool kq = false;
             string ketqua = "";
             // Them benh nhan
@@ -368,24 +366,24 @@ namespace GUI
                 }
                 ketqua = ketqua + " Chi tiết hóa đơn";
             }
-            // Them lich hen trong lich tiem
-            if (KTDataGridView(dgvChiTietHoaDon))
-            {
-                
-                MaHoaDonHienTai = txtMaHD.Text;
-                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                {
-                    if (row.Cells[0].Value == null)
-                    { break; }
-                    string mahd = txtMaHD.Text;
-                    string mavc = row.Cells[0].Value.ToString();
-                    string[] date = row.Cells[6].Value.ToString().Split('/');
-                    DateTime ngayhentiem = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
-                    LichTiemDTO lt = new LichTiemDTO() {MaLT=maLT,MaHD=mahd,MaVC=mavc,NgayHenTiem=ngayhentiem};
-                    ltBLL.UpdateNgayHenTiem(lt);
-                }
-                ketqua = ketqua + " Lịch tiêm";
-            }
+            //// Them lich tiem
+            //if (KTDataGridView(dgvChiTietHoaDon))
+            //{
+            //    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+            //    {
+            //        if (row.Cells[0].Value == null)
+            //        { break; }
+            //        string malt = ltBLL.TaoMaLT();
+            //        string mahd = txtMaHD.Text;
+            //        string mabn = MaBenhNhan;
+            //        string mavc = row.Cells[0].Value.ToString();
+            //        string[] date = row.Cells[6].Value.ToString().Split('/');
+            //        DateTime ngayhentiem = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
+            //        LichTiemDTO lt = new LichTiemDTO(malt, mahd, mabn, mavc, ngayhentiem, "Chưa tiêm");
+            //        ltBLL.Insert(lt);
+            //    }
+            //    ketqua = ketqua + " Lịch tiêm";
+            //}
 
             if (ketqua != null)
             {
