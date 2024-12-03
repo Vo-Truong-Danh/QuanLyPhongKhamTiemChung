@@ -79,7 +79,8 @@ namespace GUI
             txtTenHienThi.Text = nv.HoTen;
             if (nv.Quyen != 1)
             {
-                button11.Visible = false;
+                button11.Enabled = false;
+                button12.Enabled = false;
                 //btnQLVaccine.Enabled = false;
                 //btnQLTiemChung.Enabled = false;
                 //btnQLNhanVien.Enabled = false;
