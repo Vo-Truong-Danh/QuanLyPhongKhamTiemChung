@@ -245,13 +245,13 @@ namespace GUI
             }
             checksibarMoRong = !checksibarMoRong;
             Sibar.Start();
-            OpenChild(new frmBenhNhan());
+            OpenChild(new frmBenhNhan(TK));
         }
 
         private void btnQLBenhNhans_Click(object sender, EventArgs e)
         {
 
-            OpenChild(new frmBenhNhan());
+            OpenChild(new frmBenhNhan(TK));
         }
 
         private void btnDangXuat_Click(object sender, EventArgs e)
