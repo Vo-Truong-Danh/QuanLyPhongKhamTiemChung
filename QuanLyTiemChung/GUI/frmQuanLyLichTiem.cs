@@ -55,93 +55,103 @@ namespace GUI
         }
         private void CreateDTGVLichTiem(DataTable dttb)
         {
-            dgvLichTiem.Columns.Clear();  // Xóa tất cả các cột
-            dgvLichTiem.Rows.Clear();     // Xóa tất cả các hàng
-            DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
+            if(dttb == null)
+                return;
+            try
             {
-                Name = "STT",
-                HeaderText = "STT"
-            };
-            DataGridViewTextBoxColumn malt = new DataGridViewTextBoxColumn
-            {
-                Name = "MaLT",
-                HeaderText = "Mã Lịch Tiêm"
-            };
-            DataGridViewTextBoxColumn tenbn = new DataGridViewTextBoxColumn
-            {
-                Name = "HoTen",
-                HeaderText = "Tên Bệnh Nhân"
-            };
-            DataGridViewTextBoxColumn mahd = new DataGridViewTextBoxColumn
-            {
-                Name = "MaHD",
-                HeaderText = "Mã Hoá Đơn"
-            };
-            DataGridViewTextBoxColumn tenvc = new DataGridViewTextBoxColumn
-            {
-                Name = "TenVC",
-                HeaderText = "Tên VACCINE"
-            };
-            DataGridViewTextBoxColumn ngaytiem = new DataGridViewTextBoxColumn
-            {
-                Name = "NgayHenTiem",
-                HeaderText = "Ngày hẹn tiêm"
-            };
-            DataGridViewTextBoxColumn trangthai = new DataGridViewTextBoxColumn
-            {
-                Name = "TrangThai",
-                HeaderText = "Trạng Thái"
-            };
-
-            //Thêm vào dtg
-            dgvLichTiem.Columns.Add(stt);
-            dgvLichTiem.Columns.Add(malt);
-            dgvLichTiem.Columns.Add(mahd);
-            dgvLichTiem.Columns.Add(tenbn);
-            dgvLichTiem.Columns.Add(tenvc);
-            dgvLichTiem.Columns.Add(ngaytiem);
-            dgvLichTiem.Columns.Add(trangthai);
-            int tmp = 1;
-            DataTable gan = vcbll.LayTTVC();
-            DataTable dbbn = bnbll.GetData();
-            if (dttb != null)
-            {
-                foreach (DataRow row in dttb.Rows)
+                dgvLichTiem.Columns.Clear();  // Xóa tất cả các cột
+                dgvLichTiem.Rows.Clear();     // Xóa tất cả các hàng
+                DataGridViewTextBoxColumn stt = new DataGridViewTextBoxColumn
                 {
-                    if (row.RowState != DataRowState.Deleted)
+                    Name = "STT",
+                    HeaderText = "STT"
+                };
+                DataGridViewTextBoxColumn malt = new DataGridViewTextBoxColumn
+                {
+                    Name = "MaLT",
+                    HeaderText = "Mã Lịch Tiêm"
+                };
+                DataGridViewTextBoxColumn tenbn = new DataGridViewTextBoxColumn
+                {
+                    Name = "HoTen",
+                    HeaderText = "Tên Bệnh Nhân"
+                };
+                DataGridViewTextBoxColumn mahd = new DataGridViewTextBoxColumn
+                {
+                    Name = "MaHD",
+                    HeaderText = "Mã Hoá Đơn"
+                };
+                DataGridViewTextBoxColumn tenvc = new DataGridViewTextBoxColumn
+                {
+                    Name = "TenVC",
+                    HeaderText = "Tên VACCINE"
+                };
+                DataGridViewTextBoxColumn ngaytiem = new DataGridViewTextBoxColumn
+                {
+                    Name = "NgayHenTiem",
+                    HeaderText = "Ngày hẹn tiêm"
+                };
+                DataGridViewTextBoxColumn trangthai = new DataGridViewTextBoxColumn
+                {
+                    Name = "TrangThai",
+                    HeaderText = "Trạng Thái"
+                };
+
+                //Thêm vào dtg
+                dgvLichTiem.Columns.Add(stt);
+                dgvLichTiem.Columns.Add(malt);
+                dgvLichTiem.Columns.Add(mahd);
+                dgvLichTiem.Columns.Add(tenbn);
+                dgvLichTiem.Columns.Add(tenvc);
+                dgvLichTiem.Columns.Add(ngaytiem);
+                dgvLichTiem.Columns.Add(trangthai);
+                int tmp = 1;
+                DataTable gan = vcbll.LayTTVC();
+                DataTable dbbn = bnbll.GetData();
+                if (dttb != null)
+                {
+                    foreach (DataRow row in dttb.Rows)
                     {
-                        DataRow[] drvc = gan.Select("MaVC = '" + row["MaVC"] + "'");
-                        DataRow[] drbn = dbbn.Select("MaBN = '" + row["MaBN"] + "'");
-                        string TenBn = drbn[0]["HoTen"].ToString();
-                        string TenVC = drvc[0]["TenVC"].ToString(); 
-                        string ngayhen = "";
-                        if (DateTime.TryParse(row["NgayHenTiem"]?.ToString(), out DateTime parsedDate))
+                        if (row.RowState != DataRowState.Deleted)
                         {
-                            ngayhen = parsedDate.ToString("dd-MM-yyyy");
+                            DataRow[] drvc = gan.Select("MaVC = '" + row["MaVC"] + "'");
+                            DataRow[] drbn = dbbn.Select("MaBN = '" + row["MaBN"] + "'");
+                            string TenBn = drbn[0]["HoTen"].ToString();
+                            string TenVC = drvc[0]["TenVC"].ToString();
+                            string ngayhen = "";
+                            if (DateTime.TryParse(row["NgayHenTiem"]?.ToString(), out DateTime parsedDate))
+                            {
+                                ngayhen = parsedDate.ToString("dd-MM-yyyy");
+                            }
+
+                            dgvLichTiem.Rows.Add(tmp++, row["MaLT"], row["MaHD"], TenBn, TenVC, ngayhen, row["TrangThai"]);
+
                         }
+                    }
+                }
+                CustomSizeColLT();
+                foreach (DataGridViewRow row in dgvLichTiem.Rows)
+                {
+                    if (row.Cells["TrangThai"].Value != null)
+                    {
+                        string trangThai = row.Cells["TrangThai"].Value.ToString();
 
-                        dgvLichTiem.Rows.Add(tmp++, row["MaLT"], row["MaHD"], TenBn, TenVC, ngayhen, row["TrangThai"] );
-
+                        if (trangThai == "Đã tiêm")
+                        {
+                            row.DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else if (trangThai == "Chưa tiêm")
+                        {
+                            row.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 224);
+                            row.DefaultCellStyle.ForeColor = Color.Black;
+                        }
                     }
                 }
             }
-            CustomSizeColLT();
-            foreach (DataGridViewRow row in dgvLichTiem.Rows)
+            catch 
             {
-                if (row.Cells["TrangThai"].Value != null)
-                {
-                    string trangThai = row.Cells["TrangThai"].Value.ToString();
 
-                    if (trangThai == "Đã tiêm")
-                    {
-                        row.DefaultCellStyle.ForeColor = Color.Black;
-                    }
-                    else if (trangThai == "Chưa tiêm")
-                    {
-                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 224);
-                        row.DefaultCellStyle.ForeColor = Color.Black;
-                    }
-                }
+                return;
             }
         }
         private void CustomSizeColLT()
@@ -240,6 +250,28 @@ namespace GUI
         private void CapNhatToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnInLichSuTiem_Click(object sender, EventArgs e)
+        {
+            if (dgvLichTiem.SelectedRows.Count > 0)
+            {
+                string ten = dgvLichTiem.SelectedRows[0].Cells[3].Value.ToString();
+                DataRow[] dr = bnbll.GetData().Select("HoTen = '"+ten+"' ");
+                if (dr.Length > 0)
+                {
+                    string mabn = dr[0]["MaBN"].ToString();
+                    DataRow[] dr2 = gntcbll.Load().Select("MaBN = '"+mabn+"'");
+                    if (dr2.Length > 0) {
+                        frmReport fm = new frmReport(2,mabn);
+                        fm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bệnh nhân chưa có lịch sử tiêm chủng tại đây ");
+                    }
+                }
+            }
         }
     }
 }

@@ -40,33 +40,34 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlThongBao = new System.Windows.Forms.Panel();
             this.pnlTb = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblndtb = new System.Windows.Forms.Label();
             this.dgvLichTiem = new System.Windows.Forms.DataGridView();
             this.cntXoaSua = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CapNhatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlLoc = new System.Windows.Forms.Panel();
-            this.btnCapNhatTrangThai = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTimKiem = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tabKhoVaccine = new System.Windows.Forms.TabPage();
             this.tctChinh = new System.Windows.Forms.TabControl();
             this.timerTB_Tab2 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCapNhatTrangThai = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnInLichSuTiem = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.pnlThongBao.SuspendLayout();
             this.pnlTb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLichTiem)).BeginInit();
             this.cntXoaSua.SuspendLayout();
             this.pnlLoc.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlTimKiem.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabKhoVaccine.SuspendLayout();
             this.tctChinh.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // TimeTab3
@@ -135,17 +136,6 @@
             this.pnlTb.Size = new System.Drawing.Size(550, 98);
             this.pnlTb.TabIndex = 30;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.notification_16903647;
-            this.pictureBox1.Location = new System.Drawing.Point(23, 22);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblndtb
             // 
             this.lblndtb.Location = new System.Drawing.Point(97, 22);
@@ -205,12 +195,12 @@
             this.cntXoaSua.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CapNhatToolStripMenuItem});
             this.cntXoaSua.Name = "contextMenuStrip1";
-            this.cntXoaSua.Size = new System.Drawing.Size(211, 56);
+            this.cntXoaSua.Size = new System.Drawing.Size(179, 28);
             // 
             // CapNhatToolStripMenuItem
             // 
             this.CapNhatToolStripMenuItem.Name = "CapNhatToolStripMenuItem";
-            this.CapNhatToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.CapNhatToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
             this.CapNhatToolStripMenuItem.Text = "Xác Nhận Tiêm";
             this.CapNhatToolStripMenuItem.Click += new System.EventHandler(this.CapNhatToolStripMenuItem_Click);
             // 
@@ -223,22 +213,10 @@
             this.pnlLoc.Size = new System.Drawing.Size(257, 52);
             this.pnlLoc.TabIndex = 27;
             // 
-            // btnCapNhatTrangThai
-            // 
-            this.btnCapNhatTrangThai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnCapNhatTrangThai.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhatTrangThai.Image")));
-            this.btnCapNhatTrangThai.Location = new System.Drawing.Point(657, 6);
-            this.btnCapNhatTrangThai.Name = "btnCapNhatTrangThai";
-            this.btnCapNhatTrangThai.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
-            this.btnCapNhatTrangThai.Size = new System.Drawing.Size(62, 54);
-            this.btnCapNhatTrangThai.TabIndex = 30;
-            this.btnCapNhatTrangThai.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCapNhatTrangThai.UseVisualStyleBackColor = false;
-            this.btnCapNhatTrangThai.Click += new System.EventHandler(this.btnCapNhatTrangThai_Click);
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.btnInLichSuTiem);
             this.panel2.Controls.Add(this.btnCapNhatTrangThai);
             this.panel2.Controls.Add(this.pnlLoc);
             this.panel2.Controls.Add(this.pnlTimKiem);
@@ -267,18 +245,6 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(254, 25);
             this.txtSearch.TabIndex = 26;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Enabled = false;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(286, 10);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 33);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
             // 
             // btnSearch
             // 
@@ -326,6 +292,55 @@
             // 
             this.timerTB_Tab2.Interval = 4000;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GUI.Properties.Resources.notification_16903647;
+            this.pictureBox1.Location = new System.Drawing.Point(23, 22);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(66, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnCapNhatTrangThai
+            // 
+            this.btnCapNhatTrangThai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnCapNhatTrangThai.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhatTrangThai.Image")));
+            this.btnCapNhatTrangThai.Location = new System.Drawing.Point(657, 6);
+            this.btnCapNhatTrangThai.Name = "btnCapNhatTrangThai";
+            this.btnCapNhatTrangThai.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
+            this.btnCapNhatTrangThai.Size = new System.Drawing.Size(62, 54);
+            this.btnCapNhatTrangThai.TabIndex = 30;
+            this.btnCapNhatTrangThai.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCapNhatTrangThai.UseVisualStyleBackColor = false;
+            this.btnCapNhatTrangThai.Click += new System.EventHandler(this.btnCapNhatTrangThai_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Enabled = false;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(286, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnInLichSuTiem
+            // 
+            this.btnInLichSuTiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnInLichSuTiem.Image = ((System.Drawing.Image)(resources.GetObject("btnInLichSuTiem.Image")));
+            this.btnInLichSuTiem.Location = new System.Drawing.Point(725, 7);
+            this.btnInLichSuTiem.Name = "btnInLichSuTiem";
+            this.btnInLichSuTiem.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
+            this.btnInLichSuTiem.Size = new System.Drawing.Size(62, 54);
+            this.btnInLichSuTiem.TabIndex = 31;
+            this.btnInLichSuTiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInLichSuTiem.UseVisualStyleBackColor = false;
+            this.btnInLichSuTiem.Click += new System.EventHandler(this.btnInLichSuTiem_Click);
+            // 
             // frmQuanLyLichTiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -338,16 +353,16 @@
             this.panel1.ResumeLayout(false);
             this.pnlThongBao.ResumeLayout(false);
             this.pnlTb.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLichTiem)).EndInit();
             this.cntXoaSua.ResumeLayout(false);
             this.pnlLoc.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.pnlTimKiem.ResumeLayout(false);
             this.pnlTimKiem.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabKhoVaccine.ResumeLayout(false);
             this.tctChinh.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -376,5 +391,6 @@
         private System.Windows.Forms.TabPage tabKhoVaccine;
         private System.Windows.Forms.TabControl tctChinh;
         private System.Windows.Forms.Timer timerTB_Tab2;
+        private System.Windows.Forms.Button btnInLichSuTiem;
     }
 }

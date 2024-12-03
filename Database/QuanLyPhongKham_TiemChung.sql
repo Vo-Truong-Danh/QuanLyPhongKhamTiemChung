@@ -132,23 +132,7 @@ CREATE TABLE GHINHANTIEMCHUNG
 );
 GO
 
-CREATE TRIGGER TR_MaLT_AutoGen
-ON LICHTIEM
-INSTEAD OF INSERT
-AS
-BEGIN
-    DECLARE @NewMaLT CHAR(5);
-    
-    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
-    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
-    FROM LICHTIEM;
 
-    -- Chèn vào bảng LICHTIEM với mã tự động
-    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
-    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
-    FROM INSERTED;
-END;
-GO
 
 -----------------------------------------------------------------------
 --------------------------------TRIGER---------------------------------
@@ -197,33 +181,68 @@ BEGIN
     )
     WHERE MaHD IN (SELECT MaHD FROM inserted);
 END
-
+GO
 --TỰ TẠO LỊCH TIÊM KHI CÓ HOÁ ĐƠN
-GO 
-CREATE TRIGGER TG_TAOLICHTIEMKHITHEMHOADON
-ON HOADON
-FOR INSERT
+CREATE TRIGGER TR_MaLT_AutoGen
+ON LICHTIEM
+INSTEAD OF INSERT
 AS
 BEGIN
-	INSERT INTO LICHTIEM([MaHD], [MaBN], [TrangThai])
-	SELECT i.MaHD, i.MaBN, N'Chưa tiêm'
-    FROM INSERTED i;
-END
+    DECLARE @NewMaLT CHAR(5);
+    
+    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
+    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+    FROM LICHTIEM;
+
+    -- Chèn vào bảng LICHTIEM với mã tự động
+    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
+    FROM INSERTED;
+END;
+--GO
+--CREATE TRIGGER TG_TAOLICHTIEMKHITHEMHOADON
+--ON HOADON
+--FOR INSERT
+--AS
+--BEGIN
+--	INSERT INTO LICHTIEM([MaHD], [MaBN], [TrangThai])
+--	SELECT i.MaHD, i.MaBN, N'Chưa tiêm'
+--    FROM INSERTED i;
+--END
 
 --TỰ Thêm MÃ VACCINE vào LỊCH TIÊM KHI Thêm chi tiết hoá đơn
-GO 
-CREATE TRIGGER TG_THEMMAVCVAOLICHTIEM
+GO
+CREATE TRIGGER TG_THEMMALICHTIEM
 ON CHITIETHOADON
 FOR INSERT
 AS
 BEGIN
-    UPDATE LICHTIEM
-    SET LICHTIEM.MaVC = i.MaVC
-    FROM LICHTIEM l
-    JOIN INSERTED i ON l.MaHD = i.MaHD;
-END
-GO
+    -- Biến giữ mã lịch tiêm mới
+    DECLARE @LastMaLT CHAR(5);
 
+    -- Lấy mã LT cuối cùng hiện có trong bảng LICHTIEM
+    SELECT @LastMaLT = MAX(MaLT) 
+    FROM LICHTIEM;
+
+    -- Xử lý mã LT cuối cùng thành số
+    DECLARE @LastNumber INT;
+    SET @LastNumber = ISNULL(CAST(SUBSTRING(@LastMaLT, 3, 3) AS INT), 0);
+
+    -- Tạo lịch tiêm cho từng chi tiết hóa đơn
+    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+    SELECT 
+        'LT' + RIGHT('000' + CAST(@LastNumber + ROW_NUMBER() OVER (ORDER BY i.MaHD) AS VARCHAR(3)), 3) AS MaLT,
+        i.MaHD,
+        h.MaBN,
+        i.MaVC,
+        GETDATE(),  -- Ngày hẹn tiêm (mặc định là ngày hiện tại, có thể tuỳ chỉnh)
+        N'Chưa tiêm'
+    FROM 
+        INSERTED i
+    JOIN 
+        HOADON h ON i.MaHD = h.MaHD;
+END;
+GO
 
 --Cộng số lượng tồn trong vaccine
 CREATE TRIGGER TG_CONGSOLUONGTONCUAVACCINE

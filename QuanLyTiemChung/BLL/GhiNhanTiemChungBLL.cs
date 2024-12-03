@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,10 @@ namespace BLL
                 Console.WriteLine("Lỗi khi xóa trong GHINHANTIEMCHUNG: " + ex.Message);
                 throw;
             }
+        }
+        public DataTable Load()
+        {
+            return dal.Load();
         }
     }
 }
