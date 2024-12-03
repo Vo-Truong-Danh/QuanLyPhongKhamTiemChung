@@ -510,11 +510,20 @@ namespace GUI
 
         private void cboLoaiVaccine_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-            DataTable dr = vcBLL.LayTTVC().Select("MaLoai='" + maLoai + "'").CopyToDataTable();
-            cboVaccine.DataSource = dr;
-            cboVaccine.DisplayMember = "TenVC";
-            cboVaccine.ValueMember = "MaVC";
+
+            try
+            {
+                string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+                DataTable dr = vcBLL.LayTTVC().Select("MaLoai='" + maLoai + "' and SoLuongTon > 0 ").CopyToDataTable();
+                cboVaccine.DataSource = dr;
+                cboVaccine.DisplayMember = "TenVC";
+                cboVaccine.ValueMember = "MaVC";
+            }
+            catch 
+            {
+                MessageBox.Show("Vaccine thuộc loại này không còn !");
+                cboVaccine.DataSource=null;
+            }
         }
 
         private void btnKQTiemChung_Click_1(object sender, EventArgs e)
