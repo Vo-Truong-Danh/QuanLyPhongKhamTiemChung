@@ -271,18 +271,7 @@ namespace GUI
 
         private void btnThongKes_Click(object sender, EventArgs e)
         {
-            if (checksibarMoRong)
-            {
-                targetWidth = collapsedWidth;
-                txtTenHienThi.Hide();
-                pctLogo.Hide();
-            }
-            else
-            {
-                targetWidth = rongmax;
-            }
-            checksibarMoRong = !checksibarMoRong;
-            Sibar.Start();
+
             OpenChild(new frmThongKe());
         }
 
