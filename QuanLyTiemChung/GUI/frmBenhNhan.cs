@@ -366,24 +366,24 @@ namespace GUI
                 }
                 ketqua = ketqua + " Chi tiết hóa đơn";
             }
-            // Them lich tiem
-            if (KTDataGridView(dgvChiTietHoaDon))
-            {
-                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                {
-                    if (row.Cells[0].Value == null)
-                    { break; }
-                    string malt = ltBLL.TaoMaLT();
-                    string mahd = txtMaHD.Text;
-                    string mabn = MaBenhNhan;
-                    string mavc = row.Cells[0].Value.ToString();
-                    string[] date = row.Cells[6].Value.ToString().Split('/');
-                    DateTime ngayhentiem = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
-                    LichTiemDTO lt = new LichTiemDTO(malt, mahd, mabn, mavc, ngayhentiem, "Chưa tiêm");
-                    ltBLL.Insert(lt);
-                }
-                ketqua = ketqua + " Lịch tiêm";
-            }
+            //// Them lich tiem
+            //if (KTDataGridView(dgvChiTietHoaDon))
+            //{
+            //    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+            //    {
+            //        if (row.Cells[0].Value == null)
+            //        { break; }
+            //        string malt = ltBLL.TaoMaLT();
+            //        string mahd = txtMaHD.Text;
+            //        string mabn = MaBenhNhan;
+            //        string mavc = row.Cells[0].Value.ToString();
+            //        string[] date = row.Cells[6].Value.ToString().Split('/');
+            //        DateTime ngayhentiem = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
+            //        LichTiemDTO lt = new LichTiemDTO(malt, mahd, mabn, mavc, ngayhentiem, "Chưa tiêm");
+            //        ltBLL.Insert(lt);
+            //    }
+            //    ketqua = ketqua + " Lịch tiêm";
+            //}
 
             if (ketqua != null)
             {
@@ -616,7 +616,5 @@ namespace GUI
             if (dgvChiTietHoaDon.Rows.Count == 0) return;
             txtTongTien.Text = TongThanhTienHoaDon().ToString();
         }
-
-
     }
 }

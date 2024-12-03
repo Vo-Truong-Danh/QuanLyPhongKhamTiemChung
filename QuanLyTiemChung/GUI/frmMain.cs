@@ -176,6 +176,18 @@ namespace GUI
 
         private void btnQLVaccine_Click(object sender, EventArgs e)
         {
+            if (checksibarMoRong)
+            {
+                targetWidth = collapsedWidth;
+                txtTenHienThi.Hide();
+                pctLogo.Hide();
+            }
+            else
+            {
+                targetWidth = rongmax;
+            }
+            checksibarMoRong = !checksibarMoRong;
+            Sibar.Start();
             OpenChild(new frmQLVaccine(TK));
 
         }
@@ -221,11 +233,24 @@ namespace GUI
 
         private void btnQLBenhNhan_Click(object sender, EventArgs e)
         {
+            if (checksibarMoRong)
+            {
+                targetWidth = collapsedWidth;
+                txtTenHienThi.Hide();
+                pctLogo.Hide();
+            }
+            else
+            {
+                targetWidth = rongmax;
+            }
+            checksibarMoRong = !checksibarMoRong;
+            Sibar.Start();
             OpenChild(new frmBenhNhan());
         }
 
         private void btnQLBenhNhans_Click(object sender, EventArgs e)
         {
+
             OpenChild(new frmBenhNhan());
         }
 
@@ -243,7 +268,18 @@ namespace GUI
 
         private void btnThongKes_Click(object sender, EventArgs e)
         {
-
+            if (checksibarMoRong)
+            {
+                targetWidth = collapsedWidth;
+                txtTenHienThi.Hide();
+                pctLogo.Hide();
+            }
+            else
+            {
+                targetWidth = rongmax;
+            }
+            checksibarMoRong = !checksibarMoRong;
+            Sibar.Start();
             OpenChild(new frmThongKe());
         }
 
@@ -256,6 +292,11 @@ namespace GUI
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
             OpenChild(new HoaDon());
+        }
+
+        private void btnQLTiemChung_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

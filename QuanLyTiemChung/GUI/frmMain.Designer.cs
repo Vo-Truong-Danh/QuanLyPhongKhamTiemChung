@@ -33,6 +33,8 @@ namespace GUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlShow = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnHoaDon = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnThongke = new System.Windows.Forms.Button();
             this.btnThongKes = new System.Windows.Forms.Button();
@@ -62,8 +64,6 @@ namespace GUI
             this.btnThoat = new System.Windows.Forms.Button();
             this.pnlHienThi = new System.Windows.Forms.Panel();
             this.Sibar = new System.Windows.Forms.Timer(this.components);
-            this.btnHoaDon = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnlShow.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -96,6 +96,25 @@ namespace GUI
             this.pnlShow.Name = "pnlShow";
             this.pnlShow.Size = new System.Drawing.Size(229, 943);
             this.pnlShow.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(48, 699);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 72);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnHoaDon
+            // 
+            this.btnHoaDon.Location = new System.Drawing.Point(48, 581);
+            this.btnHoaDon.Name = "btnHoaDon";
+            this.btnHoaDon.Size = new System.Drawing.Size(140, 72);
+            this.btnHoaDon.TabIndex = 7;
+            this.btnHoaDon.Text = "Hóa đơn";
+            this.btnHoaDon.UseVisualStyleBackColor = true;
+            this.btnHoaDon.Click += new System.EventHandler(this.btnHoaDon_Click);
             // 
             // panel3
             // 
@@ -199,6 +218,7 @@ namespace GUI
             this.btnQLTiemChung.Text = "QL Tiêm Chủng";
             this.btnQLTiemChung.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnQLTiemChung.UseVisualStyleBackColor = true;
+            this.btnQLTiemChung.Click += new System.EventHandler(this.btnQLTiemChung_Click);
             // 
             // btnQLTiemChungS
             // 
@@ -350,7 +370,7 @@ namespace GUI
             this.txtTenHienThi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenHienThi.Location = new System.Drawing.Point(10, 99);
             this.txtTenHienThi.Name = "txtTenHienThi";
-            this.txtTenHienThi.Size = new System.Drawing.Size(216, 31);
+            this.txtTenHienThi.Size = new System.Drawing.Size(216, 24);
             this.txtTenHienThi.TabIndex = 1;
             this.txtTenHienThi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTenHienThi.TextChanged += new System.EventHandler(this.txtTenHienThi_TextChanged);
@@ -459,28 +479,9 @@ namespace GUI
             this.Sibar.Interval = 10;
             this.Sibar.Tick += new System.EventHandler(this.Sibar_Tick);
             // 
-            // btnHoaDon
-            // 
-            this.btnHoaDon.Location = new System.Drawing.Point(48, 581);
-            this.btnHoaDon.Name = "btnHoaDon";
-            this.btnHoaDon.Size = new System.Drawing.Size(140, 72);
-            this.btnHoaDon.TabIndex = 7;
-            this.btnHoaDon.Text = "Hóa đơn";
-            this.btnHoaDon.UseVisualStyleBackColor = true;
-            this.btnHoaDon.Click += new System.EventHandler(this.btnHoaDon_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(48, 699);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 72);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1924, 943);
