@@ -197,7 +197,7 @@ namespace GUI
             ImageList imageList = new ImageList();
             imageList.ImageSize = new Size(1, 40); 
             lstvDSBN.SmallImageList = imageList;
-
+            txtSoLuong.Enabled = false;
             LoadListViewDSBN();
             LoadComboBoxVaccine();
             if (chucvu == 2)
@@ -737,41 +737,69 @@ namespace GUI
         private void txtSoLuong_TextChanged(object sender, EventArgs e)
         {
             Control ctr = (Control)sender;
-            if (txtDonGia.Text != null && txtDonGia.Text.Length > 0)
+            Regex pattern = new Regex(@"^\d+$"); 
+            if (!string.IsNullOrEmpty(txtDonGia.Text))
             {
                 txtSoLuong.Enabled = true;
             }
             else
             {
-                txtSoLuong.Enabled=false;
+                txtSoLuong.Enabled = false;
+                return; 
             }
+            if (cboLoaiVaccine.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn loại vaccine.");
+                return;
+            }
+
             string maLoai = cboLoaiVaccine.SelectedValue.ToString();
             LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
-            if (loaiVC != null)
+
+            if (loaiVC == null)
             {
-                int soLuongHienTai = 0;
-                if (dgvChiTietHoaDon.Rows.Count > 0 && loaiVC.Tenloai != null && loaiVC.Tenloai != "")
+                MessageBox.Show("Thông tin loại vaccine không hợp lệ.");
+                return;
+            }
+
+            int soLuongHienTai = 0;
+
+            if (dgvChiTietHoaDon.Rows.Count > 0 && !string.IsNullOrEmpty(loaiVC.Tenloai))
+            {
+                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
                 {
-                    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                    if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() == loaiVC.Tenloai)
                     {
-                        if (row.Cells[2].Value.ToString() == loaiVC.Tenloai)
-                            soLuongHienTai += int.Parse(row.Cells[3].Value.ToString());
+                        soLuongHienTai += int.Parse(row.Cells[3].Value.ToString());
                     }
                 }
-                if(ctr.Text!=null && ctr.Text.Length > 0)
-                    soLuongHienTai += int.Parse(ctr.Text);
-                int? soMuiDuocTiem = loaiVCBLL.Search(loaiVC.Maloai).Somui;
-                if (soLuongHienTai > soMuiDuocTiem)
-                {
-                    btnThemMuiTiem.Enabled = false;
-                    errSoLuong.SetError(ctr, "Số lượng vượt mức cho phép.");
-                }
-                else
-                {
-                    btnThemMuiTiem.Enabled=true;
-                    errSoLuong.Clear();
-                }
+            }
+
+            if (!string.IsNullOrEmpty(ctr.Text) && pattern.IsMatch(ctr.Text))
+            {
+                soLuongHienTai += int.Parse(ctr.Text);
+            }
+            else
+            {
+
+                btnThemMuiTiem.Enabled = false;
+                errSoLuong.SetError(ctr, "Chỉ chứa ký tự số.");
+                return;
+            }
+
+            int? soMuiDuocTiem = loaiVC.Somui;
+
+            if (soLuongHienTai > soMuiDuocTiem)
+            {
+                btnThemMuiTiem.Enabled = false;
+                errSoLuong.SetError(ctr, $"Số lượng vượt mức cho phép (Tối đa: {soMuiDuocTiem}).");
+            }
+            else
+            {
+                btnThemMuiTiem.Enabled = true;
+                errSoLuong.Clear(); 
             }
         }
+
     }
 }
