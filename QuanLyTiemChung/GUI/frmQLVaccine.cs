@@ -165,6 +165,24 @@ namespace GUI
                 }
             }
             CustomSizeCol();
+            foreach (DataGridViewRow row in dgvVaccine.Rows)
+            {
+                if (row.Cells["SoLuongTon"].Value != null)
+                {
+                    int soLuongTon;
+                    if (int.TryParse(row.Cells["SoLuongTon"].Value.ToString(), out soLuongTon))
+                    {
+                        if (soLuongTon < 10)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.LightYellow;
+                        }
+                        if (soLuongTon < 2)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.FromArgb(255, 192, 192);
+                        }
+                    }
+                }
+            }
         }
         private void CustomSizeCol()
         {
@@ -796,7 +814,10 @@ namespace GUI
             frm.ShowDialog();
             ReLoadFRM();
             if (VaccineDTO.CheckTB)
+            {
                 ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
+                MessageBox.Show("Thêm thành công ");
+            }           
         }
 
         private void cboLoaiVC_Click(object sender, EventArgs e)
@@ -969,7 +990,7 @@ namespace GUI
 
         private void txtSolUong_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' || e.KeyChar == '0')
             {
                 e.Handled = true;
                 ThongBaoTab2("Vui lòng chỉ được nhập số vào ô số lượng!", 2);
@@ -981,7 +1002,6 @@ namespace GUI
                 {
                     txtThanhTien.Text = (double.Parse(txtSolUong.Text) * double.Parse(txtDonGiaCTPN.Text)).ToString();
                 }
-
             }
         }
 
@@ -1667,6 +1687,7 @@ namespace GUI
             frm.ShowDialog();
             ReLoadFRM();
             ThongBao("Cập nhật thành công Vaccine vào danh sách ", 1);
+            MessageBox.Show("Cập nhật thành công Vaccine ");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1685,11 +1706,13 @@ namespace GUI
                     if (ck)
                     {
                         ThongBao("Xoá thành công Vaccine " + ten + "", 1);
+                        MessageBox.Show("Vaccine đã được xoá");
                         ReLoadFRM();
                     }
                     else
                     {
                         ThongBao("Xoá thất lại Vaccine " + ten + "", 2);
+                        MessageBox.Show("Vaccine đã được sử dung thông tin không thể xoá");
                         ReLoadFRM();
                     }
                 }
@@ -1697,6 +1720,7 @@ namespace GUI
             else
             {
                 ThongBao("Vaccine " + ten + " đã được sử dụng không thể xoá thông tin!", 2);
+                MessageBox.Show("Vaccine đã được sử dung thông tin không thể xoá");
             }
         }
     }

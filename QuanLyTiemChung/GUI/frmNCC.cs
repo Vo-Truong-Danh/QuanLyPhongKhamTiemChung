@@ -102,5 +102,45 @@ namespace GUI
             }
             this.Close();
         }
+
+        private void txtTenNCC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+                error.SetError(txtTenNCC, "Không được nhập số vui lòng chỉ nhập chữ");
+            }
+            else
+                error.Clear();
+        }
+
+        private void txtDiaChi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b' && !char.IsDigit(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+                error.SetError(txtDiaChi, "Nhập sai");
+            }
+            else
+                error.Clear();
+        }
+
+        private void txtSoDienThoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                error.SetError(txtSoDienThoai, "Không được nhập chữ vui lòng chỉ nhập số");
+            }
+            if(txtSoDienThoai.Text.Length > 10)
+            {
+                e.Handled = true;
+                error.SetError(txtSoDienThoai, "Số điện thoại ít hơn 10 số");
+            }
+            else
+                error.Clear();
+        }
+
     }
 }

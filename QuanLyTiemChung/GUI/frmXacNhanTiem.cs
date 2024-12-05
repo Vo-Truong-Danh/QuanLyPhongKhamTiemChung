@@ -88,5 +88,23 @@ namespace GUI
                 MessageBox.Show("Vui lòng điền trạng thái sau tiêm ");
             }
         }
+
+        private void txtTinhTrang_TextChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void txtTinhTrang_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                error.SetError(txtTinhTrang, "Không được nhập chữ vui lòng chỉ nhập chử");
+            }
+            else
+                error.Clear();
+        }
     }
 }

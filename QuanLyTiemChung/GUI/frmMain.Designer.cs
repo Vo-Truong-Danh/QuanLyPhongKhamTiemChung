@@ -109,7 +109,7 @@ namespace GUI
             // 
             // btnHoaDon
             // 
-            this.btnHoaDon.Location = new System.Drawing.Point(48, 581);
+            this.btnHoaDon.Location = new System.Drawing.Point(48, 777);
             this.btnHoaDon.Name = "btnHoaDon";
             this.btnHoaDon.Size = new System.Drawing.Size(140, 72);
             this.btnHoaDon.TabIndex = 7;
@@ -120,8 +120,8 @@ namespace GUI
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnThongke);
             this.panel3.Controls.Add(this.btnThongKes);
+            this.panel3.Controls.Add(this.btnThongke);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 492);
             this.panel3.Name = "panel3";
@@ -130,7 +130,7 @@ namespace GUI
             // 
             // btnThongke
             // 
-            this.btnThongke.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnThongke.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnThongke.FlatAppearance.BorderSize = 0;
             this.btnThongke.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

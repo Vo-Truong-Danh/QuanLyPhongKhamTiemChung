@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmXacNhanTiem));
             this.btnLuu = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +44,9 @@
             this.txtTinhTrang = new System.Windows.Forms.TextBox();
             this.lblmabn = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.error = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnThoat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.error)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLuu
@@ -189,6 +192,8 @@
             this.txtTinhTrang.Name = "txtTinhTrang";
             this.txtTinhTrang.Size = new System.Drawing.Size(379, 54);
             this.txtTinhTrang.TabIndex = 84;
+            this.txtTinhTrang.TextChanged += new System.EventHandler(this.txtTinhTrang_TextChanged);
+            this.txtTinhTrang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTinhTrang_KeyPress);
             // 
             // lblmabn
             // 
@@ -213,6 +218,10 @@
             this.label5.Size = new System.Drawing.Size(83, 25);
             this.label5.TabIndex = 76;
             this.label5.Text = "Mã BN :";
+            // 
+            // error
+            // 
+            this.error.ContainerControl = this;
             // 
             // frmXacNhanTiem
             // 
@@ -239,6 +248,7 @@
             this.Text = "frmXacNhanTiem";
             this.Load += new System.EventHandler(this.frmXacNhanTiem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnThoat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.error)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +270,6 @@
         private System.Windows.Forms.TextBox txtTinhTrang;
         private System.Windows.Forms.Label lblmabn;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ErrorProvider error;
     }
 }

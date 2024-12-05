@@ -45,9 +45,6 @@
             this.CapNhatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnThemNV = new System.Windows.Forms.Button();
-            this.btnCapNhatNV = new System.Windows.Forms.Button();
-            this.pnlLoc = new System.Windows.Forms.Panel();
-            this.cboTrangThai = new System.Windows.Forms.ComboBox();
             this.pnlTimKiem = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -65,7 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).BeginInit();
             this.cntXoaSua.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.pnlLoc.SuspendLayout();
             this.pnlTimKiem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tctChinh.SuspendLayout();
@@ -209,8 +205,6 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Controls.Add(this.btnThemNV);
-            this.panel2.Controls.Add(this.btnCapNhatNV);
-            this.panel2.Controls.Add(this.pnlLoc);
             this.panel2.Controls.Add(this.pnlTimKiem);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(3, 3);
@@ -232,42 +226,6 @@
             this.toolTip.SetToolTip(this.btnThemNV, "Thêm vào danh sách đơn hàng");
             this.btnThemNV.UseVisualStyleBackColor = false;
             this.btnThemNV.Click += new System.EventHandler(this.btnThemNV_Click);
-            // 
-            // btnCapNhatNV
-            // 
-            this.btnCapNhatNV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnCapNhatNV.Image = global::GUI.Properties.Resources.file_109646911;
-            this.btnCapNhatNV.Location = new System.Drawing.Point(718, 8);
-            this.btnCapNhatNV.Name = "btnCapNhatNV";
-            this.btnCapNhatNV.Padding = new System.Windows.Forms.Padding(14, 5, 14, 5);
-            this.btnCapNhatNV.Size = new System.Drawing.Size(62, 54);
-            this.btnCapNhatNV.TabIndex = 30;
-            this.btnCapNhatNV.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCapNhatNV.UseVisualStyleBackColor = false;
-            // 
-            // pnlLoc
-            // 
-            this.pnlLoc.BackColor = System.Drawing.Color.White;
-            this.pnlLoc.Controls.Add(this.cboTrangThai);
-            this.pnlLoc.Location = new System.Drawing.Point(16, 8);
-            this.pnlLoc.Name = "pnlLoc";
-            this.pnlLoc.Size = new System.Drawing.Size(257, 52);
-            this.pnlLoc.TabIndex = 27;
-            // 
-            // cboTrangThai
-            // 
-            this.cboTrangThai.BackColor = System.Drawing.Color.White;
-            this.cboTrangThai.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboTrangThai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cboTrangThai.FormattingEnabled = true;
-            this.cboTrangThai.Items.AddRange(new object[] {
-            "Tất cả",
-            "Đã tiêm",
-            "Chưa tiêm"});
-            this.cboTrangThai.Location = new System.Drawing.Point(23, 9);
-            this.cboTrangThai.Name = "cboTrangThai";
-            this.cboTrangThai.Size = new System.Drawing.Size(218, 33);
-            this.cboTrangThai.TabIndex = 0;
             // 
             // pnlTimKiem
             // 
@@ -364,7 +322,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).EndInit();
             this.cntXoaSua.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.pnlLoc.ResumeLayout(false);
             this.pnlTimKiem.ResumeLayout(false);
             this.pnlTimKiem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -387,8 +344,6 @@
         private System.Windows.Forms.ToolStripMenuItem XoaVaccineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CapNhatToolStripMenuItem;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel pnlLoc;
-        private System.Windows.Forms.ComboBox cboTrangThai;
         private System.Windows.Forms.Panel pnlTimKiem;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -399,6 +354,5 @@
         private System.Windows.Forms.TabControl tctChinh;
         private System.Windows.Forms.Timer TimeTab3;
         private System.Windows.Forms.Button btnThemNV;
-        private System.Windows.Forms.Button btnCapNhatNV;
     }
 }

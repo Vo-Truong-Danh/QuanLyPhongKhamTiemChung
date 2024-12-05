@@ -79,7 +79,8 @@ namespace GUI
             txtTenHienThi.Text = nv.HoTen;
             if (nv.Quyen != 1)
             {
-                //button11.Visible = false;
+                button11.Enabled = false;
+                button12.Enabled = false;
                 //btnQLVaccine.Enabled = false;
                 //btnQLTiemChung.Enabled = false;
                 //btnQLNhanVien.Enabled = false;
@@ -256,7 +257,6 @@ namespace GUI
 
             OpenChild(new frmBenhNhan(nv));
         }
-
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
             frmDangNhap tmp = new frmDangNhap();
@@ -311,6 +311,18 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            OpenChild(new frmHoaDon());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            OpenChild(new frmHoaDon());
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
             OpenChild(new frmHoaDon());
         }
     }

@@ -92,5 +92,30 @@ namespace GUI
                 txtSoMui.Text = tmp .Somui.ToString();
             }
         }
+
+        private void txtTenLoaiVC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+                error.SetError(txtTenLoaiVC, "Không được nhập số vui lòng chỉ nhập chữ");
+            }
+            else
+                error.Clear();
+        }
+
+        private void txtSoMui_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                error.SetError(txtSoMui, "Không được nhập chữ vui lòng chỉ nhập số");
+            }
+            else
+                error.Clear();
+        }
+
     }
 }
