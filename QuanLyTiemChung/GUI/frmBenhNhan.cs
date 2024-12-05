@@ -419,21 +419,26 @@ namespace GUI
                 if (ketqua != null)
                 {
                     MessageBox.Show($"Thêm thành công {ketqua}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if(mahdtmp.Length > 0)
+                    if (mahdtmp.Length > 0)
                     {
-                        frmReport rp = new frmReport(3, mahdtmp);
-                        rp.ShowDialog();
+                        var t = MessageBox.Show("Thông báo ", "Bạn có muốn in hóa đơn hay không ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (t == DialogResult.Yes)
+                        {
+                            frmReport rp = new frmReport(3, mahdtmp);
+                            rp.ShowDialog();
+                        }
                     }
                 }
                 else
                 {
                     MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
+
                 ClearTextBox();
                 ClearErrorProvider();
                 dgvChiTietHoaDon.DataSource = null;
                 ketqua = string.Empty;
+
             }
             else
             {
