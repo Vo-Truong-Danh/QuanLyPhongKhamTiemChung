@@ -184,7 +184,7 @@ using DTO;
             string query = @"
             select LVC.TenLoai , sum(CTHD.SOLUONG) as SoLuong from VACCINE 
             join CHITIETHOADON CTHD on CTHD.MaVC = VACCINE.MaVC 
-            join LOAIVACCINE LVC on LVC.MaLoai= VACCINE.MaLoai Group by LVC.TenLoai
+            join LOAIBENH LVC on LVC.MaLoai= VACCINE.MaLoai Group by LVC.TenLoai
             ";
 
             SqlDataAdapter adap = new SqlDataAdapter(query, conn);

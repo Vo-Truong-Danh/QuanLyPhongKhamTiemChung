@@ -26,6 +26,57 @@ namespace DAL
                 adap.Fill(dt);
             }
         }
+        public DataTable GetData()
+        {
+            return SqlCMDLayBang("select * from NhaCungCap");
+        }
+
+        private DataTable SqlCMDLayBang(string truyxuat)
+        {
+            DataTable tmp = new DataTable();
+
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        tmp.Load(reader);
+                    }
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return tmp = null;
+            }
+            return tmp;
+        }
+        private bool SqlCMD(string truyxuat)
+        {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void Luu()
         {
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(adap);
@@ -35,66 +86,18 @@ namespace DAL
             // Sau khi lưu thành công, chấp nhận các thay đổi trong DataTable
             dt.AcceptChanges();
         }
-        public DataTable GetData()
-        {
-            return dt;
-        }
         public bool Insert(NhaCungCapDTO tmp)
         {
-            try
-            {
-                DataRow newrow = dt.NewRow();
-                newrow["MaNCC"] = tmp.Mancc;
-                newrow["TenNCC"] = tmp.Tenncc;
-                newrow["DiaChi"] = tmp.Diachi;
-                newrow["SoDienThoai"] = tmp.Sodienthoai;
-
-                dt.Rows.Add(newrow);
-
-                return true;
-            }
-            catch
-            { return false; }
+            return SqlCMD("EXEC pro_them_nhacungcap '"+tmp.Mancc+"',N'"+tmp.Tenncc+"',N'"+tmp.Diachi+"','"+tmp.Sodienthoai+"'");
         }
         public bool Delete(string tmp)
         {
-            try
-            {
-                DataRow[] rowDeXoa = dt.Select("MaNCC = '" + tmp + "'");
-                if (rowDeXoa.Length > 0)
-                {
-                    rowDeXoa[0].Delete();
-                    return true;
-                }   
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return SqlCMD("EXEC pro_xoa_nhacungcap '" + tmp+ "' ");
         }
         public bool Update(NhaCungCapDTO tmp)
         {
-            try
-            {
+            return SqlCMD("EXEC pro_caonhat_nhacungcap '" + tmp.Mancc + "',N'" + tmp.Tenncc + "',N'" + tmp.Diachi + "','" + tmp.Sodienthoai + "'");
 
-                DataRow[] rowDeUPD = dt.Select("MaNCC = '" + tmp.Mancc + "'");
-
-                if (rowDeUPD.Length > 0)
-                {
-                    DataRow row = rowDeUPD[0];
-                    row["TenNCC"] = tmp.Tenncc;
-                    row["DiaChi"] = tmp.Diachi;
-                    row["SoDienThoai"] = tmp.Sodienthoai;
-
-                    return true;
-                }
-                else return false;
-            }
-            catch
-            {
-                return false;
-            }
         }
         public NhaCungCapDTO Search(string ma)
         {

@@ -14,9 +14,16 @@ namespace GUI
         [STAThread]
         static void Main()  
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMain());
+            }
+            catch 
+            {
+                MessageBox.Show("Đã xảy ra lỗi vui lòng khởi động lại ứng dụng");
+            }
         }
     }
 }

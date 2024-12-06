@@ -347,102 +347,109 @@ namespace GUI
         }
         private void btnThemBenhNhan_Click_1(object sender, EventArgs e)
         {
-            if (dgvChiTietHoaDon.DataSource == null)
+            try
             {
-                btnTaoHD.Enabled = true;
-                bool kq = false;
-                string ketqua = "";
-                string mahdtmp = txtMaHD.Text;
-                // Them benh nhan
-                if (!KTDuLieuBN())
-                    return;
-                if (!bnBLL.KTMaBNCoTonTai(MaBenhNhan))
+                if (dgvChiTietHoaDon.DataSource == null)
                 {
-                    MaBenhNhan = bnBLL.TaoMaBNMoi();
-                }
-                string selectedDateString = dteNgaySinh.Value.ToString("yyyy-MM-dd");
-                BenhNhanDTO bnDTO = new BenhNhanDTO(MaBenhNhan, txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
-                kq = bnBLL.Insert(bnDTO);
-                if (kq)
-                {
-                    LoadListViewDSBN();
-                    ketqua = "Bệnh nhân";
-                    kq = false;
-                }
-                // Them hoa don
-                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && KTDataGridView(dgvChiTietHoaDon))
-                {
-                    HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, NV.MaNV, float.Parse(txtTongTien.Text));
-                    kq = hdBLL.Insert(hd);
-                }
-                if (kq)
-                {
-                    ketqua = ketqua + " Hóa đơn";
-                }
-                // Them chi tiet hoa don
-                if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && kq)
-                {
-                    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                    btnTaoHD.Enabled = true;
+                    bool kq = false;
+                    string ketqua = "";
+                    string mahdtmp = txtMaHD.Text;
+                    // Them benh nhan
+                    if (!KTDuLieuBN())
+                        return;
+                    if (!bnBLL.KTMaBNCoTonTai(MaBenhNhan))
                     {
-                        if (row.Cells[0].Value == null)
-                        { break; }
-                        string mavc = row.Cells[0].Value.ToString();
-                        int soluong = int.Parse(row.Cells[3].Value.ToString());
-                        float dongia = float.Parse(row.Cells[4].Value.ToString());
-                        ChiTietHoaDonDTO hd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
-                        hdBLL.AddCTHD(hd);
+                        MaBenhNhan = bnBLL.TaoMaBNMoi();
                     }
-                    ketqua = ketqua + " Chi tiết hóa đơn";
-                }
-                // Them lich tiem
-                if (KTDataGridView(dgvChiTietHoaDon))
-                {
-                    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                    string selectedDateString = dteNgaySinh.Value.ToString("yyyy-MM-dd");
+                    BenhNhanDTO bnDTO = new BenhNhanDTO(MaBenhNhan, txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
+                    kq = bnBLL.Insert(bnDTO);
+                    if (kq)
                     {
-                        if (row.Cells[0].Value == null)
-                        { break; }
-                        string mahd = txtMaHD.Text;
-                        string mabn = MaBenhNhan;
-                        string mavc = row.Cells[0].Value.ToString();
-                        string[] date = row.Cells[6].Value.ToString().Split('/');
-                        string ngayhentiem = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0])).ToString("yyyy-MM-dd");
-                        LichTiemDTO lt = new LichTiemDTO() { MaHD = mahd, MaBN = mabn, MaVC = mavc, NgayHenTiem = ngayhentiem };
-                        bool check = ltBLL.ThemLichTiemChoHoaDon(lt);
-                        if (check)
+                        LoadListViewDSBN();
+                        ketqua = "Bệnh nhân";
+                        kq = false;
+                    }
+                    // Them hoa don
+                    if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && KTDataGridView(dgvChiTietHoaDon))
+                    {
+                        HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, NV.MaNV, float.Parse(txtTongTien.Text));
+                        kq = hdBLL.Insert(hd);
+                    }
+                    if (kq)
+                    {
+                        ketqua = ketqua + " Hóa đơn";
+                    }
+                    // Them chi tiet hoa don
+                    if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && kq)
+                    {
+                        foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
                         {
-                            ketqua = null;
+                            if (row.Cells[0].Value == null)
+                            { break; }
+                            string mavc = row.Cells[0].Value.ToString();
+                            int soluong = int.Parse(row.Cells[3].Value.ToString());
+                            float dongia = float.Parse(row.Cells[4].Value.ToString());
+                            ChiTietHoaDonDTO hd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
+                            hdBLL.AddCTHD(hd);
                         }
+                        ketqua = ketqua + " Chi tiết hóa đơn";
                     }
-                    ketqua = ketqua + " Lịch tiêm";
-                }
+                    // Them lich tiem
+                    //if (KTDataGridView(dgvChiTietHoaDon))
+                    //{
+                    //    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                    //    {
+                    //        if (row.Cells[0].Value == null)
+                    //        { break; }
+                    //        string mahd = txtMaHD.Text;
+                    //        string mabn = MaBenhNhan;
+                    //        string mavc = row.Cells[0].Value.ToString();
+                    //        string[] date = row.Cells[6].Value.ToString().Split('/');
+                    //        string ngayhentiem = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0])).ToString("yyyy-MM-dd");
+                    //        LichTiemDTO lt = new LichTiemDTO() { MaHD = mahd, MaBN = mabn, MaVC = mavc, NgayHenTiem = ngayhentiem };
+                    //        bool check = ltBLL.ThemLichTiemChoHoaDon(lt);
+                    //        if (check)
+                    //        {
+                    //            ketqua = null;
+                    //        }
+                    //    }
+                    //    ketqua = ketqua + " Lịch tiêm";
+                    //}
 
-                if (ketqua != null)
-                {
-                    MessageBox.Show($"Thêm thành công {ketqua}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (mahdtmp.Length > 0)
+                    if (ketqua != null)
                     {
-                        var t = MessageBox.Show("Thông báo ", "Bạn có muốn in hóa đơn hay không ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (t == DialogResult.Yes)
+                        MessageBox.Show($"Thêm thành công {ketqua}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (mahdtmp.Length > 0)
                         {
-                            frmReport rp = new frmReport(3, mahdtmp);
-                            rp.ShowDialog();
+                            var t = MessageBox.Show("Thông báo ", "Bạn có muốn in hóa đơn hay không ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (t == DialogResult.Yes)
+                            {
+                                frmReport rp = new frmReport(3, mahdtmp);
+                                rp.ShowDialog();
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    ClearTextBox();
+                    ClearErrorProvider();
+                    dgvChiTietHoaDon.DataSource = null;
+                    ketqua = string.Empty;
+
                 }
                 else
                 {
-                    MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Vui lòng chọn ít nhất 1 VACCINE");
                 }
-
-                ClearTextBox();
-                ClearErrorProvider();
-                dgvChiTietHoaDon.DataSource = null;
-                ketqua = string.Empty;
-
             }
-            else
+            catch 
             {
-                MessageBox.Show("Vui lòng chọn ít nhất 1 VACCINE");
+                MessageBox.Show("Đã có lỗi sảy ra hảy thử lại hoặc khởi động lại chương trình");
             }
         }
         private void btnThemMuiTemChoBN_Click(object sender, EventArgs e)

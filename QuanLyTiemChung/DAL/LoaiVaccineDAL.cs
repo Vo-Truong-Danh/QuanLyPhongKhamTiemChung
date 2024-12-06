@@ -18,14 +18,14 @@ namespace DAL
         public LoaiVaccineDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
-            string truyvansql = "select * from LoaiVaccine";
+            string truyvansql = "select * from LOAIBENH";
             adap = new SqlDataAdapter(truyvansql, conn);
             if (dt.Rows.Count == 0)
                 adap.Fill(dt);
         }
         public DataTable GetData()
         {
-            return SqlCMDLayBang("select * from LoaiVaccine");
+            return SqlCMDLayBang("select * from LOAIBENH");
         }
 
         private DataTable SqlCMDLayBang(string truyxuat)

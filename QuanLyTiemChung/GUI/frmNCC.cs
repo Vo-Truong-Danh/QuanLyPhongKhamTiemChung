@@ -85,7 +85,13 @@ namespace GUI
                         Diachi = txtDiaChi.Text,
                        Sodienthoai = txtSoDienThoai.Text,
                     };
-                    nccbll.Insert(tmp);
+                    if (nccbll.Insert(tmp))
+                        MessageBox.Show("Thêm thành công Nhà Cung Cấp mới");
+                    else
+                    {
+                        MessageBox.Show("Thêm không thành công vui lòng kiểm tra lại dữ liệu !");
+                        return;
+                    }
                 }
                 else
                 {
@@ -128,7 +134,7 @@ namespace GUI
 
         private void txtSoDienThoai_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b'&& e.KeyChar !=' ')
             {
                 e.Handled = true;
                 error.SetError(txtSoDienThoai, "Không được nhập chữ vui lòng chỉ nhập số");
