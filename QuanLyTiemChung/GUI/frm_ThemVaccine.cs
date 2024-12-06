@@ -57,8 +57,6 @@ namespace GUI
         {
             BoGoc(pnlGia);
             BoGoc(pnlXuatXu);
-            BoGoc(pnlNSX);
-            BoGoc(pnlHSD);
             BoGoc(pnlTenVc);
             this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 10, 10));
             BoGoc(btnLuu);
@@ -73,8 +71,6 @@ namespace GUI
                 if (vcdto.Length > 0)
                 {
                     txtTenVC.Text = vcdto[0]["TenVC"].ToString();
-                    dteNSX.Value = DateTime.Parse(vcdto[0]["NgaySX"].ToString());
-                    dteHSD.Value = DateTime.Parse(vcdto[0]["HanSuDung"].ToString());
                     txtGia.Text = vcdto[0]["Gia"].ToString();
                     txtXuatXu.Text = vcdto[0]["XuatXu"].ToString();
                     cboLoaiVC.SelectedValue = vcdto[0]["MaLoai"];
@@ -97,8 +93,6 @@ namespace GUI
                         Mavc = "VC" + sl.ToString("D3") + "",
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
-                        Hansudung =dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
@@ -111,8 +105,6 @@ namespace GUI
                         Mavc = mavcdto,
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
-                        Hansudung = dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
@@ -169,8 +161,6 @@ namespace GUI
                         Mavc = "VC" + sl.ToString("D3") + "",
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
-                        Hansudung = dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
@@ -189,8 +179,6 @@ namespace GUI
                         Mavc = mavcdto,
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
-                        Hansudung = dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
@@ -207,31 +195,5 @@ namespace GUI
             this.Close();
         }
 
-        private void dteNSX_ValueChanged(object sender, EventArgs e)
-        {
-            if (dteNSX.Value > DateTime.Now)
-            {
-                dteNSX.Value = DateTime.Now.AddMonths(-1);
-                dteNSX.Focus();
-                error.SetError(dteNSX, "Ngày sản xuất không được sớm hơn thời gian hiện tại");
-            }
-            else
-            {
-                error.Clear();
-            }
-        }
-
-        private void dteHSD_ValueChanged(object sender, EventArgs e)
-        {
-            if (dteHSD.Value < dteNSX.Value)
-            {
-                dteHSD.Value = dteNSX.Value.AddMonths(24);
-                error.SetError(dteNSX, "Hạn sử dụng không được nhỏ hơn ngày sản xuất");
-            }
-            else
-            {
-                error.Clear();
-            }
-        }
     }
 }

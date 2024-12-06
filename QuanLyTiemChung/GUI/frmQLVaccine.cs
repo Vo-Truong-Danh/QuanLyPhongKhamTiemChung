@@ -104,16 +104,6 @@ namespace GUI
                 Name = "TenVC",
                 HeaderText = "Tên Vaccine"
             };
-            DataGridViewTextBoxColumn nsx = new DataGridViewTextBoxColumn
-            {
-                Name = "NgaySX",
-                HeaderText = "Ngày Sản Xuất"
-            };
-            DataGridViewTextBoxColumn hsd = new DataGridViewTextBoxColumn
-            {
-                Name = "HanSuDung",
-                HeaderText = "Hạn Sử Dụng"
-            };
             DataGridViewTextBoxColumn soluongton = new DataGridViewTextBoxColumn
             {
                 Name = "SoLuongTon",
@@ -139,8 +129,6 @@ namespace GUI
             dgvVaccine.Columns.Add(stt);
             dgvVaccine.Columns.Add(mavc);
             dgvVaccine.Columns.Add(tenvc);
-            dgvVaccine.Columns.Add(nsx);
-            dgvVaccine.Columns.Add(hsd);
             dgvVaccine.Columns.Add(soluongton);
             dgvVaccine.Columns.Add(gia);
             dgvVaccine.Columns.Add(xuatxu);
@@ -157,9 +145,8 @@ namespace GUI
                         // Lấy giá trị từ DataRow
                         string tenLoai = dr[0]["TenLoai"].ToString();
                         string maLoai = row["MaLoai"].ToString();
-                        string ngaysx = Convert.ToDateTime(row["NgaySX"]).ToString("dd/MM/yyyy");
 
-                        dgvVaccine.Rows.Add(tmp++, row["MaVC"], row["TenVC"], ngaysx, Convert.ToDateTime(row["HanSuDung"]).ToString("dd/MM/yyyy"), row["SoLuongTon"], row["Gia"], row["XuatXu"], tenLoai);
+                        dgvVaccine.Rows.Add(tmp++, row["MaVC"], row["TenVC"], row["SoLuongTon"], row["Gia"], row["XuatXu"], tenLoai);
 
                     }
                 }
@@ -191,32 +178,22 @@ namespace GUI
             dgvVaccine.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvVaccine.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvVaccine.Columns[1].Width = 150;
-            dgvVaccine.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvVaccine.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[1].Width = 200;
 
-            dgvVaccine.Columns[2].Width = 220;
+            dgvVaccine.Columns[2].Width = 280;
 
-            dgvVaccine.Columns[3].Width = 175;
+            dgvVaccine.Columns[3].Width = 200;
             dgvVaccine.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvVaccine.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvVaccine.Columns[4].Width = 175;
+            dgvVaccine.Columns[4].Width = 200;
             dgvVaccine.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvVaccine.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvVaccine.Columns[5].Width = 180;
-            dgvVaccine.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvVaccine.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvVaccine.Columns[6].Width = 160;
-            dgvVaccine.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvVaccine.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVaccine.Columns[5].Width = 150;
 
-
-            dgvVaccine.Columns[7].Width = 150;
-
-            dgvVaccine.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvVaccine.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         private void BoGoc(Control tmp, int goc)
         {

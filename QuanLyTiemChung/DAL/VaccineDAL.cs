@@ -90,7 +90,7 @@ using DTO;
 
         public bool Insert(VaccineDTO vcDTO)
         {
-           return SqlCMD("EXEC pro_them_vaccine @MaVC = '"+vcDTO.Mavc+"',@MaLoai = '"+vcDTO.Maloai+"',@TenVC = N'"+vcDTO.Tenvc+"',@NgaySX = '"+vcDTO.Ngaysx+"',@HanSuDung = '"+vcDTO.Hansudung+"',@Gia = "+vcDTO.Gia+", @XuatXu = N'"+vcDTO.Xuatxu+"';");
+           return SqlCMD("EXEC pro_them_vaccine @MaVC = '"+vcDTO.Mavc+"',@MaLoai = '"+vcDTO.Maloai+"',@TenVC = N'"+vcDTO.Tenvc+"',@Gia = "+vcDTO.Gia+", @XuatXu = N'"+vcDTO.Xuatxu+"';");
         }
 
         public bool Delete(string maVC)
@@ -100,7 +100,7 @@ using DTO;
 
         public bool Update(VaccineDTO vcDTO)
         {
-            return SqlCMD("EXEC pro_capnhat_vaccine @MaVC = '" + vcDTO.Mavc + "',@MaLoai = '" + vcDTO.Maloai + "',@TenVC = N'" + vcDTO.Tenvc + "',@NgaySX = '" + vcDTO.Ngaysx + "',@HanSuDung = '" + vcDTO.Hansudung + "',@Gia = " + vcDTO.Gia + ", @XuatXu = N'" + vcDTO.Xuatxu + "';");
+            return SqlCMD("EXEC pro_capnhat_vaccine @MaVC = '" + vcDTO.Mavc + "',@MaLoai = '" + vcDTO.Maloai + "',@TenVC = N'" + vcDTO.Tenvc + "',@Gia = " + vcDTO.Gia + ", @XuatXu = N'" + vcDTO.Xuatxu + "';");
         }
         public void Luu()
         {
@@ -148,8 +148,6 @@ using DTO;
                 Mavc = dr[0][0].ToString(),
                 Maloai = dr[0][1].ToString(),
                 Tenvc = dr[0][2].ToString(),
-                Ngaysx = dr[0][3].ToString(),
-                Hansudung = dr[0][4].ToString(),
                 Gia = int.TryParse(dr[0][6].ToString(), out int gia) ? gia : 0,
                 Xuatxu = dr[0][7].ToString()
             };
@@ -175,8 +173,6 @@ using DTO;
                 Mavc = row["MaVC"].ToString(),
                 Maloai = row["MaLoai"].ToString(),
                 Tenvc = row["TenVC"].ToString(),
-                Ngaysx = row["NgaySX"].ToString(),
-                Hansudung = row["HanSuDung"].ToString(),
                 Gia = int.Parse(row["Gia"].ToString()),
                 Xuatxu = row["XuatXu"].ToString()
             }).ToList();

@@ -38,14 +38,6 @@ namespace GUI
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dteNSX = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pnlNSX = new System.Windows.Forms.Panel();
-            this.pnlHSD = new System.Windows.Forms.Panel();
-            this.dteHSD = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pnlGia = new System.Windows.Forms.Panel();
             this.txtGia = new System.Windows.Forms.TextBox();
@@ -62,8 +54,6 @@ namespace GUI
             this.error = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnThoat)).BeginInit();
             this.pnlTenVc.SuspendLayout();
-            this.pnlNSX.SuspendLayout();
-            this.pnlHSD.SuspendLayout();
             this.pnlGia.SuspendLayout();
             this.pnlXuatXu.SuspendLayout();
             this.pnlLoai.SuspendLayout();
@@ -140,100 +130,6 @@ namespace GUI
             this.label3.TabIndex = 31;
             this.label3.Text = "*";
             // 
-            // dteNSX
-            // 
-            this.dteNSX.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteNSX.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dteNSX.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dteNSX.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteNSX.Location = new System.Drawing.Point(33, 9);
-            this.dteNSX.Margin = new System.Windows.Forms.Padding(130, 13, 130, 13);
-            this.dteNSX.Name = "dteNSX";
-            this.dteNSX.Size = new System.Drawing.Size(312, 34);
-            this.dteNSX.TabIndex = 0;
-            this.dteNSX.ValueChanged += new System.EventHandler(this.dteNSX_ValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(548, 113);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 25);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Ngày Sản Xuất";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(527, 111);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 36);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "*";
-            // 
-            // pnlNSX
-            // 
-            this.pnlNSX.BackColor = System.Drawing.Color.White;
-            this.pnlNSX.Controls.Add(this.dteNSX);
-            this.pnlNSX.Location = new System.Drawing.Point(530, 154);
-            this.pnlNSX.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pnlNSX.Name = "pnlNSX";
-            this.pnlNSX.Size = new System.Drawing.Size(377, 55);
-            this.pnlNSX.TabIndex = 29;
-            // 
-            // pnlHSD
-            // 
-            this.pnlHSD.BackColor = System.Drawing.Color.White;
-            this.pnlHSD.Controls.Add(this.dteHSD);
-            this.pnlHSD.Location = new System.Drawing.Point(530, 270);
-            this.pnlHSD.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pnlHSD.Name = "pnlHSD";
-            this.pnlHSD.Size = new System.Drawing.Size(377, 55);
-            this.pnlHSD.TabIndex = 35;
-            // 
-            // dteHSD
-            // 
-            this.dteHSD.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteHSD.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dteHSD.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dteHSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteHSD.Location = new System.Drawing.Point(33, 9);
-            this.dteHSD.Margin = new System.Windows.Forms.Padding(130, 13, 130, 13);
-            this.dteHSD.Name = "dteHSD";
-            this.dteHSD.Size = new System.Drawing.Size(312, 34);
-            this.dteHSD.TabIndex = 0;
-            this.dteHSD.ValueChanged += new System.EventHandler(this.dteHSD_ValueChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(527, 231);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(27, 36);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "*";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(548, 233);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(130, 25);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Hạn Sử Dụng";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -287,7 +183,7 @@ namespace GUI
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(524, 344);
+            this.label10.Location = new System.Drawing.Point(44, 451);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 36);
             this.label10.TabIndex = 43;
@@ -297,7 +193,7 @@ namespace GUI
             // 
             this.pnlXuatXu.BackColor = System.Drawing.Color.White;
             this.pnlXuatXu.Controls.Add(this.txtXuatXu);
-            this.pnlXuatXu.Location = new System.Drawing.Point(527, 385);
+            this.pnlXuatXu.Location = new System.Drawing.Point(47, 492);
             this.pnlXuatXu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnlXuatXu.Name = "pnlXuatXu";
             this.pnlXuatXu.Size = new System.Drawing.Size(377, 55);
@@ -321,7 +217,7 @@ namespace GUI
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.Location = new System.Drawing.Point(545, 346);
+            this.label11.Location = new System.Drawing.Point(65, 453);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(79, 25);
@@ -335,7 +231,7 @@ namespace GUI
             this.btnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.ForeColor = System.Drawing.Color.OldLace;
-            this.btnLuu.Location = new System.Drawing.Point(290, 483);
+            this.btnLuu.Location = new System.Drawing.Point(47, 591);
             this.btnLuu.Margin = new System.Windows.Forms.Padding(0);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(377, 55);
@@ -398,7 +294,7 @@ namespace GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(960, 586);
+            this.ClientSize = new System.Drawing.Size(486, 689);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.pnlLoai);
             this.Controls.Add(this.lblLoaiVC);
@@ -409,12 +305,6 @@ namespace GUI
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pnlGia);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.pnlHSD);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.pnlNSX);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlTenVc);
@@ -431,8 +321,6 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)(this.btnThoat)).EndInit();
             this.pnlTenVc.ResumeLayout(false);
             this.pnlTenVc.PerformLayout();
-            this.pnlNSX.ResumeLayout(false);
-            this.pnlHSD.ResumeLayout(false);
             this.pnlGia.ResumeLayout(false);
             this.pnlGia.PerformLayout();
             this.pnlXuatXu.ResumeLayout(false);
@@ -452,14 +340,6 @@ namespace GUI
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
-        private Label label5;
-        private DateTimePicker dteNSX;
-        private Panel pnlNSX;
-        private Panel pnlHSD;
-        private DateTimePicker dteHSD;
-        private Label label6;
-        private Label label7;
         private Label label8;
         private Panel pnlGia;
         private TextBox txtGia;

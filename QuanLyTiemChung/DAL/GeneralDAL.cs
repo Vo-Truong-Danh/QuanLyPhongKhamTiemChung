@@ -13,5 +13,6 @@ namespace DAL
         //public static string connectStrg = "Data Source=LENOVOST\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True;";
         //public static string connectStrg = "Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Persist Security Info=True;User ID=sa;Password=123";
 
+
     }
 }
