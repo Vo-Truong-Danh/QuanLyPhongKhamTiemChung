@@ -28,9 +28,59 @@ namespace DAL
 
         public DataTable GetData()
         {
-            return dt;
+            return SqlCMDLayBang("select * from CHITIETPHIEUNHAP");
         }
 
+        private DataTable SqlCMDLayBang(string truyxuat)
+        {
+            DataTable tmp = new DataTable();
+
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        tmp.Load(reader);
+                    }
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return tmp = null;
+            }
+            return tmp;
+        }
+        private bool SqlCMD(string truyxuat)
+        {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool Insert(ChiTietPhieuNhapDTO tmp)
+        {
+            return SqlCMD("EXEC pro_them_chitietphieunhap '" + tmp.Mapn + "' , '" + tmp.Mavc + "', '" + tmp.Malo + "', '" + tmp.Soluong + "', '" + tmp.Dongia + "' ");
+        }
         public DataTable SearchMaPN(string ma)
         {
             DataRow[] dr = dt.Select("MaPN = '"+ma+"'");
@@ -43,24 +93,6 @@ namespace DAL
             //    }
             //}
             return dr.CopyToDataTable();
-        }
-
-        public bool Insert(ChiTietPhieuNhapDTO tmp)
-        {
-            try
-            {
-                DataRow newRow = dt.NewRow();
-                newRow["MaPN"] = tmp.Mapn;
-                newRow["MaVC"] = tmp.Mavc;
-                newRow["SoLuong"] = tmp.Soluong;
-                newRow["DonGia"] = tmp.Dongia;
-
-
-                dt.Rows.Add(newRow);
-                return true;
-            }
-            catch
-            { return false; }
         }
 
         public bool Luu( DataTable dttb)

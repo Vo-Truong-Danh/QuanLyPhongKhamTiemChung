@@ -29,6 +29,58 @@ namespace DAL
 
         }
 
+
+        private DataTable SqlCMDLayBang(string truyxuat)
+        {
+            DataTable tmp = new DataTable();
+
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        tmp.Load(reader);
+                    }
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return tmp = null;
+            }
+            return tmp;
+        }
+        private bool SqlCMD(string truyxuat)
+        {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool Insert(PhieuNhapDTO tmp)
+        {
+            return SqlCMD("EXEC pro_them_phieunhap '"+tmp.Mapn+"','"+tmp.MaNV+"','"+tmp.Ngaynhap+"','"+tmp.Mancc+"' ");
+        }
+
         public DataTable ThongKeHD()
         {
             string query = @"
@@ -64,25 +116,25 @@ namespace DAL
 
         public DataTable GetData()
         {
-            return dt;
+            return SqlCMDLayBang("select * from PHIEUNHAP");
         }
-        public bool Insert(PhieuNhapDTO tmp)
-        {
-            try
-            {
-                DataRow newRow = dt.NewRow();
-                newRow["MaNV"] = tmp.MaNV1;
-                newRow["MaPN"] = tmp.Mapn;
-                newRow["NgayNhap"] = tmp.Ngaynhap;
-                newRow["MaNCC"] = tmp.Mancc;
-                newRow["TongTien"] = tmp.Tongtien;
+        //public bool Insert(PhieuNhapDTO tmp)
+        //{
+        //    try
+        //    {
+        //        DataRow newRow = dt.NewRow();
+        //        newRow["MaNV"] = tmp.MaNV1;
+        //        newRow["MaPN"] = tmp.Mapn;
+        //        newRow["NgayNhap"] = tmp.Ngaynhap;
+        //        newRow["MaNCC"] = tmp.Mancc;
+        //        newRow["TongTien"] = tmp.Tongtien;
 
-                dt.Rows.Add(newRow);
-                return true;
-            }
-            catch
-            { return false; }
-        }
+        //        dt.Rows.Add(newRow);
+        //        return true;
+        //    }
+        //    catch
+        //    { return false; }
+        //}
         public bool Delete(string tmp)
         {
             try
