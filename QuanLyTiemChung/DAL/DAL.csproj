@@ -50,6 +50,7 @@
     <Compile Include="HoaDonDAL.cs" />
     <Compile Include="LichTiemDAL.cs" />
     <Compile Include="LoaiVaccineDAL.cs" />
+    <Compile Include="LoVaccineDAL.cs" />
     <Compile Include="NhaCungCapDAL.cs" />
     <Compile Include="NhanVienDAL.cs" />
     <Compile Include="PhieuNhapDAL.cs" />

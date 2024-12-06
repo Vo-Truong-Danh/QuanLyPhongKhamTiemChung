@@ -206,6 +206,8 @@ namespace GUI
         //LOAD
         private void frmQLVaccine_Load(object sender, EventArgs e)
         {
+            dtnsx.Value = DateTime.Now;
+            dthsd.Value = dtnsx.Value.AddYears(+2);
             dt = ctpnbll.GetData();
             luuctpntmp = dt.Clone();
 
@@ -244,15 +246,17 @@ namespace GUI
 
             //Tab 2
             LoadNCC();
-            pnl2_PN.Enabled = false;
             btnCapNhatCTPN.Enabled = false;
             btnXoaCTPN.Enabled = false;
+            grb2_ChiTietPhieuNhap.Enabled = false;
             btnXoaCTPN.Enabled = false;
             CreateDTGVVaccineLuaChon();
 
             //tab 3
             CreateDgvLoaiVaccine(loaivcbll.GetData());
             CreateDgvNCC(nccbll.GetData());
+
+            btnTaoPhieuNhap.Enabled = true;
         }
 
         private void LoadNCC()
@@ -1072,6 +1076,9 @@ namespace GUI
             }
             return true;
         }
+        static LoVaccineBLL Lobll = new LoVaccineBLL();
+
+        static DataTable luuLOVCtmp = Lobll.GetData().Clone();
 
         private void btnThemCTPN_Click(object sender, EventArgs e)
         {
@@ -1091,17 +1098,33 @@ namespace GUI
                         {
                             checktb[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
                             LoadCTDSPN(luuctpntmp);
+                            DataRow[] lotmp = luuLOVCtmp.Select("MaVC = '" + txtTenVCCTPN.Tag.ToString() + "' ");
+                            if(lotmp.Length > 0)
+                            {
+                                lotmp[0]["SoLuong"] = int.Parse(checktb[0]["SoLuong"].ToString()) + int.Parse(txtSolUong.Text);
+                            }
                         }
                     }
                     else
                     {
+                        string malo = Lobll.TaoMaLo();
                         DataRow drnew = luuctpntmp.NewRow();
                         {
                             drnew[0] = txtMaPhieuN.Text;
                             drnew[1] = txtTenVCCTPN.Tag.ToString();
-                            drnew[2] = txtSolUong.Text;
-                            drnew[3] = txtDonGiaCTPN.Text;
+                            drnew[2] = malo;
+                            drnew[3] = txtSolUong.Text;
+                            drnew[4] = txtDonGiaCTPN.Text;
                         }
+                        DataRow newr = luuLOVCtmp.NewRow();
+                        {
+                            newr[0] = malo.ToString();
+                            newr[1] = txtTenVCCTPN.Tag.ToString();
+                            newr[2] = dtnsx.Value.ToString("yyyy-MM-dd");
+                            newr[3] = dthsd.Value.ToString("yyyy-MM-dd");
+                            newr[4] = txtSolUong.Text;
+                        }
+                        luuLOVCtmp.Rows.Add(newr);
                         luuctpntmp.Rows.Add(drnew);
                         LoadCTDSPN(luuctpntmp);
                     }
@@ -1321,6 +1344,11 @@ namespace GUI
                 if (dr != null)
                 {
                     luuctpntmp.Rows.Remove(dr[0]);
+                    DataRow[] dr2 = luuLOVCtmp.Select("MaVC = '"+txtTenVCCTPN.Tag.ToString()+"' ");
+                    if (dr2.Length > 0)
+                    {
+                        luuLOVCtmp.Rows.Remove(dr2[0]);
+                    }
                 }
                 LoadCTDSPN(luuctpntmp);
                 btnThemCTPN.Enabled = true;
@@ -1704,6 +1732,21 @@ namespace GUI
                 ThongBao("Vaccine " + ten + " đã được sử dụng không thể xoá thông tin!", 2);
                 MessageBox.Show("Vaccine đã được sử dung thông tin không thể xoá");
             }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dtnsx_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dthsd_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

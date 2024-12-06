@@ -148,8 +148,8 @@ using DTO;
                 Mavc = dr[0][0].ToString(),
                 Maloai = dr[0][1].ToString(),
                 Tenvc = dr[0][2].ToString(),
-                Gia = int.TryParse(dr[0][6].ToString(), out int gia) ? gia : 0,
-                Xuatxu = dr[0][7].ToString()
+                Gia = int.TryParse(dr[0][4].ToString(), out int gia) ? gia : 0,
+                Xuatxu = dr[0][5].ToString()
             };
 
             return vcdto;

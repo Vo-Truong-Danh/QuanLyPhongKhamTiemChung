@@ -48,6 +48,7 @@
     <Compile Include="HoaDonDTO.cs" />
     <Compile Include="LichTiemDTO.cs" />
     <Compile Include="LoaiVaccineDTO.cs" />
+    <Compile Include="LoVaccineDTO.cs" />
     <Compile Include="NhaCungCapDTO.cs" />
     <Compile Include="PhieuNhapDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
