@@ -23,7 +23,7 @@ namespace BLL
             return ct.SearchMaPN(ma);
         }
 
-        public bool Insert(ChiTietPhieuNhapDTO tmp)
+        public bool Insert(DataTable tmp)
         {
             return ct.Insert(tmp);
         }

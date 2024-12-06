@@ -1283,9 +1283,13 @@ namespace GUI
                         Tongtien = txtTongTien.Text,
                     };
 
-                    pnbll.Insert(pndto);
-                    pnbll.Luu();
-                    ctpnbll.Luu(luuctpntmp);
+                    if (pnbll.Insert(pndto) && Lobll.Insert(luuLOVCtmp) && ctpnbll.Insert(luuctpntmp))
+                    {   
+                        luuLOVCtmp.Clear();
+                    }
+                    else
+                        MessageBox.Show("Thêm thất bại Phiếu Nhập");
+
                     ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
 
                     dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột

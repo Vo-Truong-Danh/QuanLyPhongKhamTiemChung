@@ -21,5 +21,9 @@ namespace BLL
         {
             return tmp.TaoMaLo();
         }
+        public bool Insert(DataTable tmp2)
+        {
+            return tmp.Insert(tmp2);
+        }
     }
 }

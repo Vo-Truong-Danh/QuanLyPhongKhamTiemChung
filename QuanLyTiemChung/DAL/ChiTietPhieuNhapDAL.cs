@@ -77,10 +77,36 @@ namespace DAL
             return true;
         }
 
-        public bool Insert(ChiTietPhieuNhapDTO tmp)
+        public bool Insert(DataTable tmp)
         {
-            return SqlCMD("EXEC pro_them_chitietphieunhap '" + tmp.Mapn + "' , '" + tmp.Mavc + "', '" + tmp.Malo + "', '" + tmp.Soluong + "', '" + tmp.Dongia + "' ");
+            try
+            {
+                foreach (DataRow row in tmp.Rows)
+                {
+                    string mapn = row["MaPN"].ToString();
+                    string mavc = row["MaVC"].ToString();
+                    string malo = row["MaLo"].ToString();
+                    string soluong = row["SoLuong"].ToString();
+                    string dongia = row["DonGia"].ToString();
+
+                    string truyxuat = $"EXEC pro_them_chitietphieunhap '"+mapn+"', '"+mavc+"', '"+malo+"', '"+soluong+"', '"+dongia+"'";
+
+                    bool result = SqlCMD(truyxuat);
+
+                    if (!result)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
+
         public DataTable SearchMaPN(string ma)
         {
             DataRow[] dr = dt.Select("MaPN = '"+ma+"'");
