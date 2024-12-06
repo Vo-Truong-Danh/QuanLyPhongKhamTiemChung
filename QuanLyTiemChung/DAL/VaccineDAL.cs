@@ -95,21 +95,7 @@ using DTO;
 
         public bool Delete(string maVC)
         {
-            try
-            {
-                DataRow[] rowDeXoa = dt.Select("MaVC = '" + maVC + "'");
-                if (rowDeXoa.Length > 0)
-                {
-                    //dt.Rows.Remove(rowDeXoa[0]);
-                    rowDeXoa[0].Delete();
-                    return true;
-                }
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return SqlCMD("EXEC pro_xoa_vaccine '"+maVC+"'");
         }
 
         public bool Update(VaccineDTO vcDTO)
