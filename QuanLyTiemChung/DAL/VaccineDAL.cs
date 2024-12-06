@@ -37,23 +37,60 @@ using DTO;
             adap.Fill(dt);
             return dt;
         }
-        public DataTable LayTTVC()
+                public DataTable LayTTVC()
         {
-            return dt;
+            return SqlCMDLayBang("select * from Vaccine");
         }
-        public void Insert(VaccineDTO vcDTO)
-        {
-            DataRow newrow = dt.NewRow();
-            newrow["MaVC"] = vcDTO.Mavc;
-            newrow["MaLoai"] = vcDTO.Maloai;
-            newrow["TenVC"] = vcDTO.Tenvc;
-            newrow["NgaySX"] = vcDTO.Ngaysx;
-            newrow["HanSuDung"] = vcDTO.Hansudung;
-            newrow["SoLuongTon"] = 0;
-            newrow["Gia"] = vcDTO.Gia;
-            newrow["XuatXu"] = vcDTO.Xuatxu;
 
-            dt.Rows.Add(newrow);
+        private DataTable SqlCMDLayBang(string truyxuat)
+        {
+            DataTable tmp = new DataTable();
+
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        tmp.Load(reader);
+                    }
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch 
+            {
+                return tmp = null;
+            }
+            return tmp;
+        }
+        private bool SqlCMD(string truyxuat)
+        {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool Insert(VaccineDTO vcDTO)
+        {
+           return SqlCMD("EXEC pro_them_vaccine @MaVC = '"+vcDTO.Mavc+"',@MaLoai = '"+vcDTO.Maloai+"',@TenVC = N'"+vcDTO.Tenvc+"',@NgaySX = '"+vcDTO.Ngaysx+"',@HanSuDung = '"+vcDTO.Hansudung+"',@Gia = "+vcDTO.Gia+", @XuatXu = N'"+vcDTO.Xuatxu+"';");
         }
 
         public bool Delete(string maVC)
@@ -77,30 +114,7 @@ using DTO;
 
         public bool Update(VaccineDTO vcDTO)
         {
-            try
-            {
-                DataRow[] rowDeUPD = dt.Select("MaVC = '" + vcDTO.Mavc + "'");
-
-                if (rowDeUPD.Length > 0)
-                {
-                    DataRow row = rowDeUPD[0];
-                    row["MaLoai"] = vcDTO.Maloai;
-                    row["TenVC"] = vcDTO.Tenvc;
-                    row["NgaySX"] = vcDTO.Ngaysx;
-                    row["HanSuDung"] = vcDTO.Hansudung;
-                    row["Gia"] = vcDTO.Gia;
-                    row["XuatXu"] = vcDTO.Xuatxu;
-
-                    dt.Rows.Add(row);
-
-                    return true;
-                }
-                else return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return SqlCMD("EXEC pro_capnhat_vaccine @MaVC = '" + vcDTO.Mavc + "',@MaLoai = '" + vcDTO.Maloai + "',@TenVC = N'" + vcDTO.Tenvc + "',@NgaySX = '" + vcDTO.Ngaysx + "',@HanSuDung = '" + vcDTO.Hansudung + "',@Gia = " + vcDTO.Gia + ", @XuatXu = N'" + vcDTO.Xuatxu + "';");
         }
         public void Luu()
         {

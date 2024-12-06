@@ -26,9 +26,9 @@ namespace BLL
         {
             return vcbll.SearchTen(nd);
         }
-        public void Insert(VaccineDTO vaccineDTO)
+        public bool Insert(VaccineDTO vaccineDTO)
         {
-            vcbll.Insert(vaccineDTO);
+            return vcbll.Insert(vaccineDTO);
         }
         public bool Delete(string mavc)
         {

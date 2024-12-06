@@ -816,7 +816,6 @@ namespace GUI
             if (VaccineDTO.CheckTB)
             {
                 ThongBao("Thêm thành công Vaccine vào danh sách ", 1);
-                MessageBox.Show("Thêm thành công ");
             }           
         }
 
@@ -1694,7 +1693,6 @@ namespace GUI
             frm.ShowDialog();
             ReLoadFRM();
             ThongBao("Cập nhật thành công Vaccine vào danh sách ", 1);
-            MessageBox.Show("Cập nhật thành công Vaccine ");
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -69,13 +69,16 @@ namespace GUI
             if (mavcdto != null)
             {
                 btnThoat.Hide();
-                VaccineDTO vcdto = vcbll.SearchChiTiet(mavcdto);
-                txtTenVC.Text = vcdto.Tenvc;
-                dteNSX.Value = DateTime.Parse(vcdto.Ngaysx);
-                dteHSD.Value = DateTime.Parse(vcdto.Hansudung);
-                txtGia.Text = vcdto.Gia.ToString();
-                txtXuatXu.Text = vcdto.Xuatxu;
-                cboLoaiVC.SelectedValue = vcdto.Maloai;
+                DataRow[] vcdto = vcbll.LayTTVC().Select("MaVC = '"+mavcdto+"' ");
+                if (vcdto.Length > 0)
+                {
+                    txtTenVC.Text = vcdto[0]["TenVC"].ToString();
+                    dteNSX.Value = DateTime.Parse(vcdto[0]["NgaySX"].ToString());
+                    dteHSD.Value = DateTime.Parse(vcdto[0]["HanSuDung"].ToString());
+                    txtGia.Text = vcdto[0]["Gia"].ToString();
+                    txtXuatXu.Text = vcdto[0]["XuatXu"].ToString();
+                    cboLoaiVC.SelectedValue = vcdto[0]["MaLoai"];
+                }
             }
 
         }
@@ -94,8 +97,8 @@ namespace GUI
                         Mavc = "VC" + sl.ToString("D3") + "",
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
-                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
+                        Hansudung =dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
@@ -108,8 +111,8 @@ namespace GUI
                         Mavc = mavcdto,
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
-                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
+                        Hansudung = dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
@@ -166,12 +169,18 @@ namespace GUI
                         Mavc = "VC" + sl.ToString("D3") + "",
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
-                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
+                        Hansudung = dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
-                    vcbll.Insert(vcdto);
+                    bool check = vcbll.Insert(vcdto);
+                    if (check)
+                        MessageBox.Show("Thêm thành công");
+                    else{
+                        MessageBox.Show("Thêm không thành công vui lòng kiểm tra lại dử liệu ");
+                        return;
+                    }
                 }
                 else
                 {
@@ -180,12 +189,19 @@ namespace GUI
                         Mavc = mavcdto,
                         Maloai = cboLoaiVC.SelectedValue.ToString(),
                         Tenvc = txtTenVC.Text,
-                        Ngaysx = DateTime.Parse(dteNSX.Value.ToString("yyyy-MM-dd")).ToString(),
-                        Hansudung = DateTime.Parse(dteHSD.Value.ToString("yyyy-MM-dd")).ToString(),
+                        Ngaysx = dteNSX.Value.ToString("yyyy-MM-dd"),
+                        Hansudung = dteHSD.Value.ToString("yyyy-MM-dd"),
                         Gia = int.Parse(txtGia.Text),
                         Xuatxu = txtXuatXu.Text,
                     };
-                    vcbll.Update(vcdto);
+                    bool check = vcbll.Update(vcdto);
+                    if (check)
+                        MessageBox.Show("Cập nhật thành công");
+                    else
+                    {
+                        MessageBox.Show("Cập nhật không thành công vui lòng kiểm tra lại dử liệu ");
+                        return;
+                    }
                 }
             }
             this.Close();

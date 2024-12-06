@@ -23,8 +23,11 @@ namespace GUI
         NhanVienBLL nvbll = new NhanVienBLL();
         private void frmTrangChu_Load(object sender, EventArgs e)
         {
-            int sl = vcbll.LayTTVC().Rows.Count;
-            lblSLvaccine.Text = " "+sl+" Loại Vaccine ";
+            if(vcbll.LayTTVC() != null)
+            {
+                int sl = vcbll.LayTTVC().Rows.Count;
+                lblSLvaccine.Text = " " + sl + " Loại Vaccine ";
+            }
             lblSLvaccine.ForeColor = Color.Black;
             lblNhanVien.Text = " " + nvbll.SoLuong() + " Nhân viên giỏi";
             lblNhanVien.ForeColor = Color.Black;
