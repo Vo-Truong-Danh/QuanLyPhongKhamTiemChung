@@ -37,7 +37,7 @@ using DTO;
             adap.Fill(dt);
             return dt;
         }
-                public DataTable LayTTVC()
+        public DataTable LayTTVC()
         {
             return SqlCMDLayBang("select * from Vaccine");
         }

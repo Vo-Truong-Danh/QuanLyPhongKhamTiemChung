@@ -47,8 +47,15 @@ namespace GUI
                         Tenloai = txtTenLoaiVC.Text,
                         Somui = int.Parse(txtSoMui.Text),
                     };
-                    lvcbll.Insert(lvcdto);
-                    VaccineDTO.CheckTB = true;
+                    if(lvcbll.Insert(lvcdto))
+                        { MessageBox.Show("Thêm thành công Loại Vaccine");
+                        VaccineDTO.CheckTB = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm không thành công vui lòng kiểm tra lại dử liệu ");
+                        return;
+                    }
                 }
                 else
                 {
@@ -58,7 +65,16 @@ namespace GUI
                         Tenloai = txtTenLoaiVC.Text,
                         Somui = int.Parse(txtSoMui.Text),
                     };
-                    lvcbll.Update(tmp);
+                    if (lvcbll.Update(tmp))
+                    {
+                        MessageBox.Show("Cập nhật thành công Loại Vaccine");
+                        VaccineDTO.CheckTB = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật không thành công vui lòng kiểm tra lại dử liệu ");
+                        return;
+                    }
                 }
             }
             this.Close();

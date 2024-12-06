@@ -23,11 +23,57 @@ namespace DAL
             if (dt.Rows.Count == 0)
                 adap.Fill(dt);
         }
-
         public DataTable GetData()
         {
-            return dt;
+            return SqlCMDLayBang("select * from LoaiVaccine");
         }
+
+        private DataTable SqlCMDLayBang(string truyxuat)
+        {
+            DataTable tmp = new DataTable();
+
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        tmp.Load(reader);
+                    }
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return tmp = null;
+            }
+            return tmp;
+        }
+        private bool SqlCMD(string truyxuat)
+        {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         public LoaiVaccineDTO Search(string searchTerm)
         {
             DataRow[] dr = dt.Select("MaLoai = '"+searchTerm+"'");
@@ -45,21 +91,7 @@ namespace DAL
         }
         public bool Insert(LoaiVaccineDTO lvcDTO)
         {
-            try
-            {
-                DataRow newrow = dt.NewRow();
-                newrow["MaLoai"] = lvcDTO.Maloai;
-                newrow["TenLoai"] = lvcDTO.Tenloai;
-                newrow["SoMui"] = lvcDTO.Somui;
-
-                dt.Rows.Add(newrow);
-
-                return true;
-            }
-            catch
-            { 
-                return false; 
-            }
+            return SqlCMD("EXEC pro_them_loaivaccine '"+lvcDTO.Maloai+"', N'"+lvcDTO.Tenloai+"','"+lvcDTO.Somui+"' ");
         }
         //public void Luu()
         //{
@@ -77,37 +109,11 @@ namespace DAL
         }
         public bool Delete(string maLoai)
         {
-            try
-            {
-                DataRow[] rowDeXoa = dt.Select("MaLoai = '" + maLoai + "'");
-                if (rowDeXoa.Length > 0)
-                {
-                    rowDeXoa[0].Delete();
-                    return true;
-                }
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return SqlCMD("EXEC pro_xoa_loaivaccine '" + maLoai+"' ");
         }
         public bool Update(LoaiVaccineDTO loaiVaccineDTO)
         {
-            try
-            {
-                DataRow[] dr = dt.Select("MaLoai = '"+loaiVaccineDTO.Maloai+"'");
-                if (dr.Length > 0)
-                {
-                    dr[0]["TenLoai"] = loaiVaccineDTO.Tenloai;
-                    dr[0]["SoMui"] = loaiVaccineDTO.Somui;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-            return false;
+            return SqlCMD("EXEC pro_capnhat_loaivaccine '" + loaiVaccineDTO.Maloai + "', N'" + loaiVaccineDTO.Tenloai + "','" + loaiVaccineDTO.Somui + "' ");
         }
         public List<LoaiVaccineDTO> LoadDSLoaiVaccine()
         {
