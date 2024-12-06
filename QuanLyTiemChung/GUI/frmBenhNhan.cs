@@ -649,17 +649,8 @@ namespace GUI
                         {
                             if (row.Cells[0].Value.ToString() == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
                             {
-                                DialogResult r = MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có muốn thêm vào không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (r == DialogResult.Yes)
-                                {
-                                    row.Cells[3].Value = int.Parse(txtSoLuong.Text.Trim()) + int.Parse(row.Cells[3].Value.ToString());
-                                    row.Cells[5].Value = int.Parse(row.Cells[3].Value.ToString()) * int.Parse(row.Cells[4].Value.ToString());
-                                    return;
-                                }
-                                else
-                                {
-                                    return;
-                                }
+                                MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có chỉ có thể thêm 1 mũi/ hóa đơn ?", "Thông báo");
+                                return;
                             }
                         }
                         ThanhTien = int.Parse(txtSoLuong.Text) * int.Parse(txtDonGia.Text);

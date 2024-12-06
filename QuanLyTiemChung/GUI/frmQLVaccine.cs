@@ -1268,40 +1268,47 @@ namespace GUI
 
         private void btnLuuPhieuNhap_Click(object sender, EventArgs e)
         {
-            DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn lưu những thay đổi sẽ được lưu vào Cơ Sở Dử Liệu",
+            try
+            {
+                DialogResult t = MessageBox.Show("Bạn có chắc chắn muốn lưu những thay đổi sẽ được lưu vào Cơ Sở Dử Liệu",
                      "Xác nhận",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (t == DialogResult.Yes)
-            {
-                PhieuNhapDTO pndto = new PhieuNhapDTO()
+                if (t == DialogResult.Yes)
                 {
-                    Mapn = txtMaPhieuN.Text,
-                    MaNV1 = TK.MaNV,
-                    Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
-                    Mancc = cboNCC.SelectedValue.ToString(),
-                    Tongtien = txtTongTien.Text,
-                };
+                    PhieuNhapDTO pndto = new PhieuNhapDTO()
+                    {
+                        Mapn = txtMaPhieuN.Text,
+                        MaNV1 = TK.MaNV,
+                        Ngaynhap = dteNgayNhap.Value.ToString("yyyy-MM-dd"),
+                        Mancc = cboNCC.SelectedValue.ToString(),
+                        Tongtien = txtTongTien.Text,
+                    };
 
-                pnbll.Insert(pndto);
-                pnbll.Luu();
-                ctpnbll.Luu(luuctpntmp);
-                ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
+                    pnbll.Insert(pndto);
+                    pnbll.Luu();
+                    ctpnbll.Luu(luuctpntmp);
+                    ThongBaoTab2("Lưu thành công phiếu nhập kho vào cơ sở dử liệu", 1);
 
-                dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
-                dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
-                luuctpntmp = null;
+                    dtgDanhSachVCduocChon.Columns.Clear();  // Xóa tất cả các cột
+                    dtgDanhSachVCduocChon.Rows.Clear();     // Xóa tất cả các hàng
+                    luuctpntmp = null;
 
-                CreateDTGV(vaccineBLL.Load());
+                    CreateDTGV(vaccineBLL.Load());
 
 
-                btnTaoPhieuNhap.Enabled = true;
-                btnLuuPhieuNhap.Enabled = false;
-                btnThemCTPN.Enabled = false;
-                mapnvuatao = txtMaPhieuN.Text;
-                txtMaPhieuN.Text = string.Empty;
-                txtThanhTien.Text = string.Empty;
+                    btnTaoPhieuNhap.Enabled = true;
+                    btnLuuPhieuNhap.Enabled = false;
+                    btnThemCTPN.Enabled = false;
+                    mapnvuatao = txtMaPhieuN.Text;
+                    txtMaPhieuN.Text = string.Empty;
+                    txtThanhTien.Text = string.Empty;
+                }
+                btnInPhieuNhap.Visible = true;
             }
-            btnInPhieuNhap.Visible = true;
+            catch (Exception)
+            {
+                MessageBox.Show("Đã xảy ra lỗi hãy thử lại hoặc khởi động lại ứng dụng ");
+            }
         }
         private string mapnvuatao;
         private void dtgDanhSachVCduocChon_CellClick(object sender, DataGridViewCellEventArgs e)

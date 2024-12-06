@@ -81,7 +81,6 @@ namespace GUI
             this.btnThemMuiTiem = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.dtpNgayHenTiem = new System.Windows.Forms.DateTimePicker();
-            this.btnDieuChinhSoLuong = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.txtDonGia = new System.Windows.Forms.TextBox();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
@@ -120,6 +119,7 @@ namespace GUI
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errSoLuong = new System.Windows.Forms.ErrorProvider(this.components);
             this.error = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnDieuChinhSoLuong = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errMaSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errHoTen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errDiaChi)).BeginInit();
@@ -764,18 +764,6 @@ namespace GUI
             this.dtpNgayHenTiem.Size = new System.Drawing.Size(200, 34);
             this.dtpNgayHenTiem.TabIndex = 48;
             // 
-            // btnDieuChinhSoLuong
-            // 
-            this.btnDieuChinhSoLuong.Enabled = false;
-            this.btnDieuChinhSoLuong.Location = new System.Drawing.Point(626, 35);
-            this.btnDieuChinhSoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDieuChinhSoLuong.Name = "btnDieuChinhSoLuong";
-            this.btnDieuChinhSoLuong.Size = new System.Drawing.Size(60, 38);
-            this.btnDieuChinhSoLuong.TabIndex = 62;
-            this.btnDieuChinhSoLuong.Text = "Sửa";
-            this.btnDieuChinhSoLuong.UseVisualStyleBackColor = true;
-            this.btnDieuChinhSoLuong.Click += new System.EventHandler(this.btnDieuChinhSoLuong_Click);
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -802,6 +790,7 @@ namespace GUI
             this.txtSoLuong.Location = new System.Drawing.Point(557, 38);
             this.txtSoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSoLuong.Name = "txtSoLuong";
+            this.txtSoLuong.ReadOnly = true;
             this.txtSoLuong.Size = new System.Drawing.Size(45, 36);
             this.txtSoLuong.TabIndex = 55;
             this.txtSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1137,6 +1126,19 @@ namespace GUI
             // 
             this.error.ContainerControl = this;
             // 
+            // btnDieuChinhSoLuong
+            // 
+            this.btnDieuChinhSoLuong.Enabled = false;
+            this.btnDieuChinhSoLuong.Location = new System.Drawing.Point(626, 35);
+            this.btnDieuChinhSoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDieuChinhSoLuong.Name = "btnDieuChinhSoLuong";
+            this.btnDieuChinhSoLuong.Size = new System.Drawing.Size(60, 38);
+            this.btnDieuChinhSoLuong.TabIndex = 62;
+            this.btnDieuChinhSoLuong.Text = "Sửa";
+            this.btnDieuChinhSoLuong.UseVisualStyleBackColor = true;
+            this.btnDieuChinhSoLuong.Visible = false;
+            this.btnDieuChinhSoLuong.Click += new System.EventHandler(this.btnDieuChinhSoLuong_Click);
+            // 
             // frmBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1243,7 +1245,6 @@ namespace GUI
         private GroupBox groupBox2;
         private Label label22;
         private Label label21;
-        private Button btnDieuChinhSoLuong;
         private Label label20;
         private TextBox txtSoLuong;
         private Label label23;
@@ -1264,5 +1265,6 @@ namespace GUI
         private ToolStripMenuItem xóaMũiTiêmToolStripMenuItem;
         private ErrorProvider errSoLuong;
         private ErrorProvider error;
+        private Button btnDieuChinhSoLuong;
     }
 }
