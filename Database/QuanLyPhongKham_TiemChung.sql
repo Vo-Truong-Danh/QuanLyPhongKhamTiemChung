@@ -183,22 +183,22 @@ BEGIN
 END
 GO
 --TỰ TẠO LỊCH TIÊM KHI CÓ HOÁ ĐƠN
-CREATE TRIGGER TR_MaLT_AutoGen
-ON LICHTIEM
-INSTEAD OF INSERT
-AS
-BEGIN
-    DECLARE @NewMaLT CHAR(5);
+--CREATE TRIGGER TR_MaLT_AutoGen
+--ON LICHTIEM
+--INSTEAD OF INSERT
+--AS
+--BEGIN
+--    DECLARE @NewMaLT CHAR(5);
     
-    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
-    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
-    FROM LICHTIEM;
+--    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
+--    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+--    FROM LICHTIEM;
 
-    -- Chèn vào bảng LICHTIEM với mã tự động
-    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
-    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
-    FROM INSERTED;
-END;
+--    -- Chèn vào bảng LICHTIEM với mã tự động
+--    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+--    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
+--    FROM INSERTED;
+--END;
 --GO
 --CREATE TRIGGER TG_TAOLICHTIEMKHITHEMHOADON
 --ON HOADON
@@ -212,30 +212,24 @@ END;
 
 --TỰ Thêm MÃ VACCINE vào LỊCH TIÊM KHI Thêm chi tiết hoá đơn
 GO
-CREATE TRIGGER TG_THEMMALICHTIEM
+CREATE TRIGGER TG_THEMLICHTIEM
 ON CHITIETHOADON
 FOR INSERT
 AS
 BEGIN
-    -- Biến giữ mã lịch tiêm mới
-    DECLARE @LastMaLT CHAR(5);
-
-    -- Lấy mã LT cuối cùng hiện có trong bảng LICHTIEM
-    SELECT @LastMaLT = MAX(MaLT) 
+        -- Tạo mã LT
+	DECLARE @NewMaLT CHAR(5)
+    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
     FROM LICHTIEM;
-
-    -- Xử lý mã LT cuối cùng thành số
-    DECLARE @LastNumber INT;
-    SET @LastNumber = ISNULL(CAST(SUBSTRING(@LastMaLT, 3, 3) AS INT), 0);
 
     -- Tạo lịch tiêm cho từng chi tiết hóa đơn
     INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
     SELECT 
-        'LT' + RIGHT('000' + CAST(@LastNumber + ROW_NUMBER() OVER (ORDER BY i.MaHD) AS VARCHAR(3)), 3) AS MaLT,
+        @NewMaLT,
         i.MaHD,
         h.MaBN,
         i.MaVC,
-        GETDATE(),  -- Ngày hẹn tiêm (mặc định là ngày hiện tại, có thể tuỳ chỉnh)
+        GETDATE(),
         N'Chưa tiêm'
     FROM 
         INSERTED i
