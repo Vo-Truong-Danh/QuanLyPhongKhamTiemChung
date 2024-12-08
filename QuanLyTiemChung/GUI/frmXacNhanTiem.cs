@@ -98,7 +98,7 @@ namespace GUI
         private void txtTinhTrang_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar !=' ')
             {
                 e.Handled = true;
                 error.SetError(txtTinhTrang, "Không được nhập chữ vui lòng chỉ nhập chử");

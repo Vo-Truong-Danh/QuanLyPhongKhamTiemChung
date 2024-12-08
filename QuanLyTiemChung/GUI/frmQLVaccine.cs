@@ -970,7 +970,7 @@ namespace GUI
 
         private void txtSolUong_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' || e.KeyChar == '0')
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' )
             {
                 e.Handled = true;
                 ThongBaoTab2("Vui lòng chỉ được nhập số vào ô số lượng!", 2);
@@ -1751,6 +1751,21 @@ namespace GUI
         private void dthsd_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSolUong_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSolUong_Leave(object sender, EventArgs e)
+        {
+            if(int.Parse(txtSolUong.Text.ToString()) == 0)
+            {
+                txtSolUong.Text = "1";
+                txtSolUong.Focus(); 
+                
+            }
         }
     }
 }
