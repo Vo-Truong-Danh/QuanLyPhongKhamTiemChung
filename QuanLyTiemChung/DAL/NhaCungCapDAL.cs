@@ -101,20 +101,25 @@ namespace DAL
         }
         public NhaCungCapDTO Search(string ma)
         {
-            DataRow[] dr = dt.Select("MaNCC = '" + ma + "'");
-            if (dr.Length > 0)
+            DataTable dt = SqlCMDLayBang("exec pro_timkiemnhacungcap '" + ma + "'");
+
+            if (dt.Rows.Count > 0)
             {
+                DataRow dr = dt.Rows[0]; 
+
                 NhaCungCapDTO tmp = new NhaCungCapDTO()
                 {
                     Mancc = ma,
-                    Tenncc = dr[0]["TenNCC"].ToString(),
-                    Diachi = dr[0]["DiaChi"].ToString(),
-                    Sodienthoai = dr[0]["SoDienThoai"].ToString(),
-                   
+                    Tenncc = dr["TenNCC"].ToString(),
+                    Diachi = dr["DiaChi"].ToString(),
+                    Sodienthoai = dr["SoDienThoai"].ToString(), 
                 };
+
                 return tmp;
             }
-            return null;
+
+            return null; 
+
         }
     }
 }

@@ -382,6 +382,15 @@ begin
             GROUP BY YEAR(NgayNhap), MONTH(NgayNhap)
             ORDER BY YEAR(NgayNhap), MONTH(NgayNhap)       
 end;
+--thong ke so tien da ban vaccine theo thang
+GO
+create proc pro_thongkebanvaccine as
+begin 
+     SELECT CONCAT(MONTH(NgayLap), '/', YEAR(NgayLap)) AS ThangNam, SUM(TongTien) AS TongTien
+            FROM HOADON
+            GROUP BY YEAR(NgayLap), MONTH(NgayLap)
+            ORDER BY YEAR(NgayLap), MONTH(NgayLap)       
+end;
 
 -- thong ke so luong vaccine đã được tiêm theo loại
 go
@@ -392,9 +401,31 @@ begin
 	join LOAIBENH LVC on LVC.MaLoai = VACCINE.MaLoai
 	Group by LVC.TenLoai
 end;
+-- tim theo loai hoac xuat xu 
+go
+create proc pro_loctheoloaihoacxuatxu @noidung Nvarchar(50) as
+begin 
+	select * from VACCINE
+	where MaLoai = @noidung or XuatXu = @noidung
+end;
 
-EXEC pro_thongkenhaphang
+-- tim kiem theo ten 
+go
+CREATE PROC pro_timkiemtheoten @ndtimkiem NVARCHAR(50) AS
+BEGIN
+    SELECT * 
+    FROM VACCINE
+    WHERE TenVC LIKE '%' + @ndtimkiem + '%'
+END;
+--tim kiem thong tin nha cung cap theo ma
+GO
+Create proc pro_timkiemnhacungcap @manhacc NVARCHAR(50) as
+begin
+	select * from NHACUNGCAP
+	where MaNCC = @manhacc
+end;
 
+-------------------------------------------------------------------=======================
 -- kiemtra tinh trang ton kho
 go
 create proc pro_tinhtrangvacine @mavc char(6) as

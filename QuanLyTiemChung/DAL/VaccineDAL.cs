@@ -112,23 +112,11 @@ using DTO;
         }
         public DataTable Search(string ndtimkiem)
         {
-            DataRow[] dr = dt.Select("MaLoai = '" + ndtimkiem + "' OR XuatXu =  '" + ndtimkiem + "' ");
-            DataTable tmp = dt.Clone();
-            foreach (DataRow item in dr)
-            {
-                tmp.ImportRow(item);
-            }
-            return tmp;
+            return SqlCMDLayBang("exec pro_loctheoloaihoacxuatxu N'"+ndtimkiem+"'");
         }
         public DataTable SearchTen(string ndtimkiem)
         {
-            DataRow[] dr = dt.Select("TenVC LIKE '%" + ndtimkiem + "%' ");
-            DataTable tmp = dt.Clone();
-            foreach (DataRow item in dr)
-            {
-                tmp.ImportRow(item);
-            }
-            return tmp;
+            return SqlCMDLayBang("exec pro_timkiemtheoten '" + ndtimkiem + "'");
         }
         public VaccineDTO SearchChiTiet(string ndtimkiem)
         {
@@ -181,15 +169,7 @@ using DTO;
         private DataTable dtvc = new DataTable();
         public DataTable ThongKeVCDaTiem()
         {
-            string query = @"
-            select LVC.TenLoai , sum(CTHD.SOLUONG) as SoLuong from VACCINE 
-            join CHITIETHOADON CTHD on CTHD.MaVC = VACCINE.MaVC 
-            join LOAIBENH LVC on LVC.MaLoai= VACCINE.MaLoai Group by LVC.TenLoai
-            ";
-
-            SqlDataAdapter adap = new SqlDataAdapter(query, conn);
-            adap.Fill(dtvc);
-            return dtvc;
+            return SqlCMDLayBang("exec pro_thongkesoluongtheoloai");
         }
 
         public DataTable LayTTVCByLoaiVC(string maLoai)
