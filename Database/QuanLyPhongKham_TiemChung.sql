@@ -491,6 +491,7 @@ END;
 
 --EXEC pro_xoa_vaccine 'VC'
 -------------------------------------------BenhNhan---------------------
+GO
 -- them
 CREATE PROCEDURE SP_ThemBenhNhan
     @HoTen NVARCHAR(50),      
@@ -516,7 +517,7 @@ BEGIN
         PRINT N'Có lỗi xảy ra khi thêm bệnh nhân: ' + ERROR_MESSAGE();
     END CATCH
 END;
-
+GO
 -- xoa
 CREATE PROCEDURE SP_XoaBenhNhan
     @MaBN CHAR(5)
@@ -552,7 +553,7 @@ BEGIN
 END;
 GO
 
-
+GO
 -- sua
 CREATE PROCEDURE SP_SuaBenhNhan
     @MaBN CHAR(5),
@@ -592,6 +593,7 @@ BEGIN
         PRINT N'Có lỗi xảy ra khi sửa thông tin bệnh nhân: ' + ERROR_MESSAGE();
     END CATCH
 END;
+GO
 -------------------------------------------Hóa đơn và chi tiết hóa đơn----
 CREATE PROCEDURE SP_THEM_HOADON
     @MaHD CHAR(5),
