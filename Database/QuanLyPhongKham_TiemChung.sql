@@ -490,6 +490,244 @@ BEGIN
 END;
 
 --EXEC pro_xoa_vaccine 'VC'
+-------------------------------------------BenhNhan---------------------
+-- them
+CREATE PROCEDURE SP_ThemBenhNhan
+    @HoTen NVARCHAR(50),      
+    @NgaySinh DATE,           
+    @GioiTinh NVARCHAR(3),    
+    @DiaChi NVARCHAR(90),     
+    @SoDienThoai CHAR(10)    
+AS
+BEGIN
+    BEGIN TRY
+        -- Tự động tạo mã bệnh nhân
+        DECLARE @MaBN CHAR(5);
+        SELECT @MaBN = 'BN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaBN, 3, 3) AS INT)), 0) + 1 AS NVARCHAR), 3)
+        FROM BENHNHAN;
+
+        -- Thêm bệnh nhân
+        INSERT INTO BENHNHAN (MaBN, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai)
+        VALUES (@MaBN, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai);
+
+        PRINT N'Thêm bệnh nhân thành công với mã ' + @MaBN;
+    END TRY
+    BEGIN CATCH
+        PRINT N'Có lỗi xảy ra khi thêm bệnh nhân: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+
+-- xoa
+CREATE PROCEDURE SP_XoaBenhNhan
+    @MaBN CHAR(5)
+AS
+BEGIN
+    -- Bắt đầu giao dịch
+    BEGIN TRANSACTION;
+    -- Xóa trong bảng GHINHANTIEMCHUNG 
+    IF EXISTS (SELECT 1 FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN)
+    BEGIN
+        DELETE FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN;
+    END
+    -- Xóa trong bảng LICHTIEM 
+    IF EXISTS (SELECT 1 FROM LICHTIEM WHERE MaBN = @MaBN)
+    BEGIN
+        DELETE FROM LICHTIEM WHERE MaBN = @MaBN;
+    END
+    -- Xóa trong bảng CHITIETHOADON
+    IF EXISTS (SELECT 1 FROM HOADON WHERE MaBN = @MaBN)
+    BEGIN
+        DELETE FROM CHITIETHOADON
+        WHERE MaHD IN (SELECT MaHD FROM HOADON WHERE MaBN = @MaBN);
+    END
+    -- Xóa trong bảng HOADON 
+    IF EXISTS (SELECT 1 FROM HOADON WHERE MaBN = @MaBN)
+    BEGIN
+        DELETE FROM HOADON WHERE MaBN = @MaBN;
+    END
+    -- Xóa trong bảng BENHNHAN
+    DELETE FROM BENHNHAN WHERE MaBN = @MaBN;
+
+    COMMIT TRANSACTION;
+END;
+GO
+
+
+-- sua
+CREATE PROCEDURE SP_SuaBenhNhan
+    @MaBN CHAR(5),
+    @HoTen NVARCHAR(50) = NULL,
+    @NgaySinh DATE = NULL,
+    @GioiTinh NVARCHAR(3) = NULL,
+    @DiaChi NVARCHAR(90) = NULL,
+    @SoDienThoai CHAR(10) = NULL
+AS
+BEGIN
+    BEGIN TRY
+        IF EXISTS (SELECT 1 FROM BENHNHAN WHERE MaBN = @MaBN)
+        BEGIN
+            IF @HoTen IS NOT NULL
+                UPDATE BENHNHAN SET HoTen = @HoTen WHERE MaBN = @MaBN;
+
+            IF @NgaySinh IS NOT NULL
+                UPDATE BENHNHAN SET NgaySinh = @NgaySinh WHERE MaBN = @MaBN;
+
+            IF @GioiTinh IS NOT NULL
+                UPDATE BENHNHAN SET GioiTinh = @GioiTinh WHERE MaBN = @MaBN;
+
+            IF @DiaChi IS NOT NULL
+                UPDATE BENHNHAN SET DiaChi = @DiaChi WHERE MaBN = @MaBN;
+
+            IF @SoDienThoai IS NOT NULL
+                UPDATE BENHNHAN SET SoDienThoai = @SoDienThoai WHERE MaBN = @MaBN;
+
+            PRINT N'Sửa thông tin bệnh nhân thành công!';
+        END
+        ELSE
+        BEGIN
+            PRINT N'Mã bệnh nhân không tồn tại!';
+        END
+    END TRY
+    BEGIN CATCH
+        PRINT N'Có lỗi xảy ra khi sửa thông tin bệnh nhân: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+-------------------------------------------Hóa đơn và chi tiết hóa đơn----
+CREATE PROCEDURE SP_THEM_HOADON
+    @MaHD CHAR(5),
+    @MaBN CHAR(5),
+    @MaNV CHAR(5),
+    @TongTien FLOAT = 0
+AS
+BEGIN
+    BEGIN TRY
+        INSERT INTO HOADON (MaHD, NgayLap, MaBN, MaNV, TongTien)
+        VALUES (@MaHD, GETDATE(), @MaBN, @MaNV, @TongTien);
+        PRINT 'Thêm hóa đơn thành công!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Lỗi: Không thể thêm hóa đơn!';
+        THROW;
+    END CATCH
+END;
+go
+CREATE PROCEDURE SP_XOA_HOADON
+    @MaHD CHAR(5)
+AS
+BEGIN
+    BEGIN TRY
+        DELETE FROM CHITIETHOADON WHERE MaHD = @MaHD; -- Xóa chi tiết hóa đơn trước
+        DELETE FROM HOADON WHERE MaHD = @MaHD; -- Sau đó xóa hóa đơn
+        PRINT 'Xóa hóa đơn thành công!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Lỗi: Không thể xóa hóa đơn!';
+        THROW;
+    END CATCH
+END;
+go
+	CREATE PROCEDURE SP_SUA_HOADON
+    @MaHD CHAR(5),
+    @MaBN CHAR(5),
+    @MaNV CHAR(5),
+    @TongTien FLOAT
+AS
+BEGIN
+    BEGIN TRY
+        UPDATE HOADON
+        SET MaBN = @MaBN,
+            MaNV = @MaNV,
+            TongTien = @TongTien
+        WHERE MaHD = @MaHD;
+        PRINT 'Cập nhật hóa đơn thành công!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Lỗi: Không thể cập nhật hóa đơn!';
+        THROW;
+    END CATCH
+END;
+go
+CREATE PROCEDURE SP_THEM_CHITIETHOADON
+    @MaHD CHAR(5),
+    @MaVC CHAR(5),
+    @SoLuong INT,
+    @DonGia FLOAT
+AS
+BEGIN
+    BEGIN TRY
+        INSERT INTO CHITIETHOADON (MaHD, MaVC, SoLuong, DonGia)
+        VALUES (@MaHD, @MaVC, @SoLuong, @DonGia);
+        PRINT 'Thêm chi tiết hóa đơn thành công!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Lỗi: Không thể thêm chi tiết hóa đơn!';
+        THROW;
+    END CATCH
+END;
+go
+CREATE PROCEDURE SP_XOA_CHITIETHOADON
+    @MaHD CHAR(5),
+    @MaVC CHAR(5)
+AS
+BEGIN
+    BEGIN TRY
+        DELETE FROM CHITIETHOADON
+        WHERE MaHD = @MaHD AND MaVC = @MaVC;
+        PRINT 'Xóa chi tiết hóa đơn thành công!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Lỗi: Không thể xóa chi tiết hóa đơn!';
+        THROW;
+    END CATCH
+END;
+go
+CREATE PROCEDURE SP_SUA_CHITIETHOADON
+    @MaHD CHAR(5),
+    @MaVC CHAR(5),
+    @SoLuong INT,
+    @DonGia FLOAT
+AS
+BEGIN
+    BEGIN TRY
+        UPDATE CHITIETHOADON
+        SET SoLuong = @SoLuong,
+            DonGia = @DonGia
+        WHERE MaHD = @MaHD AND MaVC = @MaVC;
+        PRINT 'Cập nhật chi tiết hóa đơn thành công!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Lỗi: Không thể cập nhật chi tiết hóa đơn!';
+        THROW;
+    END CATCH
+END;
+go
+
+-- function tạo mã HD tự động
+CREATE FUNCTION FN_TaoMaHDMoi()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @MaHDMax CHAR(5);
+    DECLARE @SoMoi INT;
+    DECLARE @MaHDMoi CHAR(5);
+
+    -- Lấy mã hóa đơn lớn nhất hiện có trong bảng HOADON
+    SELECT @MaHDMax = MAX(MaHD)
+    FROM HOADON;
+
+    IF @MaHDMax IS NULL
+    BEGIN
+        SET @MaHDMoi = 'HD001';
+    END
+    ELSE
+    BEGIN
+        SET @SoMoi = CAST(SUBSTRING(@MaHDMax, 3, 3) AS INT) + 1;
+        SET @MaHDMoi = 'HD' + RIGHT('000' + CAST(@SoMoi AS VARCHAR(3)), 3);
+    END
+
+    RETURN @MaHDMoi;
+END;
+GO
 
 -------------------------------------------LoạiVACINE---------------------
 --thêm loại vaccine
