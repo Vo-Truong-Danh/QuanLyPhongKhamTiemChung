@@ -189,9 +189,16 @@ namespace DAL
 
         public DataView GetDataViewFromTimKiem(string searchStr)
         {
-            DataView dtView = new DataView(dt);
-            dtView.RowFilter = "HoTen LIKE '%" + searchStr.Replace("'", "''") + "%'";
-            return dtView;
+            string query = "SELECT * FROM dbo.FN_TimKiemBN(@HoTen)";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@HoTen", SqlDbType.NVarChar) { Value = searchStr }
+            };
+
+            DataTable dataTable = dbHelper.ExecuteQuery(query, parameters);
+
+            return dataTable.DefaultView;
         }//HoTen LIKE N'%' + 'searchStr' + N'%';
         public List<string> DSMaBenhNhan()
         {

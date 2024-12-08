@@ -444,7 +444,7 @@ BEGIN
 		VALUES (@MaVC, @MaLoai, @TenVC, @Gia, @XuatXu)
 	end try
 	begin catch	
-		rollback tran -- c3 bắt lỗi thêm không thành công --bat lỗi ở c# báo không thanh công
+		rollback tran 
 	end catch
 END;
 GO
@@ -471,7 +471,7 @@ BEGIN
         WHERE MaVC = @MaVC;
     END TRY
     BEGIN CATCH
-        rollback tran -- c3 bắt lỗi thêm không thành công --c# bắt lỗi và sẽ được thông báo ra
+        rollback tran
     END CATCH;
 END;
 GO
@@ -485,7 +485,7 @@ BEGIN
         WHERE MaVC = @MaVC;
     END TRY
     BEGIN CATCH
-		rollback tran -- c3 bắt lỗi thêm không thành côngSACTION; -- c# bắt lỗi không thành công
+		rollback tran
     END CATCH;
 END;
 
@@ -522,30 +522,24 @@ CREATE PROCEDURE SP_XoaBenhNhan
     @MaBN CHAR(5)
 AS
 BEGIN
-    -- Bắt đầu giao dịch
     BEGIN TRANSACTION;
-    -- Xóa trong bảng GHINHANTIEMCHUNG 
     IF EXISTS (SELECT 1 FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN)
     BEGIN
         DELETE FROM GHINHANTIEMCHUNG WHERE MaBN = @MaBN;
     END
-    -- Xóa trong bảng LICHTIEM 
     IF EXISTS (SELECT 1 FROM LICHTIEM WHERE MaBN = @MaBN)
     BEGIN
         DELETE FROM LICHTIEM WHERE MaBN = @MaBN;
     END
-    -- Xóa trong bảng CHITIETHOADON
     IF EXISTS (SELECT 1 FROM HOADON WHERE MaBN = @MaBN)
     BEGIN
         DELETE FROM CHITIETHOADON
         WHERE MaHD IN (SELECT MaHD FROM HOADON WHERE MaBN = @MaBN);
     END
-    -- Xóa trong bảng HOADON 
     IF EXISTS (SELECT 1 FROM HOADON WHERE MaBN = @MaBN)
     BEGIN
         DELETE FROM HOADON WHERE MaBN = @MaBN;
     END
-    -- Xóa trong bảng BENHNHAN
     DELETE FROM BENHNHAN WHERE MaBN = @MaBN;
 
     COMMIT TRANSACTION;
@@ -702,32 +696,7 @@ BEGIN
 END;
 go
 
--- function tạo mã HD tự động
-CREATE FUNCTION FN_TaoMaHDMoi()
-RETURNS CHAR(5)
-AS
-BEGIN
-    DECLARE @MaHDMax CHAR(5);
-    DECLARE @SoMoi INT;
-    DECLARE @MaHDMoi CHAR(5);
 
-    -- Lấy mã hóa đơn lớn nhất hiện có trong bảng HOADON
-    SELECT @MaHDMax = MAX(MaHD)
-    FROM HOADON;
-
-    IF @MaHDMax IS NULL
-    BEGIN
-        SET @MaHDMoi = 'HD001';
-    END
-    ELSE
-    BEGIN
-        SET @SoMoi = CAST(SUBSTRING(@MaHDMax, 3, 3) AS INT) + 1;
-        SET @MaHDMoi = 'HD' + RIGHT('000' + CAST(@SoMoi AS VARCHAR(3)), 3);
-    END
-
-    RETURN @MaHDMoi;
-END;
-GO
 
 -------------------------------------------LoạiVACINE---------------------
 --thêm loại vaccine
@@ -800,7 +769,7 @@ BEGIN
         VALUES (@MaPN, @MaNV, @NgayNhap, @MaNCC);
     END TRY
     BEGIN CATCH
-		rollback tran -- c3 bắt lỗi thêm không thành công
+		rollback tran 
     END CATCH
 END;
 
@@ -822,7 +791,7 @@ BEGIN
 		VALUES (@MaLo,@MaVC,@nsx,@hsd,@soluong);
     END TRY
     BEGIN CATCH
-        rollback tran -- c3 bắt lỗi thêm không thành công
+        rollback tran 
     END CATCH
 END;
 
@@ -908,6 +877,46 @@ BEGIN
 		rollback tran -- c3 bắt lỗi thêm không thành công
     END CATCH;
 END;
+
+-------------- Function ---------------------
+--tạo mã HD tự động
+CREATE FUNCTION FN_TaoMaHDMoi()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @MaHDMax CHAR(5);
+    DECLARE @SoMoi INT;
+    DECLARE @MaHDMoi CHAR(5);
+    SELECT @MaHDMax = MAX(MaHD)
+    FROM HOADON;
+
+    IF @MaHDMax IS NULL
+    BEGIN
+        SET @MaHDMoi = 'HD001';
+    END
+    ELSE
+    BEGIN
+        SET @SoMoi = CAST(SUBSTRING(@MaHDMax, 3, 3) AS INT) + 1;
+        SET @MaHDMoi = 'HD' + RIGHT('000' + CAST(@SoMoi AS VARCHAR(3)), 3);
+    END
+
+    RETURN @MaHDMoi;
+END;
+GO
+-- Tìm kiếm theo tên bệnh nhân
+CREATE FUNCTION FN_TimKiemBN
+(
+    @HoTen NVARCHAR(50)
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT * 
+    FROM BENHNHAN
+    WHERE HoTen LIKE '%' + @HoTen + '%'
+);
+Go
 -- test
 
 ----kIEM TRA SO LUONG MUI TRUOC KHI TIEM
