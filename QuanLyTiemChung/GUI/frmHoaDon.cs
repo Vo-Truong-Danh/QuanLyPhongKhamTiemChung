@@ -66,7 +66,7 @@ namespace GUI
                     {
                         gntcBLL.DeleteByMaHD(maHD);
                         ltBLL.DeleteLByMaHD(maHD);
-                        hdBLL.DeleteCTHD(maHD);
+                        hdBLL.DeleteCTHD(maHD,"");
                         hdBLL.Delete(maHD);
 
 

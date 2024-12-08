@@ -77,8 +77,7 @@ namespace DAL
             catch
             {
                 return false;
-            }
-            return false;
+            }            
         }
         public bool DeleteGhiNhanTiemChungByMaBN(string maBN)
         {

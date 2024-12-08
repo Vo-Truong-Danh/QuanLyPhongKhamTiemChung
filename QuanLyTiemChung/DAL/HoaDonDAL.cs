@@ -15,7 +15,6 @@ namespace DAL
         SqlDataAdapter adap;
         SqlConnection conn;
         DataTable dt = new DataTable();
-        // Thêm hóa đơn
         public HoaDonDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
@@ -25,67 +24,92 @@ namespace DAL
                 adap.Fill(dt);
             dbHelper = new DatabaseHelper(GeneralDAL.connectStrg);
         }
-        public bool AddInvoice(HoaDonDTO hoaDonDTO)
+        public string TaoMaHDTuDong()
         {
-            string query = "INSERT INTO HOADON (MaHD, NgayLap, MaBN, MaNV, TongTien) VALUES (@MaHD, @NgayLap, @MaBN, @MaNV, @TongTien)";
-            SqlParameter[] parameters = {
-            new SqlParameter("@MaHD", hoaDonDTO.MaHD),
-            new SqlParameter("@NgayLap", hoaDonDTO.NgayLap),
-            new SqlParameter("@MaBN", hoaDonDTO.MaBN),
-            new SqlParameter("@MaNV", hoaDonDTO.MaNV),
-            new SqlParameter("@TongTien", hoaDonDTO.TongTien)
-        };
-            
-            
-                dbHelper.ExecuteNonQuery(query, parameters);
-            
-            return true;
+            try
+            {
+                string query = "SELECT dbo.FN_TaoMaHDMoi()"; 
+                object result = dbHelper.ExecuteScalar(query); 
+                if (result != null)
+                {
+                    return result.ToString();  
+                }
+                else
+                {
+                    return string.Empty; 
+                }
+            }
+            catch
+            {   
+                return string.Empty; 
+            }
         }
 
+        public DataTable Load()
+        {
+            dt.Clear();
+            string query = "SELECT * FROM HoaDon";
+            dt = dbHelper.ExecuteQuery(query);
+            return dt;
+        }
         // Lấy danh sách hóa đơn
         public DataTable GetInvoices()
         {
             string query = "SELECT * FROM HOADON";
             return dbHelper.ExecuteQuery(query);
         }
+        // thêm hóa đơn
+        public bool InsertHD(HoaDonDTO hoaDonDTO)
+        {
+            string query = "EXEC SP_THEM_HOADON @MaHD, @MaBN, @MaNV, @TongTien";
+
+            SqlParameter[] parameters = {
+        new SqlParameter("@MaHD", hoaDonDTO.MaHD),
+        new SqlParameter("@MaBN", hoaDonDTO.MaBN),
+        new SqlParameter("@MaNV", hoaDonDTO.MaNV),
+        new SqlParameter("@TongTien", hoaDonDTO.TongTien)
+    };
+
+            dbHelper.ExecuteNonQuery(query, parameters);
+            Load(); 
+
+            return true;
+        }
+
 
         // Cập nhật hóa đơn
-        public void UpdateInvoice(HoaDonDTO hoaDonDTO)
+        public bool UpdateHD(HoaDonDTO hoaDonDTO)
         {
-            string query = "UPDATE HOADON SET NgayLap = @NgayLap, MaBN = @MaBN, MaNV = @MaNV, TongTien = @TongTien WHERE MaHD = @MaHD";
+            string query = "EXEC SP_SUA_HOADON @MaHD, @MaBN, @MaNV, @TongTien";
+
             SqlParameter[] parameters = {
-            new SqlParameter("@MaHD", hoaDonDTO.MaHD),
-            new SqlParameter("@NgayLap", hoaDonDTO.NgayLap),
-            new SqlParameter("@MaBN", hoaDonDTO.MaBN),
-            new SqlParameter("@MaNV", hoaDonDTO.MaNV),
-            new SqlParameter("@TongTien", hoaDonDTO.TongTien)
-        };
+        new SqlParameter("@MaHD", hoaDonDTO.MaHD),
+        new SqlParameter("@MaBN", hoaDonDTO.MaBN),
+        new SqlParameter("@MaNV", hoaDonDTO.MaNV),
+        new SqlParameter("@TongTien", hoaDonDTO.TongTien)
+    };
+
             dbHelper.ExecuteNonQuery(query, parameters);
+            Load(); // Giả định Load() được dùng để refresh dữ liệu nếu cần.
+
+            return true;
         }
+
 
         // Xóa hóa đơn
-        public void DeleteInvoice(string maHD)
+        public bool DeleteHD(string maHD)
         {
-            string query = "DELETE FROM HOADON WHERE MaHD = @MaHD";
-            SqlParameter[] parameters = {
-            new SqlParameter("@MaHD", maHD)
-        };
-            dbHelper.ExecuteNonQuery(query, parameters);
-        }
+            string query = "EXEC SP_XOA_HOADON @MaHD";
 
-        // Thêm chi tiết hóa đơn
-        public void AddInvoiceDetail(ChiTietHoaDonDTO chitTietHoaDonDTO)
-        {
-            string query = "INSERT INTO CHITIETHOADON (MaHD, MaVC, SOLUONG, DONGIA) VALUES (@MaHD, @MaVC, @SoLuong, @DonGia)";
             SqlParameter[] parameters = {
-            new SqlParameter("@MaHD", chitTietHoaDonDTO.MaHD),
-            new SqlParameter("@MaVC", chitTietHoaDonDTO.MaVC),
-            new SqlParameter("@SoLuong", chitTietHoaDonDTO.SoLuong),
-            new SqlParameter("@DonGia", chitTietHoaDonDTO.DonGia)
-        };
-            dbHelper.ExecuteNonQuery(query, parameters);
-        }
+        new SqlParameter("@MaHD", maHD)
+    };
 
+            dbHelper.ExecuteNonQuery(query, parameters);
+            Load(); // Giả định Load() được dùng để refresh dữ liệu nếu cần.
+
+            return true;
+        }
         // Lấy danh sách chi tiết hóa đơn theo mã hóa đơn
         public DataTable GetInvoiceDetails(string maHD)
         {
@@ -96,28 +120,56 @@ namespace DAL
             return dbHelper.ExecuteQuery(query, parameters);
         }
 
-        // Cập nhật chi tiết hóa đơn
-        public void UpdateInvoiceDetail(ChiTietHoaDonDTO chitTietHoaDonDTO)
+        // Thêm chi tiết hóa đơn
+        public bool InsertCTHD(ChiTietHoaDonDTO chiTietHoaDonDTO)
         {
-            string query = "UPDATE CHITIETHOADON SET SOLUONG = @SoLuong, DONGIA = @DonGia WHERE MaHD = @MaHD AND MaVC = @MaVC";
+            string query = "EXEC SP_THEM_CHITIETHOADON @MaHD, @MaVC, @SoLuong, @DonGia";
+
             SqlParameter[] parameters = {
-            new SqlParameter("@MaHD", chitTietHoaDonDTO.MaHD),
-            new SqlParameter("@MaVC", chitTietHoaDonDTO.MaVC),
-            new SqlParameter("@SoLuong", chitTietHoaDonDTO.SoLuong),
-            new SqlParameter("@DonGia", chitTietHoaDonDTO.DonGia)
-        };
+        new SqlParameter("@MaHD", chiTietHoaDonDTO.MaHD),
+        new SqlParameter("@MaVC", chiTietHoaDonDTO.MaVC),
+        new SqlParameter("@SoLuong", chiTietHoaDonDTO.SoLuong),
+        new SqlParameter("@DonGia", chiTietHoaDonDTO.DonGia)
+    };
+
             dbHelper.ExecuteNonQuery(query, parameters);
+            Load(); 
+
+            return true;
+        }
+
+        // Cập nhật chi tiết hóa đơn
+        public bool UpdateCTHD(ChiTietHoaDonDTO chiTietHoaDonDTO)
+        {
+            string query = "EXEC SP_SUA_CHITIET_HOADON @MaHD, @MaVC, @SoLuong, @DonGia";
+
+            SqlParameter[] parameters = {
+        new SqlParameter("@MaHD", chiTietHoaDonDTO.MaHD),
+        new SqlParameter("@MaVC", chiTietHoaDonDTO.MaVC),
+        new SqlParameter("@SoLuong", chiTietHoaDonDTO.SoLuong),
+        new SqlParameter("@DonGia", chiTietHoaDonDTO.DonGia)
+    };
+
+            dbHelper.ExecuteNonQuery(query, parameters);
+            Load();
+            return true;
         }
 
         // Xóa chi tiết hóa đơn
-        public void DeleteInvoiceDetail(string maHD)
+        public bool DeleteCTHD(string maHD, string maVC)
         {
-            string query = "DELETE FROM CHITIETHOADON WHERE MaHD = @MaHD";
+            string query = "EXEC SP_XOA_CHITIET_HOADON @MaHD, @MaVC";
+
             SqlParameter[] parameters = {
-            new SqlParameter("@MaHD", maHD)
-        };
+        new SqlParameter("@MaHD", maHD),
+        new SqlParameter("@MaVC", maVC)
+    };
+
             dbHelper.ExecuteNonQuery(query, parameters);
+            Load(); 
+            return true;
         }
+
 
         public DataRowCollection GetFullDataRows()
         {
@@ -211,11 +263,11 @@ namespace DAL
             {
                 int newAmount =  int.Parse(dt.Rows[0]["Soluong"].ToString()) + chitTietHoaDonDTO.SoLuong;
                 ChiTietHoaDonDTO newCthd = new ChiTietHoaDonDTO(chitTietHoaDonDTO.MaHD, chitTietHoaDonDTO.MaVC, newAmount, chitTietHoaDonDTO.DonGia);
-                UpdateInvoiceDetail(newCthd);
+                UpdateCTHD(newCthd);
             }
             else
             {
-                AddInvoiceDetail(chitTietHoaDonDTO);
+                InsertCTHD(chitTietHoaDonDTO);
             }
         }
 

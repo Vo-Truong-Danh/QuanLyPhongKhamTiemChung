@@ -20,9 +20,9 @@ namespace GUI
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new frmMain());
             }
-            catch 
+            catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi vui lòng khởi động lại ứng dụng");
+                MessageBox.Show("Đã xảy ra lỗi vui lòng khởi động lại ứng dụng. Lỗi "+ ex);
             }
         }
     }

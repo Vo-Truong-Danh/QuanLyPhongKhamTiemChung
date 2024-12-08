@@ -30,10 +30,6 @@ namespace BLL
             }
         }
 
-        public string TaoMaBNMoi()
-        {
-            return bnDAL.TaoMaBNMoi();
-        }
         public DataTable GetFullData()
         {
             return bnDAL.GetFullData();

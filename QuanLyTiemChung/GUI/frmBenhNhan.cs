@@ -18,6 +18,7 @@ namespace GUI
 {
     public partial class frmBenhNhan : Form
     {
+        public string MaBenhNhan;
         BenhNhanBLL bnBLL;
         VaccineBLL vcBLL = new VaccineBLL();
         LoaiVaccineBLL loaiVCBLL = new LoaiVaccineBLL();
@@ -133,7 +134,6 @@ namespace GUI
             if (!pattern.IsMatch(control.Text))
             {
                 errHoTen.SetError(control, "Sai định dạng");
-                txtHoTen.Focus();
             }
             else
             {
@@ -162,7 +162,6 @@ namespace GUI
             if (!pattern.IsMatch(control.Text))
             {
                 errSoDienThoai.SetError(control, "Sai định dạng");
-                txtSoDT.Focus();
             }
             else
             {
@@ -216,22 +215,36 @@ namespace GUI
         {
             if (!KTDuLieuinTNBN())
                 return;
+
             string selectedDateString = dtpNgaySinhinTTBN.Value.ToString("yyyy-MM-dd");
-            BenhNhanDTO bnDTONew = new BenhNhanDTO(txtHoTeninTTBN.Text.Trim(), GetGioiTinh(), txtDiaChiinTTBN.Text.Trim(), txtSoDTinTTBN.Text.Trim(), selectedDateString);
+
+            BenhNhanDTO bnDTONew = new BenhNhanDTO(
+                MaBenhNhan,
+                txtHoTeninTTBN.Text.Trim(),
+                GetGioiTinh(),
+                txtDiaChiinTTBN.Text.Trim(),
+                txtSoDTinTTBN.Text.Trim(),
+                selectedDateString
+            );
+
             bool kq = bnBLL.Edit(MaBenhNhan, bnDTONew);
+
             if (kq)
             {
                 MessageBox.Show("Cập nhật thành công");
+
                 lstvDSBN.Items.Clear();
                 LoadListViewDSBN();
+
                 ClearTextBox();
                 ClearErrorProvider();
             }
             else
             {
-                MessageBox.Show("Cập nhật thất bại");
+                MessageBox.Show("Cập nhật thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnXoaBN_Click(object sender, EventArgs e)
         {
@@ -358,28 +371,37 @@ namespace GUI
                     // Them benh nhan
                     if (!KTDuLieuBN())
                         return;
-                    if (!bnBLL.KTMaBNCoTonTai(MaBenhNhan))
+                    if (MaBenhNhan == null)
                     {
-                        MaBenhNhan = bnBLL.TaoMaBNMoi();
-                    }
-                    string selectedDateString = dteNgaySinh.Value.ToString("yyyy-MM-dd");
-                    BenhNhanDTO bnDTO = new BenhNhanDTO(MaBenhNhan, txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
-                    kq = bnBLL.Insert(bnDTO);
-                    if (kq)
-                    {
-                        LoadListViewDSBN();
-                        ketqua = "Bệnh nhân";
-                        kq = false;
+                        string selectedDateString = dteNgaySinh.Value.ToString("yyyy-MM-dd");
+                        BenhNhanDTO bnDTO = new BenhNhanDTO(txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
+                        kq = bnBLL.Insert(bnDTO);
+                        if (kq)
+                        {
+                            LoadListViewDSBN();
+                            ketqua = "Bệnh nhân";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm bệnh nhân thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            kq = false;
+                            return;
+                        }
                     }
                     // Them hoa don
                     if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && KTDataGridView(dgvChiTietHoaDon))
                     {
                         HoaDonDTO hd = new HoaDonDTO(txtMaHD.Text, DateTime.Now, MaBenhNhan, NV.MaNV, float.Parse(txtTongTien.Text));
-                        kq = hdBLL.Insert(hd);
+                        kq = hdBLL.InsertHD(hd);
                     }
                     if (kq)
                     {
                         ketqua = ketqua + " Hóa đơn";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
                     // Them chi tiet hoa don
                     if (txtMaHD.Text.Trim() != null && txtMaHD.Text.Trim() != "" && kq)
@@ -392,7 +414,7 @@ namespace GUI
                             int soluong = int.Parse(row.Cells[3].Value.ToString());
                             float dongia = float.Parse(row.Cells[4].Value.ToString());
                             ChiTietHoaDonDTO hd = new ChiTietHoaDonDTO(txtMaHD.Text, mavc, soluong, dongia);
-                            hdBLL.AddCTHD(hd);
+                            hdBLL.InsertCTHD(hd);
                         }
                         ketqua = ketqua + " Chi tiết hóa đơn";
                     }
@@ -421,15 +443,15 @@ namespace GUI
                     if (ketqua != null)
                     {
                         MessageBox.Show($"Thêm thành công {ketqua}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (mahdtmp.Length > 0)
-                        {
-                            var t = MessageBox.Show("Thông báo ", "Bạn có muốn in hóa đơn hay không ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (t == DialogResult.Yes)
-                            {
-                                frmReport rp = new frmReport(3, mahdtmp);
-                                rp.ShowDialog();
-                            }
-                        }
+                        //if (mahdtmp.Length > 0)
+                        //{
+                        //    var t = MessageBox.Show("Thông báo ", "Bạn có muốn in hóa đơn hay không ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        //    if (t == DialogResult.Yes)
+                        //    {
+                        //        frmReport rp = new frmReport(3, mahdtmp);
+                        //        rp.ShowDialog();
+                        //    }
+                        //}
                     }
                     else
                     {
@@ -440,7 +462,7 @@ namespace GUI
                     ClearErrorProvider();
                     dgvChiTietHoaDon.DataSource = null;
                     ketqua = string.Empty;
-
+                    MaBenhNhan = string.Empty;
                 }
                 else
                 {
@@ -492,7 +514,6 @@ namespace GUI
                 rp.ShowDialog();
             }
         }
-        private string MaBenhNhan;
         private void btnThongTinChiTietBenhNhan_Click(object sender, EventArgs e)
         {
             if (lstvDSBN.SelectedItems.Count > 0)
@@ -572,7 +593,7 @@ namespace GUI
         private void cboLoaiVaccine_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 string maLoai = cboLoaiVaccine.SelectedValue.ToString();
                 LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
                 if (!KTSoMuiTiemChoPhepTiem(loaiVC))
@@ -613,13 +634,14 @@ namespace GUI
         // Tạo Hóa Đơn
         private void btnTaoHD_Click(object sender, EventArgs e)
         {
+            
             LoadComboBoxVaccine();
-            txtMaHD.Text = hdBLL.NewIDHD();
+            txtMaHD.Text = hdBLL.TaoMaHDTuDong();
             txtNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");
             txtTongTien.Text = 0.ToString();
-            btnDieuChinhSoLuong.Enabled = true;
             btnTaoHD.Enabled = false;
         }
+
 
         private void cboVaccine_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -630,50 +652,91 @@ namespace GUI
         {
             try
             {
+                // Kiểm tra loại vaccine đã được chọn chưa
+                if (cboLoaiVaccine.SelectedValue == null)
+                {
+                    MessageBox.Show("Vui lòng chọn loại vaccine!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Kiểm tra nếu loại bệnh đã được tiêm 1 mũi
+                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                {
+                    if (!row.IsNewRow &&
+                        row.Cells[2].Value != null &&
+                        row.Cells[2].Value.ToString() == cboLoaiVaccine.Text)
+                    {
+                        MessageBox.Show("Mỗi loại bệnh chỉ được tiêm 1 mũi!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
                 string maLoai = cboLoaiVaccine.SelectedValue.ToString();
                 LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
+
+                // Kiểm tra số mũi tiêm có hợp lệ không
                 if (!KTSoMuiTiemChoPhepTiem(loaiVC))
                 {
                     cboVaccine.DataSource = null;
                     return;
                 }
+
                 btnThemBenhNhan.Enabled = true;
-                string ma = cboVaccine.SelectedValue.ToString();
-                DataRow[] dr = vcBLL.LayTTVC().Select("MaVC = '" + ma + "' ");
-                if (txtSoLuong.Text != null && txtSoLuong.Text != "")
+                if (cboVaccine.SelectedValue == null)
                 {
-                    int sl = int.Parse(txtSoLuong.Text);
-                    if (dr.Length > 0 && int.Parse(dr[0]["SoLuongTon"].ToString()) > sl)
+                    MessageBox.Show("Vui lòng chọn vaccine!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string maVC = cboVaccine.SelectedValue.ToString();
+                DataRow[] dr = vcBLL.LayTTVC().Select($"MaVC = '{maVC}'");
+
+                if (string.IsNullOrWhiteSpace(txtSoLuong.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng vaccine!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int soLuongNhap;
+                if (!int.TryParse(txtSoLuong.Text, out soLuongNhap) || soLuongNhap <= 0)
+                {
+                    MessageBox.Show("Số lượng phải là số nguyên dương!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (dr.Length > 0 && int.Parse(dr[0]["SoLuongTon"].ToString()) >= soLuongNhap)
+                {
+                    if (string.IsNullOrWhiteSpace(txtDonGia.Text) || !int.TryParse(txtDonGia.Text, out int donGia))
                     {
-                        if (txtDonGia.Text == null || txtDonGia.Text == "")
+                        MessageBox.Show("Vui lòng nhập đúng đơn giá!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+                    {
+                        if (row.Cells[0].Value != null &&
+                            row.Cells[0].Value.ToString() == maVC &&
+                            row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
                         {
-                            MessageBox.Show("Không thể thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Mũi tiêm đã tồn tại. Bạn chỉ có thể thêm 1 mũi/hóa đơn!", "Thông báo");
                             return;
                         }
-                        int ThanhTien = 0;
-                        string mavc = cboVaccine.SelectedValue.ToString();
-                        foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                        {
-                            if (row.Cells[0].Value.ToString() == mavc && row.Cells[6].Value.ToString() == dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"))
-                            {
-                                MessageBox.Show("Mũi tiêm đã tồn tại. Bạn có chỉ có thể thêm 1 mũi/ hóa đơn ?", "Thông báo");
-                                return;
-                            }
-                        }
-                        ThanhTien = int.Parse(txtSoLuong.Text) * int.Parse(txtDonGia.Text);
-                        dgvChiTietHoaDon.Rows.Add(mavc, cboVaccine.Text, cboLoaiVaccine.Text, int.Parse(txtSoLuong.Text), int.Parse(txtDonGia.Text), ThanhTien, dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"));
                     }
-                    else
-                    {
-                        MessageBox.Show("Số lượng còn lại của VACCINE không đủ");
-                    }
+
+                    int thanhTien = soLuongNhap * donGia;
+                    dgvChiTietHoaDon.Rows.Add(maVC, cboVaccine.Text, cboLoaiVaccine.Text, soLuongNhap, donGia, thanhTien, dtpNgayHenTiem.Value.ToString("dd/MM/yyyy"));
+                }
+                else
+                {
+                    MessageBox.Show("Số lượng còn lại của vaccine không đủ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch 
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn lại dữ liệu VACCINE");
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnDieuChinhSoLuong_Click(object sender, EventArgs e)
         {
@@ -762,72 +825,72 @@ namespace GUI
         {
         }
 
-        private void txtSoLuong_TextChanged(object sender, EventArgs e)
-        {
-            Control ctr = (Control)sender;
-            Regex pattern = new Regex(@"^\d+$"); 
-            if (!string.IsNullOrEmpty(txtDonGia.Text))
-            {
-                txtSoLuong.Enabled = true;
-            }
-            else
-            {
-                txtSoLuong.Enabled = false;
-                return; 
-            }
-            if (cboLoaiVaccine.SelectedValue == null)
-            {
-                MessageBox.Show("Vui lòng chọn loại vaccine.");
-                return;
-            }
+        //private void txtSoLuong_TextChanged(object sender, EventArgs e)
+        //{
+        //    Control ctr = (Control)sender;
+        //    Regex pattern = new Regex(@"^\d+$"); 
+        //    if (!string.IsNullOrEmpty(txtDonGia.Text))
+        //    {
+        //        txtSoLuong.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        txtSoLuong.Enabled = false;
+        //        return; 
+        //    }
+        //    if (cboLoaiVaccine.SelectedValue == null)
+        //    {
+        //        MessageBox.Show("Vui lòng chọn loại vaccine.");
+        //        return;
+        //    }
 
-            string maLoai = cboLoaiVaccine.SelectedValue.ToString();
-            LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
+        //    string maLoai = cboLoaiVaccine.SelectedValue.ToString();
+        //    LoaiVaccineDTO loaiVC = loaiVCBLL.Search(maLoai);
 
-            if (loaiVC == null)
-            {
-                MessageBox.Show("Thông tin loại vaccine không hợp lệ.");
-                return;
-            }
+        //    if (loaiVC == null)
+        //    {
+        //        MessageBox.Show("Thông tin loại vaccine không hợp lệ.");
+        //        return;
+        //    }
 
-            int soLuongHienTai = 0;
+        //    int soLuongHienTai = 0;
 
-            if (dgvChiTietHoaDon.Rows.Count > 0 && !string.IsNullOrEmpty(loaiVC.Tenloai))
-            {
-                foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
-                {
-                    if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() == loaiVC.Tenloai)
-                    {
-                        soLuongHienTai += int.Parse(row.Cells[3].Value.ToString());
-                    }
-                }
-            }
+        //    if (dgvChiTietHoaDon.Rows.Count > 0 && !string.IsNullOrEmpty(loaiVC.Tenloai))
+        //    {
+        //        foreach (DataGridViewRow row in dgvChiTietHoaDon.Rows)
+        //        {
+        //            if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() == loaiVC.Tenloai)
+        //            {
+        //                soLuongHienTai += int.Parse(row.Cells[3].Value.ToString());
+        //            }
+        //        }
+        //    }
 
-            if (!string.IsNullOrEmpty(ctr.Text) && pattern.IsMatch(ctr.Text))
-            {
-                soLuongHienTai += int.Parse(ctr.Text);
-            }
-            else
-            {
+        //    if (!string.IsNullOrEmpty(ctr.Text) && pattern.IsMatch(ctr.Text))
+        //    {
+        //        soLuongHienTai += int.Parse(ctr.Text);
+        //    }
+        //    else
+        //    {
 
-                btnThemMuiTiem.Enabled = false;
-                errSoLuong.SetError(ctr, "Chỉ chứa ký tự số.");
-                return;
-            }
+        //        btnThemMuiTiem.Enabled = false;
+        //        errSoLuong.SetError(ctr, "Chỉ chứa ký tự số.");
+        //        return;
+        //    }
 
-            int? soMuiDuocTiem = loaiVC.Somui;
+        //    int? soMuiDuocTiem = loaiVC.Somui;
 
-            if (soLuongHienTai > soMuiDuocTiem)
-            {
-                btnThemMuiTiem.Enabled = false;
-                errSoLuong.SetError(ctr, $"Số lượng vượt mức cho phép (Tối đa: {soMuiDuocTiem}).");
-            }
-            else
-            {
-                btnThemMuiTiem.Enabled = true;
-                errSoLuong.Clear(); 
-            }
-        }
+        //    if (soLuongHienTai > soMuiDuocTiem)
+        //    {
+        //        btnThemMuiTiem.Enabled = false;
+        //        errSoLuong.SetError(ctr, $"Số lượng vượt mức cho phép (Tối đa: {soMuiDuocTiem}).");
+        //    }
+        //    else
+        //    {
+        //        btnThemMuiTiem.Enabled = true;
+        //        errSoLuong.Clear(); 
+        //    }
+        //}
 
         private void txtHoTen_TextChanged(object sender, KeyPressEventArgs e)
         {

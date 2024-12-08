@@ -11,21 +11,94 @@ namespace DAL
 {
     public class BenhNhanDAL
     {
+        DatabaseHelper dbHelper;
         SqlDataAdapter adap;
         SqlConnection conn;
         DataTable dt = new DataTable();
-        private int lastMaBN = 0;
         public BenhNhanDAL()
         {
             conn = new SqlConnection(GeneralDAL.connectStrg);
-            string selectStr = "select * from BENHNHAN";
+            string selectStr = "select * from HOADON";
             adap = new SqlDataAdapter(selectStr, conn);
             if (dt.Rows.Count == 0)
                 adap.Fill(dt);
+            dbHelper = new DatabaseHelper(GeneralDAL.connectStrg);
         }
+
+        public DataTable Load()
+        {
+            dt.Clear();
+            string query = "SELECT * FROM BenhNhan";
+            dt = dbHelper.ExecuteQuery(query);
+            return dt;
+        }
+
+        public DataTable LayTTVC()
+        {
+            return SqlCMDLayBang("select * from Vaccine");
+        }
+
+        private DataTable SqlCMDLayBang(string truyxuat)
+        {
+            DataTable tmp = new DataTable();
+
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        tmp.Load(reader);
+                    }
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return tmp = null;
+            }
+            return tmp;
+        }
+        private bool SqlCMD(string truyxuat)
+        {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                    conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        //==============================================================================
         public DataTable GetData()
         {
-            return dt;
+            return SqlCMDLayBang("select * from BenhNhan");
+        }
+        public DataTable GetFullData()
+        {
+            try
+            {
+                return dbHelper.ExecuteQuery("SELECT * FROM BENHNHAN");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
         public int SoLuong()
         {
@@ -37,96 +110,58 @@ namespace DAL
             adap.Update(dt);
             dt.AcceptChanges();
         }
-        private int LayMaBNCuoiCung()
-        {
-            string query = "SELECT TOP 1 MaBN FROM BENHNHAN ORDER BY MaBN DESC";
-            string maBN = "BN000"; 
-            if (conn.State != ConnectionState.Open || conn == null)
-            {
-                conn = new SqlConnection(GeneralDAL.connectStrg);
-            }
-            try
-            {
-                conn.Open();
-                query = "SELECT TOP 1 MaBN FROM BENHNHAN ORDER BY MaBN DESC";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                var result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    maBN = result.ToString();
-                    Console.WriteLine("Mã bệnh nhân cuối cùng: " + maBN);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi xảy ra: " + ex.Message);
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
- 
-                conn.Dispose();
-            }
-            return int.Parse(maBN.Substring(2));
-        }
-        public string TaoMaBNMoi()
-        {
-            lastMaBN = LayMaBNCuoiCung();
-            lastMaBN++;
-            return "BN" + lastMaBN.ToString("D3");
-        }
         public bool Insert(BenhNhanDTO bnDTO)
         {
-            try
-            {
-                DataRow newRow = dt.NewRow();
-                newRow["MaBN"] = bnDTO.MaBN;
-                newRow["HoTen"] = bnDTO.HoTen;
-                newRow["NgaySinh"] = bnDTO.NgaySinh;
-                newRow["GioiTinh"] = bnDTO.GioiTinh;
-                newRow["DiaChi"] = bnDTO.DiaChi;
-                newRow["SoDienThoai"] = bnDTO.SoDienThoai;
+            string query = "EXEC SP_ThemBenhNhan @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai";
 
-                dt.Rows.Add(newRow);
+            SqlParameter[] parameters = {
+        new SqlParameter("@HoTen", bnDTO.HoTen),
+        new SqlParameter("@NgaySinh", bnDTO.NgaySinh),
+        new SqlParameter("@GioiTinh", bnDTO.GioiTinh),
+        new SqlParameter("@DiaChi", bnDTO.DiaChi),
+        new SqlParameter("@SoDienThoai", bnDTO.SoDienThoai)
+    };
 
-                Luu();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi thêm vào CSDL: " + ex.Message);
-                return false;
-            }
+            dbHelper.ExecuteNonQuery(query, parameters);
+            Load();
+
+            return true;
         }
 
-        public DataTable GetFullData()
-        {
-            return dt;
-        }
         public bool Edit(string MaBNCanSua, BenhNhanDTO bnDTONew)
         {
-            try
-            {
-                DataRow dr = dt.Select("MaBN = '" + MaBNCanSua + "'").FirstOrDefault();
-                if (dr != null)
-                {
-                    dr["HoTen"] = bnDTONew.HoTen;
-                    dr["NgaySinh"] = bnDTONew.NgaySinh;
-                    dr["GioiTinh"] = bnDTONew.GioiTinh;
-                    dr["DiaChi"] = bnDTONew.DiaChi;
-                    dr["SoDienThoai"] = bnDTONew.SoDienThoai;
-                }
-                Luu();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            string query = "EXEC SP_SuaBenhNhan @MaBN, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai";
+
+            SqlParameter[] parameters = {
+        new SqlParameter("@MaBN", bnDTONew.MaBN),
+        new SqlParameter("@HoTen", bnDTONew.HoTen),
+        new SqlParameter("@NgaySinh", bnDTONew.NgaySinh),
+        new SqlParameter("@GioiTinh", bnDTONew.GioiTinh),
+        new SqlParameter("@DiaChi", bnDTONew.DiaChi),
+        new SqlParameter("@SoDienThoai", bnDTONew.SoDienThoai)
+    };
+
+            dbHelper.ExecuteNonQuery(query, parameters);
+            Load();
+
+            return true;
         }
+
+        public bool Delete(string MaBN)
+        {
+            string query = "EXEC SP_XoaBenhNhan @MaBN";
+
+            SqlParameter[] parameters = {
+        new SqlParameter("@MaBN", MaBN)
+    };
+
+            dbHelper.ExecuteNonQuery(query, parameters);
+            Load();
+
+            return true;
+        }
+
+
         public bool KTKhoaNgoai(string MaBN)
         {
             string queryCheckFK = @"
@@ -148,43 +183,7 @@ namespace DAL
         ChiTietHoaDonDAL cthdDAL = new ChiTietHoaDonDAL();
         HoaDonDAL HoaDonDAL = new HoaDonDAL();
         GhiNhanTiemChungDAL gnDAL = new GhiNhanTiemChungDAL();
-        public bool Delete(string MaBN)
-        {
-            try
-            {
 
-                LichTiemDAL lichTiemDAL = new LichTiemDAL();
-                ChiTietHoaDonDAL chiTietHoaDonDAL = new ChiTietHoaDonDAL();
-                HoaDonDAL hoaDonDAL = new HoaDonDAL();
-                GhiNhanTiemChungDAL ghiNhanTiemChungDAL = new GhiNhanTiemChungDAL();
-                bool resultGhiNhanTiemChung = ghiNhanTiemChungDAL.DeleteGhiNhanTiemChungByMaBN(MaBN);
-                bool resultLichTiem = lichTiemDAL.DeleteLichTiemByMaBN(MaBN);
-                bool resultChiTietHoaDon = chiTietHoaDonDAL.DeleteChiTietHoaDonByMaBN(MaBN);
-                bool resultHoaDon = hoaDonDAL.DeleteHoaDonByMaBN(MaBN);
-                
-
-                if (!(resultLichTiem && resultChiTietHoaDon && resultHoaDon && resultGhiNhanTiemChung))
-                {
-                    return false;
-                }
-
-                string query = "DELETE FROM BENHNHAN WHERE MaBN = @MaBN";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaBN", MaBN);
-
-                conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                conn.Close();
-
-                return rowsAffected > 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi khi xóa bệnh nhân: " + ex.Message);
-                if (conn.State == ConnectionState.Open) conn.Close();
-                return false;
-            }
-        }
 
 
 
@@ -213,7 +212,7 @@ namespace DAL
         {
             foreach (string ma in DSMaBenhNhan())
             {
-                if(ma==mabn)
+                if (ma == mabn)
                     return true;
             }
             return false;

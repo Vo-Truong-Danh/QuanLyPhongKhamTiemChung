@@ -12,9 +12,13 @@ namespace BLL
     public class HoaDonBLL
     {
         HoaDonDAL hdDAL = new HoaDonDAL();
-        public bool Insert(HoaDonDTO hdDTO)
+        public string TaoMaHDTuDong()
         {
-            return hdDAL.AddInvoice(hdDTO);
+            return hdDAL.TaoMaHDTuDong();   
+        }
+        public bool InsertHD(HoaDonDTO hdDTO)
+        {
+            return hdDAL.InsertHD(hdDTO);
         }
         public DataRowCollection GetFullDataRows()
         {
@@ -22,11 +26,11 @@ namespace BLL
         }
         public void Edit(HoaDonDTO hoaDonDTO)
         {
-            hdDAL.UpdateInvoice(hoaDonDTO);
+            hdDAL.UpdateHD(hoaDonDTO);
         }
         public void Delete(string maHD)
         {
-            hdDAL.DeleteHoaDon(maHD);
+            hdDAL.DeleteHD(maHD);
         }
         public DataView GetDataViewFromTimKiem(string searchStr)
         {
@@ -53,9 +57,9 @@ namespace BLL
             hdDAL.AddAmount(v); ;
         }
 
-        public void AddCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
+        public void InsertCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
         {
-            hdDAL.AddInvoiceDetail(chitTietHoaDonDTO);
+            hdDAL.InsertCTHD(chitTietHoaDonDTO);
         }
 
         public void UpdateOrNewCTHD(ChiTietHoaDonDTO chitTietHoaDonDTO)
@@ -68,10 +72,6 @@ namespace BLL
            return hdDAL.LoadPriceVC(idVC);
         }
 
-        public bool AddHD(HoaDonDTO hoaDon)
-        {
-           return hdDAL.AddInvoice(hoaDon);
-        }
 
         public DataRowCollection GetAllCTHD(string maHD)
         {
@@ -80,7 +80,7 @@ namespace BLL
 
         public void EditCTHD(ChiTietHoaDonDTO ct)
         {
-            hdDAL.UpdateInvoiceDetail(ct);
+            hdDAL.UpdateCTHD(ct);
         }
 
         public void UpdateHD(string maNV)
@@ -93,9 +93,9 @@ namespace BLL
             return hdDAL.GetHDByMaBN(maBN);
         }
 
-        public void DeleteCTHD(string v)
+        public void DeleteCTHD(string maHD, string maVC)
         {
-            hdDAL.DeleteInvoiceDetail(v);
+            hdDAL.DeleteCTHD(maHD, maVC);
         }
 
         public DataRowCollection GetHDByMaNV(string maNV)

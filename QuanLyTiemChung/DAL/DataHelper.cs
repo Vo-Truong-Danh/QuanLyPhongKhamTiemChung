@@ -47,4 +47,21 @@ public class DatabaseHelper
         }
         return dataTable;
     }
+
+    public object ExecuteScalar(string query, SqlParameter[] parameters = null)
+    {
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+                conn.Open();
+                return cmd.ExecuteScalar(); 
+            }
+        }
+    }
+
 }

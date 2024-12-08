@@ -47,24 +47,24 @@ CREATE TABLE LOAIBENH
 
 CREATE TABLE VACCINE
 (
-    MaVC CHAR(5) PRIMARY KEY,         -- Mã vaccine
-    MaLoai CHAR(5),                   -- Mã loại vaccine
+    MaVC CHAR(5) PRIMARY KEY,        
+    MaLoai CHAR(5),                   
     FOREIGN KEY(MaLoai) REFERENCES LOAIBENH(MaLoai),
-    TenVC NVARCHAR(50),               -- Tên vaccine
-    XuatXu NVARCHAR(50) DEFAULT 'Chưa Xác Định', -- Xuất xứ vaccine
+    TenVC NVARCHAR(50),              
+    XuatXu NVARCHAR(50) DEFAULT 'Chưa Xác Định', 
 	Gia int default 0,
-    SoLuongTon INT CHECK (SoLuongTon >= 0) DEFAULT 0 -- Số lượng tồn
+    SoLuongTon INT CHECK (SoLuongTon >= 0) DEFAULT 0 
 );
 
 CREATE TABLE LOVACCINE
 (
-    MaLo CHAR(5) not null,         -- Mã lô vaccine
+    MaLo CHAR(5) not null,         
 	PRIMARY KEY(MaLo,MaVC),
-    MaVC CHAR(5),                     -- Mã vaccine
+    MaVC CHAR(5),                   
     FOREIGN KEY(MaVC) REFERENCES VACCINE(MaVC),
-    NgaySX DATE,                      -- Ngày sản xuất
-    HanSuDung DATE,                   -- Hạn sử dụng
-    SoLuong INT CHECK (SoLuong >= 0)  -- Số lượng vaccine trong lô
+    NgaySX DATE,                      
+    HanSuDung DATE,                   
+    SoLuong INT CHECK (SoLuong >= 0)  
 );
 
 
@@ -81,15 +81,15 @@ CREATE TABLE PHIEUNHAP
 
 CREATE TABLE CHITIETPHIEUNHAP
 (
-    MaPN CHAR(5) NOT NULL,          -- Mã phiếu nhập
-    MaVC CHAR(5) NOT NULL,          -- Mã vaccine
-    MaLo CHAR(5) NOT NULL,          -- Mã lô vaccine
-    PRIMARY KEY(MaPN, MaVC, MaLo),  -- Khóa chính kết hợp
-    FOREIGN KEY(MaPN) REFERENCES PHIEUNHAP(MaPN),  -- Liên kết với bảng PHIEUNHAP
-    FOREIGN KEY(MaVC) REFERENCES VACCINE(MaVC),    -- Liên kết với bảng VACCINE
-    FOREIGN KEY(MaLo,MaVC) REFERENCES LOVACCINE(MaLo,MaVC),  -- Liên kết với bảng LOVACCINE
-    SoLuong INT,                    -- Số lượng vaccine nhập
-    DonGia FLOAT                    -- Đơn giá vaccine
+    MaPN CHAR(5) NOT NULL,         
+    MaVC CHAR(5) NOT NULL,       
+    MaLo CHAR(5) NOT NULL,         
+    PRIMARY KEY(MaPN, MaVC, MaLo),  
+    FOREIGN KEY(MaPN) REFERENCES PHIEUNHAP(MaPN),  
+    FOREIGN KEY(MaVC) REFERENCES VACCINE(MaVC),    
+    FOREIGN KEY(MaLo,MaVC) REFERENCES LOVACCINE(MaLo,MaVC),  
+    SoLuong INT,                    
+    DonGia FLOAT                    
 );
 
 
@@ -131,20 +131,20 @@ CREATE TABLE LICHTIEM
 
 CREATE TABLE GHINHANTIEMCHUNG
 (
-    MaBN CHAR(5) NOT NULL,         -- Mã bệnh nhân
-    FOREIGN KEY(MaBN) REFERENCES BENHNHAN(MaBN),  -- Liên kết với bảng BENHNHAN
-    MaVC CHAR(5) NOT NULL,         -- Mã vaccine
-    FOREIGN KEY(MaVC) REFERENCES VACCINE(MaVC),    -- Liên kết với bảng VACCINE
-    MaNV CHAR(5) NOT NULL,         -- Mã nhân viên
-    FOREIGN KEY(MaNV) REFERENCES NHANVIEN(MaNV),    -- Liên kết với bảng NHANVIEN
-    MaLT CHAR(5) NOT NULL,         -- Mã lịch tiêm
-    MaHD CHAR(5) NOT NULL,         -- Mã hóa đơn
-    FOREIGN KEY (MaLT, MaHD) REFERENCES LICHTIEM(MaLT, MaHD), -- Liên kết với bảng LICHTIEM
-    NgayTiem DATE,                 -- Ngày tiêm
-    PRIMARY KEY(MaBN, MaVC, MaLT, MaNV),  -- Khóa chính kết hợp
-    TinhTrangSucKhoe NVARCHAR(50),  -- Tình trạng sức khỏe sau khi tiêm
-    MaLo CHAR(5),                  -- Mã lô vaccine
-    FOREIGN KEY(MaLo,MaVC) REFERENCES LOVACCINE(MaLo,MaVC)  -- Liên kết với bảng LOVACCINE
+    MaBN CHAR(5) NOT NULL,        
+    FOREIGN KEY(MaBN) REFERENCES BENHNHAN(MaBN),  
+    MaVC CHAR(5) NOT NULL,        
+    FOREIGN KEY(MaVC) REFERENCES VACCINE(MaVC),    
+    MaNV CHAR(5) NOT NULL,        
+    FOREIGN KEY(MaNV) REFERENCES NHANVIEN(MaNV),    
+    MaLT CHAR(5) NOT NULL,        
+    MaHD CHAR(5) NOT NULL,         
+    FOREIGN KEY (MaLT, MaHD) REFERENCES LICHTIEM(MaLT, MaHD), 
+    NgayTiem DATE,                
+    PRIMARY KEY(MaBN, MaVC, MaLT, MaNV),  
+    TinhTrangSucKhoe NVARCHAR(50),  
+    MaLo CHAR(5),                 
+    FOREIGN KEY(MaLo,MaVC) REFERENCES LOVACCINE(MaLo,MaVC)  
 );
 GO
 
@@ -231,50 +231,45 @@ BEGIN
     WHERE MaHD IN (SELECT MaHD FROM inserted);
 END
 GO
---TỰ TẠO LỊCH TIÊM 
-CREATE TRIGGER TR_MaLT_AutoGen
-ON LICHTIEM
-INSTEAD OF INSERT
-AS
-BEGIN
-    DECLARE @NewMaLT CHAR(5);
+----TỰ TẠO LỊCH TIÊM 
+--CREATE TRIGGER TR_MaLT_AutoGen
+--ON LICHTIEM
+--INSTEAD OF INSERT
+--AS
+--BEGIN
+--    DECLARE @NewMaLT CHAR(5);
     
-    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
-    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
-    FROM LICHTIEM;
+--    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
+--    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
+--    FROM LICHTIEM;
 
-    -- Chèn vào bảng LICHTIEM với mã tự động
-    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
-    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
-    FROM INSERTED;
-END;
+--    -- Chèn vào bảng LICHTIEM với mã tự động
+--    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
+--    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
+--    FROM INSERTED;
+--END;
 
 --TỰ Thêm MÃ VACCINE vào LỊCH TIÊM KHI Thêm chi tiết hoá đơn
 GO
-CREATE TRIGGER TG_THEMMALICHTIEM
+CREATE TRIGGER TG_THEMLICHTIEM
 ON CHITIETHOADON
 FOR INSERT
 AS
 BEGIN
-    -- Biến giữ mã lịch tiêm mới
-    DECLARE @LastMaLT CHAR(5);
-
-    -- Lấy mã LT cuối cùng hiện có trong bảng LICHTIEM
-    SELECT @LastMaLT = MAX(MaLT) 
+    DECLARE @NewMaLT CHAR(5);
+    
+    -- Tạo mã mới LT
+    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
     FROM LICHTIEM;
-
-    -- Xử lý mã LT cuối cùng thành số
-    DECLARE @LastNumber INT;
-    SET @LastNumber = ISNULL(CAST(SUBSTRING(@LastMaLT, 3, 3) AS INT), 0);
 
     -- Tạo lịch tiêm cho từng chi tiết hóa đơn
     INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
     SELECT 
-        'LT' + RIGHT('000' + CAST(@LastNumber + ROW_NUMBER() OVER (ORDER BY i.MaHD) AS VARCHAR(3)), 3) AS MaLT,
+        @NewMaLT,
         i.MaHD,
         h.MaBN,
         i.MaVC,
-        GETDATE(),  -- Ngày hẹn tiêm (mặc định là ngày hiện tại, có thể tuỳ chỉnh)
+        GETDATE(), 
         N'Chưa tiêm'
     FROM 
         INSERTED i
