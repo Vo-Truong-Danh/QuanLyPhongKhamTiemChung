@@ -231,23 +231,6 @@ BEGIN
     WHERE MaHD IN (SELECT MaHD FROM inserted);
 END
 GO
-----TỰ TẠO LỊCH TIÊM 
---CREATE TRIGGER TR_MaLT_AutoGen
---ON LICHTIEM
---INSTEAD OF INSERT
---AS
---BEGIN
---    DECLARE @NewMaLT CHAR(5);
-    
---    -- Tạo mã mới dựa trên số lượng hiện tại trong bảng LICHTIEM
---    SELECT @NewMaLT = 'LT' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaLT, 3, 3) AS INT)), 0) + 1 AS VARCHAR(3)), 3)
---    FROM LICHTIEM;
-
---    -- Chèn vào bảng LICHTIEM với mã tự động
---    INSERT INTO LICHTIEM (MaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai)
---    SELECT @NewMaLT, MaHD, MaBN, MaVC, NgayHenTiem, TrangThai
---    FROM INSERTED;
---END;
 
 --TỰ Thêm MÃ VACCINE vào LỊCH TIÊM KHI Thêm chi tiết hoá đơn
 GO
