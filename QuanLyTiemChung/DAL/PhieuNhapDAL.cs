@@ -29,31 +29,31 @@ namespace DAL
         }
 
 
-        private DataTable SqlCMDLayBang(string truyxuat)
-        {
-            DataTable tmp = new DataTable();
-
-            try
+            private DataTable SqlCMDLayBang(string truyxuat)
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
-                    conn.Open();
+                DataTable tmp = new DataTable();
 
-                using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
+                try
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    if (conn.State == System.Data.ConnectionState.Closed)
+                        conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(truyxuat, conn))
                     {
-                        tmp.Load(reader);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            tmp.Load(reader);
+                        }
                     }
+                    if (conn.State == System.Data.ConnectionState.Open)
+                        conn.Close();
                 }
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
+                catch
+                {
+                    return tmp = null;
+                }
+                return tmp;
             }
-            catch
-            {
-                return tmp = null;
-            }
-            return tmp;
-        }
         private bool SqlCMD(string truyxuat)
         {
             try
