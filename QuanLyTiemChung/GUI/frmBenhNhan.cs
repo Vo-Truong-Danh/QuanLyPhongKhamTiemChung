@@ -443,15 +443,15 @@ namespace GUI
                     if (ketqua != null)
                     {
                         MessageBox.Show($"Thêm thành công {ketqua}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //if (mahdtmp.Length > 0)
-                        //{
-                        //    var t = MessageBox.Show("Thông báo ", "Bạn có muốn in hóa đơn hay không ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        //    if (t == DialogResult.Yes)
-                        //    {
-                        //        frmReport rp = new frmReport(3, mahdtmp);
-                        //        rp.ShowDialog();
-                        //    }
-                        //}
+                        if (mahdtmp.Length > 0)
+                        {
+                            var t = MessageBox.Show("Bạn có muốn in hóa đơn hay không ","Thông báo ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (t == DialogResult.Yes)
+                            {
+                                frmReport rp = new frmReport(3, mahdtmp);
+                                rp.ShowDialog();
+                            }
+                        }
                     }
                     else
                     {

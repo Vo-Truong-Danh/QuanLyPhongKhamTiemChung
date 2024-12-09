@@ -1767,5 +1767,22 @@ namespace GUI
                 
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult t =  MessageBox.Show("Dử liệu về số lượng tồn sẽ được tính toán lại tất cả bạn có chắc không !", "Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if(t == DialogResult.Yes)
+            {
+                if (vaccineBLL.UpdateSoLuongTon())
+                {
+                    MessageBox.Show("Cập nhật thành công");
+                    CreateDTGV(vaccineBLL.LayTTVC());
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật thất bại");
+                }
+            }
+        }
     }
 }

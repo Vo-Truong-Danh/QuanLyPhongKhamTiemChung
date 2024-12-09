@@ -289,7 +289,8 @@ BEGIN
                               FROM CHITIETPHIEUNHAP CT
                               WHERE CT.MaVC = I.MaVC), 0) 
     FROM VACCINE V
-    JOIN inserted I ON V.MaVC = I.MaVC;
+    JOIN inserted I ON V.MaVC = I.MaVC
+	Where V.MaVC = (select MaVC from inserted)
 END
 GO
 --- trừ tồn kho khi thêm chitiethoadon
@@ -304,6 +305,62 @@ BEGIN
     JOIN inserted I ON V.MaVC = I.MaVC;
 END;
 
+-- Kiem tra lai du liẹu 
+CREATE TRIGGER TG_CONGSOLUONGTONCUAVACCINE
+ON CHITIETPHIEUNHAP
+FOR INSERT
+AS
+BEGIN
+    UPDATE V
+    SET SoLuongTon =  ISNULL((SELECT SUM(CT.SoLuong) 
+                              FROM CHITIETPHIEUNHAP CT
+                              WHERE CT.MaVC = I.MaVC), 0) 
+    FROM VACCINE V
+    JOIN inserted I ON V.MaVC = I.MaVC
+	Where V.MaVC = (select MaVC from inserted)
+END
+
+--Cập nhật lại dử liệu
+GO
+CREATE PROCEDURE UpdateSoLuongTonVaccine
+AS
+BEGIN
+    DECLARE @MaVC NVARCHAR(50);
+
+    -- Khai báo con trỏ để duyệt qua tất cả các mã vaccine
+    DECLARE CURSOR_VACCINE CURSOR FOR
+    SELECT MaVC FROM VACCINE;
+
+    -- Mở con trỏ
+    OPEN CURSOR_VACCINE;
+
+    -- Lấy từng dòng từ con trỏ
+    FETCH NEXT FROM CURSOR_VACCINE INTO @MaVC;
+
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        -- Cập nhật số lượng tồn cho từng vaccine
+        UPDATE VACCINE
+        SET SoLuongTon = 
+            ISNULL((SELECT SUM(CT.SoLuong)
+                    FROM CHITIETPHIEUNHAP CT
+                    WHERE CT.MaVC = @MaVC), 0) -
+            ISNULL((SELECT SUM(CT.SoLuong)
+                    FROM CHITIETHOADON CT
+                    WHERE CT.MaVC = @MaVC), 0)
+        WHERE MaVC = @MaVC;
+
+        -- Lấy dòng tiếp theo
+        FETCH NEXT FROM CURSOR_VACCINE INTO @MaVC;
+    END
+
+    -- Đóng và giải phóng con trỏ
+    CLOSE CURSOR_VACCINE;
+    DEALLOCATE CURSOR_VACCINE;
+END;
+GO
+
+--exec UpdateSoLuongTonVaccine ;
 --INSERT INTO PHIEUNHAP(MaPN,MaNV,NgayNhap, MaNCC) VALUES
 --('PN004','NV001' ,'2022-04-02', 'NCC001')
 

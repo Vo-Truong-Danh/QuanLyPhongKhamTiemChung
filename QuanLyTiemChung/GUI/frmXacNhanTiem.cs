@@ -53,6 +53,8 @@ namespace GUI
         }
         private void frmXacNhanTiem_Load(object sender, EventArgs e)
         {
+            txtTinhTrang.Text = "Khoẻ mạnh";
+            txtTinhTrang.Focus();
             BoGoc(this);
             BoGoc(btnLuu);
             if (LT != null)

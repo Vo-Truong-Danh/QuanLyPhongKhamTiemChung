@@ -102,6 +102,11 @@ using DTO;
         {
             return SqlCMD("EXEC pro_capnhat_vaccine @MaVC = '" + vcDTO.Mavc + "',@MaLoai = '" + vcDTO.Maloai + "',@TenVC = N'" + vcDTO.Tenvc + "',@Gia = " + vcDTO.Gia + ", @XuatXu = N'" + vcDTO.Xuatxu + "';");
         }
+
+        public bool UpdateSoLuongTon()
+        {
+            return SqlCMD("exec UpdateSoLuongTonVaccine");
+        }
         public void Luu()
         {
             // Cập nhật xuống database

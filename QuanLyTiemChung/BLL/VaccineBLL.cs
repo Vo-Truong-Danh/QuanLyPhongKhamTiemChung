@@ -22,6 +22,10 @@ namespace BLL
         {
             return vcbll.Load();
         }
+        public bool UpdateSoLuongTon()
+        {
+            return vcbll.UpdateSoLuongTon();
+        }
         public DataTable SearchTen(string nd)
         {
             return vcbll.SearchTen(nd);
