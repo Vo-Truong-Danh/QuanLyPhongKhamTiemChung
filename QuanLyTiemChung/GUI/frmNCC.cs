@@ -102,7 +102,13 @@ namespace GUI
                         Diachi = txtDiaChi.Text,
                         Sodienthoai = txtSoDienThoai.Text,
                     };
-                    nccbll.Update(tmp);
+                    if (nccbll.Update(tmp))
+                        MessageBox.Show("Cập nhật thành công Nhà Cung Cấp");
+                    else
+                    {
+                        MessageBox.Show("Cập nhật không thành công vui lòng kiểm tra lại dữ liệu !");
+                        return;
+                    }
                 }
                 VaccineDTO.CheckTB = true;
             }
