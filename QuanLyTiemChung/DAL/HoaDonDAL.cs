@@ -236,7 +236,7 @@ namespace DAL
             string query = "SELECT * FROM CHITIETHOADON WHERE MaHD = @MaHD and MaVC = @MaVC";
             SqlParameter[] parameters = {
             new SqlParameter("@MaHD", maHD),
-            new SqlParameter("#MaVC", maVC)
+            new SqlParameter("@MaVC", maVC)
         };
             DataTable dt = dbHelper.ExecuteQuery(query, parameters);
             if (dt.Rows.Count > 0)

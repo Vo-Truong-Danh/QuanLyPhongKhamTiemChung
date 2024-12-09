@@ -28,10 +28,11 @@ namespace BLL
         {
             hdDAL.UpdateHD(hoaDonDTO);
         }
-        public void Delete(string maHD)
+        public bool Delete(string maHD)
         {
-            hdDAL.DeleteHD(maHD);
+            return hdDAL.DeleteHD(maHD);
         }
+        
         public DataView GetDataViewFromTimKiem(string searchStr)
         {
             DataView view = hdDAL.GetDataViewFromTimKiem(searchStr);

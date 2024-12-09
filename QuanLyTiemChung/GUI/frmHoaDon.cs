@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +38,7 @@ namespace GUI
         {
             lstvDSHD.LabelEdit = true; 
             lstvDSHD.FullRowSelect = true; 
-            lstvDSHD.AfterLabelEdit += lstvDSHD_AfterLabelEdit; 
+         
             LoadListHoaDon();
         }
         private void LoadListHoaDon()
@@ -53,39 +55,7 @@ namespace GUI
             }
         }
         
-        private void btnXoaHD_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (lstvDSHD.SelectedItems.Count > 0)
-                {
-                    string maHD = lstvDSHD.SelectedItems[0].SubItems[0].Text;
-
-                    var confirmResult = MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn {maHD}?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (confirmResult == DialogResult.Yes)
-                    {
-                        gntcBLL.DeleteByMaHD(maHD);
-                        ltBLL.DeleteLByMaHD(maHD);
-                        hdBLL.DeleteCTHD(maHD,"");
-                        hdBLL.Delete(maHD);
-
-
-                        MessageBox.Show("Hóa đơn đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadListHoaDon();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Vui lòng chọn hóa đơn cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi xóa hóa đơn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
+        
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -111,63 +81,6 @@ namespace GUI
             else
             {
                 LoadListHoaDon();
-            }
-
-        }
-
-        private void lstvDSHD_ItemActivate(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void lstvDSHD_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (lstvDSHD.SelectedItems.Count > 0)
-            {
-                try
-                {
-                    string maHD = lstvDSHD.SelectedItems[0].SubItems[0].Text;
-
-                    DataRow hoaDonRow = hdBLL.GetFullDataRows()
-                                             .Cast<DataRow>()
-                                             .FirstOrDefault(r => r["MaHD"].ToString() == maHD);
-
-                    if (hoaDonRow != null)
-                    {
-                        lblMaHD.Text = $"Mã hóa đơn: {hoaDonRow["MaHD"]}";
-                        lblNgayLap.Text = $"Ngày lập: {Convert.ToDateTime(hoaDonRow["NgayLap"]).ToString("dd/MM/yyyy")}";
-                        txtTTBN.Text = hoaDonRow["MaBN"].ToString();
-                        txtTTNV.Text = hoaDonRow["MaNV"].ToString();
-
-                        lstvTTVC.Items.Clear();
-                        foreach (DataRow cthdRow in hdBLL.GetAllCTHD(maHD))
-                        {
-                            ListViewItem item = new ListViewItem(new string[]
-                            {
-                        cthdRow["MaHD"].ToString(),
-                        cthdRow["MaVC"].ToString(),
-                        cthdRow["SoLuong"].ToString(),
-                        cthdRow["DonGia"].ToString(),
-                        Convert.ToDateTime(cthdRow["NgayTiem"]).ToString("dd/MM/yyyy")
-                            });
-                            lstvTTVC.Items.Add(item);
-                        }
-                        pnlTTHD.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không tìm thấy thông tin hóa đơn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                pnlTTHD.Visible = false; 
             }
         }
 
@@ -211,67 +124,87 @@ namespace GUI
             }
 
         }
-
-        private void btnSuaChiTiet_Click(object sender, EventArgs e)
+        private void btnXoaHD_Click(object sender, EventArgs e)
         {
-            lstvDSHD.LabelEdit = true;
-            MessageBox.Show("Bạn có thể chỉnh sửa trực tiếp trên ListView. Click vào ô để chỉnh sửa.");
-
-        }
-
-        private void lstvDSHD_DoubleClick(object sender, EventArgs e)
-        {
-        }
-        private void lstvDSHD_AfterLabelEdit(object sender, LabelEditEventArgs e)
-        {
-            if (e.Label != null && e.Item >= 0)
+            try
             {
-                ListViewItem editedItem = lstvDSHD.Items[e.Item];
-                string maHD = editedItem.SubItems[0].Text;
-                string columnName = ""; 
-                object newValue = null;
-
-                try
+                if (lstvDSHD.SelectedItems.Count > 0)
                 {
-                    switch (e.Item)
+                    DialogResult r = MessageBox.Show("Bạn có chắc chắn xóa tất cả thông tin hóa đơn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (r == DialogResult.Yes)
                     {
-                        case 1: // Mã bệnh nhân
-                            columnName = "MaBN";
-                            newValue = e.Label;
-                            break;
-                        case 2: // Mã nhân viên
-                            columnName = "MaNV";
-                            newValue = e.Label;
-                            break;
-                        case 3: // Ngày lập
-                            columnName = "NgayLap";
-                            if (!DateTime.TryParse(e.Label, out DateTime ngayLap))
-                                throw new Exception("Ngày lập không hợp lệ.");
-                            newValue = ngayLap;
-                            break;
-                        case 4: // Tổng tiền
-                            columnName = "TongTien";
-                            if (!float.TryParse(e.Label, out float tongTien))
-                                throw new Exception("Tổng tiền không hợp lệ.");
-                            newValue = tongTien;
-                            break;
+                        bool xoaThanhCong = true;
+                        foreach (ListViewItem item in lstvDSHD.SelectedItems)
+                        {
+                            string maHD = item.SubItems[0].Text; 
+                            lstvDSHD.Items.Remove(item);
+
+                         
+                            bool result = hdBLL.Delete(maHD);
+
+                            if (!result)
+                            {
+                                xoaThanhCong = false;
+                                break;
+                            }
+                        }
+                        if (xoaThanhCong)
+                        {
+                            MessageBox.Show("Xóa hóa đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa hóa đơn không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        LoadListHoaDon(); 
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn ít nhất một hóa đơn để xóa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBackup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                using (SqlConnection conn = new SqlConnection("Data Source=LENOVOST\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True"))
+                {
+                    conn.Open();
+
+                    string folderPath = @"D:\BackupDatabase";
+                    string filePath = Path.Combine(folderPath, "QUANLYPHONGKHAM_TIEMCHUNG.bak");
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
                     }
 
-                    HoaDonDTO hoaDonDTO = new HoaDonDTO(
-                        maHD,
-                        DateTime.Parse(editedItem.SubItems[3].Text),
-                        editedItem.SubItems[1].Text,
-                        editedItem.SubItems[2].Text,
-                        float.Parse(editedItem.SubItems[4].Text)
-                    );
-                    hdBLL.Edit(hoaDonDTO);
+                    string backupQuery = $"BACKUP DATABASE QUANLYPHONGKHAM_TIEMCHUNG TO DISK = '{filePath}'";
 
-                    MessageBox.Show("Hóa đơn đã được cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (SqlCommand cmd = new SqlCommand(backupQuery, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show($"Backup thành công! File được lưu tại: {filePath}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi khi cập nhật: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
