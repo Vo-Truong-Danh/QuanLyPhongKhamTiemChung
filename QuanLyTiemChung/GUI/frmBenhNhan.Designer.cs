@@ -1011,7 +1011,6 @@ namespace GUI
             this.txtHoTen.Size = new System.Drawing.Size(285, 42);
             this.txtHoTen.TabIndex = 54;
             this.txtHoTen.TextChanged += new System.EventHandler(this.txtHoTen_TextChanged);
-            this.txtHoTen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoTen_KeyPress);
             // 
             // label5
             // 
