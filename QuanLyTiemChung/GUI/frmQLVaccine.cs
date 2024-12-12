@@ -1051,6 +1051,7 @@ namespace GUI
         private void dtgCTPN_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string ma = dtgCTPN.SelectedRows[0].Cells[1].Value.ToString();
+            vaccineBLL.LayTTVC();
             VaccineDTO vctmp = vaccineBLL.SearchChiTiet(ma);
             if (vctmp != null)
             {

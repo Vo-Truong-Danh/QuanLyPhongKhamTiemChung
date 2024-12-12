@@ -39,6 +39,7 @@ using DTO;
         }
         public DataTable LayTTVC()
         {
+            Luu();
             return SqlCMDLayBang("select * from Vaccine");
         }
 
@@ -130,7 +131,7 @@ using DTO;
                 return null;
             }
 
-            DataRow[] dr = dt.Select("MaVC = '" + ndtimkiem + "'");
+            DataRow[] dr = LayTTVC().Select("MaVC = '" + ndtimkiem + "'");
             if (dr == null || dr.Length == 0)
             {
                 return null;
