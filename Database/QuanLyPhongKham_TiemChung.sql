@@ -574,10 +574,9 @@ AS
 BEGIN
     BEGIN TRY
         -- Tự động tạo mã bệnh nhân
-        DECLARE @MaBN CHAR(5);
-        SELECT @MaBN = 'BN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaBN, 3, 3) AS INT)), 0) + 1 AS NVARCHAR), 3)
-        FROM BENHNHAN;
-
+        
+		DECLARE @MaBN CHAR(5);
+        Set @MaBn =[dbo].
         -- Thêm bệnh nhân
         INSERT INTO BENHNHAN (MaBN, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai)
         VALUES (@MaBN, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai);
@@ -589,6 +588,7 @@ BEGIN
     END CATCH
 END;
 GO
+
 -- xoa
 CREATE PROCEDURE SP_XoaBenhNhan
     @MaBN CHAR(5)
@@ -976,6 +976,18 @@ BEGIN
     RETURN @MaHDMoi;
 END;
 GO
+CREATE FUNCTION FN_TaoMaBNMoi()
+RETURNS CHAR(5)
+AS
+BEGIN
+    DECLARE @MaBN CHAR(5);
+        SELECT @MaBN = 'BN' + RIGHT('000' + CAST(ISNULL(MAX(CAST(SUBSTRING(MaBN, 3, 3) AS INT)), 0) + 1 AS NVARCHAR), 3)
+        FROM BENHNHAN;
+
+    RETURN @MaBN;
+END;
+GO
+
 -- Tìm kiếm theo tên bệnh nhân
 CREATE FUNCTION FN_TimKiemBN
 (

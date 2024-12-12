@@ -100,6 +100,26 @@ namespace DAL
                 return null;
             }
         }
+        public string TaoMaBNTuDong()
+        {
+            try
+            {
+                string query = "SELECT dbo.FN_TaoMaBNMoi()";
+                object result = dbHelper.ExecuteScalar(query);
+                if (result != null)
+                {
+                    return result.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
         public int SoLuong()
         {
             return dt.Rows.Count;
@@ -112,9 +132,10 @@ namespace DAL
         }
         public bool Insert(BenhNhanDTO bnDTO)
         {
-            string query = "EXEC SP_ThemBenhNhan @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai";
+            string query = "EXEC SP_ThemBenhNhan @MaBN, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai";
 
             SqlParameter[] parameters = {
+                new SqlParameter("@MaBN", bnDTO.MaBN),
         new SqlParameter("@HoTen", bnDTO.HoTen),
         new SqlParameter("@NgaySinh", bnDTO.NgaySinh),
         new SqlParameter("@GioiTinh", bnDTO.GioiTinh),

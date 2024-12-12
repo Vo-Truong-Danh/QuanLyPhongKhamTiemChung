@@ -29,7 +29,10 @@ namespace BLL
                 return false;
             }
         }
-
+        public string TaoMaBNTuDong()
+        {
+            return bnDAL.TaoMaBNTuDong();
+        }
         public DataTable GetFullData()
         {
             return bnDAL.GetFullData();

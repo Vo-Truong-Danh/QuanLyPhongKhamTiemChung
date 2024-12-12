@@ -368,13 +368,15 @@ namespace GUI
                     bool kq = false;
                     string ketqua = "";
                     string mahdtmp = txtMaHD.Text;
+                    
                     // Them benh nhan
                     if (!KTDuLieuBN())
                         return;
                     if (MaBenhNhan == null)
                     {
+                        MaBenhNhan = bnBLL.TaoMaBNTuDong();
                         string selectedDateString = dteNgaySinh.Value.ToString("yyyy-MM-dd");
-                        BenhNhanDTO bnDTO = new BenhNhanDTO(txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
+                        BenhNhanDTO bnDTO = new BenhNhanDTO(MaBenhNhan,txtHoTen.Text.Trim(), GetGioiTinh(), txtDiaChi.Text.Trim(), txtSoDT.Text.Trim(), selectedDateString);
                         kq = bnBLL.Insert(bnDTO);
                         if (kq)
                         {

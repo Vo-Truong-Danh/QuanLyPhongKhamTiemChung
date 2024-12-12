@@ -90,7 +90,7 @@ namespace DAL
     };
 
             dbHelper.ExecuteNonQuery(query, parameters);
-            Load(); // Giả định Load() được dùng để refresh dữ liệu nếu cần.
+            Load(); 
 
             return true;
         }
@@ -106,7 +106,7 @@ namespace DAL
     };
 
             dbHelper.ExecuteNonQuery(query, parameters);
-            Load(); // Giả định Load() được dùng để refresh dữ liệu nếu cần.
+            Load(); 
 
             return true;
         }

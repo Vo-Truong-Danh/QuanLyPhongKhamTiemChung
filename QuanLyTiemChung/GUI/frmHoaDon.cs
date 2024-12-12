@@ -180,8 +180,9 @@ namespace GUI
         {
             try
             {
+                
                
-                using (SqlConnection conn = new SqlConnection("Data Source=LENOVOST\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=LT-THINH\\SQLEXPRESS;Initial Catalog=QUANLYPHONGKHAM_TIEMCHUNG;Persist Security Info=True;User ID=sa;Password=123"))
                 {
                     conn.Open();
 

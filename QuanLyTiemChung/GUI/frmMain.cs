@@ -277,7 +277,8 @@ namespace GUI
 
         private void btnThongke_Click(object sender, EventArgs e)
         {
-            OpenChild(new frmThongKe());
+
+            OpenChild(new frmHoaDon());
 
         }
 
