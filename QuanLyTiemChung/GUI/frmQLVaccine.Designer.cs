@@ -499,6 +499,7 @@ namespace GUI
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(254, 25);
             this.txtSearch.TabIndex = 26;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // pictureBox2
             // 

@@ -1785,5 +1785,20 @@ namespace GUI
                 }
             }
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string ndtimkiem = txtSearch.Text;
+            DataTable DTTMP = vaccineBLL.SearchTen(ndtimkiem);
+            if (DTTMP.Rows.Count > 0)
+            {
+                CreateDTGV(DTTMP);
+                ThongBao("Nội dung đã được tìm thấy ", 1);
+                return;
+            }
+            else
+                CreateDTGV(DTTMP = null);
+            ThongBao("Không tìm thấy nội dung nào phù hợp", 2);
+        }
     }
 }
