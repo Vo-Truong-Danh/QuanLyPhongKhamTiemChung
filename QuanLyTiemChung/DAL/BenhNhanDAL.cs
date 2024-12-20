@@ -127,56 +127,19 @@ namespace DAL
                 return false;
             }
         }
-        public bool KTKhoaNgoai(string MaBN)
-        {
-            string queryCheckFK = @"
-        SELECT count(*) FROM GHINHANTIEMCHUNG GN,HOADON HD,LICHTIEM LT WHERE GN.MaBN = @MaBN OR HD.MaBN=@MaBN OR LT.MaBN=@MaBN";
-
-            using (SqlConnection conn = new SqlConnection(GeneralDAL.connectStrg))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(queryCheckFK, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaBN", MaBN);
-                    var result = cmd.ExecuteScalar();
-                    int relatedCount = result != null ? Convert.ToInt32(result) : 0;
-                    return relatedCount > 0;
-                }
-            }
-        }
-        LichTiemDAL LichTiemDAL = new LichTiemDAL();
-        ChiTietHoaDonDAL cthdDAL = new ChiTietHoaDonDAL();
-        HoaDonDAL HoaDonDAL = new HoaDonDAL();
-        GhiNhanTiemChungDAL gnDAL = new GhiNhanTiemChungDAL();
         public bool Delete(string MaBN)
         {
             try
             {
-
-                LichTiemDAL lichTiemDAL = new LichTiemDAL();
-                ChiTietHoaDonDAL chiTietHoaDonDAL = new ChiTietHoaDonDAL();
-                HoaDonDAL hoaDonDAL = new HoaDonDAL();
-                GhiNhanTiemChungDAL ghiNhanTiemChungDAL = new GhiNhanTiemChungDAL();
-                bool resultGhiNhanTiemChung = ghiNhanTiemChungDAL.DeleteGhiNhanTiemChungByMaBN(MaBN);
-                bool resultLichTiem = lichTiemDAL.DeleteLichTiemByMaBN(MaBN);
-                bool resultChiTietHoaDon = chiTietHoaDonDAL.DeleteChiTietHoaDonByMaBN(MaBN);
-                bool resultHoaDon = hoaDonDAL.DeleteHoaDonByMaBN(MaBN);
-                
-
-                if (!(resultLichTiem && resultChiTietHoaDon && resultHoaDon && resultGhiNhanTiemChung))
+                DataRow dr = dt.Select("MaBN = '" + MaBN + "'").FirstOrDefault();
+                if (dr != null)
                 {
-                    return false;
+                    dr.Delete();
+                    Luu();
+                    return true;
                 }
-
-                string query = "DELETE FROM BENHNHAN WHERE MaBN = @MaBN";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaBN", MaBN);
-
-                conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                conn.Close();
-
-                return rowsAffected > 0;
+                return false;
+                
             }
             catch (Exception ex)
             {
