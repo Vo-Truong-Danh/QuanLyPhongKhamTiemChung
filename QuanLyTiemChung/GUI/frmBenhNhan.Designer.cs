@@ -45,7 +45,6 @@ namespace GUI
             this.dtpNgaySinhinTTBN = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnXoaBNinTTBN = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.rdoNaminTTBN = new System.Windows.Forms.RadioButton();
@@ -163,7 +162,7 @@ namespace GUI
             this.btnCapNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.btnCapNhat.ForeColor = System.Drawing.Color.Navy;
             this.btnCapNhat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCapNhat.Location = new System.Drawing.Point(676, 468);
+            this.btnCapNhat.Location = new System.Drawing.Point(890, 473);
             this.btnCapNhat.Margin = new System.Windows.Forms.Padding(2);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(236, 48);
@@ -260,7 +259,6 @@ namespace GUI
             this.pnlThongTinBenhNhan.Controls.Add(this.dtpNgaySinhinTTBN);
             this.pnlThongTinBenhNhan.Controls.Add(this.label8);
             this.pnlThongTinBenhNhan.Controls.Add(this.button1);
-            this.pnlThongTinBenhNhan.Controls.Add(this.btnXoaBNinTTBN);
             this.pnlThongTinBenhNhan.Controls.Add(this.label9);
             this.pnlThongTinBenhNhan.Controls.Add(this.label11);
             this.pnlThongTinBenhNhan.Controls.Add(this.btnCapNhat);
@@ -302,7 +300,7 @@ namespace GUI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(565, 468);
+            this.button1.Location = new System.Drawing.Point(779, 473);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 48);
@@ -310,22 +308,6 @@ namespace GUI
             this.button1.Text = "Đóng";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnDong_Click_1);
-            // 
-            // btnXoaBNinTTBN
-            // 
-            this.btnXoaBNinTTBN.BackColor = System.Drawing.Color.Crimson;
-            this.btnXoaBNinTTBN.FlatAppearance.BorderSize = 0;
-            this.btnXoaBNinTTBN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoaBNinTTBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold);
-            this.btnXoaBNinTTBN.ForeColor = System.Drawing.Color.OldLace;
-            this.btnXoaBNinTTBN.Location = new System.Drawing.Point(920, 468);
-            this.btnXoaBNinTTBN.Margin = new System.Windows.Forms.Padding(0);
-            this.btnXoaBNinTTBN.Name = "btnXoaBNinTTBN";
-            this.btnXoaBNinTTBN.Size = new System.Drawing.Size(212, 48);
-            this.btnXoaBNinTTBN.TabIndex = 77;
-            this.btnXoaBNinTTBN.Text = "Xóa bệnh nhân";
-            this.btnXoaBNinTTBN.UseVisualStyleBackColor = false;
-            this.btnXoaBNinTTBN.Click += new System.EventHandler(this.btnXoaBNinTTBN_Click);
             // 
             // label9
             // 
@@ -1215,7 +1197,6 @@ namespace GUI
         private Panel pnlThongTinBenhNhan;
         private Label label8;
         private Button button1;
-        private Button btnXoaBNinTTBN;
         private Label label9;
         private Label label11;
         private RadioButton rdoNaminTTBN;
