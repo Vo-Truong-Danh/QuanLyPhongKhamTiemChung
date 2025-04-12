@@ -41,6 +41,9 @@ namespace GUI
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnKQTiemChung = new System.Windows.Forms.Button();
+            this.btnThemMuiTemChoBN = new System.Windows.Forms.Button();
+            this.btnThongTinChiTietBenhNhan = new System.Windows.Forms.Button();
             this.pnlThongTinBenhNhan = new System.Windows.Forms.Panel();
             this.dtpNgaySinhinTTBN = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,9 +60,6 @@ namespace GUI
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.btnKQTiemChung = new System.Windows.Forms.Button();
-            this.btnThemMuiTemChoBN = new System.Windows.Forms.Button();
-            this.btnThongTinChiTietBenhNhan = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlThemBN = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -254,6 +254,59 @@ namespace GUI
             this.panel1.Size = new System.Drawing.Size(1886, 75);
             this.panel1.TabIndex = 18;
             // 
+            // btnKQTiemChung
+            // 
+            this.btnKQTiemChung.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnKQTiemChung.FlatAppearance.BorderColor = System.Drawing.Color.PaleTurquoise;
+            this.btnKQTiemChung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKQTiemChung.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.btnKQTiemChung.ForeColor = System.Drawing.Color.Azure;
+            this.btnKQTiemChung.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKQTiemChung.Location = new System.Drawing.Point(786, 16);
+            this.btnKQTiemChung.Margin = new System.Windows.Forms.Padding(2);
+            this.btnKQTiemChung.Name = "btnKQTiemChung";
+            this.btnKQTiemChung.Size = new System.Drawing.Size(189, 39);
+            this.btnKQTiemChung.TabIndex = 18;
+            this.btnKQTiemChung.Text = "In kết quả tiêm chủng";
+            this.btnKQTiemChung.UseVisualStyleBackColor = false;
+            this.btnKQTiemChung.Click += new System.EventHandler(this.btnKQTiemChung_Click_1);
+            // 
+            // btnThemMuiTemChoBN
+            // 
+            this.btnThemMuiTemChoBN.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnThemMuiTemChoBN.FlatAppearance.BorderColor = System.Drawing.Color.Aquamarine;
+            this.btnThemMuiTemChoBN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThemMuiTemChoBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.btnThemMuiTemChoBN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnThemMuiTemChoBN.Image = global::GUI.Properties.Resources.add2;
+            this.btnThemMuiTemChoBN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemMuiTemChoBN.Location = new System.Drawing.Point(195, 16);
+            this.btnThemMuiTemChoBN.Margin = new System.Windows.Forms.Padding(2);
+            this.btnThemMuiTemChoBN.Name = "btnThemMuiTemChoBN";
+            this.btnThemMuiTemChoBN.Size = new System.Drawing.Size(165, 39);
+            this.btnThemMuiTemChoBN.TabIndex = 13;
+            this.btnThemMuiTemChoBN.Text = "Thêm mũi tiêm";
+            this.btnThemMuiTemChoBN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnThemMuiTemChoBN.UseVisualStyleBackColor = false;
+            this.btnThemMuiTemChoBN.Click += new System.EventHandler(this.btnThemMuiTemChoBN_Click);
+            // 
+            // btnThongTinChiTietBenhNhan
+            // 
+            this.btnThongTinChiTietBenhNhan.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnThongTinChiTietBenhNhan.FlatAppearance.BorderColor = System.Drawing.Color.PaleTurquoise;
+            this.btnThongTinChiTietBenhNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongTinChiTietBenhNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.btnThongTinChiTietBenhNhan.ForeColor = System.Drawing.Color.Azure;
+            this.btnThongTinChiTietBenhNhan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThongTinChiTietBenhNhan.Location = new System.Drawing.Point(567, 16);
+            this.btnThongTinChiTietBenhNhan.Margin = new System.Windows.Forms.Padding(2);
+            this.btnThongTinChiTietBenhNhan.Name = "btnThongTinChiTietBenhNhan";
+            this.btnThongTinChiTietBenhNhan.Size = new System.Drawing.Size(200, 39);
+            this.btnThongTinChiTietBenhNhan.TabIndex = 14;
+            this.btnThongTinChiTietBenhNhan.Text = "Thông tin chi tiết";
+            this.btnThongTinChiTietBenhNhan.UseVisualStyleBackColor = false;
+            this.btnThongTinChiTietBenhNhan.Click += new System.EventHandler(this.btnThongTinChiTietBenhNhan_Click);
+            // 
             // pnlThongTinBenhNhan
             // 
             this.pnlThongTinBenhNhan.Controls.Add(this.dtpNgaySinhinTTBN);
@@ -430,59 +483,6 @@ namespace GUI
             this.label16.Size = new System.Drawing.Size(105, 36);
             this.label16.TabIndex = 65;
             this.label16.Text = "Địa chỉ :";
-            // 
-            // btnKQTiemChung
-            // 
-            this.btnKQTiemChung.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnKQTiemChung.FlatAppearance.BorderColor = System.Drawing.Color.PaleTurquoise;
-            this.btnKQTiemChung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKQTiemChung.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnKQTiemChung.ForeColor = System.Drawing.Color.Azure;
-            this.btnKQTiemChung.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKQTiemChung.Location = new System.Drawing.Point(786, 16);
-            this.btnKQTiemChung.Margin = new System.Windows.Forms.Padding(2);
-            this.btnKQTiemChung.Name = "btnKQTiemChung";
-            this.btnKQTiemChung.Size = new System.Drawing.Size(189, 39);
-            this.btnKQTiemChung.TabIndex = 18;
-            this.btnKQTiemChung.Text = "In kết quả tiêm chủng";
-            this.btnKQTiemChung.UseVisualStyleBackColor = false;
-            this.btnKQTiemChung.Click += new System.EventHandler(this.btnKQTiemChung_Click_1);
-            // 
-            // btnThemMuiTemChoBN
-            // 
-            this.btnThemMuiTemChoBN.BackColor = System.Drawing.Color.Aquamarine;
-            this.btnThemMuiTemChoBN.FlatAppearance.BorderColor = System.Drawing.Color.Aquamarine;
-            this.btnThemMuiTemChoBN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThemMuiTemChoBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnThemMuiTemChoBN.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnThemMuiTemChoBN.Image = global::GUI.Properties.Resources.add2;
-            this.btnThemMuiTemChoBN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemMuiTemChoBN.Location = new System.Drawing.Point(195, 16);
-            this.btnThemMuiTemChoBN.Margin = new System.Windows.Forms.Padding(2);
-            this.btnThemMuiTemChoBN.Name = "btnThemMuiTemChoBN";
-            this.btnThemMuiTemChoBN.Size = new System.Drawing.Size(165, 39);
-            this.btnThemMuiTemChoBN.TabIndex = 13;
-            this.btnThemMuiTemChoBN.Text = "Thêm mũi tiêm";
-            this.btnThemMuiTemChoBN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnThemMuiTemChoBN.UseVisualStyleBackColor = false;
-            this.btnThemMuiTemChoBN.Click += new System.EventHandler(this.btnThemMuiTemChoBN_Click);
-            // 
-            // btnThongTinChiTietBenhNhan
-            // 
-            this.btnThongTinChiTietBenhNhan.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnThongTinChiTietBenhNhan.FlatAppearance.BorderColor = System.Drawing.Color.PaleTurquoise;
-            this.btnThongTinChiTietBenhNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThongTinChiTietBenhNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnThongTinChiTietBenhNhan.ForeColor = System.Drawing.Color.Azure;
-            this.btnThongTinChiTietBenhNhan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThongTinChiTietBenhNhan.Location = new System.Drawing.Point(567, 16);
-            this.btnThongTinChiTietBenhNhan.Margin = new System.Windows.Forms.Padding(2);
-            this.btnThongTinChiTietBenhNhan.Name = "btnThongTinChiTietBenhNhan";
-            this.btnThongTinChiTietBenhNhan.Size = new System.Drawing.Size(200, 39);
-            this.btnThongTinChiTietBenhNhan.TabIndex = 14;
-            this.btnThongTinChiTietBenhNhan.Text = "Thông tin chi tiết";
-            this.btnThongTinChiTietBenhNhan.UseVisualStyleBackColor = false;
-            this.btnThongTinChiTietBenhNhan.Click += new System.EventHandler(this.btnThongTinChiTietBenhNhan_Click);
             // 
             // panel2
             // 
@@ -778,7 +778,6 @@ namespace GUI
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Size = new System.Drawing.Size(217, 42);
             this.txtDonGia.TabIndex = 55;
-            this.txtDonGia.TextChanged += new System.EventHandler(this.txtDonGia_TextChanged);
             // 
             // txtSoLuong
             // 
@@ -789,7 +788,6 @@ namespace GUI
             this.txtSoLuong.TabIndex = 55;
             this.txtSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSoLuong.TextChanged += new System.EventHandler(this.txtSoLuong_TextChanged);
-            this.txtSoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoLuong_KeyPress);
             // 
             // dgvChiTietHoaDon
             // 
@@ -997,7 +995,6 @@ namespace GUI
             this.txtSoDT.Size = new System.Drawing.Size(223, 42);
             this.txtSoDT.TabIndex = 55;
             this.txtSoDT.TextChanged += new System.EventHandler(this.txtSoDT_TextChanged);
-            this.txtSoDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoDT_KeyPress);
             // 
             // txtHoTen
             // 
@@ -1007,7 +1004,6 @@ namespace GUI
             this.txtHoTen.Size = new System.Drawing.Size(285, 42);
             this.txtHoTen.TabIndex = 54;
             this.txtHoTen.TextChanged += new System.EventHandler(this.txtHoTen_TextChanged);
-            this.txtHoTen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoTen_KeyPress);
             // 
             // label5
             // 

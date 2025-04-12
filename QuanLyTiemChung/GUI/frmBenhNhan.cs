@@ -128,12 +128,11 @@ namespace GUI
         {
 
             Control control = (Control)sender;
-            Regex pattern = new Regex("^[\\p{L}\\s]+$");
-
+            Regex pattern = new Regex("^[\\p{L}\\s,/.]+$");
+            
             if (!pattern.IsMatch(control.Text))
             {
                 errHoTen.SetError(control, "Sai định dạng");
-                txtHoTen.Focus();
             }
             else
             {
@@ -162,7 +161,6 @@ namespace GUI
             if (!pattern.IsMatch(control.Text))
             {
                 errSoDienThoai.SetError(control, "Sai định dạng");
-                txtSoDT.Focus();
             }
             else
             {
@@ -826,47 +824,37 @@ namespace GUI
             }
         }
 
-        private void txtHoTen_TextChanged(object sender, KeyPressEventArgs e)
-        {
+        //private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+        //    {
+        //        e.Handled = true;
+        //        error.SetError(txtHoTen, "Không được nhập số vui lòng chỉ nhập chữ");
+        //    }
+        //    else
+        //        error.Clear();
+        //}
 
-        }
+        //private void txtSoDT_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+        //    {
+        //        e.Handled = true;
+        //        error.SetError(txtSoDT, "Không được nhập chữ vui lòng chỉ nhập số");
+        //    }
+        //    else
+        //        error.Clear();
+        //}
 
-        private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-                error.SetError(txtHoTen, "Không được nhập số vui lòng chỉ nhập chữ");
-            }
-            else
-                error.Clear();
-        }
-
-        private void txtSoDT_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-                error.SetError(txtSoDT, "Không được nhập chữ vui lòng chỉ nhập số");
-            }
-            else
-                error.Clear();
-        }
-
-        private void txtSoLuong_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' || e.KeyChar == '0')
-            {
-                e.Handled = true;
-                error.SetError(txtSoLuong, "Không được nhập chữ vui lòng chỉ nhập số");
-            }
-            else
-                error.Clear();
-        }
-
-        private void txtDonGia_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        //private void txtSoLuong_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' || e.KeyChar == '0')
+        //    {
+        //        e.Handled = true;
+        //        error.SetError(txtSoLuong, "Không được nhập chữ vui lòng chỉ nhập số");
+        //    }
+        //    else
+        //        error.Clear();
+        //}
     }
 }
